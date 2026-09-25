@@ -1,0 +1,31 @@
+name: Download DeepSeek Harness
+
+on:
+  workflow_dispatch:   # 手动触发，也可改为 schedule 定时触发
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download file
+        run: |
+          curl -L --fail \
+            --connect-timeout 30 \
+            --max-time 600 \
+            --retry 3 \
+            --retry-delay 5 \
+            -o DeepSeek-Harness-Android-v1.1.9.2.zip \
+            "https://transfer.archivete.am/X2xW3/DeepSeek-Harness-Android-v1.1.9.2.zip"
+
+      - name: Verify file
+        run: |
+          ls -lh DeepSeek-Harness-Android-v1.1.9.2.zip
+          file DeepSeek-Harness-Android-v1.1.9.2.zip
+
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeepSeek-Harness-Android-v1.1.9.2
+          path: DeepSeek-Harness-Android-v1.1.9.2.zip
