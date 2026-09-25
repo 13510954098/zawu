@@ -1,7 +1,17 @@
-name: Download DeepSeek Harness
+name: Download File
 
 on:
-  workflow_dispatch:   # 手动触发，也可改为 schedule 定时触发
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '下载地址'
+        required: true
+        type: string
+      filename:
+        description: '保存的文件名（留空则自动从 URL 提取）'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   download:
@@ -9,23 +19,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Resolve filename
+        id: resolve
+        run: |
+          INPUT_URL="${{ inputs.url }}"
+          INPUT_NAME="${{ inputs.filename }}"
+
+          if [ -z "$INPUT_NAME" ]; then
+            # 去掉 query 参数后取最后一段作为文件名
+            INPUT_NAME=$(basename "${INPUT_URL%%\?*}")
+          fi
+
+          # 兜底：如果还拿不到名字就默认 download.bin
+          if [ -z "$INPUT_NAME" ] || [ "$INPUT_NAME" = "/" ]; then
+            INPUT_NAME="download.bin"
+          fi
+
+          echo "filename=$INPUT_NAME" >> "$GITHUB_OUTPUT"
+          echo "解析出的文件名: $INPUT_NAME"
+
       - name: Download file
         run: |
           curl -L --fail \
             --connect-timeout 30 \
-            --max-time 600 \
+            --max-time 1800 \
             --retry 3 \
             --retry-delay 5 \
-            -o DeepSeek-Harness-Android-v1.1.9.2.zip \
-            "https://transfer.archivete.am/X2xW3/DeepSeek-Harness-Android-v1.1.9.2.zip"
+            -o "${{ steps.resolve.outputs.filename }}" \
+            "${{ inputs.url }}"
 
       - name: Verify file
         run: |
-          ls -lh DeepSeek-Harness-Android-v1.1.9.2.zip
-          file DeepSeek-Harness-Android-v1.1.9.2.zip
+          ls -lh "${{ steps.resolve.outputs.filename }}"
+          file "${{ steps.resolve.outputs.filename }}"
 
       - name: Upload as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DeepSeek-Harness-Android-v1.1.9.2
-          path: DeepSeek-Harness-Android-v1.1.9.2.zip
+          name: downloaded-file
+          path: ${{ steps.resolve.outputs.filename }}
