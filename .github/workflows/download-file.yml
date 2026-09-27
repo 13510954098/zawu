@@ -13,6 +13,10 @@ on:
         default: ''
         type: string
 
+# 关键：默认 token 是只读的，必须显式授予写权限
+permissions:
+  contents: write
+
 jobs:
   download:
     runs-on: ubuntu-latest
@@ -26,11 +30,9 @@ jobs:
           INPUT_NAME="${{ inputs.filename }}"
 
           if [ -z "$INPUT_NAME" ]; then
-            # 去掉 query 参数后取最后一段作为文件名
             INPUT_NAME=$(basename "${INPUT_URL%%\?*}")
           fi
 
-          # 兜底：如果还拿不到名字就默认 download.bin
           if [ -z "$INPUT_NAME" ] || [ "$INPUT_NAME" = "/" ]; then
             INPUT_NAME="download.bin"
           fi
@@ -39,19 +41,42 @@ jobs:
           echo "解析出的文件名: $INPUT_NAME"
 
       - name: Download file
+        env:
+          DL_URL: ${{ inputs.url }}
+          DL_NAME: ${{ steps.resolve.outputs.filename }}
         run: |
           curl -L --fail \
             --connect-timeout 30 \
             --max-time 1800 \
             --retry 3 \
             --retry-delay 5 \
-            -o "${{ steps.resolve.outputs.filename }}" \
-            "${{ inputs.url }}"
+            -o "$DL_NAME" \
+            "$DL_URL"
 
       - name: Verify file
+        env:
+          DL_NAME: ${{ steps.resolve.outputs.filename }}
         run: |
-          ls -lh "${{ steps.resolve.outputs.filename }}"
-          file "${{ steps.resolve.outputs.filename }}"
+          ls -lh "$DL_NAME"
+          file "$DL_NAME"
+
+      - name: Commit and push
+        env:
+          DL_NAME: ${{ steps.resolve.outputs.filename }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -f "$DL_NAME"
+
+          # 没有变化就跳过，避免 commit 报错
+          if git diff --cached --quiet; then
+            echo "文件无变化，跳过提交"
+            exit 0
+          fi
+
+          git commit -m "Add $DL_NAME (auto-downloaded)"
+          git push
 
       - name: Upload as artifact
         uses: actions/upload-artifact@v4
