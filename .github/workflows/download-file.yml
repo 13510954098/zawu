@@ -13,7 +13,7 @@ on:
         default: ''
         type: string
 
-# 关键：默认 token 是只读的，必须显式授予写权限
+# 关键：默认 token 是只读的，必须显式授予写权限，否则 git push 会 403
 permissions:
   contents: write
 
@@ -21,18 +21,24 @@ jobs:
   download:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 拉取完整历史，避免浅克隆导致的推送问题
+          fetch-depth: 0
 
       - name: Resolve filename
         id: resolve
+        env:
+          INPUT_URL: ${{ inputs.url }}
+          INPUT_NAME: ${{ inputs.filename }}
         run: |
-          INPUT_URL="${{ inputs.url }}"
-          INPUT_NAME="${{ inputs.filename }}"
-
           if [ -z "$INPUT_NAME" ]; then
+            # 去掉 query 参数后取最后一段作为文件名
             INPUT_NAME=$(basename "${INPUT_URL%%\?*}")
           fi
 
+          # 兜底：如果还拿不到名字就默认 download.bin
           if [ -z "$INPUT_NAME" ] || [ "$INPUT_NAME" = "/" ]; then
             INPUT_NAME="download.bin"
           fi
@@ -59,6 +65,13 @@ jobs:
         run: |
           ls -lh "$DL_NAME"
           file "$DL_NAME"
+          # 检查是否超过 GitHub 单文件 100MB 限制
+          SIZE=$(stat -c%s "$DL_NAME")
+          if [ "$SIZE" -gt 104857600 ]; then
+            echo "::error::文件大小 $SIZE 字节，超过 GitHub 100MB 限制，无法推送到仓库"
+            exit 1
+          fi
+          echo "文件大小检查通过：$SIZE 字节"
 
       - name: Commit and push
         env:
@@ -67,9 +80,10 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # -f 强制添加，跳过 .gitignore 的排除规则
           git add -f "$DL_NAME"
 
-          # 没有变化就跳过，避免 commit 报错
+          # 没有变化就跳过，避免 "nothing to commit" 导致失败
           if git diff --cached --quiet; then
             echo "文件无变化，跳过提交"
             exit 0
@@ -79,7 +93,9 @@ jobs:
           git push
 
       - name: Upload as artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: downloaded-file
           path: ${{ steps.resolve.outputs.filename }}
+          if-no-files-found: warn
