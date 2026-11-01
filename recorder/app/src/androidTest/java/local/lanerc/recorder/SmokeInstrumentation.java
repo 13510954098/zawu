@@ -25,6 +25,11 @@ public class SmokeInstrumentation extends Instrumentation {
     void stopCapture() throws Exception {
         getTargetContext().startService(new Intent(getTargetContext(),CaptureService.class).setAction(CaptureService.STOP));
         waitFor(()->!Session.active,"stop did not complete");
+        waitFor(()-> {
+            for(ActivityManager.RunningServiceInfo service:getTargetContext().getSystemService(ActivityManager.class).getRunningServices(50))
+                if(service.service.getClassName().equals(CaptureService.class.getName())) return false;
+            return true;
+        }, "previous service not destroyed");
     }
     public void onStart() {
         Bundle result=new Bundle();
@@ -57,7 +62,9 @@ public class SmokeInstrumentation extends Instrumentation {
             result.putString("stream","PASS: Android 11 projection denial, grant, pause/resume, system interruption, ZIP contents. SAF UI, target app and secure windows not verified.\n");
             finish(Activity.RESULT_OK,result);
         } catch(Throwable e) {
-            result.putString("stream","FAIL: "+android.util.Log.getStackTraceString(e)); finish(Activity.RESULT_CANCELED,result);
+            String diagnostic="";
+            try { diagnostic="\nMETA: "+Session.meta(getTargetContext())+"\nEVENTS: "+new String(java.nio.file.Files.readAllBytes(Session.file(getTargetContext(),"events.jsonl").toPath()),java.nio.charset.StandardCharsets.UTF_8); } catch(Exception ignored) {}
+            result.putString("stream","FAIL: "+android.util.Log.getStackTraceString(e)+diagnostic); finish(Activity.RESULT_CANCELED,result);
         }
     }
 }
