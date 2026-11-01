@@ -65,11 +65,26 @@ jobs:
             install_rc=$?
             if [ "$install_rc" -eq 0 ]; then
               printf 'Install: PASS\n' >> run-data/install.txt
+              if adb shell pm path com.clggjv.xcjfmd.ffo 2>/dev/null | grep -q 'package:'; then
+                version=$(adb shell dumpsys package com.clggjv.xcjfmd.ffo 2>/dev/null | sed -n 's/.*versionName=//p' | head -n 1 | tr -d '\r')
+                printf 'Package installed: com.clggjv.xcjfmd.ffo\nObserved version: %s\n' "$version" >> run-data/install.txt
+                if [ "$version" = '1.0.8' ]; then
+                  identity_ok=1
+                  printf 'Package/version check: PASS\n' >> run-data/install.txt
+                else
+                  identity_ok=0
+                  printf 'Package/version check: FAIL (expected 1.0.8)\n' >> run-data/install.txt
+                fi
+              else
+                identity_ok=0
+                printf 'Package/version check: FAIL (expected package not installed)\n' >> run-data/install.txt
+              fi
             else
+              identity_ok=0
               printf 'Install: FAIL (adb exit %s)\n' "$install_rc" >> run-data/install.txt
             fi
 
-            if [ "$install_rc" -eq 0 ]; then
+            if [ "$install_rc" -eq 0 ] && [ "$identity_ok" -eq 1 ]; then
               adb shell pm clear com.clggjv.xcjfmd.ffo >/dev/null 2>&1
               adb shell monkey -p com.clggjv.xcjfmd.ffo -c android.intent.category.LAUNCHER 1 > run-data/launch.txt 2>&1
               launch_rc=$?
