@@ -9,6 +9,7 @@ on:
       - .github/workflows/lanerc-ui-smoke.yml
       - .github/scripts/lanerc-ui-smoke.sh
       - .github/scripts/summarize-ui.py
+      - .github/scripts/analyze-ui-step.py
 
 permissions:
   contents: read
@@ -26,6 +27,12 @@ jobs:
     steps:
       - name: Checkout UI-test scripts
         uses: actions/checkout@v4
+
+      - name: Install OCR support for Chinese UI text
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tesseract-ocr tesseract-ocr-chi-sim
+          tesseract --list-langs | grep -q chi_sim
 
       - name: Check and enable KVM
         run: |
