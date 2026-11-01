@@ -2,6 +2,9 @@ name: Lanerc 1.0.8 isolated emulator smoke test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - arena/438dce37-zawu
 
 permissions:
   contents: read
