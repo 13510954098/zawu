@@ -32,7 +32,7 @@ public class CaptureService extends Service {
         getSystemService(NotificationManager.class).createNotificationChannel(new NotificationChannel("record","本地记录控制",NotificationManager.IMPORTANCE_LOW));
         boolean screen=i.getIntExtra("code",0)==Activity.RESULT_OK;
         try {
-            startForeground(1,notification(),screen?ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION:ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+            startForeground(1,notification(),screen?ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION:(Build.VERSION.SDK_INT>=34?ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE:0));
             if(screen) startVideo(i);
             else Session.status(this,"screenStatus","用户未授权：没有录像");
             addOverlay(); handler.postDelayed(diskCheck,3000);

@@ -54,9 +54,16 @@ final class Session {
         } catch(Exception e) { statusNoEvent(c); }
     }
     static void statusNoEvent(Context c) { try(FileOutputStream out=new FileOutputStream(file(c,"recording-error.txt"))) { out.write("事件写入失败或超过16MiB上限；时间线可能不完整".getBytes(StandardCharsets.UTF_8)); } catch(Exception ignored) {} }
+    static String redactNotes(String s) {
+        // Conservative best-effort filtering, never a claim that images or arbitrary prose are safe.
+        return s.replaceAll("(?i)(password|passwd|token|secret|authorization|cookie|密码|口令|令牌|账号|账户)\\s*[:：=]\\s*[^\\s,，;；]+", "$1=[REDACTED]")
+            .replaceAll("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}", "[EMAIL]")
+            .replaceAll("(?<![0-9])[0-9]{7,}(?![0-9])", "[NUMBER]")
+            .replaceAll("[A-Za-z0-9_\\-]{24,}", "[POSSIBLE_TOKEN]");
+    }
     static synchronized File zip(Context c, String notes) throws Exception {
         if(active) throw new IOException("请先结束记录");
-        String report="Lanerc 本地测试记录\n\n"+meta(c).toString(2)+"\n\n用户备注（用户自行填写，未自动验证）：\n"+notes+
+        String report="Lanerc 本地测试记录\n\n"+meta(c).toString(2)+"\n\n用户备注（用户自行填写，未自动验证）：\n"+redactNotes(notes)+
             "\n\n已知限制与隐私说明：\n仅本地记录；无网络权限，无设备唯一标识，无音频。\n节点不含任何文本、描述、viewId；密码节点及其子树跳过，只保留结构与屏幕坐标。\nFlutter/自绘可能无完整节点；空树不代表没有界面。广告若属于其他包，故意不采集其无障碍内容。\nMediaProjection 没有可靠的第三方 FLAG_SECURE 检测接口：安全窗口可能显示黑屏，无法自动确认或区分静态黑屏，需人工查看录像。不能声称已录到受保护画面。\n录像仍可能包含账号等敏感画面，不能保证自动脱敏；请审查后再分享。\n暂停期间不记录界面事件；视频暂停不包含该时段，按 video_started/video_paused/video_resumed 对齐时间线。\n不读取私有文件、完整 logcat 或 HTTPS 明文；无广告自动点击、奖励伪造、VPN。\n系统杀进程可能导致 MP4 未完成；导出保留现有文件和错误，不保证损坏视频可播放。\n";
         try(FileOutputStream out=new FileOutputStream(file(c,"report.txt"))) { out.write(report.getBytes(StandardCharsets.UTF_8)); }
         File zip=new File(c.getCacheDir(),"lanerc-recording.zip");

@@ -8,6 +8,8 @@ permissions:
   contents: read
 jobs:
   debug-apk:
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -33,12 +35,20 @@ jobs:
         with:
           name: lanerc-local-recorder-debug
           path: delivery/
+      - name: Publish installable APK on this session branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add delivery/lanerc-local-recorder-debug.apk delivery/SHA256SUMS.txt
+          git commit -m "Publish built debug APK and SHA-256" || exit 0
+          git push origin HEAD:arena/6d46a18e-zawu
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: android-lint-report
           path: recorder/app/build/reports/lint-results-debug.*
   android11-smoke:
+    timeout-minutes: 20
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
