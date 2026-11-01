@@ -124,3 +124,4 @@ summary = [
     *[f'- {line}' for line in relevant[:40]],
 ]
 out.write_text('\n'.join(summary) + '\n', encoding='utf-8')
+(output_dir / f'{stage}-relevant-labels.txt').write_text('\n'.join(relevant[:40]) + '\n', encoding='utf-8')

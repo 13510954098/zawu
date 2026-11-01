@@ -145,6 +145,10 @@ if [ "$identity_ok" -eq 1 ]; then
       grep -E 'download_hint=|ad_hint=|login_hint=|Visible hierarchy labels|Relevant OCR lines|下载|次数|金币|权限|广告|视频|登录|福利' \
         run-data/02-after-welfare-ui-summary.txt > run-data/welfare-state-labels.txt || true
       printf 'Displayed values are visual text only; entitlement was not verified.\n' >> run-data/welfare-state-labels.txt
+      welfare_text=$(grep -E '下载|次数|金币|权限|广告|视频|登录|福利' run-data/02-after-welfare-relevant-labels.txt 2>/dev/null | tr '\n' ' ' | cut -c1-500)
+      if [ -n "$welfare_text" ]; then
+        echo "::notice title=Lanerc API $api_level welfare labels::$welfare_text"
+      fi
     else
       printf 'Welfare tap skipped: entry not positively located.\n' >> run-data/02-welfare-action.txt
     fi
