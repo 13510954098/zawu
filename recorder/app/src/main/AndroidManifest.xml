@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <queries><package android:name="com.clggjv.xcjfmd.ffo" /></queries>
     <application android:theme="@android:style/Theme.Material.Light.NoActionBar" android:label="Lanerc 本地记录器" android:allowBackup="false" android:usesCleartextTraffic="false">
-        <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize|keyboardHidden" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
         <service android:name=".CaptureService" android:exported="false" android:foregroundServiceType="mediaProjection|specialUse"><property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User initiated local accessibility test timeline, no network" /></service>
         <service android:name=".ObserverService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" android:exported="true" android:label="Lanerc 被动界面记录">
             <intent-filter><action android:name="android.accessibilityservice.AccessibilityService"/></intent-filter>

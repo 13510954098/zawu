@@ -8,6 +8,7 @@ android {
         targetSdk 34
         versionCode 1
         versionName '1.0.0'
+        testInstrumentationRunner 'local.lanerc.recorder.SmokeInstrumentation'
     }
     buildTypes { debug { debuggable true } }
 }

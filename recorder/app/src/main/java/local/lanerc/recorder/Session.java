@@ -13,7 +13,7 @@ import java.util.zip.*;
 
 final class Session {
     static final String TARGET = "com.clggjv.xcjfmd.ffo";
-    static volatile boolean active, paused;
+    static volatile boolean active, paused, exporting;
     static File dir(Context c) { return new File(c.getFilesDir(), "session"); }
     static File file(Context c, String name) { return new File(dir(c), name); }
     static synchronized void start(Context c) throws Exception {
@@ -30,6 +30,7 @@ final class Session {
         info.put("recorderVersion", c.getPackageManager().getPackageInfo(c.getPackageName(),0).versionName);
         info.put("overlayAtStart", Settings.canDrawOverlays(c));
         info.put("accessibilityConnectedAtStart", ObserverService.connected);
+        info.put("notificationAtStart", c.getSystemService(android.app.NotificationManager.class).areNotificationsEnabled());
         info.put("screenStatus", "未授权 / 未启动");
         save(c, info); event(c, "session_start", "用户明确开始记录；只记录本次会话");
     }
