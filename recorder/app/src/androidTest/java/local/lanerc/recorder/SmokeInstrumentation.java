@@ -43,7 +43,7 @@ public class SmokeInstrumentation extends Instrumentation {
             File z=Session.zip(getTargetContext(),"emulator denial test");
             try(ZipFile zip=new ZipFile(z)) { check(zip.getEntry("report.txt")!=null,"report missing"); check(zip.getEntry("events.jsonl")!=null,"events missing"); check(zip.getEntry("screen.mp4")==null,"fake video"); }
             Session.delete(getTargetContext());
-            runOnMainSync(()->activity.startActivity(new Intent(activity,MainActivity.class)));
+            waitForIdleSync(); // Keep the original activity/result receiver; do not create a second task entry.
             begin(); waitFor(()->clickSystem("Start now"),"projection approval dialog missing");
             waitFor(()->Session.meta(getTargetContext()).optString("screenStatus").startsWith("已启动"),"video failed to start");
             SystemClock.sleep(1800);
