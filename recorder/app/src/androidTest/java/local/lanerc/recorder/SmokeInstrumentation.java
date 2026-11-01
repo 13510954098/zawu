@@ -47,8 +47,9 @@ public class SmokeInstrumentation extends Instrumentation {
             getTargetContext().startService(new Intent(getTargetContext(),CaptureService.class).setAction(CaptureService.PAUSE));
             waitFor(()->!Session.paused,"resume failed");
             SystemClock.sleep(1000);
-            // Android 11 system revocation through media_projection shell command.
-            getUiAutomation().executeShellCommand("cmd media_projection stop").close();
+            // AOSP API 30 test image only: root shell revokes projection via system binder.
+            // This is test infrastructure, never called or required by the shipped app.
+            try (InputStream command=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("su 0 service call media_projection 5"))) { while(command.read()!=-1) {} }
             waitFor(()->!Session.active,"system interruption not handled");
             check(Session.file(getTargetContext(),"screen.mp4").length()>0,"video empty");
             File videoZip=Session.zip(getTargetContext(),"emulator recording interruption test");
