@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - arena/bde28a2b-zawu
+    paths:
+      - .github/scripts/lanerc-online-smoke.sh
 
 permissions:
   contents: read

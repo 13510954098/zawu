@@ -1,0 +1,70 @@
+name: Lanerc online UI navigation smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - arena/bde28a2b-zawu
+    paths:
+      - .github/workflows/lanerc-ui-smoke.yml
+      - .github/scripts/lanerc-ui-smoke.sh
+      - .github/scripts/summarize-ui.py
+
+permissions:
+  contents: read
+
+jobs:
+  ui-smoke:
+    name: Android API ${{ matrix.api-level }} (online UI, no ads)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [28, 30]
+
+    steps:
+      - name: Checkout UI-test scripts
+        uses: actions/checkout@v4
+
+      - name: Check and enable KVM
+        run: |
+          set -euo pipefail
+          if [ ! -e /dev/kvm ]; then
+            echo 'KVM device is missing on this runner.' >&2
+            exit 1
+          fi
+          sudo chmod 666 /dev/kvm
+          test -r /dev/kvm && test -w /dev/kvm
+          ls -l /dev/kvm
+
+      - name: Download APK and verify pinned SHA-256
+        env:
+          APK_URL: https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTYxOTIzMzQzOTpNRVJDSEFOVDpbQkAyZjc1Mjg0ZDoyMjUzNTM1MjMyOTQzOQ%3D%3D.apk
+        run: |
+          set -euo pipefail
+          mkdir -p run-data
+          curl --fail --location --silent --show-error "$APK_URL" --output lanerc.apk
+          echo '4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd  lanerc.apk' | sha256sum --check
+          printf 'APK SHA-256 verification: PASS\n' > run-data/apk-integrity.txt
+
+      - name: Install, launch, and navigate to Welfare (network enabled)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          arch: x86_64
+          target: default
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -no-audio -no-boot-anim -camera-back none -camera-front none -gpu swiftshader_indirect
+          working-directory: ${{ github.workspace }}
+          script: bash .github/scripts/lanerc-ui-smoke.sh "${{ matrix.api-level }}"
+
+      - name: Upload sanitized UI evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lanerc-1.0.8-ui-api-${{ matrix.api-level }}
+          path: run-data/
+          if-no-files-found: warn
+          retention-days: 3
