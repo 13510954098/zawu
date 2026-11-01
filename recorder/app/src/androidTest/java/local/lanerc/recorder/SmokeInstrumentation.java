@@ -11,6 +11,7 @@ import java.util.zip.*;
 public class SmokeInstrumentation extends Instrumentation {
     MainActivity activity;
     public void onCreate(Bundle args) { super.onCreate(args); start(); }
+    void phase(String name) { Bundle b=new Bundle(); b.putString("stream","PHASE: "+name+"\n"); sendStatus(0,b); }
     void check(boolean value,String message) { if(!value) throw new AssertionError(message); }
     void waitFor(java.util.concurrent.Callable<Boolean> ready,String message) throws Exception {
         for(int i=0;i<60;i++) { if(ready.call()) return; SystemClock.sleep(200); }
@@ -36,25 +37,32 @@ public class SmokeInstrumentation extends Instrumentation {
         try {
             activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             Session.delete(getTargetContext());
+            phase("deny permission");
             begin(); waitFor(()->clickSystem("Cancel"),"projection denial dialog missing");
             waitFor(()->Session.meta(getTargetContext()).optString("screenStatus").contains("用户未授权"),"denial not reported");
             check(!Session.file(getTargetContext(),"screen.mp4").exists(),"denial produced video");
             stopCapture();
             File z=Session.zip(getTargetContext(),"emulator denial test");
             try(ZipFile zip=new ZipFile(z)) { check(zip.getEntry("report.txt")!=null,"report missing"); check(zip.getEntry("events.jsonl")!=null,"events missing"); check(zip.getEntry("screen.mp4")==null,"fake video"); }
+            phase("denial and ZIP passed");
             Session.delete(getTargetContext());
+            phase("await activity idle");
             waitForIdleSync(); // Keep the original activity/result receiver; do not create a second task entry.
+            phase("grant permission");
             begin(); waitFor(()->clickSystem("Start now"),"projection approval dialog missing");
             waitFor(()->Session.meta(getTargetContext()).optString("screenStatus").startsWith("已启动"),"video failed to start");
+            phase("video started");
             SystemClock.sleep(1800);
             getTargetContext().startService(new Intent(getTargetContext(),CaptureService.class).setAction(CaptureService.PAUSE));
             waitFor(()->Session.paused,"pause failed");
             getTargetContext().startService(new Intent(getTargetContext(),CaptureService.class).setAction(CaptureService.PAUSE));
             waitFor(()->!Session.paused,"resume failed");
             SystemClock.sleep(1000);
+            phase("pause/resume passed; revoke projection");
             // AOSP API 30 test image only: root shell revokes projection via system binder.
             // This is test infrastructure, never called or required by the shipped app.
             try (InputStream command=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("su 0 service call media_projection 5"))) { while(command.read()!=-1) {} }
+            phase("system binder returned");
             waitFor(()->!Session.active,"system interruption not handled");
             check(Session.file(getTargetContext(),"screen.mp4").length()>0,"video empty");
             File videoZip=Session.zip(getTargetContext(),"emulator recording interruption test");

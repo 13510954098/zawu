@@ -78,7 +78,7 @@ jobs:
           script: |
             adb install recorder/app/build/outputs/apk/debug/app-debug.apk
             adb install recorder/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-            adb shell am instrument -w local.lanerc.recorder.test/local.lanerc.recorder.SmokeInstrumentation | tee emulator-results.txt
+            timeout 150 adb shell am instrument -w local.lanerc.recorder.test/local.lanerc.recorder.SmokeInstrumentation | tee emulator-results.txt
             grep -q 'PASS: Android 11' emulator-results.txt || { echo "::error::$(cat emulator-results.txt | tr '\n' '|')"; exit 1; }
       - uses: actions/upload-artifact@v4
         if: always()
