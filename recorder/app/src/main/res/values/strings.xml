@@ -1,0 +1,1 @@
+<resources><string name="accessibility_description">仅被动观察 Lanerc 窗口、点击时间和节点结构；不执行点击，不读取节点文本、描述或密码，不上传。Flutter、自绘及广告窗口可能不可访问。</string></resources>

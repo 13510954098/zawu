@@ -1,0 +1,41 @@
+name: Build local Android recorder
+on:
+  workflow_dispatch:
+  push:
+    branches: ['arena/6d46a18e-zawu']
+    paths: ['recorder/**', '.github/workflows/build-recorder.yml']
+permissions:
+  contents: read
+jobs:
+  debug-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Install compile SDK
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build and lint
+        working-directory: recorder
+        run: gradle --no-daemon :app:assembleDebug :app:lintDebug
+      - name: Package APK and checksum
+        run: |
+          mkdir -p delivery
+          cp recorder/app/build/outputs/apk/debug/app-debug.apk delivery/lanerc-local-recorder-debug.apk
+          cd delivery
+          sha256sum lanerc-local-recorder-debug.apk > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lanerc-local-recorder-debug
+          path: delivery/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-lint-report
+          path: recorder/app/build/reports/lint-results-debug.*
