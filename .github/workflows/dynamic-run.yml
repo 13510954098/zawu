@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/dynamic-run.yml
       - .github/scripts/run_deep_dynamic.py
+      - .github/scripts/run_final_precision.py
       - .github/scripts/run_blutter_static.py
 
 concurrency:
@@ -90,7 +91,7 @@ jobs:
           test -d "$SDK_ROOT/system-images/android-30/google_apis/x86_64"
           test -d "$ANDROID_AVD_HOME/test_avd.avd"
 
-      - name: Run Full UI Traversal, Privacy & Network Dynamic Suite
+      - name: Run Precision Video Playback, Search, Schedule & Persistence Suite
         run: |
           set -euo pipefail
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
@@ -98,7 +99,7 @@ jobs:
           export ANDROID_SDK_ROOT="$SDK_ROOT"
           export ANDROID_AVD_HOME="$HOME/.android/avd"
           export PATH="$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
-          python3 .github/scripts/run_deep_dynamic.py
+          python3 .github/scripts/run_final_precision.py
 
       - name: Report Dynamic Failure Diagnostics
         if: failure()
@@ -106,7 +107,7 @@ jobs:
           python3 - <<'PY'
           import json, os, pathlib, subprocess
           diag = []
-          for p in ("work/step_dynamic.log", "work/sdkmanager.log", "work/emulator.log"):
+          for p in ("work/step_precision.log", "work/step_dynamic.log", "work/sdkmanager.log", "work/emulator_precision.log"):
               fp = pathlib.Path(p)
               if fp.exists():
                   diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-3000:])
