@@ -73,6 +73,8 @@ jobs:
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           export ANDROID_HOME="$SDK_ROOT"
           export ANDROID_SDK_ROOT="$SDK_ROOT"
+          export ANDROID_AVD_HOME="$HOME/.android/avd"
+          mkdir -p "$ANDROID_AVD_HOME"
           export PATH="$SDK_ROOT/cmdline-tools/latest/bin:$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
 
           set +e +o pipefail
@@ -84,10 +86,11 @@ jobs:
             --tag "google_apis" \
             --abi "x86_64" \
             --device "pixel_4" >> work/step.log 2>&1
+          avdmanager list avd >> work/step.log 2>&1
           set -e -o pipefail
 
           test -d "$SDK_ROOT/system-images/android-30/google_apis/x86_64"
-          test -d "$HOME/.android/avd/test_avd.avd"
+          test -d "$ANDROID_AVD_HOME/test_avd.avd"
           echo "AVD verified" >> work/step.log
 
       - name: Boot Emulator and Run Black-Box Dynamic Observation
@@ -96,6 +99,7 @@ jobs:
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           export ANDROID_HOME="$SDK_ROOT"
           export ANDROID_SDK_ROOT="$SDK_ROOT"
+          export ANDROID_AVD_HOME="$HOME/.android/avd"
           export PATH="$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
           python3 .github/scripts/run_dynamic_obs.py
 
