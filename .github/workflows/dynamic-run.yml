@@ -1,4 +1,4 @@
-name: Dynamic Emulator Observation
+name: Comprehensive Dynamic and Flutter Static Analysis
 
 on:
   push:
@@ -6,19 +6,20 @@ on:
       - arena/f32564a0-zawu
     paths:
       - .github/workflows/dynamic-run.yml
-      - .github/scripts/run_dynamic_obs.py
+      - .github/scripts/run_deep_dynamic.py
+      - .github/scripts/run_blutter_static.py
 
 concurrency:
-  group: dynamic-emu-arena-f32564a0
+  group: full-analysis-arena-f32564a0
   cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
-  dynamic-observe:
+  deep-dynamic:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       REPO: ${{ github.repository }}
@@ -36,12 +37,11 @@ jobs:
       - name: Enable KVM and Prepare Workspace
         run: |
           set -euo pipefail
-          mkdir -p work/report
+          mkdir -p work/deep_dynamic
           sudo chmod 666 /dev/kvm
-          ls -la /dev/kvm
           which tcpdump || (sudo apt-get update && sudo apt-get install -y tcpdump)
 
-      - name: Fetch APK (Exact Sandbox Sample from Repo Blobs)
+      - name: Fetch APK from Repo Blobs
         env:
           EXPECTED_SHA256: "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd"
         run: |
@@ -65,7 +65,6 @@ jobs:
                   ]))
           PY
           ACTUAL=$(sha256sum work/sample.apk | awk '{print $1}')
-          echo "APK sha256=$ACTUAL" >> work/step.log
           test "$ACTUAL" = "$EXPECTED_SHA256"
 
       - name: Install Android SDK System Image and Create AVD
@@ -85,15 +84,13 @@ jobs:
             --package "system-images;android-30;google_apis;x86_64" \
             --tag "google_apis" \
             --abi "x86_64" \
-            --device "pixel_4" >> work/step.log 2>&1
-          avdmanager list avd >> work/step.log 2>&1
+            --device "pixel_4" >> work/step_dynamic.log 2>&1
           set -e -o pipefail
 
           test -d "$SDK_ROOT/system-images/android-30/google_apis/x86_64"
           test -d "$ANDROID_AVD_HOME/test_avd.avd"
-          echo "AVD verified" >> work/step.log
 
-      - name: Boot Emulator and Run Black-Box Dynamic Observation
+      - name: Run Full UI Traversal, Privacy & Network Dynamic Suite
         run: |
           set -euo pipefail
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
@@ -101,20 +98,91 @@ jobs:
           export ANDROID_SDK_ROOT="$SDK_ROOT"
           export ANDROID_AVD_HOME="$HOME/.android/avd"
           export PATH="$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
-          python3 .github/scripts/run_dynamic_obs.py
+          python3 .github/scripts/run_deep_dynamic.py
 
-      - name: Report Failure Diagnostics if Any
+      - name: Report Dynamic Failure Diagnostics
         if: failure()
         run: |
           python3 - <<'PY'
           import json, os, pathlib, subprocess
           diag = []
-          for p in ("work/step.log", "work/sdkmanager.log", "work/emulator.log"):
+          for p in ("work/step_dynamic.log", "work/sdkmanager.log", "work/emulator.log"):
               fp = pathlib.Path(p)
               if fp.exists():
                   diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-3000:])
-          body = json.dumps({"type": "failure_diag", "logs": "\n".join(diag)[-8000:]})
-          payload = pathlib.Path("work/err_comment.json")
+          body = json.dumps({"type": "failure_diag_dynamic", "logs": "\n".join(diag)[-8000:]})
+          payload = pathlib.Path("work/err_dyn.json")
+          payload.write_text(json.dumps({"body": body}))
+          subprocess.run([
+              "gh", "api",
+              f"repos/{os.environ['REPO']}/commits/{os.environ['COMMIT_SHA']}/comments",
+              "--method", "POST", "--input", str(payload)
+          ], check=False)
+          PY
+
+  flutter-blutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+      COMMIT_SHA: ${{ github.sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Blutter Build Dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3-pyelftools python3-requests git cmake ninja-build \
+            build-essential pkg-config libicu-dev libcapstone-dev
+
+      - name: Fetch APK from Repo Blobs
+        env:
+          EXPECTED_SHA256: "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd"
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, subprocess
+          repo = os.environ["REPO"]
+          shas = [
+              "e14dbcd56ff3a8964ca8278a2430c23a552eb0c8",
+              "caf54a55b501c8999cbd8c92ff811160c3d6abdd",
+              "c2ca226826e4222e91b7ec1750310fb547003d10",
+              "151a41f5c6c7312244c29da12a8574444d834e16",
+              "d7841db871386791951ec85c7a6ffde8a123326d",
+              "4f3b71e659f28740a3e71cc5f78a603851b23bb4",
+          ]
+          with open("work/sample.apk", "wb") as f:
+              for s in shas:
+                  f.write(subprocess.check_output([
+                      "gh", "api", "-H", "Accept: application/vnd.github.raw+json",
+                      f"repos/{repo}/git/blobs/{s}",
+                  ]))
+          PY
+          ACTUAL=$(sha256sum work/sample.apk | awk '{print $1}')
+          test "$ACTUAL" = "$EXPECTED_SHA256"
+
+      - name: Run Blutter Dart 3.9.2 AOT Analysis
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/run_blutter_static.py
+
+      - name: Report Blutter Failure Diagnostics
+        if: failure()
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess
+          diag = []
+          for p in ("work/step_blutter.log", "work/blutter_summary/blutter_stdout.log"):
+              fp = pathlib.Path(p)
+              if fp.exists():
+                  diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-4000:])
+          body = json.dumps({"type": "failure_diag_blutter", "logs": "\n".join(diag)[-8000:]})
+          payload = pathlib.Path("work/err_blutter.json")
           payload.write_text(json.dumps({"body": body}))
           subprocess.run([
               "gh", "api",
