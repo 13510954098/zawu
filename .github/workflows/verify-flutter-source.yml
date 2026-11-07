@@ -5,6 +5,9 @@ on:
     branches:
       - "arena/f32564a0-zawu"
 
+permissions:
+  contents: write
+
 jobs:
   verify-build:
     runs-on: ubuntu-latest
@@ -18,12 +21,43 @@ jobs:
         with:
           channel: stable
       - name: Unzip, Analyze, Test & Build APK
+        id: build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
-          unzip -q lanerc-source.zip -d /tmp/verify
-          cd /tmp/verify/lanerc-source
-          flutter pub get
-          flutter analyze --no-fatal-infos --no-fatal-warnings
-          flutter test
-          flutter build apk --debug
-          ls -lh build/app/outputs/flutter-apk/app-debug.apk
+          set +e
+          {
+            echo "=== FLUTTER VERSION ==="
+            flutter --version
+            unzip -q lanerc-source.zip -d /tmp/verify
+            cd /tmp/verify/lanerc-source
+            echo "=== PUB GET ==="
+            flutter pub get
+            RC_PUB=$?
+            echo "RC_PUB=$RC_PUB"
+            echo "=== ANALYZE ==="
+            flutter analyze --no-fatal-infos --no-fatal-warnings
+            RC_ANA=$?
+            echo "RC_ANA=$RC_ANA"
+            echo "=== TEST ==="
+            flutter test
+            RC_TST=$?
+            echo "RC_TST=$RC_TST"
+            echo "=== BUILD APK ==="
+            flutter build apk --debug
+            RC_APK=$?
+            echo "RC_APK=$RC_APK"
+          } > /tmp/ci_out.txt 2>&1
+
+          python3 - <<'PY'
+          import json, subprocess, os
+          txt = open('/tmp/ci_out.txt', encoding='utf-8', errors='replace').read()
+          body = "```\n" + txt[-60000:] + "\n```"
+          sha = os.environ['GITHUB_SHA']
+          repo = os.environ['GITHUB_REPOSITORY']
+          subprocess.run(
+              ['gh', 'api', f'repos/{repo}/commits/{sha}/comments', '-f', f'body={body}'],
+              check=False,
+          )
+          PY
+          grep -E "RC_(PUB|ANA|TST|APK)=0" /tmp/ci_out.txt | wc -l | grep -q "^4$"
