@@ -37,41 +37,37 @@ jobs:
           ls -la /dev/kvm
           which tcpdump || (sudo apt-get update && sudo apt-get install -y tcpdump)
 
-      - name: Fetch APK
+      - name: Fetch APK (Exact Sandbox Sample from Repo Blobs)
         env:
-          TARGET_URL: "https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTYxOTIzMzQzOTpNRVJDSEFOVDpbQkAyZjc1Mjg0ZDoyMjUzNTM1MjMyOTQzOQ%3D%3D.apk"
           EXPECTED_SHA256: "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd"
         run: |
+          exec > >(tee -a work/step.log) 2>&1
           set -euo pipefail
-          if aria2c -x 16 -s 16 -k 1M --file-allocation=none -d work -o sample.apk "$TARGET_URL"; then
-            echo "Downloaded via aria2c"
-          else
-            echo "Fallback to Git Blobs..."
-            python3 - <<'PY'
-            import os, pathlib, subprocess
-            repo = os.environ["REPO"]
-            shas = [
-                "e14dbcd56ff3a8964ca8278a2430c23a552eb0c8",
-                "caf54a55b501c8999cbd8c92ff811160c3d6abdd",
-                "c2ca226826e4222e91b7ec1750310fb547003d10",
-                "151a41f5c6c7312244c29da12a8574444d834e16",
-                "d7841db871386791951ec85c7a6ffde8a123326d",
-                "4f3b71e659f28740a3e71cc5f78a603851b23bb4",
-            ]
-            with open("work/sample.apk", "wb") as f:
-                for s in shas:
-                    f.write(subprocess.check_output([
-                        "gh", "api", "-H", "Accept: application/vnd.github.raw+json",
-                        f"repos/{repo}/git/blobs/{s}",
-                    ]))
-            PY
-          fi
+          python3 - <<'PY'
+          import os, subprocess
+          repo = os.environ["REPO"]
+          shas = [
+              "e14dbcd56ff3a8964ca8278a2430c23a552eb0c8",
+              "caf54a55b501c8999cbd8c92ff811160c3d6abdd",
+              "c2ca226826e4222e91b7ec1750310fb547003d10",
+              "151a41f5c6c7312244c29da12a8574444d834e16",
+              "d7841db871386791951ec85c7a6ffde8a123326d",
+              "4f3b71e659f28740a3e71cc5f78a603851b23bb4",
+          ]
+          with open("work/sample.apk", "wb") as f:
+              for s in shas:
+                  f.write(subprocess.check_output([
+                      "gh", "api", "-H", "Accept: application/vnd.github.raw+json",
+                      f"repos/{repo}/git/blobs/{s}",
+                  ]))
+          PY
           ACTUAL=$(sha256sum work/sample.apk | awk '{print $1}')
           echo "APK sha256=$ACTUAL"
           test "$ACTUAL" = "$EXPECTED_SHA256"
 
       - name: Setup Android SDK Image and Boot Headless KVM Emulator
         run: |
+          exec > >(tee -a work/step.log) 2>&1
           set -euo pipefail
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           export ANDROID_HOME="$SDK_ROOT"
@@ -123,6 +119,7 @@ jobs:
 
       - name: Run Black-Box Dynamic Observation
         run: |
+          exec > >(tee -a work/step.log) 2>&1
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           export PATH="$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
           python3 .github/scripts/run_dynamic_obs.py
@@ -133,11 +130,11 @@ jobs:
           python3 - <<'PY'
           import json, os, pathlib, subprocess
           diag = []
-          for p in ("work/failure_diag.txt", "work/emulator.log"):
+          for p in ("work/step.log", "work/failure_diag.txt", "work/emulator.log"):
               fp = pathlib.Path(p)
               if fp.exists():
                   diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-3500:])
-          body = json.dumps({"type": "failure_diag", "logs": "\n".join(diag)[-6000:]})
+          body = json.dumps({"type": "failure_diag", "logs": "\n".join(diag)[-8000:]})
           payload = pathlib.Path("work/err_comment.json")
           payload.write_text(json.dumps({"body": body}))
           subprocess.run([
