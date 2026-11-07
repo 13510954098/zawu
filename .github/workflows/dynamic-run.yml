@@ -8,6 +8,10 @@ on:
       - .github/workflows/dynamic-run.yml
       - .github/scripts/run_dynamic_obs.py
 
+concurrency:
+  group: dynamic-emu-arena-f32564a0
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -41,7 +45,6 @@ jobs:
         env:
           EXPECTED_SHA256: "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd"
         run: |
-          exec > >(tee -a work/step.log) 2>&1
           set -euo pipefail
           python3 - <<'PY'
           import os, subprocess
@@ -62,65 +65,37 @@ jobs:
                   ]))
           PY
           ACTUAL=$(sha256sum work/sample.apk | awk '{print $1}')
-          echo "APK sha256=$ACTUAL"
+          echo "APK sha256=$ACTUAL" >> work/step.log
           test "$ACTUAL" = "$EXPECTED_SHA256"
 
-      - name: Setup Android SDK Image and Boot Headless KVM Emulator
+      - name: Install Android SDK System Image and Create AVD
         run: |
-          exec > >(tee -a work/step.log) 2>&1
-          set -euo pipefail
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           export ANDROID_HOME="$SDK_ROOT"
           export ANDROID_SDK_ROOT="$SDK_ROOT"
           export PATH="$SDK_ROOT/cmdline-tools/latest/bin:$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
 
-          (yes || true) | sdkmanager --licenses >/dev/null
-          sdkmanager --install "platform-tools" "emulator" "system-images;android-30;google_apis;x86_64" >/dev/null
-
-          (echo "no" || true) | avdmanager create avd --force \
+          set +e +o pipefail
+          yes | sdkmanager --licenses >/dev/null 2>&1
+          yes | sdkmanager --install "platform-tools" "emulator" "system-images;android-30;google_apis;x86_64" >work/sdkmanager.log 2>&1
+          echo "no" | avdmanager create avd --force \
             --name test_avd \
             --package "system-images;android-30;google_apis;x86_64" \
             --tag "google_apis" \
             --abi "x86_64" \
-            --device "pixel_4"
+            --device "pixel_4" >> work/step.log 2>&1
+          set -e -o pipefail
 
-          nohup "$SDK_ROOT/emulator/emulator" \
-            -avd test_avd \
-            -no-window \
-            -gpu swiftshader_indirect \
-            -no-audio \
-            -no-boot-anim \
-            -no-snapshot \
-            -partition-size 6144 \
-            -memory 4096 > work/emulator.log 2>&1 &
-          EMU_PID=$!
+          test -d "$SDK_ROOT/system-images/android-30/google_apis/x86_64"
+          test -d "$HOME/.android/avd/test_avd.avd"
+          echo "AVD verified" >> work/step.log
 
-          adb wait-for-device
-          BOOT=""
-          for i in $(seq 1 120); do
-            BOOT=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || true)
-            if [ "$BOOT" = "1" ]; then
-              echo "Emulator booted in $((i*2))s"
-              break
-            fi
-            if ! kill -0 "$EMU_PID" 2>/dev/null; then
-              echo "Emulator exited prematurely"
-              tail -n 150 work/emulator.log > work/failure_diag.txt
-              exit 1
-            fi
-            sleep 2
-          done
-          if [ "$BOOT" != "1" ]; then
-            echo "Emulator boot timed out"
-            tail -n 150 work/emulator.log > work/failure_diag.txt
-            exit 1
-          fi
-          sleep 6
-
-      - name: Run Black-Box Dynamic Observation
+      - name: Boot Emulator and Run Black-Box Dynamic Observation
         run: |
-          exec > >(tee -a work/step.log) 2>&1
+          set -euo pipefail
           SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          export ANDROID_HOME="$SDK_ROOT"
+          export ANDROID_SDK_ROOT="$SDK_ROOT"
           export PATH="$SDK_ROOT/emulator:$SDK_ROOT/platform-tools:$PATH"
           python3 .github/scripts/run_dynamic_obs.py
 
@@ -130,10 +105,10 @@ jobs:
           python3 - <<'PY'
           import json, os, pathlib, subprocess
           diag = []
-          for p in ("work/step.log", "work/failure_diag.txt", "work/emulator.log"):
+          for p in ("work/step.log", "work/sdkmanager.log", "work/emulator.log"):
               fp = pathlib.Path(p)
               if fp.exists():
-                  diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-3500:])
+                  diag.append(f"=== {p} ===\n" + fp.read_text(errors="replace")[-3000:])
           body = json.dumps({"type": "failure_diag", "logs": "\n".join(diag)[-8000:]})
           payload = pathlib.Path("work/err_comment.json")
           payload.write_text(json.dumps({"body": body}))
@@ -143,9 +118,3 @@ jobs:
               "--method", "POST", "--input", str(payload)
           ], check=False)
           PY
-
-      - name: Shutdown Emulator
-        if: always()
-        run: |
-          SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
-          "$SDK_ROOT/platform-tools/adb" emu kill || true

@@ -6,7 +6,6 @@ import json
 import os
 import pathlib
 import re
-import shutil
 import socket
 import struct
 import subprocess
@@ -19,12 +18,22 @@ PKG = "com.clggjv.xcjfmd.ffo"
 MAIN_ACTIVITY = "com.clggjv.xcjfmd.ffo/com.clggjv.xcjfmd.ffo.MainActivity"
 APK_PATH = pathlib.Path("work/sample.apk")
 REPORT_DIR = pathlib.Path("work/report")
+STEP_LOG = pathlib.Path("work/step.log")
+
+
+def log(msg: str):
+    line = f"[{time.strftime('%H:%M:%S')}] {msg}"
+    print(line, flush=True)
+    STEP_LOG.parent.mkdir(parents=True, exist_ok=True)
+    with STEP_LOG.open("a") as f:
+        f.write(line + "\n")
 
 
 def run_cmd(cmd, timeout=120, check=False, text=True):
     try:
         p = subprocess.run(
             cmd,
+            stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT if text else subprocess.PIPE,
             timeout=timeout,
@@ -46,7 +55,6 @@ def adb(*args, timeout=60, text=True):
 def parse_dns_qname(buf, offset):
     labels = []
     jumped = False
-    max_jumps = 10
     jumps = 0
     orig_next = offset
     while offset < len(buf):
@@ -64,7 +72,7 @@ def parse_dns_qname(buf, offset):
             jumped = True
             offset = ptr
             jumps += 1
-            if jumps > max_jumps:
+            if jumps > 10:
                 break
             continue
         offset += 1
@@ -76,11 +84,10 @@ def parse_dns_qname(buf, offset):
 
 
 def extract_tls_sni(payload):
-    # TLS record: ContentType=22 (Handshake), Version(2), Length(2), HandshakeType=1 (ClientHello)
     if len(payload) < 43 or payload[0] != 0x16 or payload[5] != 0x01:
         return None
     try:
-        pos = 5 + 4 + 2 + 32  # Handshake header(4) + client_version(2) + random(32)
+        pos = 5 + 4 + 2 + 32
         if pos >= len(payload):
             return None
         sid_len = payload[pos]
@@ -167,11 +174,10 @@ def parse_pcap(pcap_path: pathlib.Path):
         if len(ip) < ihl:
             continue
         proto = ip[9]
-        src_ip = socket.inet_ntoa(ip[12:16])
         dst_ip = socket.inet_ntoa(ip[16:20])
         l4 = ip[ihl:]
 
-        if proto == 17 and len(l4) >= 8:  # UDP
+        if proto == 17 and len(l4) >= 8:
             sport, dport = struct.unpack("!HH", l4[:4])
             dns = l4[8:]
             if dport == 53 and len(dns) >= 12:
@@ -182,10 +188,10 @@ def parse_pcap(pcap_path: pathlib.Path):
                     if qname:
                         result["dns_queries"][qname.lower()] += 1
                     off += 4
-        elif proto == 6 and len(l4) >= 20:  # TCP
+        elif proto == 6 and len(l4) >= 20:
             sport, dport = struct.unpack("!HH", l4[:4])
             flags = l4[13]
-            if (flags & 0x02) and not (flags & 0x10):  # SYN
+            if (flags & 0x02) and not (flags & 0x10):
                 if not dst_ip.startswith(("127.", "10.0.2.")):
                     result["tcp_endpoints"][f"{dst_ip}:{dport}"] += 1
             doff = ((l4[12] >> 4) & 0x0F) * 4
@@ -234,9 +240,37 @@ def capture_ui_xml(out_file: pathlib.Path):
     return 0
 
 
-def dismiss_system_dialogs():
-    # Dismiss Android "System UI isn't responding" if present on slow CI boot
-    adb("shell", "am", "broadcast", "-a", "android.intent.action.CLOSE_SYSTEM_DIALOGS")
+def boot_emulator(sdk_root: str):
+    emu_bin = str(pathlib.Path(sdk_root) / "emulator" / "emulator")
+    emu_log = open("work/emulator.log", "w")
+    log("Starting headless KVM emulator...")
+    proc = subprocess.Popen(
+        [
+            emu_bin,
+            "-avd", "test_avd",
+            "-no-window",
+            "-gpu", "swiftshader_indirect",
+            "-no-audio",
+            "-no-boot-anim",
+            "-no-snapshot",
+            "-partition-size", "6144",
+            "-memory", "4096",
+        ],
+        stdin=subprocess.DEVNULL,
+        stdout=emu_log,
+        stderr=subprocess.STDOUT,
+    )
+    adb("wait-for-device", timeout=60)
+    for i in range(120):
+        if proc.poll() is not None:
+            raise RuntimeError(f"Emulator exited early with code {proc.returncode}")
+        rc, out = adb("shell", "getprop", "sys.boot_completed", timeout=10)
+        if rc == 0 and out.strip() == "1":
+            log(f"Emulator booted in {i * 2}s")
+            time.sleep(6)
+            return proc, emu_log
+        time.sleep(2)
+    raise RuntimeError("Emulator failed to reach sys.boot_completed=1 within 240s")
 
 
 def run_test_pass(label: str, install_args: list[str]):
@@ -245,9 +279,11 @@ def run_test_pass(label: str, install_args: list[str]):
     info = {"label": label, "install_args": install_args, "timeline": []}
 
     adb("uninstall", PKG, timeout=30)
+    log(f"[{label}] Installing APK with args {install_args}...")
     rc, out = adb("install", *install_args, str(APK_PATH), timeout=120)
     info["install_rc"] = rc
     info["install_output"] = out.strip()
+    log(f"[{label}] install rc={rc} out={out.strip()[:120]}")
     if rc != 0:
         return info
 
@@ -255,11 +291,13 @@ def run_test_pass(label: str, install_args: list[str]):
     (pass_dir / "dumpsys_package.txt").write_text(pkg_dump)
     m_abi = re.search(r"primaryCpuAbi=(\S+)", pkg_dump)
     info["primaryCpuAbi"] = m_abi.group(1) if m_abi else "unknown"
+    log(f"[{label}] primaryCpuAbi={info['primaryCpuAbi']}")
 
     adb("logcat", "-c")
     pcap_file = pass_dir / "net.pcap"
     tcpdump_proc = subprocess.Popen(
         ["sudo", "tcpdump", "-i", "any", "-U", "-s", "1024", "-w", str(pcap_file), "udp port 53 or tcp"],
+        stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
@@ -268,19 +306,21 @@ def run_test_pass(label: str, install_args: list[str]):
     t0 = time.time()
     rc_start, start_out = adb("shell", "am", "start", "-W", "-n", MAIN_ACTIVITY, timeout=30)
     info["am_start"] = start_out.strip()
+    log(f"[{label}] am start completed")
 
     for checkpoint in (5, 15, 25):
         wait_rem = checkpoint - (time.time() - t0)
         if wait_rem > 0:
             time.sleep(wait_rem)
         elapsed = round(time.time() - t0, 1)
-        _, pid_out = adb("shell", "pidof", PKG)
-        _, ps_out = adb("shell", "ps -A | grep -E 'clggjv|ffo|kwad|bytedance' || true")
-        _, resumed_out = adb("shell", "dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity|mFocusedWindow' || true")
+        _, pid_out = adb("shell", "pidof", PKG, timeout=10)
+        _, ps_out = adb("shell", "ps -A | grep -E 'clggjv|ffo|kwad|bytedance' || true", timeout=10)
+        _, resumed_out = adb("shell", "dumpsys activity activities | grep -E 'mResumedActivity|topResumedActivity|mFocusedWindow' || true", timeout=15)
         png_sz = capture_screenshot(pass_dir / f"screen_{checkpoint:02d}s.png")
         xml_sz = 0
         if checkpoint in (15, 25):
             xml_sz = capture_ui_xml(pass_dir / f"ui_{checkpoint:02d}s.xml")
+        log(f"[{label}] t={elapsed}s pid={pid_out.strip()!r} png={png_sz}B")
         info["timeline"].append({
             "t": elapsed,
             "pid": pid_out.strip(),
@@ -290,7 +330,6 @@ def run_test_pass(label: str, install_args: list[str]):
             "ui_xml_bytes": xml_sz,
         })
 
-        # At 15s, if a native consent/dialog button ("同意" / "我知道了" / "允许") is visible in uiautomator XML, click it to see main screen at 25s
         if checkpoint == 15 and (pass_dir / "ui_15s.xml").exists():
             xml_content = (pass_dir / "ui_15s.xml").read_text(errors="replace")
             for kw in ("同意并继续", "同意", "我知道了", "进入", "允许", "始终允许"):
@@ -302,16 +341,14 @@ def run_test_pass(label: str, install_args: list[str]):
                     info["auto_tapped_dialog"] = {"keyword": kw, "x": cx, "y": cy}
                     break
 
-    # Stop tcpdump cleanly
-    subprocess.run(["sudo", "kill", "-INT", str(tcpdump_proc.pid)], check=False)
+    subprocess.run(["sudo", "kill", "-INT", str(tcpdump_proc.pid)], stdin=subprocess.DEVNULL, check=False)
     try:
         tcpdump_proc.wait(timeout=5)
     except Exception:
-        tcpdump_proc.kill()
+        subprocess.run(["sudo", "kill", "-9", str(tcpdump_proc.pid)], stdin=subprocess.DEVNULL, check=False)
 
-    # Collect logcat & meminfo & loaded non-system mapped basenames
     _, logcat_all = adb("logcat", "-d", "-v", "time", timeout=30)
-    (pass_dir / "logcat_full.txt").write_text(logcat_all[-400_000:])  # cap at 400KB per pass
+    (pass_dir / "logcat_full.txt").write_text(logcat_all[-400_000:])
 
     key_patterns = re.compile(
         r"(FATAL EXCEPTION|AndroidRuntime|UnsatisfiedLinkError|SIGSEGV|SIGABRT|backtrace:|"
@@ -322,12 +359,10 @@ def run_test_pass(label: str, install_args: list[str]):
     (pass_dir / "logcat_key.txt").write_text("\n".join(filtered_lines[:1500]))
     info["key_log_line_count"] = len(filtered_lines)
 
-    # Check crash buffer specifically
     _, crash_log = adb("logcat", "-d", "-b", "crash", "-v", "time", timeout=15)
     (pass_dir / "logcat_crash.txt").write_text(crash_log)
     info["crash_log_preview"] = crash_log.strip()[:2000]
 
-    # Parse network capture & delete raw pcap before archiving
     net_summary = parse_pcap(pcap_file)
     (pass_dir / "network.json").write_text(json.dumps(net_summary, indent=2, ensure_ascii=False))
     info["network_summary_counts"] = {
@@ -358,6 +393,7 @@ def upload_report_tarball(tar_path: pathlib.Path):
         }))
         res = subprocess.check_output(
             ["gh", "api", f"repos/{repo}/git/blobs", "--method", "POST", "--input", str(payload)],
+            stdin=subprocess.DEVNULL,
             text=True,
         )
         blob_sha = json.loads(res)["sha"]
@@ -372,62 +408,72 @@ def upload_report_tarball(tar_path: pathlib.Path):
     comment_payload = pathlib.Path("work/comment_payload.json")
     comment_payload.write_text(json.dumps({"body": json.dumps(manifest)}))
     subprocess.check_call(
-        ["gh", "api", f"repos/{repo}/commits/{commit_sha}/comments", "--method", "POST", "--input", str(comment_payload)]
+        ["gh", "api", f"repos/{repo}/commits/{commit_sha}/comments", "--method", "POST", "--input", str(comment_payload)],
+        stdin=subprocess.DEVNULL,
     )
 
 
 def main():
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    _, abilist = adb("shell", "getprop", "ro.product.cpu.abilist")
-    _, sdk_ver = adb("shell", "getprop", "ro.build.version.sdk")
-    _, rel_ver = adb("shell", "getprop", "ro.build.version.release")
-    _, gl_ver = adb("shell", "dumpsys SurfaceFlinger | grep -iE 'GLES|OpenGL' | head -n 5 || true")
+    sdk_root = os.environ.get("ANDROID_HOME") or "/usr/local/lib/android/sdk"
+    emu_proc, emu_log = boot_emulator(sdk_root)
+    try:
+        _, abilist = adb("shell", "getprop", "ro.product.cpu.abilist")
+        _, sdk_ver = adb("shell", "getprop", "ro.build.version.sdk")
+        _, rel_ver = adb("shell", "getprop", "ro.build.version.release")
+        _, wm_size = adb("shell", "wm", "size")
+        _, gl_ver = adb("shell", "dumpsys SurfaceFlinger | grep -iE 'GLES|OpenGL' | head -n 5 || true")
 
-    abilist_str = abilist.strip()
-    abis = [x.strip() for x in abilist_str.split(",") if x.strip()]
+        abilist_str = abilist.strip()
+        abis = [x.strip() for x in abilist_str.split(",") if x.strip()]
+        log(f"Device ready: Android {rel_ver.strip()} (API {sdk_ver.strip()}) abis={abis} size={wm_size.strip()}")
 
-    # Unlock & disable animations
-    adb("shell", "input", "keyevent", "82")
-    adb("shell", "wm", "dismiss-keyguard")
-    for setting in ("window_animation_scale", "transition_animation_scale", "animator_duration_scale"):
-        adb("shell", "settings", "put", "global", setting, "0")
-    dismiss_system_dialogs()
+        adb("shell", "input", "keyevent", "82")
+        adb("shell", "wm", "dismiss-keyguard")
+        for setting in ("window_animation_scale", "transition_animation_scale", "animator_duration_scale"):
+            adb("shell", "settings", "put", "global", setting, "0")
+        adb("shell", "am", "broadcast", "-a", "android.intent.action.CLOSE_SYSTEM_DIALOGS")
 
-    summary = {
-        "emulator": {
-            "android_release": rel_ver.strip(),
-            "sdk": sdk_ver.strip(),
-            "abilist": abis,
-            "gles": gl_ver.strip(),
-        },
-        "passes": [],
-    }
+        summary = {
+            "emulator": {
+                "android_release": rel_ver.strip(),
+                "sdk": sdk_ver.strip(),
+                "abilist": abis,
+                "wm_size": wm_size.strip(),
+                "gles": gl_ver.strip(),
+            },
+            "passes": [],
+        }
 
-    # Pass 1: Default installation (selects x86_64 on x86_64 image)
-    print(">>> Running Pass 1: default install", flush=True)
-    p1 = run_test_pass("pass1_default", ["-r"])
-    summary["passes"].append(p1)
+        p1 = run_test_pass("pass1_default", ["-r"])
+        summary["passes"].append(p1)
 
-    # Pass 2: Explicit ARM ABI installation (full 20 native libraries) if supported by emulator translation
-    arm_abi = None
-    for cand in ("arm64-v8a", "armeabi-v7a"):
-        if cand in abis:
-            arm_abi = cand
-            break
-    if arm_abi:
-        print(f">>> Running Pass 2: explicit --abi {arm_abi} install", flush=True)
-        p2 = run_test_pass(f"pass2_{arm_abi}", ["-r", "--abi", arm_abi])
-        summary["passes"].append(p2)
+        arm_abi = None
+        for cand in ("arm64-v8a", "armeabi-v7a"):
+            if cand in abis:
+                arm_abi = cand
+                break
+        if arm_abi:
+            p2 = run_test_pass(f"pass2_{arm_abi}", ["-r", "--abi", arm_abi])
+            summary["passes"].append(p2)
 
-    (REPORT_DIR / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False))
+        (REPORT_DIR / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False))
+    finally:
+        log("Shutting down emulator...")
+        adb("emu", "kill", timeout=10)
+        try:
+            emu_proc.wait(timeout=10)
+        except Exception:
+            emu_proc.kill()
+        emu_log.close()
 
     tar_path = pathlib.Path("work/dynamic_report.tar.gz")
     with tarfile.open(tar_path, "w:gz") as tf:
         tf.add(REPORT_DIR, arcname="report")
 
-    print(f"Created {tar_path} ({tar_path.stat().st_size} bytes)", flush=True)
+    log(f"Created {tar_path} ({tar_path.stat().st_size} bytes), uploading...")
     upload_report_tarball(tar_path)
-    print("Uploaded dynamic report successfully!", flush=True)
+    log("Uploaded dynamic report successfully!")
 
 
 if __name__ == "__main__":
