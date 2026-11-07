@@ -8,31 +8,53 @@ on:
       - .github/workflows/fetch-apk.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - name: Download APK
+      - name: Download APK and Upload Chunks as Git Blobs
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
           TARGET_URL: "https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTYxOTIzMzQzOTpNRVJDSEFOVDpbQkAyZjc1Mjg0ZDoyMjUzNTM1MjMyOTQzOQ%3D%3D.apk"
         run: |
+          set -euo pipefail
           mkdir -p out
-          if command -v aria2c >/dev/null 2>&1; then
-            aria2c -x 16 -s 16 -k 1M --file-allocation=none -d out -o sample.apk "$TARGET_URL"
-          else
-            curl -fSL --retry 3 -o out/sample.apk "$TARGET_URL"
-          fi
-          ls -lh out/sample.apk
-          sha256sum out/sample.apk
-          file out/sample.apk
+          aria2c -x 16 -s 16 -k 1M --file-allocation=none -d out -o sample.apk "$TARGET_URL"
+          python3 - <<'PY'
+          import base64, hashlib, json, os, subprocess, pathlib
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sample-apk
-          path: out/sample.apk
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
+          apk = pathlib.Path("out/sample.apk")
+          data = apk.read_bytes()
+          sha256 = hashlib.sha256(data).hexdigest()
+          size = len(data)
+          chunk_size = 18 * 1024 * 1024  # 18 MiB raw -> ~24 MiB base64 JSON
+          repo = os.environ["REPO"]
+          commit_sha = os.environ["COMMIT_SHA"]
+
+          blobs = []
+          for i in range(0, size, chunk_size):
+              chunk = data[i:i + chunk_size]
+              payload = pathlib.Path("out/payload.json")
+              payload.write_text(json.dumps({
+                  "encoding": "base64",
+                  "content": base64.b64encode(chunk).decode("ascii"),
+              }))
+              res = subprocess.check_output(
+                  ["gh", "api", f"repos/{repo}/git/blobs", "--method", "POST", "--input", str(payload)],
+                  text=True,
+              )
+              blob_sha = json.loads(res)["sha"]
+              blobs.append({"sha": blob_sha, "size": len(chunk)})
+              print(f"Uploaded chunk {len(blobs)}: {blob_sha} ({len(chunk)} bytes)", flush=True)
+
+          manifest = {"sha256": sha256, "size": size, "blobs": blobs}
+          comment_payload = pathlib.Path("out/comment.json")
+          comment_payload.write_text(json.dumps({"body": json.dumps(manifest)}))
+          subprocess.check_call(
+              ["gh", "api", f"repos/{repo}/commits/{commit_sha}/comments", "--method", "POST", "--input", str(comment_payload)]
+          )
+          PY
