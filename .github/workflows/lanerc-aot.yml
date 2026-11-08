@@ -7,6 +7,7 @@ on:
       - .github/workflows/lanerc-aot.yml
       - scripts/lanerc_aot_summary.py
       - scripts/lanerc_pool_anchors.py
+      - scripts/lanerc_analyzer_patch.py
       - analysis/lanerc/analysis-recipient.pem
 permissions:
   contents: write
@@ -56,8 +57,10 @@ jobs:
         run: |
           if [ ! -d /tmp/blutter/.git ]; then git clone https://github.com/worawit/blutter.git /tmp/blutter; fi
           git -C /tmp/blutter checkout 4a60ac648bf448c5a7596437243bcd0b9376fdf0
+          git -C /tmp/blutter restore blutter/src/DartField.cpp blutter/src/DartFnBase.h
+          python3 scripts/lanerc_analyzer_patch.py /tmp/blutter
           # Raw output stays in ephemeral runner storage, never in public logs/artifacts.
-          if /tmp/aot-env/bin/python /tmp/blutter/blutter.py /tmp/lanerc-libs /tmp/lanerc-aot > /tmp/aot-build.log 2>&1; then
+          if /tmp/aot-env/bin/python /tmp/blutter/blutter.py /tmp/lanerc-libs /tmp/lanerc-aot --rebuild > /tmp/aot-build.log 2>&1; then
             echo "result=success" >> "$GITHUB_OUTPUT"
           else
             echo "result=failed" >> "$GITHUB_OUTPUT"
