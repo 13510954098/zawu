@@ -118,8 +118,8 @@ w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-down
 w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
 w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
 w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/search/SearchScreen.kt:91:25 Condition is always 'true'.
-w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:740:5 'fun ScrollableTabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., edgePadding: Dp = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryScrollableTabRow and SecondaryScrollableTabRow tab variants.
-w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:896:57 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:742:5 'fun ScrollableTabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., edgePadding: Dp = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryScrollableTabRow and SecondaryScrollableTabRow tab variants.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:898:57 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
 w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/analytics/PlayFlowDebugWindow.kt:267:13 'fun TabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryTabRow and SecondaryTabRow.
 w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeCarousel.kt:202:61 'val comment: Int' is deprecated. No longer provided.
 w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:256:30 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
@@ -147,14 +147,14 @@ w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/des
 > Task :app:shared:compileDesktopTestJava NO-SOURCE
 > Task :app:shared:desktopTestClasses
 > Task :app:shared:desktopTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794117453899.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794121828678.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 9m 14s
+BUILD SUCCESSFUL in 8m 47s
 338 actionable tasks: 338 executed
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794117453899.json
-https://gradle.com/s/camzpb3g6tvbg
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794121828678.json
+https://gradle.com/s/hg56p2hjlxsrm
 
