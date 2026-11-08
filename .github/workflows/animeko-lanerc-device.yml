@@ -37,7 +37,7 @@ jobs:
           cat > /tmp/lanerc-vault-test.sh <<'EOF'
           #!/bin/bash
           cd "$GITHUB_WORKSPACE/.local/animeko/worktree" || exit 1
-          bash gradlew :app:shared:app-data:connectedDeviceTest -Pandroid.testInstrumentationRunnerArguments.class=me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercVaultDeviceTest --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx3g > /tmp/lanerc-vault-test.log 2>&1
+          bash gradlew :app:shared:app-data:connectedDeviceTest -Pandroid.min.sdk=30 -Pandroid.testInstrumentationRunnerArguments.class=me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercVaultDeviceTest --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx3g > /tmp/lanerc-vault-test.log 2>&1
           status=$?
           tail -100 /tmp/lanerc-vault-test.log
           exit "$status"
