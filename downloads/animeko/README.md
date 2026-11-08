@@ -2,6 +2,8 @@
 
 APK: `animeko-lanerc-arm64-debug.apk` (arm64-v8a, independent installed application ID `me.him188.ani.lanerc.debug2`; Android 8.1 / API 27 or later).
 
+Version: `4.9.0-dev` (Lanerc preview, not an official Animeko release).
+Upstream: `6d79729a135cee6af861a7a095d3880d1b452260`
 Build: https://github.com/13510954098/zawu/actions/runs/42452710300
 Source: `6b2fa017dec300caa1fca53b13495a0dd1a9d7f9`
 SHA256: `b0684f752f20db5d4f48755be129ddf71feb27a0f9459c1cd84f5af35de4541e`

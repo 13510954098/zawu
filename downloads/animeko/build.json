@@ -3,6 +3,8 @@
   "build_run": 42452710300,
   "build_url": "https://github.com/13510954098/zawu/actions/runs/42452710300",
   "upstream_commit": "6d79729a135cee6af861a7a095d3880d1b452260",
+  "baseline_release": null,
+  "commits_after_release": null,
   "android_app_built": true,
   "ui_compiled": true,
   "ui_device_tested": false,
