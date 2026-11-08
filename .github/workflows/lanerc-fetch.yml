@@ -1,4 +1,4 @@
-name: Fetch Lanerc official download
+name: Fetch supplied Lanerc APK
 on:
   workflow_dispatch:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch homepage and directly linked APKs
+      - name: Fetch supplied APK
         shell: python
         run: |
           import hashlib, json, pathlib, re, urllib.parse, urllib.request
@@ -24,23 +24,22 @@ jobs:
                   if len(data) > limit:
                       raise ValueError('Download exceeds size limit')
                   return data, response.url
-          page, final_url = download('https://lanerc.app/', 5 * 1024 * 1024)
-          (out / 'homepage.html').write_bytes(page)
-          text = page.decode('utf-8', errors='replace')
-          candidates = re.findall(r'''(?:href|src)\s*=\s*["']([^"']+)["']''', text, re.I)
-          candidates += re.findall(r'''https?://[^\s"'<>]+''', text)
-          urls = sorted({urllib.parse.urljoin(final_url, u.replace('&amp;', '&')) for u in candidates if '.apk' in u.lower()})
-          report = {'homepage': final_url, 'apk_candidates': urls, 'downloads': []}
+          urls = ['https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTYxOTIzMzQzOTpNRVJDSEFOVDpbQkAyZjc1Mjg0ZDoyMjUzNTM1MjMyOTQzOQ%3D%3D.apk']
+          report = {'source': 'user-provided URL; publisher unverified', 'downloads': []}
           for i, url in enumerate(urls[:3], 1):
               if urllib.parse.urlparse(url).scheme not in ('https', 'http'):
                   continue
               data, resolved = download(url, 300 * 1024 * 1024)
               if not data.startswith(b'PK'):
                   raise ValueError('Linked download is not a ZIP/APK file')
-              name = f'lanerc-official-{i}.apk'
+              name = f'lanerc-supplied-{i}.apk'
               (out / name).write_bytes(data)
               report['downloads'].append({'file': name, 'url': resolved, 'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
           (out / 'download-report.json').write_text(json.dumps(report, indent=2))
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Downloaded user-supplied APK (publisher not verified).\n\n')
+              for item in report['downloads']:
+                  summary.write(f"Size: {item['size']} bytes; SHA-256: `{item['sha256']}`\n")
       - name: Upload downloads for analysis
         uses: actions/upload-artifact@v4
         with:
