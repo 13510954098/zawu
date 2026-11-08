@@ -30,7 +30,7 @@ def main():
     material = json.loads(args.material.read_text())
     now = int(time.time())
     nonce = ''.join(secrets.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(3))
-    signature = sign(args.canonical_uri, now, nonce, material['request_signature']['secret_suffix'])
+    signature = sign(uri.path, now, nonce, material['request_signature']['secret_suffix'])
     signed = args.canonical_uri + ('&' if uri.query else '?') + 'sign=' + signature
     body = json.loads(args.body_file.read_text()) if args.body_file else None
     payload = {'run_id':str(args.run_id), 'url':signed, 'method':'POST' if body is not None else 'GET', 'body':body}
