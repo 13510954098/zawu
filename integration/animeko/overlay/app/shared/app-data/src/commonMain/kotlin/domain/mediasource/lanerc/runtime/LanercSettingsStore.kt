@@ -28,7 +28,7 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
         parseMaterial(LanercPlatform.unseal("protocol:$sourceId", sealed))
     } catch (_: Exception) { error("本机协议材料无法读取，请重新导入") }
 
-    private fun credentialKey(sourceId: String, origin: String) = stringPreferencesKey("lanerc.guest.$sourceId.$origin")
+    private fun credentialKey(sourceId: String, origin: String) = stringPreferencesKey(LanercStorageKeys.guest(sourceId, origin))
     suspend fun saveCredential(sourceId: String, credential: LanercGuestCredential) {
         val scope = "credential:$sourceId:${credential.origin}"
         val raw = buildJsonObject { put("origin", credential.origin); put("value", credential.value); put("expires", credential.expiresAtMillis) }.toString()
@@ -36,7 +36,10 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
         preferences.edit { it[credentialKey(sourceId, credential.origin)] = sealed }
     }
     suspend fun credential(sourceId: String, origin: String, nowMillis: Long): LanercGuestCredential? {
-        val sealed = preferences.data.first()[credentialKey(sourceId, origin)] ?: return null
+        val values = preferences.data.first()
+        // Read legacy entries only through the original source+origin authenticated vault scope.
+        val sealed = values[credentialKey(sourceId, origin)]
+            ?: values[stringPreferencesKey("lanerc.guest.$sourceId.$origin")] ?: return null
         return try {
             val raw = Json.parseToJsonElement(LanercPlatform.unseal("credential:$sourceId:$origin", sealed)).jsonObject
             val saved = LanercGuestCredential(raw.getValue("origin").jsonPrimitive.content, raw.getValue("value").jsonPrimitive.content, raw.getValue("expires").jsonPrimitive.long)
@@ -45,9 +48,22 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
     }
     suspend fun clearPrivate(sourceId: String) {
         preferences.edit { values ->
-            values.asMap().keys.filter { it.name == materialKey(sourceId).name || it.name.startsWith("lanerc.guest.$sourceId.") }
-                .forEach { values.remove(it) }
+            values.asMap().filter { (key, value) ->
+                key.name == materialKey(sourceId).name || key.name.startsWith(LanercStorageKeys.guestPrefix(sourceId)) ||
+                    legacyCredentialBelongsTo(sourceId, key.name, value as? String)
+            }.keys.forEach { values.remove(it) }
         }
+    }
+
+    private fun legacyCredentialBelongsTo(sourceId: String, key: String, sealed: String?): Boolean {
+        val prefix = "lanerc.guest.$sourceId."
+        if (!key.startsWith(prefix) || sealed == null) return false
+        val origin = key.removePrefix(prefix)
+        return try {
+            if (LanercUri.origin(origin) != origin) return false
+            val data = Json.parseToJsonElement(LanercPlatform.unseal("credential:$sourceId:$origin", sealed)).jsonObject
+            data["origin"]?.jsonPrimitive?.content == origin
+        } catch (_: Exception) { false }
     }
 
     private fun parseMaterial(raw: String): LanercSecrets {

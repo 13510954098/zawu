@@ -7,6 +7,20 @@ import kotlin.test.*
 
 /** Synthetic, statically anchored DTO fixtures; these are NOT captured production responses. */
 class LanercCommunityTest {
+    @Test fun `credential namespaces cannot clear another dotted source id`() {
+        val prefix = LanercStorageKeys.guestPrefix("source")
+        assertTrue(LanercStorageKeys.guest("source", "https://example.invalid").startsWith(prefix))
+        assertFalse(LanercStorageKeys.guest("source.child", "https://example.invalid").startsWith(prefix))
+        assertFalse(LanercStorageKeys.guest("source.", "https://example.invalid").startsWith(prefix))
+        assertNotEquals(LanercStorageKeys.guest("source", "https://example.invalid"),
+            LanercStorageKeys.guest("source", "https://other.invalid"))
+    }
+    @Test fun `credential storage requires nonblank source and exact HTTPS origin`() {
+        assertFails { LanercStorageKeys.guest("", "https://example.invalid") }
+        assertFails { LanercStorageKeys.guest("source", "https://example.invalid/api/") }
+        assertFails { LanercStorageKeys.guest("source", "http://example.invalid") }
+    }
+
     @Test fun `native renderer uses top for position one and scroll for every other position`() {
         for (position in listOf(0, 1, 2, 4, 5, 9)) {
             val row = LanercCommunity.render(LanercBarrage("id", "#ffff0000", position, 1.25, " text "))!!
