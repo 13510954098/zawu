@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: lanerc-encrypted-native-probe
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   probe:
     runs-on: ubuntu-24.04
