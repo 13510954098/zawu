@@ -1,0 +1,160 @@
+> Task :app:shared:app-data:generateResourceAccessorsForCommonMain
+> Task :app:shared:app-data:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-data:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-data:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:app-data:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :app:shared:app-data:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-data:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-data:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:app-data:generateResourceAccessorsForJvmMain NO-SOURCE
+> Task :app:shared:app-data:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-data:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-data:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:app-data:generateResourceAccessorsForSkikoMain NO-SOURCE
+> Task :app:shared:app-data:generateActualResourceCollectorsForDesktopMain
+> Task :app:shared:app-data:generateExpectResourceCollectorsForCommonMain
+> Task :app:shared:app-lang:generateComposeResClass
+> Task :app:shared:app-lang:checkDesktopMainComposeLibrariesCompatibility
+> Task :app:shared:app-lang:kmpPartiallyResolvedDependenciesChecker
+> Task :app:shared:app-lang:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:shared:app-lang:populateStringsLocales
+> Task :app:shared:app-lang:convertXmlValueResourcesForCommonMain
+> Task :app:shared:app-lang:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:app-lang:prepareComposeResourcesTaskForCommonMain
+> Task :app:shared:app-lang:generateResourceAccessorsForCommonMain
+> Task :app:shared:app-lang:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-lang:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-lang:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:app-lang:generateResourceAccessorsForDesktopMain NO-SOURCE
+> Task :app:shared:app-lang:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-lang:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-lang:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:app-lang:generateResourceAccessorsForJvmMain NO-SOURCE
+> Task :app:shared:app-lang:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-lang:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-lang:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:app-lang:generateResourceAccessorsForSkikoMain NO-SOURCE
+> Task :app:shared:app-lang:generateActualResourceCollectorsForDesktopMain
+> Task :app:shared:app-lang:generateExpectResourceCollectorsForCommonMain
+> Task :app:shared:app-lang:assembleDesktopMainResources
+> Task :app:shared:app-lang:desktopProcessResources
+> Task :app:shared:app-lang:processDesktopMainResources SKIPPED
+> Task :utils:macos-share:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :utils:macos-share:compileKotlin
+w: Opt-in requirement marker 'kotlinx.serialization.ExperimentalSerializationApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'kotlinx.coroutines.ExperimentalCoroutinesApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'kotlinx.coroutines.FlowPreview' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.foundation.layout.ExperimentalLayoutApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.foundation.ExperimentalFoundationApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.material3.ExperimentalMaterial3Api' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.ui.ExperimentalComposeUiApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'org.jetbrains.compose.resources.ExperimentalResourceApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.animation.ExperimentalSharedTransitionApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.paging.ExperimentalPagingApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.compose.material3.ExperimentalMaterial3ExpressiveApi' is unresolved. Make sure it's present in the module dependencies.
+
+> Task :utils:macos-share:compileJava NO-SOURCE
+> Task :utils:macos-share:processResources NO-SOURCE
+> Task :utils:macos-share:classes UP-TO-DATE
+> Task :utils:macos-share:jar
+> Task :app:shared:app-platform:generateComposeResClass SKIPPED
+> Task :app:shared:app-platform:checkDesktopMainComposeLibrariesCompatibility
+> Task :app:shared:app-platform:kmpPartiallyResolvedDependenciesChecker
+> Task :app:shared:app-platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:shared:app-platform:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:app-platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:app-platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :app:shared:app-platform:generateResourceAccessorsForCommonMain SKIPPED
+> Task :app:shared:app-platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:app-platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:app-platform:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :app:shared:app-platform:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-platform:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:app-platform:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:app-platform:generateResourceAccessorsForJvmMain SKIPPED
+> Task :app:shared:app-platform:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-platform:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:app-platform:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:app-platform:generateResourceAccessorsForSkikoMain SKIPPED
+> Task :app:shared:app-platform:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :app:shared:app-platform:generateAniBuildConfigDesktop
+> Task :app:shared:app-platform:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :app:shared:app-platform:assembleDesktopMainResources
+> Task :app:shared:app-platform:desktopProcessResources
+> Task :app:shared:app-platform:processDesktopMainResources SKIPPED
+> Task :app:shared:video-player:torrent-source:generateComposeResClass SKIPPED
+> Task :app:shared:video-player:torrent-source:checkDesktopMainComposeLibrariesCompatibility
+> Task :app:shared:video-player:torrent-source:kmpPartiallyResolvedDependenciesChecker
+> Task :app:shared:video-player:torrent-source:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForCommonMain SKIPPED
+> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForJvmMain SKIPPED
+> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForSkikoMain SKIPPED
+> Task :app:shared:video-player:torrent-source:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :app:shared:video-player:torrent-source:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :app:shared:video-player:video-player-api:generateComposeResClass SKIPPED
+> Task :app:shared:video-player:video-player-api:checkDesktopMainComposeLibrariesCompatibility
+> Task :app:shared:video-player:video-player-api:kmpPartiallyResolvedDependenciesChecker
+> Task :app:shared:video-player:video-player-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForCommonMain SKIPPED
+> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForJvmMain SKIPPED
+> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForSkikoMain SKIPPED
+> Task :app:shared:video-player:video-player-api:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :app:shared:video-player:video-player-api:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :app:shared:video-player:video-player-api:assembleDesktopMainResources
+> Task :app:shared:video-player:video-player-api:desktopProcessResources
+> Task :app:shared:video-player:video-player-api:processDesktopMainResources SKIPPED
+> Task :app:shared:video-player:torrent-source:assembleDesktopMainResources
+> Task :app:shared:video-player:torrent-source:desktopProcessResources
+> Task :app:shared:video-player:torrent-source:processDesktopMainResources SKIPPED
+> Task :app:shared:app-data:assembleDesktopMainResources
+> Task :app:shared:paging-compose:generateComposeResClass SKIPPED
+> Task :app:shared:paging-compose:checkDesktopMainComposeLibrariesCompatibility
+> Task :app:shared:paging-compose:kmpPartiallyResolvedDependenciesChecker
+> Task :app:shared:paging-compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:shared:paging-compose:convertXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:paging-compose:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :app:shared:paging-compose:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :app:shared:paging-compose:generateResourceAccessorsForCommonMain SKIPPED
+> Task :app:shared:paging-compose:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:paging-compose:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :app:shared:paging-compose:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :app:shared:paging-compose:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :app:shared:paging-compose:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:paging-compose:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :app:shared:paging-compose:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :app:shared:paging-compose:generateResourceAccessorsForJvmMain SKIPPED
+> Task :app:shared:paging-compose:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:paging-compose:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :app:shared:paging-compose:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :app:shared:paging-compose:generateResourceAccessorsForSkikoMain SKIPPED
+> Task :app:shared:paging-compose:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :app:shared:paging-compose:generateExpectResourceCollectorsForCommonMain SKIPPED
