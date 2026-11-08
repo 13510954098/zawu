@@ -19,10 +19,10 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - uses: android-actions/setup-android@v3
       - name: Materialize pinned upstream and real integration sources
+        id: prepare
         run: |
-          python scripts/prepare_animeko_lanerc.py
+          python scripts/prepare_animeko_lanerc.py > /tmp/lanerc-prepare.log 2>&1
           echo "LANERC_BUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           cat >> .local/animeko/worktree/local.properties <<'EOF'
           ani.enable.firebase=false
@@ -32,6 +32,7 @@ jobs:
           jvm.toolchain.vendor=Eclipse Adoptium
           EOF
       - name: Compile and package the Android integration without private production material
+        id: compile
         working-directory: .local/animeko/worktree
         run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-android-gradle.log 2>&1
       - name: Save APK and build provenance
@@ -62,11 +63,16 @@ jobs:
 
       - name: Preserve public build diagnostics on failure
         if: failure()
+        env:
+          STEP_OUTCOMES: ${{ toJSON(steps) }}
         run: |
           python - <<'PY'
-          import pathlib
+          import pathlib, os
           log = pathlib.Path('/tmp/lanerc-android-gradle.log')
           text = '\n'.join(log.read_text(errors='replace').splitlines()[-180:]) if log.exists() else 'Build did not reach the Gradle invocation; inspect runner setup and source preparation.'
+          prepare = pathlib.Path('/tmp/lanerc-prepare.log')
+          if prepare.exists(): text += '\nSource preparation:\n' + prepare.read_text(errors='replace')[-4000:]
+          text += '\nStep outcomes:\n' + os.environ.get('STEP_OUTCOMES', '')
           pathlib.Path('analysis/lanerc/animeko-android-build-diagnostic.txt').write_text(text+'\n')
           PY
           git config user.name 'github-actions[bot]'
