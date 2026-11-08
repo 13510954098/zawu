@@ -24,7 +24,7 @@ bash gradlew test
 
 ### Kotlin 协议核心
 
-- 请求 MD5 签名，要求传入**添加 sign 前的准确 Dio 规范化 URI**。Kotlin URI 桥已对 7 组 Dart/Dio fixture 与 Ktor URLBuilder roundtrip 做一致性验证。
+- 请求 MD5 签名先计算添加 sign 前的 Dio 规范化 URI，**实际摘要输入为其 `Uri.path`，不是完整 URL**。Kotlin URI 桥已对 7 组 Dart/Dio fixture 与 Ktor URLBuilder roundtrip 做一致性验证。
 - 三套独立密钥的用途隔离：播放 GCM、普通响应 ECB、公开 TXT ECB。
 - GCM `nonce[12] || ciphertext || tag[16]` 认证解密；普通响应按顺序字符替换、Base64、ECB/PKCS7 解码。
 - 限长 Protobuf wire 解码、未知字段与不匹配 wire type 跳过、重复字段最后值生效、int32 符号处理、非 200/空 URL 拒绝。
@@ -89,3 +89,9 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 - Python 源码安全与 APK 交付回归本地共 13 项通过；不等于设备测试。
 - Android KeyStore 新增 3 项 API 30 x86_64 模拟器测试：Unicode 往返/随机 IV、源与 origin AAD 隔离、篡改/截断拒绝；已交由独立 Actions，**尚未宣称通过**，不含生产材料。
 - 验证码不再默认替用户选择第 1 项，允许按原图实际编号手选；原版编号基数未生产核实，不能把合成测试当作真实验证码成功。
+
+### 签名输入纠正与生产探测边界
+
+进一步核对拦截器发现 `Uri.parse(...).path` 取值此前被误认成完整 URI；健康探测硬编码 `/app/health@` 也与路径输入吻合。旧签名 fixture 的跨语言一致性只能证明大家计算相同输入，不能证明选对了 native 字段。现已修正 Kotlin、Python 与 Dart CLI/fixture 生成器，并交给 Actions 重新验证；之前的成功计数不用于声称此修正已经验证。
+
+通过临时 runner 公钥封装预签名请求，在不把恢复的客户端 MD5/AES 密钥交给 CI 的情况下开始真实接口探测；响应只以分析接收者 CMS 密文保存。首次完整 URL 摘要的 captcha 请求得到 HTTP 404（空 body），不是有效验证码或播放成功。后续按路径签名的探测与新版 APK 必须单独核验。公开元数据不含签名值、challenge/guest credential 或播放 URL。

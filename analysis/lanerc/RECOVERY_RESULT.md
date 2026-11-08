@@ -52,7 +52,7 @@ nonce[12] || ciphertext || authentication_tag[16]
 - `0x7ee248` 调用 Dio 最终 URI getter（`0x4a979c`），涉及 baseUrl、path、queryParameters 及规范化。
 - 时间戳由微秒时间两次除以 1000 得到秒值。
 - `0x7ee4a8` 生成 3 个 `a`–`z` 字符组成的 nonce。
-- `0x7ee2f4`–`0x7ee348` 拼接 URI、分隔符、秒值、nonce 和固定后缀。
+- `0x7ee2f4`–`0x7ee348` 拼接 Uri.path、分隔符、秒值、nonce 和固定后缀。
 - 固定后缀来自对象池 `0x11b70`，长度 17。
 - `0x7ee358` 后经 UTF-8 编码和 digest 转换；对应 sink 初始化包含 MD5 的四个标准状态字，输出转十六进制字符串。
 - `0x7ee3b4` 开始构建名为 `sign` 的参数，值以 `-` 分隔。
@@ -60,11 +60,11 @@ nonce[12] || ciphertext || authentication_tag[16]
 重建形式：
 
 ```text
-digest = lower_hex(MD5(UTF8(canonical_uri + "@" + unix_seconds + "@" + nonce + secret_suffix)))
+digest = lower_hex(MD5(UTF8(Uri.parse(canonical_uri).path + "@" + unix_seconds + "@" + nonce + secret_suffix)))
 sign = unix_seconds + "-" + nonce + "-" + digest
 ```
 
-**sign 位于查询参数，不是 Authorization 或自定义请求头。** 签名结果合并回 RequestOptions 的 `queryParameters`（字段偏移 `0x50`）；URI getter 在 `0x4a9930` 读取同一字段用于生成 query。应使用添加新 sign 参数之前的最终 URI；不要重复签入上一次的 sign。
+**sign 位于查询参数，不是 Authorization 或自定义请求头。** 签名结果合并回 RequestOptions 的 `queryParameters`（字段偏移 `0x50`）；URI getter 在 `0x4a9930` 读取同一字段用于生成 query。应先计算 Dio 的最终 URI，再取 `Uri.path` 作为摘要输入；主机、端口和 query 不进入摘要。`0x7ee27c` 为 Uri.parse，`0x7ee294` 取路径；后备健康探测也直接使用 `/app/health@`（pool `0x11b68`）。此前把完整 URI 当摘要输入的结论已撤回：旧版跨语言 fixture 一致性不能证明选对了原版 URI 字段。请求仍只添加一个 sign，不重复保留旧 sign。
 
 签名后缀 SHA-256 指纹：
 
