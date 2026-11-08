@@ -36,6 +36,9 @@ class EncryptedProbeScopeTests(unittest.TestCase):
             with self.assertRaises(ValueError): validate(payload, '7', 1000)
 
     def test_post_is_limited_to_native_guest_fields(self):
+        captcha = self.request()
+        captcha.update(method='POST', body={})
+        self.assertEqual('POST', validate(captcha, '7', 1000)[1])
         p = self.request('/app/v2/guest/credential')
         p.update(method='POST', body={'challenge_id':'public-fixture', 'selected':'0'})
         self.assertEqual('POST', validate(p, '7', 1000)[1])

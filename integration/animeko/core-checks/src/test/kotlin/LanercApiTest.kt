@@ -37,6 +37,7 @@ class LanercApiTest {
             else """{"code":200,"data":{"guest_credential":"private-token-marker","expires_in":120}}""".encodeToByteArray()
         }
         val captcha = api.captcha()
+        assertEquals("{}", calls.single().body) // APK 0x920050..0x920074 -> Dio POST with an empty JSON map.
         val credential = api.exchange(captcha, 2)
         assertEquals("https://example.invalid:443", credential.origin)
         assertEquals(121000L, credential.expiresAtMillis)

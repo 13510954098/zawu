@@ -137,5 +137,14 @@
     "native_preimage": "Uri.path + @ + seconds + @ + nonce + suffix",
     "previous_full_URI_fixture_claim": "Withdrawn: cross-library agreement did not prove which URI component the APK signed",
     "production_confirmation": false
+  },
+  "captcha_method_correction": {
+    "site": "0x91fff0..0x9200a4",
+    "empty_data_map": "0x920054..0x92005c, pool 0x11af8 empty Map",
+    "wrapper": "0x920074 -> 0x8dd5bc -> 0x48d508",
+    "method_literal": "0x48d538 pool 0xc60 POST",
+    "profile": "apiRequestProfile=guestJson, pool 0x1eef0",
+    "correction": "POST {} not GET",
+    "production_confirmation": false
   }
 }

@@ -65,7 +65,7 @@ class LanercApi(
 
     suspend fun captcha(): LanercCaptcha {
         val base = backend()
-        val data = LanercCatalog.payload(jsonAt(base, LanercEndpoints.CAPTCHA)).jsonObject
+        val data = LanercCatalog.payload(jsonAt(base, LanercEndpoints.CAPTCHA, body = buildJsonObject {})).jsonObject
         val count = data.getValue("option_count").jsonPrimitive.int
         val lifetime = data.getValue("expires_in").jsonPrimitive.long
         require(count in 1..100 && lifetime in 1..3600) { "Invalid captcha lifetime or options" }

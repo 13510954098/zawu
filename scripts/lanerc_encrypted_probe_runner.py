@@ -23,7 +23,7 @@ HOST = 'v3.yyghk.com'
 REPOSITORY = '13510954098/zawu'
 LIMIT = 4 * 1024 * 1024
 GETS = {'/app/health', '/app/v2/guest/captcha', '/app/vod/search', '/app/chat/comment', '/app/chat/barragev2'}
-POSTS = {'/app/v2/guest/credential': {'challenge_id', 'selected'}, '/app/v2/guest/play': {'resource_id', 'guest_credential'}}
+POSTS = {'/app/v2/guest/captcha': set(), '/app/v2/guest/credential': {'challenge_id', 'selected'}, '/app/v2/guest/play': {'resource_id', 'guest_credential'}}
 
 
 def validate(payload, run, now):
