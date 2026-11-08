@@ -1,0 +1,64 @@
+name: Qishui Full Reverse Engineering Triage
+
+on:
+  push:
+    branches:
+      - "arena/f32564a0-zawu"
+
+permissions:
+  contents: write
+
+jobs:
+  qishui-triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable KVM for Android Emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Install Reverse-Engineering & Unpacking Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq p7zip-full apktool osslsigncode tcpdump binutils file
+          pip install --quiet playwright
+          python3 -m playwright install chromium
+
+      - name: Execute 4-Surface Reverse Engineering Pipeline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          python3 .github/scripts/qishui_full_re.py > /tmp/qishui_stdout.log 2>&1
+          RC=$?
+          cat /tmp/qishui_stdout.log
+          python3 - <<'PY'
+          import base64, json, os, subprocess
+          report_path = '/tmp/qishui_full_re_report.json'
+          if os.path.exists(report_path):
+              raw = open(report_path, 'rb').read()
+          else:
+              raw = json.dumps({'fatal_log': open('/tmp/qishui_stdout.log', errors='replace').read()[-20000:]}).encode('utf-8')
+          b64 = base64.b64encode(raw).decode('ascii')
+          repo = os.environ['GITHUB_REPOSITORY']
+          sha = os.environ['GITHUB_SHA']
+          payload = json.dumps({'content': b64, 'encoding': 'base64'})
+          p = subprocess.run(
+              ['gh', 'api', f'repos/{repo}/git/blobs', '--input', '-'],
+              input=payload,
+              text=True,
+              capture_output=True,
+              check=True,
+          )
+          blob_sha = json.loads(p.stdout)['sha']
+          subprocess.run(
+              ['gh', 'api', f'repos/{repo}/commits/{sha}/comments', '-f', f'body=QISHUI_BLOB:{blob_sha}'],
+              check=True,
+          )
+          print("Uploaded report blob:", blob_sha)
+          PY
+          exit $RC
