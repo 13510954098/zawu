@@ -1,0 +1,43 @@
+{
+  "method": "Exact whitelisted object-pool strings and ARM64 x27-relative loads",
+  "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
+  "pool_marker_slots": [
+    {
+      "offset": "0xb6c0",
+      "label": "authorization-header"
+    },
+    {
+      "offset": "0xbcd8",
+      "label": "playback-endpoint"
+    },
+    {
+      "offset": "0xc480",
+      "label": "encrypted-field-label"
+    },
+    {
+      "offset": "0xc4d8",
+      "label": "pkcs7-label"
+    },
+    {
+      "offset": "0xc7b0",
+      "label": "sha256-label"
+    },
+    {
+      "offset": "0xe190",
+      "label": "aes-label"
+    },
+    {
+      "offset": "0x112e0",
+      "label": "signature-name"
+    },
+    {
+      "offset": "0x11328",
+      "label": "configuration-endpoint"
+    },
+    {
+      "offset": "0x29198",
+      "label": "home-endpoint"
+    }
+  ],
+  "code_anchors": []
+}
