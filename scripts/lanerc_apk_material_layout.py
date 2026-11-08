@@ -35,7 +35,12 @@ def probe(binary, pool):
             # Snapshot arrays may store arbitrary object-reference IDs rather
             # than literal Smi values. Match equality structure, not key bytes.
             # No mapping or captured values are exported.
-            for width in (1, 2, 3, 4, 8):
+            encodings = [(width, f'.{{{width}}}') for width in (1, 2, 3, 4, 8)]
+            encodings += [
+                ('dart-variable-reference', r'[\x00-\x7f]{0,4}[\x80-\xff]'),
+                ('uleb128-variable-reference', r'[\x80-\xff]{0,4}[\x00-\x7f]'),
+            ]
+            for width, word_pattern in encodings:
                 groups = {}
                 pattern = []
                 for value in chunk:
@@ -45,7 +50,7 @@ def probe(binary, pool):
                         name = f'n{len(groups)}'
                         if groups:
                             pattern.append('(?!(?:' + '|'.join(f'(?P={group})' for group in groups.values()) + '))')
-                        pattern.append(f'(?P<{name}>.{{{width}}})')
+                        pattern.append(f'(?P<{name}>{word_pattern})')
                         groups[value] = name
                 expression = re.compile(('(?=' + ''.join(pattern) + ')').encode(), re.DOTALL)
                 found = []

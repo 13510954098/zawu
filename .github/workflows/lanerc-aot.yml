@@ -43,7 +43,11 @@ jobs:
           result = probe(indirect, pool)
           assert not result['all_arrays_uniquely_located'], 'Reference structure is not a recovered key mapping'
           assert all(any(candidate['width'] == 1 and 8 + 17*i in candidate['offsets'] for candidate in row['reference_structure_candidates']) for i, row in enumerate(result['arrays']))
-          print('Synthetic literal/reference layouts and malformed structures passed; no real values printed')
+          words = [bytes([v + 128]) if v % 2 else bytes([v, 128]) for v in range(16)]
+          variable = b'\xff'*8 + b''.join(words[v] for v in chunks[0]) + b'\xff'*8
+          result = probe(variable, pool)
+          assert any(candidate['width'] == 'dart-variable-reference' and 8 in candidate['offsets'] for candidate in result['arrays'][0]['reference_structure_candidates'])
+          print('Synthetic literal, fixed/variable reference and malformed structures passed; no real values printed')
           PY
       - name: Prepare verified APK libraries
         run: |
