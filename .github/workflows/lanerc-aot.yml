@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/lanerc-aot.yml
       - scripts/lanerc_aot_summary.py
+      - scripts/lanerc_pool_anchors.py
 permissions:
   contents: write
 jobs:
@@ -40,7 +41,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y g++-13 cmake ninja-build pkg-config libicu-dev libcapstone-dev python3-venv
           python3 -m venv /tmp/aot-env
-          /tmp/aot-env/bin/pip install pyelftools requests
+          /tmp/aot-env/bin/pip install pyelftools requests capstone
       - name: Restore pinned analyzer build cache
         uses: actions/cache@v4
         with:
@@ -67,6 +68,7 @@ jobs:
           mkdir -p analysis/lanerc
           if [ "$ANALYSIS_RESULT" = success ]; then
             python3 scripts/lanerc_aot_summary.py /tmp/lanerc-aot/asm analysis/lanerc/aot-callgraph.json
+            /tmp/aot-env/bin/python scripts/lanerc_pool_anchors.py /tmp/lanerc-libs/libapp.so /tmp/lanerc-aot/pp.txt analysis/lanerc/aot-callgraph.json analysis/lanerc/pool-anchors.json
           fi
           python3 - <<'PY'
           import json, os, pathlib, re

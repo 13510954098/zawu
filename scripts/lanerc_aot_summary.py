@@ -11,7 +11,7 @@ def summarize(root):
     header_samples = []
     header_unmatched = 0
     unmatched_header_samples = []
-    addr_re = re.compile(r'// \*\* addr:\s*((?:0x)?[0-9a-f]+),\s*size:\s*((?:0x)?[0-9a-f]+)')
+    addr_re = re.compile(r'// \*\* addr:\s*((?:0x)?[0-9a-f]+),\s*size:\s*(-?(?:0x)?[0-9a-f]+)')
     call_re = re.compile(r'\bbl\s+#?(0x[0-9a-f]+)\b')
     focus = re.compile(r'buildSignature|encrypt|decrypt|\bAES\b|\bHmac\b|onRequest|onResponse|Interceptor|ApiService|Doh|Bootstrap', re.I)
     for path in sorted(root.rglob('*.dart')):
