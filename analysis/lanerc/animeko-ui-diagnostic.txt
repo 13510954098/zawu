@@ -1,160 +1,160 @@
-> Task :utils:ui-testing:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :utils:ui-testing:prepareComposeResourcesTaskForCommonMain NO-SOURCE
-> Task :utils:ui-testing:generateResourceAccessorsForCommonMain SKIPPED
-> Task :utils:ui-testing:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :utils:ui-testing:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :utils:ui-testing:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :utils:ui-testing:generateResourceAccessorsForDesktopMain SKIPPED
-> Task :utils:ui-testing:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :utils:ui-testing:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :utils:ui-testing:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :utils:ui-testing:generateResourceAccessorsForJvmMain SKIPPED
-> Task :utils:ui-testing:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :utils:ui-testing:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :utils:ui-testing:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :utils:ui-testing:generateResourceAccessorsForSkikoMain SKIPPED
-> Task :utils:ui-testing:generateActualResourceCollectorsForDesktopMain SKIPPED
-> Task :utils:ui-testing:generateExpectResourceCollectorsForCommonMain SKIPPED
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-subject/src/commonMain/kotlin/ui/subject/person/PeopleDetailsSections.kt:535:22 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
 
-> Task :utils:ui-testing:compileKotlinDesktop
-w: Opt-in requirement marker 'org.jetbrains.compose.resources.ExperimentalResourceApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.paging.ExperimentalPagingApi' is unresolved. Make sure it's present in the module dependencies.
+> Task :app:shared:ui-subject:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-subject:desktopMainClasses
+> Task :app:shared:ui-subject:desktopJar
+> Task :app:shared:video-player:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:video-player:desktopMainClasses
+> Task :app:shared:video-player:desktopJar
+
+> Task :app:shared:ui-episode:compileKotlinDesktop
 w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
 w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
-w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/utils/ui-testing/src/commonMain/kotlin/RunComposeStateTest.kt:53:51 'companion object Key : AbstractCoroutineContextKey<ContinuationInterceptor, CoroutineDispatcher>' is deprecated. Use ContinuationInterceptor.Key and attempt casting the context element to CoroutineDispatcher instead.
-w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/utils/ui-testing/src/desktopMain/kotlin/AniComposeUiTest.desktop.kt:43:12 'fun runComposeUiTest(effectContext: CoroutineContext = ..., runTestContext: CoroutineContext = ..., testTimeout: Duration = ..., block: suspend ComposeUiTest.() -> Unit): Unit' is deprecated. Use `androidx.compose.ui.test.v2.runComposeUiTest` instead. The v2 APIs use `StandardTestDispatcher` by default to better simulate production behavior where coroutines are queued rather than executed immediately.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-episode/src/commonMain/kotlin/ui/episode/AdaptivePlayerScreenLayout.kt:354:5 'fun TabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryTabRow and SecondaryTabRow.
 
-> Task :utils:ui-testing:compileDesktopMainJava NO-SOURCE
-> Task :utils:ui-testing:assembleDesktopMainResources
-> Task :utils:ui-testing:desktopProcessResources
-> Task :utils:ui-testing:processDesktopMainResources SKIPPED
-> Task :utils:ui-testing:desktopMainClasses
-> Task :utils:ui-testing:desktopJar
-> Task :app:shared:assembleDesktopTestResources
-> Task :app:shared:desktopTestProcessResources
-> Task :app:shared:processDesktopTestResources SKIPPED
+> Task :app:shared:ui-episode:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-episode:desktopMainClasses
+> Task :app:shared:ui-episode:desktopJar
 
-> Task :app:shared:app-lang:compileKotlinDesktop
-w: Opt-in requirement marker 'androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.paging.ExperimentalPagingApi' is unresolved. Make sure it's present in the module dependencies.
+> Task :app:shared:ui-exploration:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-exploration/src/commonMain/kotlin/ui/exploration/schedule/ScheduleScreen.kt:239:13 'fun ScrollableTabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., edgePadding: Dp = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryScrollableTabRow and SecondaryScrollableTabRow tab variants.
+
+> Task :app:shared:ui-exploration:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-exploration:desktopMainClasses
+> Task :app:shared:ui-exploration:desktopJar
+
+> Task :app:shared:ui-exprovider:compileKotlinDesktop
 w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
 w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
 
-> Task :app:shared:app-lang:compileDesktopMainJava NO-SOURCE
-> Task :app:shared:app-lang:desktopMainClasses
-> Task :app:shared:app-lang:desktopJar
+> Task :app:shared:ui-exprovider:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-exprovider:desktopMainClasses
+> Task :app:shared:ui-exprovider:desktopJar
 
-> Task :app:shared:app-platform:compileKotlinDesktop FAILED
+> Task :app:shared:ui-settings:compileKotlinDesktop
 w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
 w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:12:12 Unresolved reference 'jetbrains'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:30:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:31:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:32:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:33:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:34:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:35:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:36:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:37:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:38:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:39:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:40:12 Unresolved reference 'cef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:66:22 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:86:44 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:86:74 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:97:45 Unresolved reference 'CefResourceRequestHandler'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:98:9 Unresolved reference 'CefRequestHandlerAdapter'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:100:22 Unresolved reference 'CefBrowser'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:101:20 Unresolved reference 'CefFrame'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:102:22 Unresolved reference 'CefRequest'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:106:37 Unresolved reference 'BoolRef'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:107:12 Unresolved reference 'CefResourceRequestHandler'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:110:22 Unresolved reference 'CefBrowser'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:117:23 Unresolved reference 'CefAuthCallback'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:125:22 Unresolved reference 'Continue'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:141:8 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:144:26 Unresolved reference 'JCefAppConfig'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:146:47 Unresolved reference 'CefSettings'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:154:34 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:154:40 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:155:13 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:156:13 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:158:32 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:164:38 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:164:44 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:165:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:165:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:166:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:166:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:167:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:167:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:171:21 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:172:21 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:173:21 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:178:38 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:178:44 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:180:17 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:183:17 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:184:17 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:189:17 Unresolved reference 'add'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:202:9 Unresolved reference 'CefLog'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:203:9 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:204:16 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:250:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Cannot infer type for type parameter 'R'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
-fun <T, R> T.let(block: (T) -> R): R
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:22 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:278:93 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:297:50 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:299:20 Unresolved reference 'isTerminated'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:307:24 Unresolved reference 'onInitialization'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:307:43 Cannot infer type for value parameter 'state'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:308:34 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:315:78 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:367:46 Unresolved reference 'CefResourceRequestHandler'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:367:82 Unresolved reference 'CefClient'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:368:21 Unresolved reference 'createClient'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:15 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:21 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:23 Unresolved reference 'addRequestHandler'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:393:18 Unresolved reference 'CefBrowser'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:394:17 Unresolved reference 'CefClient'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:402:18 Unresolved reference 'CefBrowser'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:403:17 Unresolved reference 'CefClient'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:416:44 Unresolved reference 'CefApp'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:424:24 Unresolved reference 'dispose'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:432:32 Unresolved reference 'dispose'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:447:18 Unresolved reference 'CefBrowser'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:448:17 Unresolved reference 'CefClient'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:450:9 Cannot infer type for type parameter 'R'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:451:22 Unresolved reference 'close'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:452:11 Cannot infer type for type parameter 'T'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:455:9 Cannot infer type for type parameter 'R'. Specify it explicitly.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:456:21 Unresolved reference 'dispose'.
-e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:457:11 Cannot infer type for type parameter 'T'. Specify it explicitly.
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794112720719.json
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/Buttons.kt:16:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/Buttons.kt:47:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/DropdownItem.kt:23:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SettingsScope.kt:98:5 Applying DSL marker annotation 'SettingsDsl' to target 'member function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SettingsScope.kt:132:59 'val supportingTextColor: Color' is deprecated. Renamed to supportingContentColor.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SettingsScope.kt:185:51 'val supportingTextColor: Color' is deprecated. Renamed to supportingContentColor.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SettingsScope.kt:195:5 Applying DSL marker annotation 'SettingsDsl' to target 'member function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SingleSelectionItem.kt:104:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SliderItem.kt:35:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SliderItem.kt:70:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SliderItem.kt:122:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SliderItem.kt:204:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SorterItem.kt:58:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SwitchItem.kt:24:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SwitchItem.kt:50:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/SwitchItem.kt:67:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/TextFieldItem.kt:61:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/framework/components/TextItem.kt:13:1 Applying DSL marker annotation 'SettingsDsl' to target 'top level function' has no effect. DSL marker annotations must only be applied to types. See https://youtrack.jetbrains.com/issue/KT-81567 for further information.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/mediasource/BackgroundSearcher.kt:196:33 'fun add(element: T): PersistentList<T>' is deprecated. Use adding() instead. For more details, read the documentation for this function.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/mediasource/editor/MediaSourceTestAndDetailPane.kt:181:29 No cast needed.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/mediasource/selector/episode/SelectorEpisodeState.kt:196:49 'val pathSegments: List<String>' is deprecated. `pathSegments` is deprecated.
+
+        This property will contain an empty path segment at the beginning for URLs with a hostname,
+        and an empty path segment at the end for the URLs with a trailing slash. If you need to keep this behaviour please
+        use [rawSegments]. If you only need to access the meaningful parts of the path, consider using [segments] instead.
+             
+        Please decide if you need [rawSegments] or [segments] explicitly.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/tabs/about/BuildInfoTab.kt:167:47 'val Icons.Rounded.OpenInNew: ImageVector' is deprecated. Use the AutoMirrored version at Icons.AutoMirrored.Rounded.OpenInNew.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/tabs/media/source/LanercSettingsCard.kt:134:38 Unnecessary safe call on a non-null receiver of type 'MediaSourceInstance'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/tabs/media/source/MediaSourceSubscriptionGroup.kt:274:112 Unnecessary safe call on a non-null receiver of type 'MediaSourceSubscription.LastUpdated'.
+
+> Task :app:shared:ui-settings:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-settings:desktopMainClasses
+> Task :app:shared:ui-settings:desktopJar
+
+> Task :app:shared:ui-notification:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+
+> Task :app:shared:ui-notification:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-notification:desktopMainClasses
+> Task :app:shared:ui-notification:desktopJar
+
+> Task :app:shared:ui-onboarding:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+
+> Task :app:shared:ui-onboarding:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-onboarding:desktopMainClasses
+> Task :app:shared:ui-onboarding:desktopJar
+
+> Task :app:shared:ui-mediaselect:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+
+> Task :app:shared:ui-mediaselect:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-mediaselect:desktopMainClasses
+> Task :app:shared:ui-mediaselect:desktopJar
+
+> Task :app:shared:ui-watchtogether:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+
+> Task :app:shared:ui-watchtogether:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-watchtogether:desktopMainClasses
+> Task :app:shared:ui-watchtogether:desktopJar
+
+> Task :app:shared:ui-download:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-download/src/commonMain/kotlin/ui/download/subject/SubjectDownloadRequestDialogs.kt:208:22 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-download/src/commonMain/kotlin/ui/download/subject/SubjectDownloadRequestDialogs.kt:210:53 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/ui-download/src/commonMain/kotlin/ui/download/subject/SubjectDownloadsPresenter.kt:159:24 Unnecessary safe call on a non-null receiver of type 'DownloadRequestSession'.
+
+> Task :app:shared:ui-download:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:ui-download:desktopMainClasses
+> Task :app:shared:ui-download:desktopJar
+
+> Task :app:shared:compileKotlinDesktop
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/search/SearchScreen.kt:91:25 Condition is always 'true'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:740:5 'fun ScrollableTabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., edgePadding: Dp = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryScrollableTabRow and SecondaryScrollableTabRow tab variants.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/EpisodePage.kt:896:57 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/analytics/PlayFlowDebugWindow.kt:267:13 'fun TabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryTabRow and SecondaryTabRow.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeCarousel.kt:202:61 'val comment: Int' is deprecated. No longer provided.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:256:30 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:259:41 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:655:30 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:658:41 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:725:26 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeDetails.kt:728:37 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeListSection.kt:399:26 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/details/EpisodeListSection.kt:400:57 'val windowInsets: WindowInsets' is deprecated. Renamed as modalWindowInsets.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/commonMain/kotlin/ui/subject/episode/video/components/EpisodeVideoSideSheet.kt:148:26 'fun rememberModalBottomSheetState(skipPartiallyExpanded: Boolean = ..., confirmValueChange: (SheetValue) -> Boolean = ...): SheetState' is deprecated. Use rememberBottomSheetState with Hidden initial value.
+
+> Task :app:shared:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:desktopMainClasses
+> Task :app:shared:desktopJar
+
+> Task :app:shared:compileTestKotlinDesktop
+w: Opt-in requirement marker 'io.ktor.util.KtorExperimentalAPI' is unresolved. Make sure it's present in the module dependencies.
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/desktopTest/kotlin/ui/bangumi/merge/BangumiMergeScreenshotTest.kt:91:13 'fun runSkikoComposeUiTest(size: Size = ..., density: Density = ..., effectContext: CoroutineContext = ..., runTestContext: CoroutineContext = ..., testTimeout: Duration = ..., block: suspend SkikoComposeUiTest.() -> Unit): Unit' is deprecated. Use `androidx.compose.ui.test.v2.runSkikoComposeUiTest` instead. The v2 APIs use `StandardTestDispatcher` by default to better simulate production behavior where coroutines are queued rather than executed immediately.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/desktopTest/kotlin/ui/subject/episode/EpisodeVideoDropScreenshotTest.kt:83:13 'fun runSkikoComposeUiTest(size: Size = ..., density: Density = ..., effectContext: CoroutineContext = ..., runTestContext: CoroutineContext = ..., testTimeout: Duration = ..., block: suspend SkikoComposeUiTest.() -> Unit): Unit' is deprecated. Use `androidx.compose.ui.test.v2.runSkikoComposeUiTest` instead. The v2 APIs use `StandardTestDispatcher` by default to better simulate production behavior where coroutines are queued rather than executed immediately.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/desktopTest/kotlin/ui/subject/episode/analytics/PlayFlowTimelineTest.kt:224:22 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+
+> Task :app:shared:compileDesktopTestJava NO-SOURCE
+> Task :app:shared:desktopTestClasses
+> Task :app:shared:desktopTest
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794113210936.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':app:shared:app-platform:compileKotlinDesktop'.
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
-   > Compilation error. See log for more details
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 6m 18s
-298 actionable tasks: 298 executed
+BUILD SUCCESSFUL in 8m 56s
+338 actionable tasks: 338 executed
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794112720719.json
-https://gradle.com/s/zmfq7h4yqdu54
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794113210936.json
+https://gradle.com/s/sc4etqkoy6i3g
 
