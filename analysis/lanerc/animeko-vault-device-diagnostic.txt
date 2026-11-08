@@ -1,0 +1,180 @@
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
+	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:187)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
+	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
+	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
+	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
+	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.gradle.tooling.BuildException: Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
+	at com.android.build.gradle.internal.dexing.DexWorkAction.run(DexWorkAction.kt:53)
+	at com.android.build.gradle.internal.profile.ProfileAwareWorkAction.execute(ProfileAwareWorkAction.kt:66)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:68)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:64)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:61)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:102)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:61)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:58)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:176)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:30)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	... 7 more
+Caused by: com.android.builder.dexing.DexArchiveBuilderException: Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
+	at com.android.build.gradle.internal.dexing.DexWorkActionKt.process(DexWorkAction.kt:168)
+	at com.android.build.gradle.internal.dexing.DexWorkActionKt.processNonIncrementally(DexWorkAction.kt:132)
+	at com.android.build.gradle.internal.dexing.DexWorkActionKt.launchProcessing(DexWorkAction.kt:68)
+	at com.android.build.gradle.internal.dexing.DexWorkAction.run(DexWorkAction.kt:45)
+	... 38 more
+Caused by: com.android.builder.dexing.DexArchiveBuilderException: Error while dexing.
+	at com.android.builder.dexing.D8DexArchiveBuilder.getExceptionToRethrow(D8DexArchiveBuilder.java:193)
+	at com.android.builder.dexing.D8DexArchiveBuilder.convert(D8DexArchiveBuilder.java:132)
+	at com.android.build.gradle.internal.dexing.DexWorkActionKt.process(DexWorkAction.kt:164)
+	... 41 more
+Caused by: com.android.tools.r8.CompilationFailedException: Compilation failed to complete, origin: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest/me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1.class
+	at Version.fakeStackEntry(Version_9.1.31.java:0)
+	at com.android.tools.r8.r0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:81)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:32)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:31)
+	at com.android.tools.r8.internal.lw0.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+	at com.android.tools.r8.D8.run(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:11)
+	at com.android.builder.dexing.D8DexArchiveBuilder.convert(D8DexArchiveBuilder.java:130)
+	... 42 more
+Caused by: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
+	at com.android.tools.r8.graph.h9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:7)
+	at com.android.tools.r8.graph.h9.d(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:8)
+	at com.android.tools.r8.graph.h9.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:82)
+	at com.android.tools.r8.internal.rv.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:130)
+	at com.android.tools.r8.graph.m9.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:34)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:130)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:131)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:129)
+	at com.android.tools.r8.graph.m9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:125)
+	at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:27)
+	at com.google.common.util.concurrent.TrustedListenableFutureTask$TrustedFutureInterruptibleTask.runInterruptibly(TrustedListenableFutureTask.java:131)
+	at com.google.common.util.concurrent.InterruptibleTask.run(InterruptibleTask.java:76)
+	at com.google.common.util.concurrent.TrustedListenableFutureTask.run(TrustedListenableFutureTask.java:82)
+	at com.google.common.util.concurrent.DirectExecutorService.execute(DirectExecutorService.java:51)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:79)
+	at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:37)
+	at com.android.tools.r8.internal.fg4.submit(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+	at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:19)
+	at com.android.tools.r8.internal.hf4.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+	at com.android.tools.r8.internal.hf4.c(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:112)
+	at com.android.tools.r8.internal.ab1.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
+	at com.android.tools.r8.utils.h.getProgramResources(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+	at com.android.tools.r8.internal.w83.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+	at com.android.tools.r8.utils.i.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:54)
+	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:83)
+	at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
+	at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:12)
+	at com.android.tools.r8.D8.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:34)
+	at com.android.tools.r8.D8.d(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:20)
+	at com.android.tools.r8.D8.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
+	... 45 more
+	Suppressed: java.lang.RuntimeException: java.util.concurrent.ExecutionException: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
+		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:70)
+		... 50 more
+	Caused by: java.util.concurrent.ExecutionException: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
+		at com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:596)
+		at com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:555)
+		at com.google.common.util.concurrent.FluentFuture$TrustedFuture.get(FluentFuture.java:91)
+		at com.android.tools.r8.internal.fg4.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
+		at com.android.tools.r8.internal.fg4.awaitFutures(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:20)
+		at com.android.tools.r8.dex.c.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:8)
+		at com.android.tools.r8.internal.dh4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:3)
+		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:77)
+		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:29)
+		... 50 more
+	Caused by: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
+		at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:146)
+		at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:129)
+		at com.android.tools.r8.graph.m9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:125)
+		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:27)
+		at com.google.common.util.concurrent.TrustedListenableFutureTask$TrustedFutureInterruptibleTask.runInterruptibly(TrustedListenableFutureTask.java:131)
+		at com.google.common.util.concurrent.InterruptibleTask.run(InterruptibleTask.java:76)
+		at com.google.common.util.concurrent.TrustedListenableFutureTask.run(TrustedListenableFutureTask.java:82)
+		at com.google.common.util.concurrent.DirectExecutorService.execute(DirectExecutorService.java:51)
+		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+		at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:79)
+		at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:37)
+		at com.android.tools.r8.internal.fg4.submit(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:19)
+		at com.android.tools.r8.internal.hf4.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+		at com.android.tools.r8.internal.hf4.c(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
+		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:112)
+		at com.android.tools.r8.internal.ab1.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
+		at com.android.tools.r8.utils.h.getProgramResources(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+		at com.android.tools.r8.internal.w83.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
+		at com.android.tools.r8.utils.i.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:54)
+		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:83)
+		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
+		... 50 more
+	Caused by: [CIRCULAR REFERENCE: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)]
+
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794113930698.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:shared:app-data:dexBuilderAndroidDeviceTest'.
+> There were multiple failures while executing work items
+   > A failure occurred while executing com.android.build.gradle.internal.dexing.DexWorkAction
+      > Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
+   > A failure occurred while executing com.android.build.gradle.internal.dexing.DexWorkAction
+      > Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8m 47s
+598 actionable tasks: 541 executed, 57 from cache
+
+Publishing Build Scan to Develocity...
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794113930698.json
+https://gradle.com/s/bicquakocij4s
+
