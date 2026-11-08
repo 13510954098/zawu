@@ -14,7 +14,7 @@ permissions:
   actions: read
 concurrency:
   group: animeko-lanerc-android
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   android:
     runs-on: ubuntu-24.04
@@ -44,7 +44,7 @@ jobs:
       - name: Compile and package the Android integration without private production material
         id: compile
         working-directory: .local/animeko/worktree
-        run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-android-gradle.log 2>&1
+        run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g 2>&1 | tee /tmp/lanerc-android-gradle.log
       - name: Save APK and build provenance
         run: |
           mkdir -p /tmp/lanerc-apk
