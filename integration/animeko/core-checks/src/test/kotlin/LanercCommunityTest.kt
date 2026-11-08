@@ -7,6 +7,23 @@ import kotlin.test.*
 
 /** Synthetic, statically anchored DTO fixtures; these are NOT captured production responses. */
 class LanercCommunityTest {
+    @Test fun `native renderer uses top for position one and scroll for every other position`() {
+        for (position in listOf(0, 1, 2, 4, 5, 9)) {
+            val row = LanercCommunity.render(LanercBarrage("id", "#ffff0000", position, 1.25, " text "))!!
+            assertEquals(position == 1, row.top)
+            assertEquals(0xff0000, row.rgb)
+            assertEquals(1250L, row.timeMillis)
+            assertEquals("text", row.content)
+        }
+    }
+    @Test fun `invalid or invisible native colors and times are not rendered`() {
+        for (color in listOf("#00ffffff", "invalid", "-1", "#123456789", "")) {
+            assertNull(LanercCommunity.render(LanercBarrage("id", color, 0, 1.0, "text")))
+        }
+        assertNull(LanercCommunity.render(LanercBarrage("id", "#ffffffff", 0, Double.NaN, "text")))
+        assertNull(LanercCommunity.render(LanercBarrage("id", "#ffffffff", 0, -1.0, "text")))
+    }
+
     private val nativeParameters = mapOf("resource_id" to "resource-7", "vod_id" to "native-vod-42", "vod_index" to "3")
     private val nativeUrl = "https://lanerc.invalid/resource/resource-7?vod_index=3"
 

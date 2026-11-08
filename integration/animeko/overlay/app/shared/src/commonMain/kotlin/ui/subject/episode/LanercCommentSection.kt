@@ -114,7 +114,7 @@ private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<Lanerc
     }
     Column(modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
         Text("Lanerc 本集弹幕 · 只读列表", style = MaterialTheme.typography.titleSmall)
-        Text("使用原版作品 ID 和线路内选集序号。位置保留原值，尚未接入屏幕飘字及发送。", style = MaterialTheme.typography.bodySmall)
+        Text("使用原版作品 ID 和线路内选集序号。播放器已接入顶部/滚动时间线；发送仍未接入。", style = MaterialTheme.typography.bodySmall)
         when {
             failed -> {
                 Text("读取失败，请检查源配置及服务可用性。", modifier = Modifier.testTag("lanerc.barrages.error"))

@@ -184,5 +184,27 @@
     }
   },
   "production_responses_verified": false,
-  "position_enum_verified": false
+  "position_enum_verified": false,
+  "renderer_mapping": {
+    "function": "0x922f3c",
+    "position_branch": [
+      "0x9231e8",
+      "0x9231ec",
+      "0x9231f8",
+      "0x923204"
+    ],
+    "position_1": {
+      "pool": "0x1ef78",
+      "enum_name": "top",
+      "enum_index": 1
+    },
+    "other_positions": {
+      "pool": "0x1ef80",
+      "enum_name": "scroll",
+      "enum_index": 0
+    },
+    "color_conversion": "0x923030..0x9230fc: remove #, radix 16, ARGB components",
+    "time_grouping": "0x92310c loads FSa.second at offset 0x1b; map key is seconds",
+    "evidence": "APK static disassembly and pool enum fields, not captured production traffic"
+  }
 }

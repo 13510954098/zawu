@@ -77,5 +77,7 @@ Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工�
 - APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。基础 applicationId `me.him188.ani.lanerc`，debug 实际安装包名 `me.him188.ani.lanerc.debug2`（已解析 APK 二进制清单核对），最低 Android 8.1 / API 27，arm64 debug 签名。
 - 当前 Code APK 对应 `2e3cce6`，不包含后续新增的评论页面；后续构建必须分别确认。
 - 新增播放器评论页独立 Lanerc 作品评论切换入口，使用选中媒体的原版 `vod_id`，而非 Bangumi ID；仅原生 Lanerc 源可请求。保留 Animeko 评论，支持手动选择、分页、失败重试，切换媒体取消旧请求，不显示敏感后台错误。**此新增代码正在进行 Android 编译验证，未做真机测试。**
-- 弹幕目前保留原版字段及接口 DTO；播放器渲染位置枚举与发送尚未接入。评论发送、原版用户登录也未接入。
+- 弹幕新增只读列表，并恢复原版渲染映射：position == 1 为 top，其余为 scroll（0x9231e8..0x923204 和枚举池 0x1ef78/0x1ef80）。已接入播放器原有时间线、源开关、时间偏移、过滤和列表，按选中源/原版媒体 ID 查询，换集取消旧请求，不写进 Bangumi 键控缓存。此新增桥接仍等待 Actions 编译与回归测试；发送和原版用户登录未接入。
 - 构建不嵌入恢复密钥或生产凭据。现有 APK 不是无需配置即可播放的成品，也没有真实播放成功的证据。
+
+Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/切源清空、弹幕独立加载、顶部/滚动及时间映射、非原生选择清空、换集请求取消。结果须以实际报告为准，不因提交测试代码就声明通过。

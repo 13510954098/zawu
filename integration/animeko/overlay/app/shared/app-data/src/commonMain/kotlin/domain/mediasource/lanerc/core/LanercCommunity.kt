@@ -7,9 +7,24 @@ data class LanercBarrage(val id: String, val color: String, val position: Int, v
 data class LanercComment(val id: String, val createdAt: String, val nickname: String, val content: String, val replies: List<LanercComment>)
 data class LanercCommentPage(val total: Int, val comments: List<LanercComment>)
 
+data class LanercRenderedBarrage(val id: String, val rgb: Int, val top: Boolean, val timeMillis: Long, val content: String)
+
 data class LanercCommunityIdentity(val vid: String, val vodIndex: Int)
 
 object LanercCommunity {
+    /** APK 0x9231e8..0x923204: position == 1 selects enum top, every other value selects scroll.
+     * Color conversion at 0x923030..0x9230fc removes # and parses hexadecimal ARGB.
+     */
+    fun render(barrage: LanercBarrage): LanercRenderedBarrage? {
+        if (!barrage.second.isFinite() || barrage.second < 0 || barrage.second > 604800 || barrage.content.isBlank()) return null
+        val hex = barrage.color.replace("#", "")
+        if (!Regex("[0-9a-fA-F]{6}|[0-9a-fA-F]{8}").matches(hex)) return null
+        val color = hex.toLongOrNull(16) ?: return null
+        if (hex.length == 8 && color ushr 24 == 0L) return null
+        return LanercRenderedBarrage(barrage.id, (color and 0xffffff).toInt(), barrage.position == 1,
+            (barrage.second * 1000).toLong(), barrage.content.trim())
+    }
+
     /** Only locally generated, source-bound native media metadata is accepted. */
     fun identity(sourceId: String, mediaSourceId: String, originalUrl: String, parameters: Map<String, String>): LanercCommunityIdentity {
         require(sourceId.isNotBlank() && sourceId == mediaSourceId) { "Community source mismatch" }

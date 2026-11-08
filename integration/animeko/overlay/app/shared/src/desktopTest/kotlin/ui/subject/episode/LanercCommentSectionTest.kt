@@ -12,6 +12,14 @@ import me.him188.ani.app.ui.framework.runAniComposeUiTest
 import me.him188.ani.datasources.api.*
 import me.him188.ani.datasources.api.source.*
 import me.him188.ani.datasources.api.topic.*
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.runCurrent
+import me.him188.ani.app.domain.mediasource.lanerc.runtime.lanercDanmakuResults
+import me.him188.ani.danmaku.api.DanmakuLocation
+import kotlin.test.assertTrue
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -83,4 +91,47 @@ class LanercCommentSectionTest {
         onNodeWithTag("lanerc.comments.animeko").performClick()
         onNodeWithText("original-comments").assertExists()
     }
+    @Test fun nativeTimelineMapsTopScrollTimeAndDeduplicatesWithoutChangingOriginalServices() = runTest {
+        val emissions = flowOf<Media?>(media("resource1")).lanercDanmakuResults {
+            listOf(LanercBarrage("a", "#ffff0000", 1, 1.25, "top"),
+                LanercBarrage("a", "#ffff0000", 1, 1.25, "top"),
+                LanercBarrage("b", "#ffffffff", 5, 2.0, "scroll"))
+        }.toList()
+        assertTrue(emissions.first().isEmpty())
+        val result = emissions.last().single()
+        assertEquals(2, result.list.size)
+        assertEquals(DanmakuLocation.TOP, result.list.first().location)
+        assertEquals(DanmakuLocation.NORMAL, result.list.last().location)
+        assertEquals(1250L, result.list.first().playTimeMillis)
+        assertEquals("Lanerc · native-source", result.matchInfo.serviceId.value)
+        assertEquals("", result.list.first().senderId)
+    }
+
+    @Test fun nativeTimelineClearsWhenSelectionIsNotNative() = runTest {
+        var calls = 0
+        val emissions = flowOf<Media?>(null).lanercDanmakuResults { calls++; error("Unexpected native request") }.toList()
+        assertEquals(0, calls)
+        assertTrue(emissions.all { it.isEmpty() })
+    }
+
+    @Test fun switchingMediaCancelsOldNativeRequestAndCannotPublishItsRows() = runTest {
+        val selected = MutableStateFlow<Media?>(media("old"))
+        var cancelled = false
+        val emittedIds = mutableListOf<String>()
+        backgroundScope.launch {
+            selected.lanercDanmakuResults {
+                if (it.mediaId == "old") {
+                    try { awaitCancellation() } finally { cancelled = true }
+                }
+                listOf(LanercBarrage("new-row", "#ffffffff", 0, 1.0, "new-episode"))
+            }.collect { results -> emittedIds.addAll(results.flatMap { it.list }.map { it.id }) }
+        }
+        runCurrent()
+        selected.value = media("new")
+        runCurrent()
+        assertTrue(cancelled)
+        assertTrue(emittedIds.isNotEmpty())
+        assertTrue(emittedIds.all { ".new." in it && ".old." !in it })
+    }
+
 }

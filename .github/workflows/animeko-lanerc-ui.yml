@@ -38,12 +38,12 @@ jobs:
         id: tests
         working-directory: .local/animeko/worktree
         run: xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
-      - name: Require all three UI tests to have executed without failures
+      - name: Require all six UI and timeline tests to have executed without failures
         run: |
           python - <<'PY'
           import pathlib, xml.etree.ElementTree as ET
           roots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]
-          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 3, 'Expected three executed UI tests'
+          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 6, 'Expected six executed UI and timeline tests'
           assert all(int(r.attrib.get(k, 0)) == 0 for r in roots for k in ['failures', 'errors', 'skipped'])
           PY
       - name: Save UI results and bounded diagnostic log

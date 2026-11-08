@@ -212,6 +212,7 @@ import me.him188.ani.danmaku.ui.DanmakuPresentation
 import me.him188.ani.danmaku.ui.DanmakuTrackProperties
 import me.him188.ani.danmaku.ui.DanmakuTextConversion
 import me.him188.ani.datasources.api.Media
+import me.him188.ani.app.domain.mediasource.lanerc.runtime.lanercDanmakuResults
 import me.him188.ani.datasources.api.PackedDate
 import me.him188.ani.datasources.api.source.MediaFetchRequest
 import me.him188.ani.datasources.api.source.MediaSourceKind
@@ -850,6 +851,7 @@ open class EpisodeViewModel(
         },
         bundleFlow = fetchPlayState.infoBundleFlow.filterNotNull().distinctUntilChanged(),
         danmakuRepository = danmakuRepository,
+        additionalDanmaku = lanercCommunityMedia.lanercDanmakuResults(::readLanercBarrages),
         getDanmakuRegexFilterListFlowUseCase = getDanmakuRegexFilterListFlowUseCase,
         danmakuTextConversion = danmakuTextConversionFlow,
         backgroundScope = backgroundScope,
