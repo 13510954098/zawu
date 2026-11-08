@@ -63,14 +63,15 @@
     "status": "not-recovered-not-derivable-from-public-certificate"
   },
   "tests": {
-    "synthetic_test_count": 34,
-    "passed": 34,
+    "synthetic_test_count": 39,
+    "passed": 39,
     "real_public_txt_matching_records": 1,
     "skipped": 0,
     "generated_protobuf_outer_cases": 500,
     "generated_protobuf_inner_cases": 100,
     "dart_uri_signature_cases": 7,
     "reference_report": "reference-validation.json",
-    "reference_workflow_run": 42440603608
-  }
+    "reference_workflow_run": 42441167497
+  },
+  "readiness_report": "readiness-validation.json"
 }
