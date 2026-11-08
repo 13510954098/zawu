@@ -33,11 +33,19 @@ def validate_apk(path):
         return hashlib.file_digest(source, 'sha256').hexdigest()
 
 
+def refuse_downgrade(existing_report, requested_run):
+    if existing_report.exists():
+        previous = json.loads(existing_report.read_text()).get('build_run')
+        if isinstance(previous, int) and previous > requested_run:
+            raise ValueError('Refusing to overwrite a newer delivered APK with an older build')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', required=True, type=int)
     parser.add_argument('--artifacts', required=True, type=pathlib.Path)
     args = parser.parse_args()
+    refuse_downgrade(ROOT / 'downloads/animeko/build.json', args.run)
     run = gh(f'repos/{REPOSITORY}/actions/runs/{args.run}')
     if run['head_branch'] != BRANCH or run['name'] != 'Animeko Lanerc Android integration build':
         raise ValueError('Unexpected build identity')

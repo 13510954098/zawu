@@ -1,5 +1,6 @@
 """Synthetic APK-shaped ZIPs; these tests do not claim APK install/signature validity."""
 import hashlib
+import json
 import pathlib
 import sys
 import tempfile
@@ -23,6 +24,16 @@ class ApkDeliveryTests(unittest.TestCase):
             if missing:
                 z.writestr('padding', b'x' * 1_100_000)
         return p
+
+    def test_older_apk_cannot_overwrite_newer_delivered_build(self):
+        with tempfile.TemporaryDirectory() as d:
+            report = pathlib.Path(d) / 'build.json'
+            delivery.refuse_downgrade(report, 5)
+            report.write_text(json.dumps({'build_run': 10}))
+            delivery.refuse_downgrade(report, 10)
+            delivery.refuse_downgrade(report, 11)
+            with self.assertRaises(ValueError):
+                delivery.refuse_downgrade(report, 9)
 
     def test_zip_shape_and_hash_only(self):
         with tempfile.TemporaryDirectory() as d:
@@ -54,7 +65,7 @@ class ApkDeliveryTests(unittest.TestCase):
     def run_identity_check(self, run, jobs=None):
         responses = [run] if jobs is None else [run, jobs]
         with patch.object(sys, 'argv', ['publish', '--run', '1', '--artifacts', '/nonexistent']), \
-                patch.object(delivery, 'gh', side_effect=responses), self.assertRaises(ValueError):
+                patch.object(delivery, 'gh', side_effect=responses), patch.object(delivery, 'refuse_downgrade'), self.assertRaises(ValueError):
             delivery.main()
 
     def test_other_branch_rejected(self):
