@@ -1,8 +1,5 @@
 """Synthetic APK-shaped ZIPs; these tests do not claim APK install/signature validity."""
-import contextlib
 import hashlib
-import io
-import json
 import pathlib
 import sys
 import tempfile

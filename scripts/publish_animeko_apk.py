@@ -29,7 +29,8 @@ def validate_apk(path):
         if apk.testzip() is not None:
             raise ValueError('Corrupted APK ZIP')
     # Detailed install/signature and runtime checks remain separate, not implied by ZIP validation.
-    return hashlib.file_digest(path.open('rb'), 'sha256').hexdigest()
+    with path.open('rb') as source:
+        return hashlib.file_digest(source, 'sha256').hexdigest()
 
 
 def main():
