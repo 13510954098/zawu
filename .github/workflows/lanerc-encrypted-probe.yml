@@ -1,0 +1,26 @@
+name: Lanerc encrypted native compatibility probe
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [.github/workflows/lanerc-encrypted-probe.yml, scripts/lanerc_encrypted_probe_runner.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lanerc-encrypted-native-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+          fetch-depth: 0
+      - name: Check scoped request validation without private material
+        run: python -m unittest discover -s tests -p test_lanerc_probe.py -v
+      - name: Publish ephemeral recipient and process encrypted authorized requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/lanerc_encrypted_probe_runner.py
