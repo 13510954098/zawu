@@ -27,11 +27,11 @@ def recover(text):
     suffix = json.loads('"' + match[1] + '"')
     if len(suffix) != 17:
         raise ValueError('Unexpected signing suffix length')
-    return {
+    result = {
         'apk_sha256': APK_SHA256,
         'validation': 'Static binary reconstruction; no production traffic or server validation',
         'response_encryption': {
-            'algorithm': 'AES-256-GCM', 'key_hex': key.hex(),
+            'algorithm': 'AES-256-GCM', 'usage': 'playResolveProtobuf encrypted data field', 'key_hex': key.hex(),
             'key_sha256': hashlib.sha256(key).hexdigest(),
             'raw_envelope': 'nonce[12] || ciphertext || authentication_tag[16]',
             'associated_data': 'empty/default; verify against your original protocol',
@@ -55,6 +55,38 @@ def recover(text):
     }
 
 
+    # A separate general JSON-response codec, not the GCM playback envelope.
+    def string_at(slot):
+        found = re.search(r'\[pp\+' + re.escape(slot) + r'\] String: "((?:\\.|[^"\\])*)"', text)
+        if not found:
+            raise ValueError('Required JSON response codec slot is missing')
+        return json.loads('"' + found[1] + '"')
+
+    if '[pp+0x133a0] String:' in text:
+        json_key = string_at('0x133a0').encode('utf-8')
+        if len(json_key) != 32:
+            raise ValueError('Expected a 32-byte JSON response key')
+        pairs = [
+            ('0xcc88', '0x13390'), ('0xd060', '0x3260'),
+            ('0x31b8', '0x3f08'), ('0xa28', '0x13398'),
+            ('0x5a78', '0x28d0'), ('0x13390', '0x31b8'),
+            ('0x3260', '0xcc88'), ('0x3f08', '0xd060'),
+            ('0x13398', '0x12c10'), ('0x28d0', '0xa28'),
+        ]
+        replacements = [[string_at(a), string_at(b)] for a, b in pairs]
+        if any(len(a) != 1 or len(b) != 1 for a, b in replacements):
+            raise ValueError('Unexpected transport character mapping')
+        result['json_response_encryption'] = {
+            'algorithm': 'AES-256-ECB', 'padding': 'PKCS7',
+            'key_hex': json_key.hex(), 'key_sha256': hashlib.sha256(json_key).hexdigest(),
+            'transport': 'Apply the replacements in order, then base64-decode',
+            'ordered_replacements': replacements,
+            'source': 'response interceptor -> 0x7ed7d8; key slot 0x133a0; AES mode slot 0xc4a0',
+            'status': 'Statically reconstructed; no production response validation',
+        }
+    return result
+
+
 def write_private(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
@@ -71,4 +103,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     recovered = recover(args.pool.read_text())
     write_private(args.output, recovered)
-    print('Recovered 32-byte response key and 17-character signing suffix; private output mode 0600')
+    print('Recovered private protocol material; output mode 0600; no secret values printed')

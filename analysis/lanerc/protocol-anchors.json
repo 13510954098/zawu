@@ -1,0 +1,114 @@
+{
+  "method": "Exact whitelisted object-pool strings and ARM64 x27-relative loads",
+  "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
+  "pool_marker_slots": [
+    {
+      "offset": "0x11c30",
+      "label": "bootstrap-domain-pool"
+    },
+    {
+      "offset": "0x133b0",
+      "label": "stream-codec-dispatch"
+    },
+    {
+      "offset": "0x1ee70",
+      "label": "captcha-endpoint"
+    },
+    {
+      "offset": "0x1f6b0",
+      "label": "playback-request-extra"
+    },
+    {
+      "offset": "0x1f6c0",
+      "label": "credential-validation"
+    }
+  ],
+  "code_anchors": [
+    {
+      "marker": "stream-codec-dispatch",
+      "instruction": "0x7ed98c",
+      "pool_offset": "0x133b0",
+      "preceding_known_entry_hint": "0x7ed798",
+      "distance_from_hint": 500,
+      "recent_direct_call_targets": [
+        "0x88d6f0"
+      ]
+    },
+    {
+      "marker": "captcha-endpoint",
+      "instruction": "0x920068",
+      "pool_offset": "0x1ee70",
+      "preceding_known_entry_hint": "0x91bcbc",
+      "distance_from_hint": 17324,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x660d98"
+      ]
+    },
+    {
+      "marker": "playback-request-extra",
+      "instruction": "0x9239d0",
+      "pool_offset": "0x1f6b0",
+      "preceding_known_entry_hint": "0x922ee0",
+      "distance_from_hint": 2800,
+      "recent_direct_call_targets": [
+        "0x96349c",
+        "0x2bcf5c",
+        "0x8e7404",
+        "0x9627d0"
+      ]
+    },
+    {
+      "marker": "credential-validation",
+      "instruction": "0x923a40",
+      "pool_offset": "0x1f6c0",
+      "preceding_known_entry_hint": "0x922ee0",
+      "distance_from_hint": 2912,
+      "recent_direct_call_targets": [
+        "0x8dd5bc",
+        "0x8be300",
+        "0x603008",
+        "0x8b4b7c"
+      ]
+    },
+    {
+      "marker": "bootstrap-domain-pool",
+      "instruction": "0x96d42c",
+      "pool_offset": "0x11c30",
+      "preceding_known_entry_hint": "0x96c634",
+      "distance_from_hint": 3576,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x8f9d48",
+        "0x4ef460",
+        "0x8a90fc"
+      ]
+    },
+    {
+      "marker": "bootstrap-domain-pool",
+      "instruction": "0x96d448",
+      "pool_offset": "0x11c30",
+      "preceding_known_entry_hint": "0x96c634",
+      "distance_from_hint": 3604,
+      "recent_direct_call_targets": [
+        "0x4ef460",
+        "0x8a90fc",
+        "0x8bd090"
+      ]
+    },
+    {
+      "marker": "bootstrap-domain-pool",
+      "instruction": "0x96d748",
+      "pool_offset": "0x11c30",
+      "preceding_known_entry_hint": "0x96c634",
+      "distance_from_hint": 4372,
+      "recent_direct_call_targets": [
+        "0x96d9e8",
+        "0x96d790",
+        "0x8be300"
+      ]
+    }
+  ]
+}

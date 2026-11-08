@@ -1,0 +1,16 @@
+// Wire-schema reconstruction for the APK documented in RECOVERY_RESULT.md.
+// Field numbers/types/names come from BuilderInfo initializers 0x60bf10 and
+// 0x60b630. Original .proto syntax/package/options have not been recovered;
+// proto3 is selected here for interoperability, not asserted as original.
+syntax = "proto3";
+
+message PlayResolveResponse {
+  int32 code = 1;
+  string msg = 2;
+  bool encrypted = 3;
+  bytes data = 4;
+}
+
+message PlayResolve {
+  string playUrl = 1;
+}

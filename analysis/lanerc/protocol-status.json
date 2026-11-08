@@ -1,0 +1,61 @@
+{
+  "apk_sha256": "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd",
+  "method": "Offline static analysis and local synthetic fixtures; no production requests",
+  "key_material": {
+    "request_signature_suffix": {
+      "status": "statically-reconstructed",
+      "sha256": "d96c5bea92373a2048144fccb68f96fe8e913b4f992a13b559865f229886a92a"
+    },
+    "play_resolve_gcm": {
+      "status": "statically-reconstructed",
+      "key_bytes": 32,
+      "sha256": "13be23ee91145831a5167b0035af19efba0215c91703a2830411fc20d401234d"
+    },
+    "general_json_ecb": {
+      "status": "statically-reconstructed",
+      "key_bytes": 32,
+      "sha256": "9c1f3067e0376feb3b407b16118c3a033fbc4f777529724ee9606e9f375cfb3b"
+    }
+  },
+  "guest_credential": {
+    "status": "server-issued-value-not-obtained",
+    "model_fields": [
+      "guest_credential",
+      "expires_in",
+      "expires_at"
+    ],
+    "captcha_model_fields": [
+      "challenge_id",
+      "image",
+      "option_count",
+      "expires_in"
+    ]
+  },
+  "protobuf": {
+    "status": "wire-schema-reconstructed",
+    "outer": "PlayResolveResponse",
+    "inner": "PlayResolve",
+    "fixture_tests_pass": true,
+    "production_response_validated": false
+  },
+  "bootstrap": {
+    "status": "static-domain-pool-and-DoH-TXT-call-chain-located",
+    "domain_pool": [
+      "dohx.lanerc.moe",
+      "doh.lanercdns1.cc",
+      "doh.uminadns2.cc"
+    ],
+    "live_resolution_performed": false
+  },
+  "v3.yyghk.com": {
+    "ascii_or_utf16le_match_in_decompressed_apk_entries": false,
+    "current_backend_verified": false
+  },
+  "release_private_key": {
+    "status": "not-recovered-not-derivable-from-public-certificate"
+  },
+  "tests": {
+    "synthetic_test_count": 13,
+    "passed": 13
+  }
+}
