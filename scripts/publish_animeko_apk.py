@@ -83,6 +83,9 @@ def main():
     shared_constants = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
         ':integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/core/LanercBuiltInMaterial.kt'],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    native_source = subprocess.check_output(['git', 'show', run['head_sha'] +
+        ':integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/runtime/LanercMediaSource.kt'], cwd=ROOT, text=True)
+    anonymous_first = 'api.playAnonymous(resource)' in native_source
     destination = ROOT / 'downloads/animeko'
     destination.mkdir(parents=True, exist_ok=True)
     filename = 'animeko-lanerc-arm64-debug.apk'
@@ -103,6 +106,7 @@ def main():
         'version_name': manifest.get('@android:versionName'), 'min_sdk': sdk.get('@android:minSdkVersion'),
         'target_sdk': sdk.get('@android:targetSdkVersion'), 'build_type': 'defaultDebug',
         'shared_client_protocol_constants_embedded': shared_constants,
+        'anonymous_first_play_in_source': anonymous_first,
         'private_production_material_embedded': False, 'original_source_import_verified': False,
         'production_playback_verified': False,
         'apk_files': [{'name': filename, 'sha256': digest, 'bytes': apk.stat().st_size}],

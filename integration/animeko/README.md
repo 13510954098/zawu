@@ -21,6 +21,14 @@ bash gradlew test
 
 本地需要 JDK 21；依赖下载与编译在 GitHub Actions 中实际运行。没有把私密恢复材料交给构建 runner。
 
+## 普通匿名播放与内置协议（2026-11-08）
+
+- Actions 从校验过的原 APK 生成共用客户端协议常量，默认使用；不内置用户密码、账号 token 或游客凭据。用户自定义材料仍是独立加密覆盖，清除后恢复内置默认。
+- Actions 匿名实测：动态发现、搜索、详情成功；普通 `app/v2/play` 未提供任何凭据也返回 Protobuf code 200 和 HTTP 视频地址，同一资源 `guest/play` 无凭据返回 400。见 `analysis/lanerc/anonymous-play-probe.json`。这不是所有线路都免验证的证明，也没有实际下载/播放媒体。
+- 适配器优先调用普通匿名解析；失败后仅在已有有效且同源的游客凭据时尝试游客路径，不自动解验证码、不要求预先登录。
+- 视频 CDN 允许经过地址校验的 HTTP/HTTPS，后端 API 和发现地址仍要求 HTTPS；不向 CDN 转发 API 认证头。HTTP 视频链路自身不提供传输加密。
+- 新解析接线待本轮 Actions 编译与核心回归，尚未完成设备真实播放验收。
+
 ## 已实现的基础代码
 
 ### Kotlin 协议核心

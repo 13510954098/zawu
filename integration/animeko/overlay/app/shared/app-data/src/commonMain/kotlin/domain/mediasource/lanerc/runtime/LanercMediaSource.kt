@@ -151,10 +151,21 @@ class LanercMediaSource(
         val resource = parameters["resource_id"] ?: return null
         val api = session.api()
         val origin = LanercUri.origin(api.backend())
-        val credential = settings.credential(mediaSourceId, origin, currentTimeMillis())
-            ?: error("尚未取得游客播放凭据，无需先登录账号。原版自动获取流程仍在核实；可在源设置中尝试游客验证。")
-        val url = api.play(resource, credential).playUrl
-        require(publicHttpsUrl(url)) { "Lanerc 返回了无效或不安全的播放地址" }
+        val url = try {
+            api.playAnonymous(resource).playUrl.also {
+                require(publicMediaUrl(it)) { "Invalid native media URL" }
+            }
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (_: Exception) {
+            // Only use an existing, valid guest credential as fallback. Never
+            // manufacture one or assume every anonymous play requires captcha.
+            val credential = settings.credential(mediaSourceId, origin, currentTimeMillis())
+                ?: error("该线路匿名解析未成功；若源要求验证，可在源设置中完成游客验证后重试。无需先登录账号。")
+            api.play(resource, credential).playUrl.also {
+                require(publicMediaUrl(it)) { "Lanerc 返回了无效或不安全的播放地址" }
+            }
+        }
         return WebVideo(url, emptyMap()) // API credentials are never forwarded to the media CDN.
     }
     override fun close() { session.close(); super.close() }

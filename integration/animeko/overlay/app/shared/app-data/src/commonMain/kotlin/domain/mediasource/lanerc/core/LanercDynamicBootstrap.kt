@@ -100,6 +100,13 @@ class LanercDynamicBootstrap(
     }
 }
 
+/** Media CDN URLs may be HTTP; API/backend URLs remain HTTPS-only. No auth headers are forwarded. */
+internal fun publicMediaUrl(value: String): Boolean = when {
+    value.startsWith("https://") -> publicHttpsUrl(value)
+    value.startsWith("http://") -> publicHttpsUrl("https://" + value.removePrefix("http://"))
+    else -> false
+}
+
 /** Reject control characters, embedded credentials, literal private endpoints and malformed ports. */
 internal fun publicHttpsUrl(value: String): Boolean = try {
     val url = Url(value)

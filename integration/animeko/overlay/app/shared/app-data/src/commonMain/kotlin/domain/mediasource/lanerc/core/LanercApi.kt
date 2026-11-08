@@ -132,6 +132,13 @@ class LanercApi(
         return LanercGuestCredential(captcha.origin, value, nowMillis() + lifetime * 1000)
     }
 
+    /** Ordinary anonymous native resolution; no invented guest credential or captcha step. */
+    suspend fun playAnonymous(resourceId: String): LanercPlayResult {
+        require(LanercIdentifiers.validResource(resourceId)) { "Invalid native resource token" }
+        val body = buildJsonObject { put("resource_id", resourceId) }
+        return protocol.decodePlayResponse(request(backend(), "app/v2/play", emptyMap(), body, true))
+    }
+
     suspend fun play(resourceId: String, credential: LanercGuestCredential): LanercPlayResult {
         val base = backend()
         require(LanercIdentifiers.validResource(resourceId)) { "Invalid native resource token" }
