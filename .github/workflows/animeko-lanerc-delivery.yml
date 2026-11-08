@@ -30,6 +30,8 @@ jobs:
           path: /tmp/lanerc-built-apk
           github-token: ${{ github.token }}
           run-id: ${{ inputs.run_id || '42443902879' }}
+      - name: Install pinned binary manifest reader
+        run: python -m pip install apkutils2==1.0.0
       - name: Validate build identity and prepare Code delivery
         env:
           GH_TOKEN: ${{ github.token }}

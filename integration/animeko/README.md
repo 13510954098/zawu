@@ -74,7 +74,7 @@ Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工�
 
 - Kotlin 核心 42 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
 - Android 编译、UI 编译、打包与上传已成功。构建 42443902879 的红色结论来自之后提交报告失败，不是编译失败。
-- APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。applicationId `me.him188.ani.lanerc`，arm64 debug 签名。
+- APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。基础 applicationId `me.him188.ani.lanerc`，debug 实际安装包名 `me.him188.ani.lanerc.debug2`（已解析 APK 二进制清单核对），最低 Android 8.1 / API 27，arm64 debug 签名。
 - 当前 Code APK 对应 `2e3cce6`，不包含后续新增的评论页面；后续构建必须分别确认。
 - 新增播放器评论页独立 Lanerc 作品评论切换入口，使用选中媒体的原版 `vod_id`，而非 Bangumi ID；仅原生 Lanerc 源可请求。保留 Animeko 评论，支持手动选择、分页、失败重试，切换媒体取消旧请求，不显示敏感后台错误。**此新增代码正在进行 Android 编译验证，未做真机测试。**
 - 弹幕目前保留原版字段及接口 DTO；播放器渲染位置枚举与发送尚未接入。评论发送、原版用户登录也未接入。

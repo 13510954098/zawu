@@ -47,6 +47,12 @@ def main():
         raise ValueError('Compilation, packaging and upload must all have succeeded')
     apk = args.artifacts / 'android-default-arm64-v8a-debug.apk'
     digest = validate_apk(apk)
+    from apkutils2 import APK
+    manifest = APK(str(apk)).get_manifest()
+    application_id = manifest.get('@package')
+    if application_id != 'me.him188.ani.lanerc.debug2':
+        raise ValueError('Unexpected compiled APK application ID')
+    sdk = manifest.get('uses-sdk', {})
     destination = ROOT / 'downloads/animeko'
     destination.mkdir(parents=True, exist_ok=True)
     filename = 'animeko-lanerc-arm64-debug.apk'
@@ -56,7 +62,9 @@ def main():
         'source_commit': run['head_sha'], 'build_run': args.run, 'build_url': run['html_url'],
         'upstream_commit': '6d79729a135cee6af861a7a095d3880d1b452260',
         'android_app_built': True, 'ui_compiled': True, 'ui_device_tested': False,
-        'application_id': 'me.him188.ani.lanerc', 'build_type': 'defaultDebug',
+        'application_id': application_id, 'base_application_id': 'me.him188.ani.lanerc',
+        'version_name': manifest.get('@android:versionName'), 'min_sdk': sdk.get('@android:minSdkVersion'),
+        'target_sdk': sdk.get('@android:targetSdkVersion'), 'build_type': 'defaultDebug',
         'private_production_material_embedded': False, 'original_source_import_verified': False,
         'production_playback_verified': False,
         'apk_files': [{'name': filename, 'sha256': digest, 'bytes': apk.stat().st_size}],
@@ -65,7 +73,7 @@ def main():
     (destination / 'build.json').write_text(json.dumps(report, indent=2) + '\n')
     (destination / 'README.md').write_text(f'''# Animeko + Lanerc Android debug build
 
-APK: `{filename}` (arm64-v8a, independent application ID `me.him188.ani.lanerc`).
+APK: `{filename}` (arm64-v8a, independent installed application ID `{application_id}`; Android 8.1 / API 27 or later).
 
 Build: {run['html_url']}\nSource: `{run['head_sha']}`\nSHA256: `{digest}`
 

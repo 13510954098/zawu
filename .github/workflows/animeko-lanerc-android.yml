@@ -47,7 +47,7 @@ jobs:
           import hashlib, json, os, pathlib
           files = sorted(pathlib.Path('/tmp/lanerc-apk').glob('*.apk'))
           assert files
-          report = {'source_commit':os.environ['LANERC_BUILD_SHA'], 'upstream_commit':'6d79729a135cee6af861a7a095d3880d1b452260', 'android_app_built':True, 'ui_compiled':True, 'ui_device_tested':False, 'application_id':'me.him188.ani.lanerc', 'build_type':'defaultDebug', 'private_production_material_embedded':False, 'original_source_import_verified':False, 'production_playback_verified':False, 'apk_files':[{'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in files]}
+          report = {'source_commit':os.environ['LANERC_BUILD_SHA'], 'upstream_commit':'6d79729a135cee6af861a7a095d3880d1b452260', 'android_app_built':True, 'ui_compiled':True, 'ui_device_tested':False, 'base_application_id':'me.him188.ani.lanerc', 'application_id':'me.him188.ani.lanerc.debug2', 'build_type':'defaultDebug', 'private_production_material_embedded':False, 'original_source_import_verified':False, 'production_playback_verified':False, 'apk_files':[{'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in files]}
           pathlib.Path('analysis/lanerc/animeko-android-validation.json').write_text(json.dumps(report, indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
