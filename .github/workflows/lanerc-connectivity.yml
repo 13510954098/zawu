@@ -17,12 +17,16 @@ jobs:
         with:
           ref: arena/44f5d2ee-zawu
       - name: Check public DNS and unsigned HTTPS roots only
-        run: python3 scripts/lanerc_public_connectivity.py --output analysis/lanerc/public-connectivity.json
+        run: |
+          python3 scripts/lanerc_public_connectivity.py --output analysis/lanerc/public-connectivity.json --private-records-output /tmp/lanerc-public-dns.json
+          openssl cms -encrypt -binary -aes-256-cbc \
+            -in /tmp/lanerc-public-dns.json -outform DER \
+            -out analysis/lanerc/public-dns-records.p7m analysis/lanerc/analysis-recipient.pem
       - name: Commit redacted diagnostic results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add analysis/lanerc/public-connectivity.json
+          git add analysis/lanerc/public-connectivity.json analysis/lanerc/public-dns-records.p7m
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Record unsigned public DNS and HTTPS connectivity checks"
           git push origin HEAD:arena/44f5d2ee-zawu

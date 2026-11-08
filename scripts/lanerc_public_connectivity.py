@@ -3,6 +3,7 @@ Only user-named domains are probed. No captcha, credential or playback requests.
 TXT records are untrusted: raw values/query strings are not exported or fetched.
 """
 import argparse
+import base64
 import datetime
 import hashlib
 import ipaddress
@@ -52,14 +53,27 @@ def summarize_txt(answer):
                 hosts.append(host.lower())
         except ValueError:
             pass
+    known_hosts = [host for host in USER_HOSTS if re.search(r'(?<![A-Za-z0-9.-])' + re.escape(host) + r'(?![A-Za-z0-9.-])', raw, re.I)]
+    decoded_known_hosts = []
+    # Only decode small text candidates; do not fetch or export decoded content.
+    chunks = re.findall(r'"((?:\\.|[^"\\])*)"', raw)
+    candidate = ''.join(chunks) if chunks else raw.strip()
+    if len(candidate) <= 4096 and re.fullmatch(r'[A-Za-z0-9+/_=-]+', candidate):
+        try:
+            decoded = base64.b64decode(candidate + '=' * (-len(candidate) % 4), altchars=b'-_', validate=True).decode('utf-8')
+            decoded_known_hosts = [host for host in USER_HOSTS if re.search(r'(?<![A-Za-z0-9.-])' + re.escape(host) + r'(?![A-Za-z0-9.-])', decoded, re.I)]
+        except (ValueError, UnicodeDecodeError):
+            pass
     return {
+        'known_user_hosts_in_txt': known_hosts,
+        'known_user_hosts_in_base64_text': decoded_known_hosts,
         'record_type': answer.get('type'), 'ttl': answer.get('TTL'),
         'text_length': len(raw), 'text_sha256': hashlib.sha256(raw.encode()).hexdigest(),
         'url_hostnames_only': sorted(set(hosts)),
     }
 
 
-def doh_query(name, opener):
+def doh_query(name, opener, private_records=None):
     url = 'https://dns.google/resolve?' + urllib.parse.urlencode({'name': name, 'type': 'TXT'})
     request = urllib.request.Request(url, headers={'Accept': 'application/dns-json', 'User-Agent': 'Lanerc-owner-public-diagnostics/1.0'})
     try:
@@ -68,6 +82,8 @@ def doh_query(name, opener):
         if len(body) > MAX_BODY:
             raise ValueError('response-size-limit')
         payload = json.loads(body)
+        if private_records is not None:
+            private_records.append({'name': name, 'response': payload})
         answers = payload.get('Answer') or []
         return {'name': name, 'dns_status': payload.get('Status'),
                 'authenticated_data': payload.get('AD'),
@@ -110,10 +126,10 @@ def https_root_head(host, opener):
     return result
 
 
-def probe():
+def probe(private_records=None):
     opener = urllib.request.build_opener(NoRedirect(), urllib.request.HTTPSHandler(context=ssl.create_default_context()))
     prefix = 'diag-' + datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d%H%M%S')
-    queries = [doh_query(name, opener) for name in ('dohx.lanerc.moe', prefix + '.dohx.lanerc.moe')]
+    queries = [doh_query(name, opener, private_records) for name in ('dohx.lanerc.moe', prefix + '.dohx.lanerc.moe')]
     return {
         'checked_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'scope': 'Public DNS TXT and unsigned HTTPS HEAD / only',
@@ -127,7 +143,15 @@ def probe():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=pathlib.Path, required=True)
+    parser.add_argument('--private-records-output', type=pathlib.Path, help='Temporary raw DNS records; must be encrypted before leaving runner')
     args = parser.parse_args()
+    records = []
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(probe(), indent=2) + '\n')
+    args.output.write_text(json.dumps(probe(records if args.private_records_output else None), indent=2) + '\n')
+    if args.private_records_output:
+        import os
+        fd = os.open(args.private_records_output, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        os.fchmod(fd, 0o600)
+        with os.fdopen(fd, 'w') as stream:
+            json.dump(records, stream)
     print('Public diagnostics finished; no recovered keys or guest/playback requests used')
