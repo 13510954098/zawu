@@ -66,8 +66,8 @@ def summarize(root):
                 selected.update(c for c in fn['calls'] if c in functions)
             if any(c in old for c in fn['calls']):
                 selected.add(addr)
-    if not seeds:
-        selected = set(functions)
+    # Export all declarations so marker anchors can be mapped against every known entry.
+    selected = set(functions)
     return {
         'scope': 'Static ARM64 direct-call graph; no runtime execution or credential validation',
         'redaction': 'No object pool, raw assembly, string constants, keys, IVs or tokens exported',

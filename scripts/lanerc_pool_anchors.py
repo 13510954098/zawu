@@ -38,6 +38,7 @@ def analyze(lib, pool, graph):
         elf = ELFFile(stream)
         sections = [(s['sh_addr'], s.data()) for s in elf.iter_sections() if s['sh_flags'] & 4]
     md = Cs(CS_ARCH_ARM64, CS_MODE_LITTLE_ENDIAN)
+    md.skipdata = True
     hits = []
     for base, data in sections:
         derived = {}
