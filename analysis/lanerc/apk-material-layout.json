@@ -6,7 +6,17 @@
     {
       "array_index": 0,
       "matches": [],
-      "reference_structure_candidates": [],
+      "reference_structure_candidates": [
+        {
+          "width": "dart-variable-reference",
+          "offsets": [
+            1074870,
+            1074871,
+            1074872
+          ],
+          "truncated": false
+        }
+      ],
       "reference_value_mapping_recovered": false
     },
     {
@@ -19,6 +29,33 @@
             601247
           ],
           "truncated": false
+        },
+        {
+          "width": "dart-variable-reference",
+          "offsets": [
+            1074819,
+            1074820,
+            1074821,
+            4750645,
+            4750646,
+            4750647,
+            4922340,
+            4922341,
+            4922342,
+            4922343,
+            4933660,
+            4933661,
+            4933662,
+            4933663,
+            5189592,
+            5189593,
+            5189594,
+            5189595,
+            6796293,
+            6796294,
+            6796295
+          ],
+          "truncated": false
         }
       ],
       "reference_value_mapping_recovered": false
@@ -26,13 +63,31 @@
     {
       "array_index": 2,
       "matches": [],
-      "reference_structure_candidates": [],
+      "reference_structure_candidates": [
+        {
+          "width": "dart-variable-reference",
+          "offsets": [
+            1074769,
+            1074770,
+            1074771
+          ],
+          "truncated": false
+        }
+      ],
       "reference_value_mapping_recovered": false
     },
     {
       "array_index": 3,
       "matches": [],
-      "reference_structure_candidates": [],
+      "reference_structure_candidates": [
+        {
+          "width": "dart-variable-reference",
+          "offsets": [
+            1074719
+          ],
+          "truncated": false
+        }
+      ],
       "reference_value_mapping_recovered": false
     }
   ],
