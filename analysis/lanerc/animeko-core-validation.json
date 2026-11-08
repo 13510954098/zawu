@@ -1,5 +1,5 @@
 {
-  "source_commit": "d5043303024351df03d704af34b3d873d4ef461b",
+  "source_commit": "69ae478d9e87f30a42bf4e6a8acc6f1c8f9ff961",
   "scope": "Kotlin JVM core compiled and tested against public Dart fixtures and synthetic API/community DTOs plus fully redacted captured native schema fixtures; no raw private production responses in CI",
   "tests": 65,
   "failures": 0,
