@@ -55,3 +55,20 @@ OUTPUT="$PWD/.local/lanerc/signed-request.json"
 - 真实公开 TXT 解码到 `v3.yyghk.com` 的结果见 `PUBLIC_VALIDATION.md`，与合成加密测试分开记录。
 - 仍未取得有效 `guestCredential` 或生产播放响应；尚无端到端播放成功记录。
 - 发布签名私钥仍不能由 APK 公钥证书推导，需要原 keystore 或备份。
+
+## 本地真实材料就绪检查
+
+新增 `scripts/lanerc_check_readiness.py`。它将本地恢复文件与已发表的 APK/密钥指纹对照，可重放此前保存的真实公开 DNS 响应；不重新联网，不导出密钥、签名或原始 URL。此次实测四类签名/密钥材料均匹配，保存的真实 TXT 中有 1 条解码到预期主机。报告见 `readiness-validation.json`。
+
+从仓库根目录运行：
+
+```sh
+python scripts/lanerc_check_readiness.py \
+  --secrets .local/lanerc/recovered-secrets.json \
+  --records .local/lanerc/public-dns-records.json \
+  --output .local/lanerc/readiness.json
+```
+
+退出码 **2** 表示离线检查通过，但生产认证/播放和原发布私钥目标仍未完成；退出码 **1** 表示输入或离线检查失败。不会因离线成功而返回“全部完成”的退出码 0。即使没有 DNS 文件，去掉 `--records` 也只能检查材料身份，不能提升为现网验证。
+
+恢复文件、解密原文和私钥不会交给 GitHub runner；Actions 只执行 dummy fixture 检查。生产 guestCredential 是服务器签发的动态值，不能从固定 AES 密钥或自造的 fixture 中产生。原 Android 发布私钥也不能通过继续解 APK 公钥证书得到。当前记录明确保留这两项未完成状态，而非无限重复离线加解密并称其为现网成功。

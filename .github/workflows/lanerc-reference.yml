@@ -8,10 +8,8 @@ on:
       - reference/lanerc/pubspec.yaml
       - reference/lanerc/bin/*.dart
       - requirements-lanerc-test.txt
-      - scripts/lanerc_run_reference_tests.py
-      - tests/test_lanerc_protobuf_reference.py
-      - tests/test_lanerc_dart_reference.py
-      - tests/test_lanerc_dart_cli.py
+      - "scripts/lanerc*.py"
+      - "tests/test_lanerc*.py"
 permissions:
   contents: write
 jobs:

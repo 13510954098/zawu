@@ -1,0 +1,28 @@
+{
+  "scope": "Local recovery-material audit, optional saved public DNS replay; no server access",
+  "checks": {
+    "apk_identity": true,
+    "request_signature_suffix": true,
+    "play_resolve_gcm": true,
+    "general_json_ecb": true,
+    "bootstrap_txt_ecb": true,
+    "legacy_mapping_structure": true,
+    "bootstrap_mapping_is_empty": true,
+    "saved_public_txt_matches_expected_host": true
+  },
+  "offline_checks_passed": true,
+  "saved_public_bootstrap": {
+    "checked": true,
+    "matching_record_count": 1
+  },
+  "network_requests_performed": false,
+  "production_authentication_verified": false,
+  "production_playback_verified": false,
+  "release_private_key_recovered": false,
+  "all_user_goals_completed": false,
+  "unresolved_requirements": [
+    "Valid server-issued guestCredential and a legitimate production playback response",
+    "Original release keystore/private-key backup for original Android signing identity"
+  ],
+  "caveat": "Fingerprint matches confirm material identity, not server acceptance; ECB hostname matching is not authenticity verification. Mapping structure checks do not verify its semantic correctness."
+}
