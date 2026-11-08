@@ -3,6 +3,10 @@
   "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
   "pool_marker_slots": [
     {
+      "offset": "0xad08",
+      "label": "guest-credential-field"
+    },
+    {
       "offset": "0xb6c0",
       "label": "authorization-header"
     },
@@ -35,8 +39,28 @@
       "label": "configuration-endpoint"
     },
     {
+      "offset": "0x1ee70",
+      "label": "guest-captcha-endpoint"
+    },
+    {
+      "offset": "0x1ee88",
+      "label": "guest-challenge-field"
+    },
+    {
+      "offset": "0x1f6b8",
+      "label": "guest-play-endpoint"
+    },
+    {
       "offset": "0x29198",
       "label": "home-endpoint"
+    },
+    {
+      "offset": "0x2a328",
+      "label": "guest-selected-field"
+    },
+    {
+      "offset": "0x2a330",
+      "label": "guest-credential-endpoint"
     }
   ],
   "code_anchors": [
@@ -194,6 +218,54 @@
       ]
     },
     {
+      "marker": "guest-credential-field",
+      "instruction": "0x6607e4",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x65fe90",
+      "distance_from_hint": 2388,
+      "recent_direct_call_targets": [
+        "0x3e694c",
+        "0x9635a4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-credential-field",
+      "instruction": "0x660814",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x65fe90",
+      "distance_from_hint": 2436,
+      "recent_direct_call_targets": [
+        "0x96349c",
+        "0x2a85a4"
+      ]
+    },
+    {
+      "marker": "guest-challenge-field",
+      "instruction": "0x660e80",
+      "pool_offset": "0x1ee88",
+      "preceding_known_entry_hint": "0x660e24",
+      "distance_from_hint": 92,
+      "recent_direct_call_targets": [
+        "0x660e58",
+        "0x9635a4"
+      ]
+    },
+    {
+      "marker": "guest-challenge-field",
+      "instruction": "0x661338",
+      "pool_offset": "0x1ee88",
+      "preceding_known_entry_hint": "0x660e24",
+      "distance_from_hint": 1300,
+      "recent_direct_call_targets": [
+        "0x2a85a4",
+        "0x8b6d60",
+        "0x961724",
+        "0x9635a4",
+        "0x96349c"
+      ]
+    },
+    {
       "marker": "authorization-header",
       "instruction": "0x665cb8",
       "pool_offset": "0xb6c0",
@@ -202,6 +274,29 @@
       "recent_direct_call_targets": [
         "0x9635a4",
         "0x9615e4"
+      ]
+    },
+    {
+      "marker": "guest-credential-field",
+      "instruction": "0x6a296c",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x6a2910",
+      "distance_from_hint": 92,
+      "recent_direct_call_targets": [
+        "0x6a2944",
+        "0x9635a4"
+      ]
+    },
+    {
+      "marker": "guest-credential-field",
+      "instruction": "0x6a2a28",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x6a2910",
+      "distance_from_hint": 280,
+      "recent_direct_call_targets": [
+        "0x961724",
+        "0x9635a4",
+        "0x96349c"
       ]
     },
     {
@@ -572,6 +667,19 @@
       ]
     },
     {
+      "marker": "guest-captcha-endpoint",
+      "instruction": "0x920068",
+      "pool_offset": "0x1ee70",
+      "preceding_known_entry_hint": "0x91bcbc",
+      "distance_from_hint": 17324,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x660d98"
+      ]
+    },
+    {
       "marker": "authorization-header",
       "instruction": "0x922408",
       "pool_offset": "0xb6c0",
@@ -582,6 +690,30 @@
         "0x9635a4",
         "0x8be6f0",
         "0x9615e4"
+      ]
+    },
+    {
+      "marker": "guest-credential-field",
+      "instruction": "0x92398c",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x922ee0",
+      "distance_from_hint": 2732,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-play-endpoint",
+      "instruction": "0x9239ec",
+      "pool_offset": "0x1f6b8",
+      "preceding_known_entry_hint": "0x922ee0",
+      "distance_from_hint": 2828,
+      "recent_direct_call_targets": [
+        "0x2bcf5c",
+        "0x8e7404",
+        "0x9627d0"
       ]
     },
     {
@@ -726,6 +858,65 @@
       ]
     },
     {
+      "marker": "guest-credential-field",
+      "instruction": "0x930850",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x93020c",
+      "distance_from_hint": 1604,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x4abb88"
+      ]
+    },
+    {
+      "marker": "guest-challenge-field",
+      "instruction": "0x930988",
+      "pool_offset": "0x1ee88",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 232,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-selected-field",
+      "instruction": "0x93099c",
+      "pool_offset": "0x2a328",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 252,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-credential-endpoint",
+      "instruction": "0x930a38",
+      "pool_offset": "0x2a330",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 408,
+      "recent_direct_call_targets": [
+        "0x961748",
+        "0x2bcf5c",
+        "0x660d98"
+      ]
+    },
+    {
+      "marker": "guest-selected-field",
+      "instruction": "0x930b54",
+      "pool_offset": "0x2a328",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 692,
+      "recent_direct_call_targets": [
+        "0x963724",
+        "0x963724",
+        "0x8b4304"
+      ]
+    },
+    {
       "marker": "authorization-header",
       "instruction": "0x931478",
       "pool_offset": "0xb6c0",
@@ -839,6 +1030,19 @@
         "0x8be6f0",
         "0x9615e4",
         "0x3e5ee4"
+      ]
+    },
+    {
+      "marker": "guest-credential-field",
+      "instruction": "0x96f030",
+      "pool_offset": "0xad08",
+      "preceding_known_entry_hint": "0x96ef38",
+      "distance_from_hint": 248,
+      "recent_direct_call_targets": [
+        "0x96eff4",
+        "0x8be300",
+        "0x9635a4",
+        "0x8be6f0"
       ]
     }
   ]
