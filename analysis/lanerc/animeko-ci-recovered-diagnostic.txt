@@ -1,0 +1,77 @@
+Build run: 42447005800
+Selected errors:
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988245Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9989247Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994129Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994805Z hint: Resolve all conflicts manually, mark them as resolved with
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995288Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9997767Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
+Log tail:
+ui	Run real Compose UI regression tests with synthetic native responses	﻿2026-11-08T04:30:01.2093274Z ##[group]Run xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2095399Z ^[[36;1mxvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1^[[0m
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116002Z shell: /usr/bin/bash -e {0}
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116267Z env:
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116574Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117094Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117544Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117856Z   GRADLE_USER_HOME: /home/runner/.gradle
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118149Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118444Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118914Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119390Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119704Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119966Z ##[endgroup]
+ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:37:18.2010046Z ##[error]Process completed with exit code 1.
+ui	Save UI results and bounded diagnostic log	﻿2026-11-08T04:37:18.2072106Z ##[group]Run python - <<'PY'
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2072442Z ^[[36;1mpython - <<'PY'^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2072766Z ^[[36;1mimport json, os, pathlib, xml.etree.ElementTree as ET^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2073563Z ^[[36;1mroots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2074822Z ^[[36;1mcounts = {key:sum(int(r.attrib.get(key, 0)) for r in roots) for key in ['tests','failures','errors','skipped']}^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2075956Z ^[[36;1mreport = {'scope':'Desktop Compose UI with synthetic native comments/barrages; not Android device or production playback', 'source_commit':os.environ['GITHUB_SHA'], 'step_outcome':os.environ.get('TEST_OUTCOME'), **counts}^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2077120Z ^[[36;1mpathlib.Path('analysis/lanerc/animeko-ui-validation.json').write_text(json.dumps(report, indent=2)+'\n')^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2077735Z ^[[36;1mlog = pathlib.Path('/tmp/lanerc-ui-tests.log')^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2078492Z ^[[36;1mif log.exists(): pathlib.Path('analysis/lanerc/animeko-ui-diagnostic.txt').write_text('\n'.join(log.read_text(errors='replace').splitlines()[-160:])+'\n')^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079158Z ^[[36;1mPY^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079382Z ^[[36;1mgit switch -C arena/44f5d2ee-zawu^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079709Z ^[[36;1mgit config user.name 'github-actions[bot]'^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2080163Z ^[[36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2081016Z ^[[36;1mgit add analysis/lanerc/animeko-ui-validation.json^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2082012Z ^[[36;1mif test -f analysis/lanerc/animeko-ui-diagnostic.txt; then git add analysis/lanerc/animeko-ui-diagnostic.txt; fi^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2082924Z ^[[36;1mgit diff --cached --quiet && exit 0^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2083359Z ^[[36;1mgit commit -m 'Record actual Compose native community UI test outcome'^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2085721Z ^[[36;1mgit pull --rebase origin arena/44f5d2ee-zawu^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2086122Z ^[[36;1mgit push origin HEAD:arena/44f5d2ee-zawu^[[0m
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107242Z shell: /usr/bin/bash -e {0}
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107502Z env:
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107823Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2108484Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2108932Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109265Z   GRADLE_USER_HOME: /home/runner/.gradle
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109558Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109872Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2110312Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2110791Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111107Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111555Z   TEST_OUTCOME: failure
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111775Z ##[endgroup]
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2511398Z Switched to a new branch 'arena/44f5d2ee-zawu'
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5951139Z [arena/44f5d2ee-zawu 2fb5052] Record actual Compose native community UI test outcome
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5951789Z  2 files changed, 169 insertions(+)
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5952167Z  create mode 100644 analysis/lanerc/animeko-ui-diagnostic.txt
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5952773Z  create mode 100644 analysis/lanerc/animeko-ui-validation.json
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9855495Z From https://github.com/13510954098/zawu
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9855926Z  * branch            arena/44f5d2ee-zawu -> FETCH_HEAD
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9856366Z    406a610..043a4bf  arena/44f5d2ee-zawu -> origin/arena/44f5d2ee-zawu
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9987699Z Auto-merging analysis/lanerc/animeko-ui-diagnostic.txt
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988245Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988764Z Auto-merging analysis/lanerc/animeko-ui-validation.json
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9989247Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9993301Z Rebasing (1/1)
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994129Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994805Z hint: Resolve all conflicts manually, mark them as resolved with
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995288Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995772Z hint: You can instead skip this commit: run "git rebase --skip".
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9996266Z hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9996874Z hint: Disable this message with "git config set advice.mergeConflict false"
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9997767Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
+ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:19.0007889Z ##[error]Process completed with exit code 1.
