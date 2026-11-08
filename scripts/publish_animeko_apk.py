@@ -68,6 +68,12 @@ def main():
     native_timeline = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
         ':integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/runtime/LanercDanmakuBridge.kt'],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    native_account = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
+        ':integration/animeko/overlay/app/shared/ui-settings/src/commonMain/kotlin/ui/settings/tabs/media/source/LanercAccountControls.kt'],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    native_posting = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
+        ':integration/animeko/overlay/app/shared/src/commonMain/kotlin/ui/subject/episode/NativeWriteComposer.kt'],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
     destination = ROOT / 'downloads/animeko'
     destination.mkdir(parents=True, exist_ok=True)
     filename = 'animeko-lanerc-arm64-debug.apk'
@@ -78,6 +84,9 @@ def main():
         'upstream_commit': '6d79729a135cee6af861a7a095d3880d1b452260',
         'android_app_built': True, 'ui_compiled': True, 'ui_device_tested': False,
         'native_comments_ui_in_source': native_comments_ui,
+        'native_account_login_ui_in_source': native_account,
+        'native_confirmed_posting_ui_in_source': native_posting,
+        'production_account_login_verified': False, 'production_publication_verified': False,
         'native_danmaku_timeline_in_source': native_timeline,
         'application_id': application_id, 'base_application_id': 'me.him188.ani.lanerc',
         'version_name': manifest.get('@android:versionName'), 'min_sdk': sdk.get('@android:minSdkVersion'),
@@ -98,9 +107,11 @@ This is a compiled integration preview, **not a verified production-ready releas
 No recovered production keys or guest credentials are embedded. Configure private
 protocol material inside the app; the default build does not bypass server login.
 Original-format source import is partial. Native comments UI included in this
-compiled source: **{native_comments_ui}**. It is read-only, not device/backend verified.
+compiled source: **{native_comments_ui}**. Not device/backend verified.
 Native danmaku timeline included in compiled source: **{native_timeline}**. Device/backend
-verification and native account login/posting remain unfinished. No device test or
+verification remains incomplete. Native account login UI: **{native_account}**;
+explicit-confirmation comment/reply/barrage posting UI: **{native_posting}**. No real
+account login or publication has been verified. No whole-app device test or
 successful production playback is claimed. Debug APKs use the CI-generated debug
 key; later builds may require uninstalling first, which removes app data.
 

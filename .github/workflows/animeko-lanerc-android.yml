@@ -7,6 +7,7 @@ on:
       - '!integration/animeko/overlay/**/desktopTest/**'
       - '!integration/animeko/overlay/**/androidDeviceTest/**'
       - scripts/prepare_animeko_lanerc.py
+      - scripts/publish_animeko_apk.py
       - .github/workflows/animeko-lanerc-android.yml
   workflow_dispatch:
 permissions:
