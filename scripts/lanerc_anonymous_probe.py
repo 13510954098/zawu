@@ -138,6 +138,17 @@ def run():
                         if not addresses or not all(ipaddress.ip_address(entry[4][0]).is_global for entry in addresses):
                             raise ValueError('Non-public media destination')
                         report['media_fetch_attempted'] = True
+                        try:
+                            head = urllib.request.Request(resolved['playUrl'], method='HEAD')
+                            try:
+                                connection = opener.open(head, timeout=10)
+                            except urllib.error.HTTPError as error:
+                                connection = error
+                            with connection:
+                                item['media_http_status'] = connection.status
+                                item['media_content_type'] = connection.headers.get('Content-Type', '').split(';')[0][:80]
+                        except Exception as error:
+                            item['media_head_error_type'] = type(error).__name__
                         process = subprocess.run(['ffprobe', '-v', 'quiet', '-protocol_whitelist', 'http,https,tcp,tls,crypto',
                             '-rw_timeout', '10000000', '-probesize', '1048576', '-analyzeduration', '2000000',
                             '-read_intervals', '%+1', '-show_entries', 'stream=codec_type,codec_name,width,height:format=format_name,duration',
@@ -146,7 +157,10 @@ def run():
                         report['media_fetched'] = bool(metadata.get('streams'))
                         item['media_streams'] = [{key:stream[key] for key in ('codec_type','codec_name','width','height') if key in stream}
                                                  for stream in metadata.get('streams', [])]
-                        item['media_stream_probe_verified'] = process.returncode == 0 and any(stream.get('codec_type') == 'video' for stream in item['media_streams'])
+                        item['media_format'] = metadata.get('format', {}).get('format_name')
+                        item['media_stream_probe_verified'] = process.returncode == 0 and any(
+                            stream.get('codec_type') == 'video' and stream.get('width', 0) > 0 and stream.get('height', 0) > 0
+                            and stream.get('codec_name') not in ('mjpeg', 'png', 'gif', 'bmp') for stream in item['media_streams'])
             except Exception as error:
                 item['error_type'] = type(error).__name__
             report['requests'].append(item)
