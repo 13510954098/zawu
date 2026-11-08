@@ -1,6 +1,6 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "a8fc6e39c98c97ce14f19d6c1b176b523d9e04a8",
+  "source_commit": "5f37bbf6a29f5a568862ae322c92e50ade2d4588",
   "credentials_used": false,
   "captcha_solved": false,
   "media_fetched": false,
@@ -26,7 +26,10 @@
       "code": 200,
       "verification_mentioned": false,
       "login_mentioned": false,
-      "https_media_url_returned": false
+      "https_media_url_returned": false,
+      "url_scheme": "http",
+      "network_host_present": true,
+      "userinfo_present": false
     },
     {
       "operation": "app/v2/guest/play",
