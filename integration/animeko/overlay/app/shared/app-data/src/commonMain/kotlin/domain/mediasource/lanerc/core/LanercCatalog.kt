@@ -12,7 +12,7 @@ object LanercCatalog {
     fun payload(root: JsonElement): JsonElement {
         if (root !is JsonObject) return root
         val code = root["code"]?.jsonPrimitive?.intOrNull
-        require(code == null || code == 200) { "Lanerc API did not return a successful code" }
+        require("code" !in root || code == 200 || code == 201) { "Lanerc API did not return a successful code" }
         return root["data"] ?: root
     }
     fun search(root: JsonElement): List<LanercSubject> {

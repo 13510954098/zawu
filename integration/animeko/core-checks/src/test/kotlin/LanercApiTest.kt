@@ -9,6 +9,13 @@ import kotlin.io.encoding.Base64
 import kotlin.test.*
 
 class LanercApiTest {
+    @Test fun `native ordinary JSON accepts observed 201 and rejects other business codes`() {
+        val data = Json.parseToJsonElement("""{"search_vods":[{"id":1,"vod_name":"Fixture"}]}""")
+        for (code in listOf(200, 201)) assertEquals("Fixture", LanercCatalog.search(buildJsonObject { put("code", code); put("data", data) }).single().title)
+        for (code in listOf(400, 401, 500)) assertFails { LanercCatalog.search(buildJsonObject { put("code", code); put("data", data) }) }
+        assertFails { LanercCatalog.search(buildJsonObject { put("code", "not-a-code"); put("data", data) }) }
+    }
+
     private val key = ByteArray(32) { it.toByte() }
     private val protocol = LanercProtocol(LanercJvmCrypto(), LanercSecrets("fixture-suffix-17", key, key, key, emptyList()))
     private val fixture = Json.parseToJsonElement(File(System.getProperty("lanerc.fixtures")).readText()).jsonObject
