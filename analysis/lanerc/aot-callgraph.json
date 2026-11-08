@@ -38,6 +38,18 @@
     "// ** addr: 0x96ef38, size: 0x60",
     "// ** addr: 0x96f144, size: 0x70"
   ],
+  "unmatched_header_samples": [
+    "    // ** addr: 0x522580, size: -0x1",
+    "    // ** addr: 0x4ab388, size: -0x1",
+    "    // ** addr: 0x61cadc, size: -0x1",
+    "    // ** addr: 0x61cbd8, size: -0x1",
+    "    // ** addr: 0x61ca84, size: -0x1",
+    "    // ** addr: 0x479cf0, size: -0x1",
+    "    // ** addr: 0x479c88, size: -0x1",
+    "    // ** addr: 0x47989c, size: -0x1",
+    "    // ** addr: 0x479740, size: -0x1",
+    "    // ** addr: 0x479864, size: -0x1"
+  ],
   "assembly_files": [
     ".dart_tool/flutter_build/dart_plugin_registrant.dart",
     "AOj.dart",
