@@ -1,0 +1,6 @@
+{
+  "source_commit": "f434ed091122c68b93fc063e790d04ff1c9728ea",
+  "scope": "Fresh-install/startup smoke did not reach device verification",
+  "install_verified": false,
+  "launch_verified": false
+}
