@@ -1,0 +1,17 @@
+{
+  "run_id": "42450351022",
+  "request": 5,
+  "recipient_certificate_sha256": "c93e3efa54ce1fb466500ac7d9c270a6e6f7359689eecaa665ae508790939a21",
+  "method": "GET",
+  "path": "/app/chat/barragev2",
+  "query_fields": [
+    "sign",
+    "vid",
+    "vod"
+  ],
+  "body_fields": [],
+  "http_status": 200,
+  "body_bytes": 695486,
+  "body_sha256": "f0b119cfe1fb400314aba74f023f955db2cd498ea2123c1c5d3d2d13623e088e",
+  "client_keys_supplied_to_runner": false
+}
