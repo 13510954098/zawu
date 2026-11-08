@@ -1,0 +1,439 @@
+/*
+ * Copyright (C) 2024-2026 OpenAni and contributors.
+ *
+ * 此源代码的使用受 GNU AFFERO GENERAL PUBLIC LICENSE version 3 许可证的约束, 可以在以下链接找到该许可证.
+ * Use of this source code is governed by the GNU AGPLv3 license, which can be found at the following link.
+ *
+ * https://github.com/open-ani/ani/blob/main/LICENSE
+ */
+
+package me.him188.ani.app.domain.media.fetch
+
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.json.JsonElement
+import me.him188.ani.app.data.models.preference.ProxyAuthorization
+import me.him188.ani.app.data.models.preference.ProxyConfig
+import me.him188.ani.app.data.repository.media.MediaSourceInstanceRepository
+import me.him188.ani.app.data.repository.media.MikanIndexCacheRepository
+import me.him188.ani.app.data.repository.media.SelectorMediaSourceEpisodeCacheRepository
+import me.him188.ani.app.data.repository.media.updateConfig
+import me.him188.ani.app.domain.foundation.HttpClientProvider
+import me.him188.ani.app.domain.foundation.ScopedHttpClientUserAgent
+import me.him188.ani.app.domain.foundation.get
+import me.him188.ani.app.domain.media.download.MediaDownloadManager.Companion.LOCAL_FS_MEDIA_SOURCE_ID
+import me.him188.ani.app.domain.media.selector.MediaSelectorSourceTiers
+import me.him188.ani.app.domain.mediasource.codec.MediaSourceCodecManager
+import me.him188.ani.app.domain.mediasource.codec.MediaSourceDecodeException
+import me.him188.ani.app.domain.mediasource.codec.getArgumentOrNull
+import me.him188.ani.app.domain.mediasource.instance.MediaSourceInstance
+import me.him188.ani.app.domain.mediasource.instance.MediaSourceSave
+import me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercMediaSource
+import me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercSettingsStore
+import me.him188.ani.app.domain.mediasource.lanerc.core.SourceMode
+import me.him188.ani.app.domain.mediasource.jsonapi.JsonApiMediaSource
+import me.him188.ani.app.domain.mediasource.rss.RssMediaSource
+import me.him188.ani.app.domain.mediasource.web.SelectorMediaSource
+import me.him188.ani.app.domain.mediasource.web.captcha.WebSessionManager
+import me.him188.ani.app.domain.mediasource.web.captcha.WebSourceCookieJar
+import me.him188.ani.app.domain.mediasource.web.captcha.WebSourceIdentityRegistry
+import me.him188.ani.app.domain.settings.ProxyProvider
+import me.him188.ani.app.platform.getAniUserAgent
+import me.him188.ani.app.tools.ServiceLoader
+import me.him188.ani.datasources.api.matcher.MediaSourceApiVideoResolverLoader
+import me.him188.ani.datasources.api.matcher.MediaSourceWebVideoMatcherLoader
+import me.him188.ani.datasources.api.source.FactoryId
+import me.him188.ani.datasources.api.source.MediaFetchRequest
+import me.him188.ani.datasources.api.source.MediaSource
+import me.him188.ani.datasources.api.source.MediaSourceConfig
+import me.him188.ani.datasources.api.source.MediaSourceFactory
+import me.him188.ani.datasources.api.source.MediaSourceInfo
+import me.him188.ani.datasources.api.source.serializeArguments
+import me.him188.ani.datasources.ikaros.IkarosMediaSource
+import me.him188.ani.datasources.jellyfin.EmbyMediaSource
+import me.him188.ani.datasources.jellyfin.JellyfinMediaSource
+import me.him188.ani.datasources.mikan.MikanCNMediaSource
+import me.him188.ani.datasources.mikan.MikanMediaSource
+import me.him188.ani.utils.coroutines.onReplacement
+import me.him188.ani.utils.ktor.ClientProxyConfig
+import me.him188.ani.utils.ktor.ScopedHttpClient
+import me.him188.ani.utils.logging.error
+import me.him188.ani.utils.logging.logger
+import me.him188.ani.utils.logging.warn
+import me.him188.ani.utils.platform.Platform
+import me.him188.ani.utils.platform.currentPlatform
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+import kotlin.coroutines.CoroutineContext
+
+interface MediaSourceManager { // available by inject
+    /**
+     * 全部 [MediaSourceInstance] 列表.
+     */
+    val allInstances: Flow<List<MediaSourceInstance>>
+
+    /**
+     * 全部的 [MediaSource], 包括那些设置里关闭的, 包括本地的.
+     */
+    val allFactories: List<MediaSourceFactory>
+
+    /**
+     * 全部的 [MediaSource], 包括那些设置里关闭的, 包括本地的.
+     */
+    val allFactoryIds: List<FactoryId>
+
+    /**
+     * 全部的 [MediaSource], 包括那些设置里关闭的, 但不包括本地的.
+     */
+    val allFactoryIdsExceptLocal: List<FactoryId>
+        get() = allFactoryIds.filter { !isLocal(it) }
+
+    /**
+     * 根据启用的 [MediaSourceInstance] 创建的 [MediaSourceMediaFetcher].
+     */
+    val mediaFetcher: Flow<MediaFetcher>
+
+    val webVideoMatcherLoader: MediaSourceWebVideoMatcherLoader
+
+    /**
+     * 查找实现了 [me.him188.ani.datasources.api.matcher.ApiVideoResolver] 的数据源实例, 供播放与下载前通过站点 API 重新解析视频地址.
+     */
+    val apiVideoResolverLoader: MediaSourceApiVideoResolverLoader
+        get() = MediaSourceApiVideoResolverLoader(allInstances.map { list -> list.map { it.source } })
+
+    fun isLocal(factoryId: FactoryId): Boolean = isLocal(factoryId.value)
+    fun isLocal(mediaSourceId: String): Boolean {
+        return mediaSourceId == LOCAL_FS_MEDIA_SOURCE_ID
+    }
+
+    // null means not found
+    fun instanceConfigFlow(instanceId: String): Flow<MediaSourceConfig?>
+
+    fun findInfoByFactoryId(factoryId: FactoryId): MediaSourceInfo? {
+        return allFactories.find { it.factoryId == factoryId }?.info
+    }
+
+    fun infoFlowByMediaSourceId(mediaSourceId: String): Flow<MediaSourceInfo?> {
+        if (mediaSourceId == "Bangumi") { // workaround for bangumi connectivity testing
+            return flowOf(
+                MediaSourceInfo(
+                    "Bangumi",
+                    "提供观看记录数据",
+                    "https://bangumi.tv",
+                    "https://bangumi.tv/img/favicon.ico",
+                    iconResourceId = "bangumi.png",
+                ),
+            )
+        }
+        return allInstances.map { list ->
+            list.find { it.mediaSourceId == mediaSourceId }?.source?.info
+        }
+    }
+
+    suspend fun addInstance(
+        instanceId: String,
+        mediaSourceId: String,
+        factoryId: FactoryId,
+        config: MediaSourceConfig
+    )
+
+    suspend fun getListBySubscriptionId(subscriptionId: String): List<MediaSourceSave>
+
+    /**
+     * @see MediaSourceInstanceRepository.partiallyReorder
+     */
+    suspend fun partiallyReorderInstances(instanceIds: List<String>)
+
+    /**
+     * deprecated.
+     */
+    suspend fun updateConfig(instanceId: String, config: MediaSourceConfig): Boolean
+    suspend fun setEnabled(instanceId: String, enabled: Boolean)
+    suspend fun removeInstance(instanceId: String)
+
+    /**
+     * 批量启用或禁用数据源. 实现应当只触发一次 [allInstances] 更新.
+     */
+    suspend fun setEnabled(instanceIds: Collection<String>, enabled: Boolean) {
+        instanceIds.forEach { setEnabled(it, enabled) }
+    }
+
+    /**
+     * 批量移除数据源. 实现应当只触发一次 [allInstances] 更新.
+     */
+    suspend fun removeInstances(instanceIds: Collection<String>) {
+        instanceIds.forEach { removeInstance(it) }
+    }
+
+    fun mediaSourceTiersFlow(): Flow<MediaSelectorSourceTiers>
+}
+
+suspend fun <T> MediaSourceManager.addInstance(
+    instanceId: String,
+    mediaSourceId: String,
+    factoryId: FactoryId,
+    serializer: SerializationStrategy<T>,
+    arguments: T
+) = addInstance(
+    instanceId,
+    mediaSourceId,
+    factoryId,
+    MediaSourceConfig(serializedArguments = MediaSourceConfig.serializeArguments(serializer, arguments)),
+)
+
+suspend fun MediaSourceManager.updateMediaSourceArguments(
+    instanceId: String,
+    arguments: JsonElement
+): Boolean {
+    val config = instanceConfigFlow(instanceId).first() ?: return false
+    return updateConfig(
+        instanceId,
+        config.copy(serializedArguments = arguments),
+    )
+}
+
+suspend fun <T> MediaSourceManager.updateMediaSourceArguments(
+    instanceId: String,
+    serializer: SerializationStrategy<T>,
+    arguments: T
+) = updateMediaSourceArguments(instanceId, MediaSourceConfig.serializeArguments(serializer, arguments))
+
+/**
+ * 根据请求创建 [MediaFetchSession].
+ *
+ * The session is frozen to the current [MediaFetcher] snapshot. Source-list changes should not
+ * rebuild the same playback query; callers need to explicitly create a new session when that is desired.
+ *
+ * @param requestLazy 相当于 [lazy]. 只有第一个元素会被使用. 必须至少 emit 一个元素.
+ *
+ * @see MediaFetchRequest.Companion.create
+ */
+suspend fun MediaSourceManager.createFetchFetchSession(requestLazy: Flow<MediaFetchRequest>): MediaFetchSession =
+    mediaFetcher.first().newSession(requestLazy)
+
+class MediaSourceManagerImpl(
+    /**
+     * 必须是 Factory:MediaSource:Instance = 1:1:1 的关系.
+     *
+     * @see LOCAL_FS_MEDIA_SOURCE_ID
+     */
+    additionalSources: () -> List<MediaSource>, // local sources, calculated only once
+    private val flowCoroutineContext: CoroutineContext = Dispatchers.Default,
+) : MediaSourceManager, KoinComponent {
+    private val proxyProvider: ProxyProvider by inject()
+    private val mikanIndexCacheRepository: MikanIndexCacheRepository by inject()
+    private val instances: MediaSourceInstanceRepository by inject()
+    private val selectorMediaSourceEpisodeCacheRepository: SelectorMediaSourceEpisodeCacheRepository by inject()
+    private val webSessionManager: WebSessionManager by inject()
+    private val webSourceCookieJar: WebSourceCookieJar by inject()
+    private val webSourceIdentityRegistry: WebSourceIdentityRegistry by inject()
+    private val clientProvider: HttpClientProvider by inject()
+    private val codecManager: MediaSourceCodecManager by inject()
+    private val lanercSettings: LanercSettingsStore by inject()
+
+    private val scope = CoroutineScope(
+        CoroutineExceptionHandler { _, throwable ->
+            // log error
+            logger.error(throwable) { "DownloadProviderManager scope error" }
+        },
+    )
+    private val factories: List<MediaSourceFactory> = buildSet {
+        addAll(ServiceLoader.loadServices(MediaSourceFactory::class))
+        add(MikanMediaSource.Factory()) // Kotlin bug, MPP 加载不了 resources
+        add(MikanCNMediaSource.Factory())
+        add(RssMediaSource.Factory())
+        add(JellyfinMediaSource.Factory())
+        add(EmbyMediaSource.Factory())
+        add(IkarosMediaSource.Factory())
+        add(SelectorMediaSource.Factory(selectorMediaSourceEpisodeCacheRepository, webSessionManager))
+        add(JsonApiMediaSource.Factory(selectorMediaSourceEpisodeCacheRepository))
+        add(LanercMediaSource.Factory(lanercSettings))
+    }.toList()
+
+    private val additionalSources by lazy {
+        additionalSources().map { source ->
+            MediaSourceInstance(
+                instanceId = source.mediaSourceId,
+                factoryId = FactoryId(source.mediaSourceId),
+                isEnabled = true,
+                config = MediaSourceConfig.Default,
+                source = source,
+            )
+        }
+    }
+    override val allInstances =
+        combine(instances.flow, proxyProvider.proxy.distinctUntilChanged()) { saves, config ->
+            // 一定要 additionalSources 在前面, local sources 需要优先使用
+            this.additionalSources + saves.mapNotNull { createInstance(it, config) }
+        }.onReplacement { list ->
+            list.forEach { it.close() }
+        }.flowOn(flowCoroutineContext).shareIn(scope, replay = 1, started = SharingStarted.Lazily)
+    override val allFactories: List<MediaSourceFactory> get() = factories
+
+    private fun createInstance(save: MediaSourceSave, config: ProxyConfig?): MediaSourceInstance? {
+        val factory = factories.find { it.factoryId == save.factoryId }
+        return if (factory == null) {
+            logger.error { "MediaSourceFactory '${save.factoryId}' not found for ${save.mediaSourceId}" }
+            null
+        } else {
+            MediaSourceInstance(
+                instanceId = save.instanceId,
+                factoryId = save.factoryId,
+                isEnabled = save.isEnabled,
+                config = save.config,
+                source = factory.create(
+                    config,
+                    save.mediaSourceId,
+                    save.config,
+                    // web 源共享 cookie jar 与 per-host UA 对齐, 保证 HTTP 侧身份与浏览器一致
+                    clientProvider.get(
+                        ScopedHttpClientUserAgent.BROWSER,
+                        cookieJar = webSourceCookieJar,
+                        identityRegistry = webSourceIdentityRegistry,
+                    ),
+                ),
+            )
+        }
+    }
+
+    override val allFactoryIds: List<FactoryId> by lazy {
+        factories
+            .map { it.factoryId }
+            .plus(this.additionalSources.map { it.factoryId })
+    }
+
+    override val mediaFetcher: Flow<MediaFetcher> = combine(allInstances, lanercSettings.mode.distinctUntilChanged()) { instances, mode ->
+        MediaSourceMediaFetcher(
+            configProvider = { MediaFetcherConfig(currentPlatform() != Platform.Ios) },
+            mediaSources = instances.filter { instance ->
+                isLocal(instance.factoryId) || mode == SourceMode.BOTH ||
+                    (mode == SourceMode.LANERC) == (instance.factoryId == LanercMediaSource.FactoryId)
+            },
+        )
+    }
+    override val webVideoMatcherLoader: MediaSourceWebVideoMatcherLoader = MediaSourceWebVideoMatcherLoader(
+        allInstances.map { list -> list.map { it.source } },
+    )
+
+    override fun instanceConfigFlow(instanceId: String): Flow<MediaSourceConfig?> {
+        return instances.flow.map { list ->
+            list.find { it.instanceId == instanceId }?.config
+        }
+    }
+
+    override suspend fun addInstance(
+        instanceId: String,
+        mediaSourceId: String,
+        factoryId: FactoryId,
+        config: MediaSourceConfig
+    ) {
+        val save = MediaSourceSave(
+            instanceId = instanceId,
+            mediaSourceId = mediaSourceId,
+            factoryId = factoryId,
+            isEnabled = true,
+            config = config,
+        )
+        instances.add(save)
+    }
+
+    override suspend fun getListBySubscriptionId(subscriptionId: String): List<MediaSourceSave> {
+        return instances.flow.first().filter { save ->
+            save.config.subscriptionId == subscriptionId
+        }
+    }
+
+    override suspend fun partiallyReorderInstances(instanceIds: List<String>) {
+        return instances.partiallyReorder(instanceIds)
+    }
+
+    override suspend fun updateConfig(instanceId: String, config: MediaSourceConfig): Boolean {
+        return instances.updateConfig(instanceId, config)
+    }
+
+    override suspend fun setEnabled(instanceId: String, enabled: Boolean) {
+        instances.updateSave(instanceId) {
+            copy(isEnabled = enabled)
+        }
+    }
+
+    override suspend fun removeInstance(instanceId: String) {
+        instances.remove(instanceId)
+    }
+
+    override suspend fun setEnabled(instanceIds: Collection<String>, enabled: Boolean) {
+        instances.updateSaves(instanceIds) {
+            copy(isEnabled = enabled)
+        }
+    }
+
+    override suspend fun removeInstances(instanceIds: Collection<String>) {
+        instances.removeAll(instanceIds)
+    }
+
+    override fun mediaSourceTiersFlow(): Flow<MediaSelectorSourceTiers> = instances.flow.map { list ->
+        val arguments = list.mapNotNull { save ->
+            val argument = try {
+                save.getArgumentOrNull(codecManager)
+            } catch (e: MediaSourceDecodeException) {
+                // 本地保存了这个版本不认识的数据源 (例如降级后), 它不参与阶级, 不能让整个流失败
+                logger.warn(e) { "Cannot decode arguments of media source ${save.mediaSourceId} (${save.factoryId}), ignoring its tier" }
+                null
+            }
+            argument?.let { save.mediaSourceId to it }
+        }
+        MediaSelectorSourceTiers(
+            tiers = arguments.associate { (id, argument) -> id to argument.tier },
+            channelTiers = buildMap {
+                for ((id, argument) in arguments) {
+                    if (argument.channelTiers.isNotEmpty()) {
+                        put(id, argument.channelTiers)
+                    }
+                }
+            },
+        )
+    }.flowOn(flowCoroutineContext)
+
+    private fun MediaSourceFactory.create(
+        proxyConfig: ProxyConfig?,
+        mediaSourceId: String,
+        config: MediaSourceConfig,
+        client: ScopedHttpClient,
+    ): MediaSource {
+        @Suppress("DEPRECATION")
+        val mediaSourceConfig = config.copy(
+            proxy = config.proxy ?: proxyConfig?.toClientProxyConfig(),
+            userAgent = getAniUserAgent(),
+        )
+        return when (this) {
+            is MikanMediaSource.Factory -> create(mediaSourceConfig, mikanIndexCacheRepository, client)
+            is MikanCNMediaSource.Factory -> create(mediaSourceConfig, mikanIndexCacheRepository, client)
+            else -> create(mediaSourceId, mediaSourceConfig, client)
+        }
+    }
+
+    private companion object {
+        private val logger = logger<MediaSourceManager>()
+    }
+}
+
+fun ProxyConfig.toClientProxyConfig() = ClientProxyConfig(
+    url = url,
+    authorization = authorization?.toHeader(),
+)
+
+@OptIn(ExperimentalEncodingApi::class)
+fun ProxyAuthorization.toHeader(): String = "Basic ${Base64.encode("$username:$password".encodeToByteArray())}"

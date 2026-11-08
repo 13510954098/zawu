@@ -1,0 +1,125 @@
+{
+  "method": "Exact whitelisted object-pool strings and ARM64 x27-relative loads",
+  "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
+  "pool_marker_slots": [
+    {
+      "offset": "0xef38",
+      "label": "native-play-lists"
+    },
+    {
+      "offset": "0x1bd80",
+      "label": "search-query-key"
+    },
+    {
+      "offset": "0x1bdc8",
+      "label": "search-result-list"
+    },
+    {
+      "offset": "0x2a328",
+      "label": "guest-answer-selection"
+    },
+    {
+      "offset": "0x2a330",
+      "label": "guest-exchange"
+    }
+  ],
+  "code_anchors": [
+    {
+      "marker": "native-play-lists",
+      "instruction": "0x4170ec",
+      "pool_offset": "0xef38",
+      "preceding_known_entry_hint": "0x41701c",
+      "distance_from_hint": 208,
+      "recent_direct_call_targets": [
+        "0x96349c",
+        "0x417184",
+        "0x961748"
+      ]
+    },
+    {
+      "marker": "native-play-lists",
+      "instruction": "0x633534",
+      "pool_offset": "0xef38",
+      "preceding_known_entry_hint": "0x632b80",
+      "distance_from_hint": 2484,
+      "recent_direct_call_targets": [
+        "0x8cb700",
+        "0x6335d8"
+      ]
+    },
+    {
+      "marker": "search-result-list",
+      "instruction": "0x64a204",
+      "pool_offset": "0x1bdc8",
+      "preceding_known_entry_hint": "0x64a12c",
+      "distance_from_hint": 216,
+      "recent_direct_call_targets": [
+        "0x8cb700",
+        "0x64a1d8",
+        "0x9635a4"
+      ]
+    },
+    {
+      "marker": "search-result-list",
+      "instruction": "0x64a2d4",
+      "pool_offset": "0x1bdc8",
+      "preceding_known_entry_hint": "0x64a12c",
+      "distance_from_hint": 424,
+      "recent_direct_call_targets": [
+        "0x367498",
+        "0x91a184",
+        "0x9635a4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "search-query-key",
+      "instruction": "0x919fa0",
+      "pool_offset": "0x1bd80",
+      "preceding_known_entry_hint": "0x9199ec",
+      "distance_from_hint": 1460,
+      "recent_direct_call_targets": [
+        "0x96349c",
+        "0x9623d0",
+        "0x3ec0ac",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-answer-selection",
+      "instruction": "0x93099c",
+      "pool_offset": "0x2a328",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 252,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "guest-exchange",
+      "instruction": "0x930a38",
+      "pool_offset": "0x2a330",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 408,
+      "recent_direct_call_targets": [
+        "0x961748",
+        "0x2bcf5c",
+        "0x660d98"
+      ]
+    },
+    {
+      "marker": "guest-answer-selection",
+      "instruction": "0x930b54",
+      "pool_offset": "0x2a328",
+      "preceding_known_entry_hint": "0x9308a0",
+      "distance_from_hint": 692,
+      "recent_direct_call_targets": [
+        "0x963724",
+        "0x963724",
+        "0x8b4304"
+      ]
+    }
+  ]
+}

@@ -42,6 +42,7 @@ jobs:
           git add analysis/lanerc/animeko-core-validation.json
           git diff --cached --quiet && exit 0
           git commit -m 'Record compiled Kotlin Lanerc protocol and parallel search checks'
+          git pull --rebase origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
       - uses: actions/upload-artifact@v4
         if: always()

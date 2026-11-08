@@ -1,0 +1,61 @@
+name: Animeko Lanerc Android integration build
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [integration/animeko/overlay/**, scripts/prepare_animeko_lanerc.py, .github/workflows/animeko-lanerc-android.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v3
+      - name: Materialize pinned upstream and real integration sources
+        run: |
+          python scripts/prepare_animeko_lanerc.py
+          echo "LANERC_BUILD_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          cat >> .local/animeko/worktree/local.properties <<'EOF'
+          ani.enable.firebase=false
+          ani.enable.ios=false
+          ani.android.abis=arm64-v8a
+          jvm.toolchain.version=21
+          jvm.toolchain.vendor=Eclipse Adoptium
+          EOF
+      - name: Compile and package the Android integration without private production material
+        working-directory: .local/animeko/worktree
+        run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g
+      - name: Save APK and build provenance
+        run: |
+          mkdir -p /tmp/lanerc-apk
+          find .local/animeko/worktree/app/android/build/outputs/apk -name '*.apk' -exec cp {} /tmp/lanerc-apk/ \;
+          python - <<'PY'
+          import hashlib, json, os, pathlib
+          files = sorted(pathlib.Path('/tmp/lanerc-apk').glob('*.apk'))
+          assert files
+          report = {'source_commit':os.environ['LANERC_BUILD_SHA'], 'upstream_commit':'6d79729a135cee6af861a7a095d3880d1b452260', 'android_app_built':True, 'ui_compiled':True, 'ui_device_tested':False, 'application_id':'me.him188.ani.lanerc', 'build_type':'defaultDebug', 'private_production_material_embedded':False, 'original_source_import_verified':False, 'production_playback_verified':False, 'apk_files':[{'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in files]}
+          pathlib.Path('analysis/lanerc/animeko-android-validation.json').write_text(json.dumps(report, indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: animeko-lanerc-android-debug
+          path: /tmp/lanerc-apk/*.apk
+          retention-days: 14
+      - name: Commit public build provenance only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/animeko-android-validation.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record Android Lanerc integration build provenance'
+          git pull --rebase origin arena/44f5d2ee-zawu
+          git push origin HEAD:arena/44f5d2ee-zawu

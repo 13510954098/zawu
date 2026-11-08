@@ -4,6 +4,7 @@ kotlin {
     sourceSets.main {
         kotlin.srcDir("../overlay/app/shared/app-data/src/commonMain/kotlin")
         kotlin.srcDir("../overlay/app/shared/app-data/src/jvmMain/kotlin")
+        kotlin.include("**/lanerc/core/**")
     }
 }
 dependencies {
