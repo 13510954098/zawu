@@ -1,0 +1,9 @@
+{
+  "scope": "Static ARM64 direct-call graph; no runtime execution or credential validation",
+  "redaction": "No object pool, raw assembly, string constants, keys, IVs or tokens exported",
+  "limitations": "Obfuscation, inlining, dynamic dispatch and indirect calls limit completeness; names do not prove purpose",
+  "total_functions": 457,
+  "seed_count": 0,
+  "seeds": [],
+  "functions": []
+}
