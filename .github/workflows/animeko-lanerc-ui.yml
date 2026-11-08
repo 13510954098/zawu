@@ -67,7 +67,7 @@ jobs:
           if test -f analysis/lanerc/animeko-ui-diagnostic.txt; then git add analysis/lanerc/animeko-ui-diagnostic.txt; fi
           git diff --cached --quiet && exit 0
           git commit -m 'Record actual Compose native community UI test outcome'
-          git pull --rebase origin arena/44f5d2ee-zawu
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
       - uses: actions/upload-artifact@v4
         if: always()

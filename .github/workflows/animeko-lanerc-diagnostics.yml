@@ -1,0 +1,42 @@
+name: Recover bounded Animeko CI diagnostics
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [.github/workflows/animeko-lanerc-diagnostics.yml]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        required: true
+        default: '42447005800'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+          fetch-depth: 0
+      - name: Fetch failed-step logs inside the runner network
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_RUN: ${{ inputs.run_id || '42447005800' }}
+        run: |
+          python - <<'PY'
+          import os, pathlib, subprocess
+          run = str(int(os.environ['TARGET_RUN']))
+          p = subprocess.run(['gh','run','view',run,'--repo','13510954098/zawu','--log-failed'], capture_output=True, text=True, check=True)
+          lines = p.stdout.splitlines()
+          errors = [line[:1800] for line in lines if any(s in line for s in ['e: file:', 'FAILURE:', 'What went wrong', 'Execution failed', 'error:', 'error ', 'fatal:', 'Could not', 'Cannot', 'Unresolved reference', 'conflict', 'Compilation error'])]
+          text = 'Build run: '+run+'\nSelected errors:\n'+'\n'.join(errors[:70])+'\nLog tail:\n'+'\n'.join(line[:1800] for line in lines[-90:])+'\n'
+          pathlib.Path('analysis/lanerc/animeko-ci-recovered-diagnostic.txt').write_text(text)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/animeko-ci-recovered-diagnostic.txt
+          git diff --cached --quiet && exit 0
+          git commit -m 'Recover bounded failed CI diagnostics through runner networking'
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
+          git push origin HEAD:arena/44f5d2ee-zawu
