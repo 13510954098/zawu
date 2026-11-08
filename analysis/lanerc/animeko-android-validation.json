@@ -1,0 +1,24 @@
+{
+  "source_commit": "408f49ffc06641915a8d10d8113a04723ebed36e",
+  "upstream_commit": "6d79729a135cee6af861a7a095d3880d1b452260",
+  "android_app_built": true,
+  "ui_compiled": true,
+  "ui_device_tested": false,
+  "application_id": "me.him188.ani.lanerc",
+  "build_type": "defaultDebug",
+  "private_production_material_embedded": false,
+  "original_source_import_verified": false,
+  "production_playback_verified": false,
+  "apk_files": [
+    {
+      "name": "android-default-arm64-v8a-debug.apk",
+      "sha256": "19531b4b77f2f459ff290d09111a8eb3951955cfb28c3fc3c0e4997f7e17dbac",
+      "bytes": 77938070
+    },
+    {
+      "name": "android-default-universal-debug.apk",
+      "sha256": "19531b4b77f2f459ff290d09111a8eb3951955cfb28c3fc3c0e4997f7e17dbac",
+      "bytes": 77938070
+    }
+  ]
+}
