@@ -112,6 +112,19 @@ def inspect_hls(url):
                       segment_starts_mp4=len(raw) >= 8 and raw[4:8] in (b'ftyp', b'styp', b'moof'))
         result['mpegts_sync_offset'] = next((offset for offset in range(min(len(raw), 4096))
             if offset + 188*3 < len(raw) and all(raw[offset + 188*i] == 0x47 for i in range(4))), None)
+        offset = result['mpegts_sync_offset']
+        if offset is not None:
+            # Inspect only the already fetched prefix, stripping a proven TS
+            # offset. No persistent proxy or player modification is implied.
+            process = subprocess.run(['ffprobe', '-v', 'quiet', '-f', 'mpegts', '-i', 'pipe:0',
+                '-show_entries', 'stream=codec_type,codec_name,width,height', '-of', 'json'],
+                input=raw[offset:], capture_output=True, timeout=10)
+            metadata = json.loads(process.stdout) if process.returncode == 0 else {}
+            streams = [{key:stream[key] for key in ('codec_type','codec_name','width','height') if key in stream}
+                       for stream in metadata.get('streams', [])]
+            result['stripped_prefix_streams'] = streams
+            result['stripped_prefix_video_metadata_verified'] = any(stream.get('codec_type') == 'video'
+                and stream.get('width', 0) > 0 and stream.get('height', 0) > 0 for stream in streams)
         return result
     return result
 
