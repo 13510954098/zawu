@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-08T02:43:34.795928+00:00",
+  "checked_at_utc": "2026-11-08T02:44:49.327635+00:00",
   "scope": "Public DNS TXT and unsigned HTTPS HEAD / only",
   "recovered_keys_used": false,
   "credentials_requested": false,
@@ -12,6 +12,8 @@
       "authenticated_data": false,
       "txt_records": [
         {
+          "known_user_hosts_in_txt": [],
+          "known_user_hosts_in_base64_text": [],
           "record_type": 16,
           "ttl": 120,
           "text_length": 44,
@@ -22,7 +24,7 @@
       "other_record_count": 0
     },
     {
-      "name": "diag-20261108024334.dohx.lanerc.moe",
+      "name": "diag-20261108024448.dohx.lanerc.moe",
       "dns_status": 3,
       "authenticated_data": false,
       "txt_records": [],
