@@ -1,6 +1,9 @@
 name: Fetch Lanerc official download
 on:
   workflow_dispatch:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [.github/workflows/lanerc-fetch.yml]
 permissions:
   contents: read
 jobs:
