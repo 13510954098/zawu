@@ -1,0 +1,42 @@
+{
+  "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
+  "source_commit": "a8fc6e39c98c97ce14f19d6c1b176b523d9e04a8",
+  "credentials_used": false,
+  "captcha_solved": false,
+  "media_fetched": false,
+  "production_playback_verified": false,
+  "requests": [
+    {
+      "operation": "search",
+      "http_status": 200,
+      "code": 201,
+      "result_count": 7
+    },
+    {
+      "operation": "detail",
+      "http_status": 200,
+      "code": 201,
+      "line_count": 1
+    },
+    {
+      "operation": "app/v2/play",
+      "credential_omitted": true,
+      "http_status": 200,
+      "format": "protobuf",
+      "code": 200,
+      "verification_mentioned": false,
+      "login_mentioned": false,
+      "https_media_url_returned": false
+    },
+    {
+      "operation": "app/v2/guest/play",
+      "credential_omitted": true,
+      "http_status": 200,
+      "format": "protobuf",
+      "code": 400,
+      "verification_mentioned": false,
+      "login_mentioned": false
+    }
+  ],
+  "dynamic_discovery_succeeded": true
+}
