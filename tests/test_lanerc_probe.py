@@ -22,12 +22,19 @@ class EncryptedProbeScopeTests(unittest.TestCase):
         with self.assertRaises(ValueError): validate(self.request(), '7', 1121)
 
     def test_sensitive_unrelated_endpoints_are_not_allowed(self):
-        for path in ['/admin', '/app/login', '/app/delete', '/app/vod/../../admin']:
+        for path in ['/admin', '/app/login', '/app/delete', '/app/vod/../../admin', '/app/vod/37', '/app/v2/vod/../admin', '/app/v2/vod/37/other']:
             with self.assertRaises(ValueError): validate(self.request(path), '7', 1000)
 
     def test_anonymous_native_reads_are_scoped(self):
-        for path in ['/app/v2/guest/captcha','/app/vod/search','/app/vod/37','/app/chat/comment','/app/chat/barragev2']:
+        for path in ['/app/v2/guest/captcha','/app/vod/search','/app/v2/vod/37','/app/chat/comment','/app/chat/barragev2']:
             self.assertEqual('GET', validate(self.request(path), '7', 1000)[1])
+
+    def test_detail_path_matches_actual_kotlin_endpoint(self):
+        protocol = pathlib.Path(__file__).resolve().parents[1] / 'integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/core/LanercProtocol.kt'
+        import re
+        prefix = re.search(r'const val DETAIL_PREFIX = "([^"]+)"', protocol.read_text())[1]
+        self.assertEqual('/app/v2/vod/', '/' + prefix)
+        self.assertEqual('GET', validate(self.request('/' + prefix + '2302'), '7', 1000)[1])
 
     def test_no_duplicate_signature_or_unexpected_queries(self):
         for extra in ['&sign=1000-abc-'+'1'*32, '&password=unexpected', '#fragment']:

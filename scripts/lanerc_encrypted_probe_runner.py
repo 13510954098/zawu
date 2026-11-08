@@ -46,7 +46,7 @@ def validate(payload, run, now):
     if abs(int(signatures[0].split('-')[0]) - now) > 120:
         raise ValueError('Expired probe request')
     if method == 'GET':
-        if parsed.path not in GETS and not re.fullmatch(r'/app/vod/[A-Za-z0-9_-]{1,128}', parsed.path):
+        if parsed.path not in GETS and not re.fullmatch(r'/app/v2/vod/[A-Za-z0-9_-]{1,128}', parsed.path):
             raise ValueError('Endpoint not allowed')
         if body is not None:
             raise ValueError('GET body not allowed')
@@ -118,6 +118,9 @@ def read_request(path):
 def main():
     assert os.environ['GITHUB_REPOSITORY'] == REPOSITORY
     run = os.environ['GITHUB_RUN_ID']
+    recipient = pathlib.Path(os.environ.get('LANERC_PROBE_RECIPIENT', 'analysis/lanerc/analysis-recipient.pem'))
+    if recipient.parent != pathlib.Path('analysis/lanerc') or recipient.suffix != '.pem':
+        raise ValueError('Invalid local public recipient path')
     directory = pathlib.Path('analysis/lanerc/native-probe') / run
     directory.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as temporary:
@@ -149,9 +152,9 @@ def main():
             plaintext.write_text(json.dumps(private))
             os.chmod(plaintext, 0o600)
             response = directory / f'response-{number:02d}.p7m'
-            subprocess.run(['openssl','cms','-encrypt','-binary','-aes-256-cbc','-in',str(plaintext),'-outform','DER','-out',str(response),'analysis/lanerc/analysis-recipient.pem'], check=True, capture_output=True)
+            subprocess.run(['openssl','cms','-encrypt','-binary','-aes-256-cbc','-in',str(plaintext),'-outform','DER','-out',str(response),str(recipient)], check=True, capture_output=True)
             record = directory / f'response-{number:02d}.json'
-            record.write_text(json.dumps({'run_id':run, 'request':number, **public}, indent=2)+'\n')
+            record.write_text(json.dumps({'run_id':run, 'request':number, 'recipient_certificate_sha256':hashlib.sha256(recipient.read_bytes()).hexdigest(), **public}, indent=2)+'\n')
             publish([response, record], 'Record encrypted native probe response and non-secret transport metadata')
 
 

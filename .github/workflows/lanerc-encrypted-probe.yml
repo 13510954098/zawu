@@ -23,4 +23,5 @@ jobs:
       - name: Publish ephemeral recipient and process encrypted authorized requests
         env:
           GH_TOKEN: ${{ github.token }}
+          LANERC_PROBE_RECIPIENT: analysis/lanerc/session-recipient.pem
         run: python scripts/lanerc_encrypted_probe_runner.py
