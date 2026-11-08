@@ -1,6 +1,6 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "b25216ed0a0ad807c0cf31aef7c8d985c39141b9",
+  "source_commit": "566087745fb7ce6b374966e72ad0c6c025bdf463",
   "credentials_used": false,
   "captcha_solved": false,
   "media_fetched": true,
@@ -32,6 +32,21 @@
       "userinfo_present": false,
       "media_http_status": 200,
       "media_content_type": "application/vnd.apple.mpegurl",
+      "hls_diagnostics": {
+        "playlist_http_status": 206,
+        "playlist_entries": 279,
+        "master_playlist": false,
+        "encryption_methods": [],
+        "init_map_present": false,
+        "segment_http_status": 206,
+        "segment_content_type": "image/jpeg",
+        "segment_prefix_bytes": 65536,
+        "segment_starts_jpeg": true,
+        "segment_starts_png": false,
+        "segment_starts_html": false,
+        "segment_starts_mp4": false,
+        "mpegts_sync_offset": 598
+      },
       "media_streams": [
         {
           "codec_type": "video",
