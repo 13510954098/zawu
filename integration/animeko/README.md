@@ -108,7 +108,7 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 真实详情还发现旧 128 字符资源 ID 上限会拒绝样本全部 112 集（实际令牌长 218～320 字符）。已统一修正详情、媒体创建、社区身份和播放请求为有界 4096 字符 URL-safe opaque token；脱敏样例保留长度而不保留原令牌，加入超长、路径穿越、控制字符及请求 body 隔离回归。新修改等待 Actions，不据此声称生产播放成功。
 
 
-### 原版账号与发布接线（新增，待新一轮 Actions 验证）
+### 原版账号与发布接线（已编译，通过合成回归；真实账户操作未验证）
 
 已从原 APK 恢复登录 `app/user/login` 的 `account` / `pwd` 及返回 `token`，评论发布 `content` / `vod_id` / `parent_id`，弹幕发布 `video_id` / **数字选集序号 `video_url`** / `color` / `second` / `position` / `content`。证据见 `analysis/lanerc/native-account-anchors.json`，没有向真实后台登录或发布内容。
 
