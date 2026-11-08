@@ -1,160 +1,160 @@
-> Task :app:shared:app-data:generateResourceAccessorsForCommonMain
-> Task :app:shared:app-data:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-data:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-data:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:app-data:generateResourceAccessorsForDesktopMain NO-SOURCE
-> Task :app:shared:app-data:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-data:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-data:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:app-data:generateResourceAccessorsForJvmMain NO-SOURCE
-> Task :app:shared:app-data:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-data:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-data:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:app-data:generateResourceAccessorsForSkikoMain NO-SOURCE
-> Task :app:shared:app-data:generateActualResourceCollectorsForDesktopMain
-> Task :app:shared:app-data:generateExpectResourceCollectorsForCommonMain
-> Task :app:shared:app-lang:generateComposeResClass
-> Task :app:shared:app-lang:checkDesktopMainComposeLibrariesCompatibility
-> Task :app:shared:app-lang:kmpPartiallyResolvedDependenciesChecker
-> Task :app:shared:app-lang:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:shared:app-lang:populateStringsLocales
-> Task :app:shared:app-lang:convertXmlValueResourcesForCommonMain
-> Task :app:shared:app-lang:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:app-lang:prepareComposeResourcesTaskForCommonMain
-> Task :app:shared:app-lang:generateResourceAccessorsForCommonMain
-> Task :app:shared:app-lang:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-lang:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-lang:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:app-lang:generateResourceAccessorsForDesktopMain NO-SOURCE
-> Task :app:shared:app-lang:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-lang:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-lang:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:app-lang:generateResourceAccessorsForJvmMain NO-SOURCE
-> Task :app:shared:app-lang:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-lang:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-lang:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:app-lang:generateResourceAccessorsForSkikoMain NO-SOURCE
-> Task :app:shared:app-lang:generateActualResourceCollectorsForDesktopMain
-> Task :app:shared:app-lang:generateExpectResourceCollectorsForCommonMain
-> Task :app:shared:app-lang:assembleDesktopMainResources
-> Task :app:shared:app-lang:desktopProcessResources
-> Task :app:shared:app-lang:processDesktopMainResources SKIPPED
-> Task :utils:macos-share:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :utils:ui-testing:copyNonXmlValueResourcesForCommonMain NO-SOURCE
+> Task :utils:ui-testing:prepareComposeResourcesTaskForCommonMain NO-SOURCE
+> Task :utils:ui-testing:generateResourceAccessorsForCommonMain SKIPPED
+> Task :utils:ui-testing:convertXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :utils:ui-testing:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
+> Task :utils:ui-testing:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
+> Task :utils:ui-testing:generateResourceAccessorsForDesktopMain SKIPPED
+> Task :utils:ui-testing:convertXmlValueResourcesForJvmMain NO-SOURCE
+> Task :utils:ui-testing:copyNonXmlValueResourcesForJvmMain NO-SOURCE
+> Task :utils:ui-testing:prepareComposeResourcesTaskForJvmMain NO-SOURCE
+> Task :utils:ui-testing:generateResourceAccessorsForJvmMain SKIPPED
+> Task :utils:ui-testing:convertXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :utils:ui-testing:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
+> Task :utils:ui-testing:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
+> Task :utils:ui-testing:generateResourceAccessorsForSkikoMain SKIPPED
+> Task :utils:ui-testing:generateActualResourceCollectorsForDesktopMain SKIPPED
+> Task :utils:ui-testing:generateExpectResourceCollectorsForCommonMain SKIPPED
 
-> Task :utils:macos-share:compileKotlin
-w: Opt-in requirement marker 'kotlinx.serialization.ExperimentalSerializationApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'kotlinx.coroutines.ExperimentalCoroutinesApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'kotlinx.coroutines.FlowPreview' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.foundation.layout.ExperimentalLayoutApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.foundation.ExperimentalFoundationApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.material3.ExperimentalMaterial3Api' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.ui.ExperimentalComposeUiApi' is unresolved. Make sure it's present in the module dependencies.
+> Task :utils:ui-testing:compileKotlinDesktop
 w: Opt-in requirement marker 'org.jetbrains.compose.resources.ExperimentalResourceApi' is unresolved. Make sure it's present in the module dependencies.
 w: Opt-in requirement marker 'androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.animation.ExperimentalSharedTransitionApi' is unresolved. Make sure it's present in the module dependencies.
 w: Opt-in requirement marker 'androidx.paging.ExperimentalPagingApi' is unresolved. Make sure it's present in the module dependencies.
-w: Opt-in requirement marker 'androidx.compose.material3.ExperimentalMaterial3ExpressiveApi' is unresolved. Make sure it's present in the module dependencies.
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/utils/ui-testing/src/commonMain/kotlin/RunComposeStateTest.kt:53:51 'companion object Key : AbstractCoroutineContextKey<ContinuationInterceptor, CoroutineDispatcher>' is deprecated. Use ContinuationInterceptor.Key and attempt casting the context element to CoroutineDispatcher instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/utils/ui-testing/src/desktopMain/kotlin/AniComposeUiTest.desktop.kt:43:12 'fun runComposeUiTest(effectContext: CoroutineContext = ..., runTestContext: CoroutineContext = ..., testTimeout: Duration = ..., block: suspend ComposeUiTest.() -> Unit): Unit' is deprecated. Use `androidx.compose.ui.test.v2.runComposeUiTest` instead. The v2 APIs use `StandardTestDispatcher` by default to better simulate production behavior where coroutines are queued rather than executed immediately.
 
-> Task :utils:macos-share:compileJava NO-SOURCE
-> Task :utils:macos-share:processResources NO-SOURCE
-> Task :utils:macos-share:classes UP-TO-DATE
-> Task :utils:macos-share:jar
-> Task :app:shared:app-platform:generateComposeResClass SKIPPED
-> Task :app:shared:app-platform:checkDesktopMainComposeLibrariesCompatibility
-> Task :app:shared:app-platform:kmpPartiallyResolvedDependenciesChecker
-> Task :app:shared:app-platform:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:shared:app-platform:convertXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:app-platform:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:app-platform:prepareComposeResourcesTaskForCommonMain NO-SOURCE
-> Task :app:shared:app-platform:generateResourceAccessorsForCommonMain SKIPPED
-> Task :app:shared:app-platform:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-platform:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:app-platform:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:app-platform:generateResourceAccessorsForDesktopMain SKIPPED
-> Task :app:shared:app-platform:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-platform:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:app-platform:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:app-platform:generateResourceAccessorsForJvmMain SKIPPED
-> Task :app:shared:app-platform:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-platform:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:app-platform:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:app-platform:generateResourceAccessorsForSkikoMain SKIPPED
-> Task :app:shared:app-platform:generateActualResourceCollectorsForDesktopMain SKIPPED
-> Task :app:shared:app-platform:generateAniBuildConfigDesktop
-> Task :app:shared:app-platform:generateExpectResourceCollectorsForCommonMain SKIPPED
-> Task :app:shared:app-platform:assembleDesktopMainResources
-> Task :app:shared:app-platform:desktopProcessResources
-> Task :app:shared:app-platform:processDesktopMainResources SKIPPED
-> Task :app:shared:video-player:torrent-source:generateComposeResClass SKIPPED
-> Task :app:shared:video-player:torrent-source:checkDesktopMainComposeLibrariesCompatibility
-> Task :app:shared:video-player:torrent-source:kmpPartiallyResolvedDependenciesChecker
-> Task :app:shared:video-player:torrent-source:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForCommonMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForCommonMain SKIPPED
-> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForDesktopMain SKIPPED
-> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForJvmMain SKIPPED
-> Task :app:shared:video-player:torrent-source:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:torrent-source:generateResourceAccessorsForSkikoMain SKIPPED
-> Task :app:shared:video-player:torrent-source:generateActualResourceCollectorsForDesktopMain SKIPPED
-> Task :app:shared:video-player:torrent-source:generateExpectResourceCollectorsForCommonMain SKIPPED
-> Task :app:shared:video-player:video-player-api:generateComposeResClass SKIPPED
-> Task :app:shared:video-player:video-player-api:checkDesktopMainComposeLibrariesCompatibility
-> Task :app:shared:video-player:video-player-api:kmpPartiallyResolvedDependenciesChecker
-> Task :app:shared:video-player:video-player-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForCommonMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForCommonMain SKIPPED
-> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForDesktopMain SKIPPED
-> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForJvmMain SKIPPED
-> Task :app:shared:video-player:video-player-api:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:video-player:video-player-api:generateResourceAccessorsForSkikoMain SKIPPED
-> Task :app:shared:video-player:video-player-api:generateActualResourceCollectorsForDesktopMain SKIPPED
-> Task :app:shared:video-player:video-player-api:generateExpectResourceCollectorsForCommonMain SKIPPED
-> Task :app:shared:video-player:video-player-api:assembleDesktopMainResources
-> Task :app:shared:video-player:video-player-api:desktopProcessResources
-> Task :app:shared:video-player:video-player-api:processDesktopMainResources SKIPPED
-> Task :app:shared:video-player:torrent-source:assembleDesktopMainResources
-> Task :app:shared:video-player:torrent-source:desktopProcessResources
-> Task :app:shared:video-player:torrent-source:processDesktopMainResources SKIPPED
-> Task :app:shared:app-data:assembleDesktopMainResources
-> Task :app:shared:paging-compose:generateComposeResClass SKIPPED
-> Task :app:shared:paging-compose:checkDesktopMainComposeLibrariesCompatibility
-> Task :app:shared:paging-compose:kmpPartiallyResolvedDependenciesChecker
-> Task :app:shared:paging-compose:checkKotlinGradlePluginConfigurationErrors SKIPPED
-> Task :app:shared:paging-compose:convertXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:paging-compose:copyNonXmlValueResourcesForCommonMain NO-SOURCE
-> Task :app:shared:paging-compose:prepareComposeResourcesTaskForCommonMain NO-SOURCE
-> Task :app:shared:paging-compose:generateResourceAccessorsForCommonMain SKIPPED
-> Task :app:shared:paging-compose:convertXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:paging-compose:copyNonXmlValueResourcesForDesktopMain NO-SOURCE
-> Task :app:shared:paging-compose:prepareComposeResourcesTaskForDesktopMain NO-SOURCE
-> Task :app:shared:paging-compose:generateResourceAccessorsForDesktopMain SKIPPED
-> Task :app:shared:paging-compose:convertXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:paging-compose:copyNonXmlValueResourcesForJvmMain NO-SOURCE
-> Task :app:shared:paging-compose:prepareComposeResourcesTaskForJvmMain NO-SOURCE
-> Task :app:shared:paging-compose:generateResourceAccessorsForJvmMain SKIPPED
-> Task :app:shared:paging-compose:convertXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:paging-compose:copyNonXmlValueResourcesForSkikoMain NO-SOURCE
-> Task :app:shared:paging-compose:prepareComposeResourcesTaskForSkikoMain NO-SOURCE
-> Task :app:shared:paging-compose:generateResourceAccessorsForSkikoMain SKIPPED
-> Task :app:shared:paging-compose:generateActualResourceCollectorsForDesktopMain SKIPPED
-> Task :app:shared:paging-compose:generateExpectResourceCollectorsForCommonMain SKIPPED
+> Task :utils:ui-testing:compileDesktopMainJava NO-SOURCE
+> Task :utils:ui-testing:assembleDesktopMainResources
+> Task :utils:ui-testing:desktopProcessResources
+> Task :utils:ui-testing:processDesktopMainResources SKIPPED
+> Task :utils:ui-testing:desktopMainClasses
+> Task :utils:ui-testing:desktopJar
+> Task :app:shared:assembleDesktopTestResources
+> Task :app:shared:desktopTestProcessResources
+> Task :app:shared:processDesktopTestResources SKIPPED
+
+> Task :app:shared:app-lang:compileKotlinDesktop
+w: Opt-in requirement marker 'androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi' is unresolved. Make sure it's present in the module dependencies.
+w: Opt-in requirement marker 'androidx.paging.ExperimentalPagingApi' is unresolved. Make sure it's present in the module dependencies.
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+
+> Task :app:shared:app-lang:compileDesktopMainJava NO-SOURCE
+> Task :app:shared:app-lang:desktopMainClasses
+> Task :app:shared:app-lang:desktopJar
+
+> Task :app:shared:app-platform:compileKotlinDesktop FAILED
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:12:12 Unresolved reference 'jetbrains'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:30:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:31:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:32:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:33:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:34:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:35:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:36:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:37:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:38:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:39:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:40:12 Unresolved reference 'cef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:66:22 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:86:44 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:86:74 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:97:45 Unresolved reference 'CefResourceRequestHandler'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:98:9 Unresolved reference 'CefRequestHandlerAdapter'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:100:22 Unresolved reference 'CefBrowser'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:101:20 Unresolved reference 'CefFrame'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:102:22 Unresolved reference 'CefRequest'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:106:37 Unresolved reference 'BoolRef'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:107:12 Unresolved reference 'CefResourceRequestHandler'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:110:22 Unresolved reference 'CefBrowser'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:117:23 Unresolved reference 'CefAuthCallback'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:125:22 Unresolved reference 'Continue'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:141:8 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:144:26 Unresolved reference 'JCefAppConfig'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:146:47 Unresolved reference 'CefSettings'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:154:34 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:154:40 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:155:13 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:156:13 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:158:32 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:164:38 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:164:44 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:165:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:165:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:166:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:166:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:167:17 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:167:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:171:21 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:172:21 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:173:21 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:178:38 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:178:44 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:180:17 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:183:17 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:184:17 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:189:17 Unresolved reference 'add'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:202:9 Unresolved reference 'CefLog'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:203:9 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:204:16 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:250:27 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Cannot infer type for type parameter 'R'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:18 Unresolved reference. None of the following candidates is applicable because of a receiver type mismatch:
+fun <T, R> T.let(block: (T) -> R): R
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:251:22 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:278:93 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:297:50 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:299:20 Unresolved reference 'isTerminated'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:307:24 Unresolved reference 'onInitialization'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:307:43 Cannot infer type for value parameter 'state'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:308:34 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:315:78 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:367:46 Unresolved reference 'CefResourceRequestHandler'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:367:82 Unresolved reference 'CefClient'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:368:21 Unresolved reference 'createClient'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:15 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:21 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:369:23 Unresolved reference 'addRequestHandler'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:393:18 Unresolved reference 'CefBrowser'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:394:17 Unresolved reference 'CefClient'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:402:18 Unresolved reference 'CefBrowser'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:403:17 Unresolved reference 'CefClient'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:416:44 Unresolved reference 'CefApp'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:424:24 Unresolved reference 'dispose'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:432:32 Unresolved reference 'dispose'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:447:18 Unresolved reference 'CefBrowser'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:448:17 Unresolved reference 'CefClient'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:450:9 Cannot infer type for type parameter 'R'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:451:22 Unresolved reference 'close'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:452:11 Cannot infer type for type parameter 'T'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:455:9 Cannot infer type for type parameter 'R'. Specify it explicitly.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:456:21 Unresolved reference 'dispose'.
+e: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-platform/src/desktopMain/kotlin/platform/AniCefApp.kt:457:11 Cannot infer type for type parameter 'T'. Specify it explicitly.
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794112720719.json
+
+[Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:shared:app-platform:compileKotlinDesktop'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 6m 18s
+298 actionable tasks: 298 executed
+
+Publishing Build Scan to Develocity...
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794112720719.json
+https://gradle.com/s/zmfq7h4yqdu54
+
