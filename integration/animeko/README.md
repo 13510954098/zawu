@@ -4,7 +4,8 @@
 
 ## 基线与工程布局
 
-- 上游：`open-ani/animeko`，固定 commit `6d79729a135cee6af861a7a095d3880d1b452260`。
+- 上游：`open-ani/animeko`，固定 commit `6d79729a135cee6af861a7a095d3880d1b452260`（官方 v6.4.0 之后 15 个提交，并非 4.9 旧代码）。
+- 构建版本标记：`6.4.0-post15.lanerc.preview`，明确区别于官方正式版。源码准备阶段覆盖上游遗留的 `4.9.0-dev` 默认值，发布前再次核对 APK manifest；历史 APK 在新编译成功之前不会被重新标记为新版本。
 - `upstream.json` 保存 commit、固定下载地址与 ZIP SHA-256。
 - `overlay/` 是实际 Kotlin 源码，路径与上游工程对应；不是 Dart cleanroom 的拷贝。
 - `core-checks/` 编译、测试同一份 Kotlin 源码，不是另外重写一个测试实现。

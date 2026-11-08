@@ -2,7 +2,7 @@ name: Animeko Lanerc Kotlin core checks
 on:
   push:
     branches: [arena/44f5d2ee-zawu]
-    paths: [integration/animeko/**, scripts/prepare_animeko_lanerc.py, tests/test_animeko_prepare.py, .github/workflows/animeko-lanerc-core.yml]
+    paths: [integration/animeko/**, scripts/prepare_animeko_lanerc.py, tests/test_animeko_prepare.py, tests/test_animeko_preview_version.py, .github/workflows/animeko-lanerc-core.yml]
   workflow_dispatch:
 permissions:
   contents: write

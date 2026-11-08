@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import pathlib
+import re
 import shutil
 import stat
 import urllib.request
@@ -52,6 +53,24 @@ def extract(archive, destination, expected_commit):
                     target.chmod(0o755)
 
 
+def apply_preview_version(destination, pin):
+    """Replace upstream's stale default, without claiming an official release."""
+    release = pin['baseline_release']
+    distance = pin['commits_after_release']
+    if not isinstance(release, str) or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', release):
+        raise ValueError('Invalid baseline release')
+    if type(distance) is not int or distance < 0:
+        raise ValueError('Invalid release distance')
+    version = f'{release}-post{distance}.lanerc.preview'
+    properties = destination / 'gradle.properties'
+    text = properties.read_text()
+    updated, count = re.subn(r'^version\.name=.*$', f'version.name={version}', text, flags=re.MULTILINE)
+    if count != 1:
+        raise ValueError('Expected exactly one upstream version.name property')
+    properties.write_text(updated)
+    return version
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive', type=pathlib.Path, help='Optional already downloaded pinned source ZIP')
@@ -86,6 +105,8 @@ def main():
                 raise SystemExit('Overlay path escaped source root')
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
+    version = apply_preview_version(DESTINATION, pin)
+    print(f'Lanerc preview version: {version}; pinned upstream: {pin["commit"]}')
     print('Pinned Animeko source prepared at .local/animeko/worktree')
     print('Overlay includes protocol, source runtime, settings UI and Android integration; production readiness requires separate verification.')
 

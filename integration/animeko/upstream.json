@@ -4,5 +4,7 @@
   "archive_url": "https://codeload.github.com/open-ani/animeko/zip/6d79729a135cee6af861a7a095d3880d1b452260",
   "archive_sha256": "384941ac2577819ba77ca2152e356f5a004147d8a5d760e6aaa856442013a87a",
   "license": "AGPL-3.0",
+  "baseline_release": "6.4.0",
+  "commits_after_release": 15,
   "baseline_archive_comment_verified": true
 }

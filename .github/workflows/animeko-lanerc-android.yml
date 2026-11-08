@@ -6,6 +6,7 @@ on:
       - integration/animeko/overlay/**
       - '!integration/animeko/overlay/**/desktopTest/**'
       - '!integration/animeko/overlay/**/androidDeviceTest/**'
+      - integration/animeko/upstream.json
       - scripts/prepare_animeko_lanerc.py
       - scripts/publish_animeko_apk.py
       - .github/workflows/animeko-lanerc-android.yml

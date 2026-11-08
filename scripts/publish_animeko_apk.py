@@ -62,6 +62,12 @@ def main():
     if application_id != 'me.him188.ani.lanerc.debug2':
         raise ValueError('Unexpected compiled APK application ID')
     sdk = manifest.get('uses-sdk', {})
+    source_pin = json.loads(subprocess.check_output(
+        ['git', 'show', run['head_sha'] + ':integration/animeko/upstream.json'], cwd=ROOT, text=True))
+    if 'baseline_release' in source_pin:
+        expected_version = f"{source_pin['baseline_release']}-post{source_pin['commits_after_release']}.lanerc.preview"
+        if manifest.get('@android:versionName') != expected_version:
+            raise ValueError('Compiled APK version does not match pinned preview metadata')
     native_comments_ui = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
         ':integration/animeko/overlay/app/shared/src/commonMain/kotlin/ui/subject/episode/LanercCommentSection.kt'],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
@@ -81,7 +87,9 @@ def main():
     (destination / 'SHA256SUMS').write_text(f'{digest}  {filename}\n')
     report = {
         'source_commit': run['head_sha'], 'build_run': args.run, 'build_url': run['html_url'],
-        'upstream_commit': '6d79729a135cee6af861a7a095d3880d1b452260',
+        'upstream_commit': source_pin['commit'],
+        'baseline_release': source_pin.get('baseline_release'),
+        'commits_after_release': source_pin.get('commits_after_release'),
         'android_app_built': True, 'ui_compiled': True, 'ui_device_tested': False,
         'native_comments_ui_in_source': native_comments_ui,
         'native_account_login_ui_in_source': native_account,
@@ -101,7 +109,7 @@ def main():
 
 APK: `{filename}` (arm64-v8a, independent installed application ID `{application_id}`; Android 8.1 / API 27 or later).
 
-Build: {run['html_url']}\nSource: `{run['head_sha']}`\nSHA256: `{digest}`
+Version: `{report['version_name']}` (Lanerc preview, not an official Animeko release).\nUpstream: `{source_pin['commit']}`\nBuild: {run['html_url']}\nSource: `{run['head_sha']}`\nSHA256: `{digest}`
 
 This is a compiled integration preview, **not a verified production-ready release**.
 No recovered production keys or guest credentials are embedded. Configure private
