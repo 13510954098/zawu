@@ -8,6 +8,58 @@ import pathlib
 import re
 
 
+def joint_reference_layout(binary, chunks, records):
+    """Require one shared, injective reference dictionary across all four arrays."""
+    candidates = []
+    for chunk, record in zip(chunks, records):
+        options = []
+        for group in record['reference_structure_candidates']:
+            if group['width'] != 'dart-variable-reference' or group['truncated']:
+                continue
+            for offset in group['offsets']:
+                cursor, mapping = offset, {}
+                for nibble in chunk:
+                    start = cursor
+                    while cursor < len(binary) and cursor - start < 5:
+                        terminal = binary[cursor] >= 128
+                        cursor += 1
+                        if terminal:
+                            break
+                    else:
+                        raise ValueError('Invalid candidate reference')
+                    token = binary[start:cursor]
+                    if nibble in mapping and mapping[nibble] != token:
+                        break
+                    mapping[nibble] = token
+                else:
+                    if len(set(mapping.values())) == len(mapping):
+                        options.append((offset, mapping))
+        candidates.append(options)
+    solutions = []
+
+    def visit(index, dictionary, offsets):
+        if len(solutions) > 1:
+            return
+        if index == len(chunks):
+            solutions.append((offsets, dictionary))
+            return
+        for offset, mapping in candidates[index]:
+            if any(key in dictionary and dictionary[key] != value for key, value in mapping.items()):
+                continue
+            combined = dict(dictionary)
+            combined.update(mapping)
+            if len(set(combined.values())) == len(combined):
+                visit(index + 1, combined, offsets + [offset])
+
+    visit(0, {}, [])
+    result = {'unique': len(solutions) == 1, 'candidate_solution_count_capped_at_two': len(solutions)}
+    if len(solutions) == 1:
+        offsets, mapping = solutions[0]
+        result.update(offsets=offsets, mapped_nibble_count=len(mapping),
+                      dictionary_sha256=hashlib.sha256(json.dumps({str(k):v.hex() for k,v in sorted(mapping.items())}, sort_keys=True).encode()).hexdigest())
+    return result
+
+
 def probe(binary, pool):
     line = next(line for line in pool.splitlines() if line.startswith('[pp+0xe238]'))
     parts = re.findall(r'List<int>\(16\) \[([^\]]+)\]', line)
@@ -66,7 +118,8 @@ def probe(binary, pool):
     return {'scope': 'Static layout probe only; not an implemented or verified Android APK importer',
             'libapp_sha256': hashlib.sha256(binary).hexdigest(),
             'all_arrays_uniquely_located': all(any(m['unique'] for m in record['matches']) for record in records),
-            'arrays': records, 'raw_material_published': False}
+            'arrays': records, 'joint_reference_layout': joint_reference_layout(binary, chunks, records),
+            'raw_material_published': False}
 
 
 if __name__ == '__main__':
