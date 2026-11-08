@@ -14,10 +14,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: arena/44f5d2ee-zawu
+          fetch-depth: 0
       - name: Fetch public configuration without credentials or redirects
         run: |
           python scripts/lanerc_public_source_config.py --output analysis/lanerc/public-source-config.json --private-output /tmp/source-config.json
-          openssl cms -encrypt -binary -aes-256-cbc -in /tmp/source-config.json -outform DER -out analysis/lanerc/public-source-config.p7m analysis/lanerc/analysis-recipient.pem
+          openssl cms -encrypt -binary -aes-256-cbc -in /tmp/source-config.json -outform DER -out analysis/lanerc/public-source-config.p7m analysis/lanerc/session-recipient.pem
       - name: Save redacted evidence and encrypted responses
         run: |
           git config user.name 'github-actions[bot]'
@@ -25,4 +26,5 @@ jobs:
           git add analysis/lanerc/public-source-config.json analysis/lanerc/public-source-config.p7m
           git diff --cached --quiet && exit 0
           git commit -m 'Record public fallback source configuration evidence'
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu

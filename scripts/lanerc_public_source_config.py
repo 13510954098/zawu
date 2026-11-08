@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--output', required=True)
     parser.add_argument('--private-output', required=True)
     args = parser.parse_args()
-    opener = urllib.request.build_opener(NoRedirect())
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
     public, private = [], []
     for index, url in enumerate(URLS):
         record = {'configuration_index': index, 'redirects_followed': False,
