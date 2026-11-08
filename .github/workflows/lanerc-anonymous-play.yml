@@ -1,0 +1,36 @@
+name: Lanerc anonymous search and play-resolution probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [scripts/lanerc_anonymous_probe.py, .github/workflows/lanerc-anonymous-play.yml]
+permissions:
+  contents: write
+concurrency:
+  group: lanerc-anonymous-play-probe
+  cancel-in-progress: true
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Check syntax and install offline crypto dependency on Actions
+        run: |
+          python -m py_compile scripts/lanerc_anonymous_probe.py
+          python -m pip install cryptography==46.0.3
+      - name: Probe only anonymous reads and two play-resolution endpoints
+        run: python scripts/lanerc_anonymous_probe.py
+      - name: Commit redacted status only, never raw responses or media URLs
+        run: |
+          git switch -C arena/44f5d2ee-zawu
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/anonymous-play-probe.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record anonymous no-credential search and play-resolution status without fetching media'
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
+          git push origin HEAD:arena/44f5d2ee-zawu
