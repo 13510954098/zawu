@@ -9,8 +9,10 @@ Source: `69ae478d9e87f30a42bf4e6a8acc6f1c8f9ff961`
 SHA256: `63df3690773ff51155069af45e2bccba93e9acb9f0c0501c8d42bbc778e622a5`
 
 This is a compiled integration preview, **not a verified production-ready release**.
-No recovered production keys or guest credentials are embedded. Configure private
-protocol material inside the app; the default build does not bypass server login.
+Shared original-APK client protocol constants bundled: **False**.
+No user passwords, account tokens or guest credentials are bundled. Legacy builds
+without shared constants require manual protocol configuration. Bundling client
+constants does not bypass service-side authentication or verification.
 Original-format source import is partial. Native comments UI included in this
 compiled source: **True**. Not device/backend verified.
 Native danmaku timeline included in compiled source: **True**. Device/backend

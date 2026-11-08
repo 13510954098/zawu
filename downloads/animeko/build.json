@@ -20,6 +20,7 @@
   "min_sdk": "27",
   "target_sdk": "37",
   "build_type": "defaultDebug",
+  "shared_client_protocol_constants_embedded": false,
   "private_production_material_embedded": false,
   "original_source_import_verified": false,
   "production_playback_verified": false,
