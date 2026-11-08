@@ -65,6 +65,9 @@ def main():
     native_comments_ui = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
         ':integration/animeko/overlay/app/shared/src/commonMain/kotlin/ui/subject/episode/LanercCommentSection.kt'],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    native_timeline = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
+        ':integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/runtime/LanercDanmakuBridge.kt'],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
     destination = ROOT / 'downloads/animeko'
     destination.mkdir(parents=True, exist_ok=True)
     filename = 'animeko-lanerc-arm64-debug.apk'
@@ -75,6 +78,7 @@ def main():
         'upstream_commit': '6d79729a135cee6af861a7a095d3880d1b452260',
         'android_app_built': True, 'ui_compiled': True, 'ui_device_tested': False,
         'native_comments_ui_in_source': native_comments_ui,
+        'native_danmaku_timeline_in_source': native_timeline,
         'application_id': application_id, 'base_application_id': 'me.him188.ani.lanerc',
         'version_name': manifest.get('@android:versionName'), 'min_sdk': sdk.get('@android:minSdkVersion'),
         'target_sdk': sdk.get('@android:targetSdkVersion'), 'build_type': 'defaultDebug',
@@ -95,7 +99,7 @@ No recovered production keys or guest credentials are embedded. Configure privat
 protocol material inside the app; the default build does not bypass server login.
 Original-format source import is partial. Native comments UI included in this
 compiled source: **{native_comments_ui}**. It is read-only, not device/backend verified.
-Native danmaku timeline integration depends on the source commit; device/backend
+Native danmaku timeline included in compiled source: **{native_timeline}**. Device/backend
 verification and native account login/posting remain unfinished. No device test or
 successful production playback is claimed. Debug APKs use the CI-generated debug
 key; later builds may require uninstalling first, which removes app data.

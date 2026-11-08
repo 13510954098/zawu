@@ -7,8 +7,8 @@ on:
     inputs:
       run_id:
         description: Android build run with uploaded APK (compilation must have succeeded)
-        default: '42443902879'
-        required: true
+        default: ''
+        required: false
 permissions:
   contents: write
   actions: read
@@ -23,19 +23,31 @@ jobs:
         with:
           ref: arena/44f5d2ee-zawu
           fetch-depth: 0
+      - name: Resolve explicit build or current delivered version without downgrading
+        id: resolve
+        env:
+          INPUT_RUN: ${{ inputs.run_id }}
+        run: |
+          python - <<'PYCODE'
+          import json, os, pathlib
+          report = pathlib.Path('downloads/animeko/build.json')
+          fallback = json.loads(report.read_text())['build_run'] if report.exists() else 42443902879
+          run = int(os.environ.get('INPUT_RUN') or fallback)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f: f.write(f'run_id={run}\n')
+          PYCODE
       - name: Download compiled APK from the verified build
         uses: actions/download-artifact@v4
         with:
           name: animeko-lanerc-android-debug
           path: /tmp/lanerc-built-apk
           github-token: ${{ github.token }}
-          run-id: ${{ inputs.run_id || '42443902879' }}
+          run-id: ${{ steps.resolve.outputs.run_id }}
       - name: Install pinned binary manifest reader
         run: python -m pip install apkutils2==1.0.0
       - name: Validate build identity and prepare Code delivery
         env:
           GH_TOKEN: ${{ github.token }}
-          BUILD_RUN: ${{ inputs.run_id || '42443902879' }}
+          BUILD_RUN: ${{ steps.resolve.outputs.run_id }}
         run: python scripts/publish_animeko_apk.py --run "$BUILD_RUN" --artifacts /tmp/lanerc-built-apk
       - name: Commit APK and matching provenance to this session branch
         run: |
