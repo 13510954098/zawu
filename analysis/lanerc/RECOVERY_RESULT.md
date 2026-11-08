@@ -1,5 +1,7 @@
 # 本轮恢复结果：已重建响应密钥与请求签名材料
 
+> **最新公开配置验证：2026-11-08 已实际取得并用独立 TXT 密钥解码公开 DoH 记录，得到 `v3.yyghk.com`。这取代下文此前“未查 DNS/未确认关联”的历史状态，但不代表已验证受保护 API 或播放。详见 `PUBLIC_VALIDATION.md`。**
+
 > **后续更新：另已恢复普通响应的独立 AES-256-ECB 密钥/字符替换链，并还原 playResolveProtobuf 消息结构与访客凭证模型。GCM 密钥的准确用途为播放 protobuf 加密 data 字段，不能泛称覆盖全部通信。最新结果与未完成项见 `PROTOCOL_FINDINGS.md`。**
 
 适用输入：APK SHA-256 `4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd`。

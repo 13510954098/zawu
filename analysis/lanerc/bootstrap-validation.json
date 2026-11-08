@@ -1,0 +1,22 @@
+{
+  "validated_at_utc": "2026-11-08T02:45:33.569250+00:00",
+  "scope": "Offline decode of previously obtained public DNS TXT records",
+  "algorithm": "AES-256-ECB/PKCS7/UTF-8",
+  "key_sha256": "34dc9de848c3fe72706e4a74a02d4d47596f43c0da78867ab17897f44069f29c",
+  "expected_hostname": "v3.yyghk.com",
+  "records": [
+    {
+      "query_name": "dohx.lanerc.moe",
+      "ciphertext_length": 44,
+      "padding_and_utf8_valid": true,
+      "decoded_scheme": "https",
+      "decoded_hostname": "v3.yyghk.com",
+      "matches_expected_hostname": true,
+      "decoded_text_sha256": "576a6b0a6bd52580bc2de0799edbe49cd3040d7a560c7c231355331b5f82c653"
+    }
+  ],
+  "protected_requests_performed": false,
+  "caveat": "Padding, UTF-8 and expected hostname checks do not authenticate ECB ciphertext, prove ownership or validate playback access",
+  "matching_txt_record_count": 1,
+  "encrypted_record_provenance": "Public DNS records were transferred as CMS ciphertext; no recovered keys were used by the connectivity runner"
+}

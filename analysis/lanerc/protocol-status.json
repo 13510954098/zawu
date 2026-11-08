@@ -15,6 +15,11 @@
       "status": "statically-reconstructed",
       "key_bytes": 32,
       "sha256": "9c1f3067e0376feb3b407b16118c3a033fbc4f777529724ee9606e9f375cfb3b"
+    },
+    "bootstrap_txt_ecb": {
+      "status": "statically-reconstructed-and-tested-on-real-public-TXT",
+      "key_bytes": 32,
+      "sha256": "34dc9de848c3fe72706e4a74a02d4d47596f43c0da78867ab17897f44069f29c"
     }
   },
   "guest_credential": {
@@ -39,23 +44,27 @@
     "production_response_validated": false
   },
   "bootstrap": {
-    "status": "static-domain-pool-and-DoH-TXT-call-chain-located",
+    "status": "public-DoH-TXT-fetched-and-privately-decoded-to-v3.yyghk.com",
     "domain_pool": [
       "dohx.lanerc.moe",
       "doh.lanercdns1.cc",
       "doh.uminadns2.cc"
     ],
-    "live_resolution_performed": false
+    "live_resolution_performed": true
   },
   "v3.yyghk.com": {
     "ascii_or_utf16le_match_in_decompressed_apk_entries": false,
-    "current_backend_verified": false
+    "current_backend_verified": false,
+    "discovered_in_current_public_txt": true,
+    "unsigned_https_root_status": 404,
+    "verification_scope": "Current public bootstrap TXT decodes to this hostname; HTTPS root responds; protected APIs/playback not verified"
   },
   "release_private_key": {
     "status": "not-recovered-not-derivable-from-public-certificate"
   },
   "tests": {
-    "synthetic_test_count": 13,
-    "passed": 13
+    "synthetic_test_count": 21,
+    "passed": 21,
+    "real_public_txt_matching_records": 1
   }
 }

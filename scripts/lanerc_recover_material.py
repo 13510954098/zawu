@@ -84,6 +84,17 @@ def recover(text):
             'source': 'response interceptor -> 0x7ed7d8; key slot 0x133a0; AES mode slot 0xc4a0',
             'status': 'Statically reconstructed; no production response validation',
         }
+    if '[pp+0x11d00] String:' in text:
+        bootstrap_key = string_at('0x11d00').encode('utf-8')
+        if len(bootstrap_key) != 32:
+            raise ValueError('Expected a 32-byte bootstrap TXT key')
+        result['bootstrap_txt_encryption'] = {
+            'algorithm': 'AES-256-ECB', 'padding': 'PKCS7',
+            'key_hex': bootstrap_key.hex(), 'key_sha256': hashlib.sha256(bootstrap_key).hexdigest(),
+            'ordered_replacements': [],
+            'source': 'TXT decoder 0x96d9e8; key pool slot 0x11d00; AES mode slot 0xc4a0',
+            'status': 'Statically reconstructed; separate public TXT verification is recorded in bootstrap-validation.json',
+        }
     return result
 
 
