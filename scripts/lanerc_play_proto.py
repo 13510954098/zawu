@@ -57,7 +57,11 @@ def response(data):
             continue
         expected, name = known[number]
         if wire != expected:
-            raise ValueError('Known response field has unexpected wire type')
+            # Generated protobuf treats this tag as an unknown field. Its raw
+            # wire framing was already validated by fields(); do not reject a
+            # compatible message merely because a field number is reused with
+            # an unknown wire type.
+            continue
         if name == 'code':
             value &= 0xffffffff
             value = value - (1 << 32) if value & (1 << 31) else value
@@ -74,7 +78,7 @@ def play_resolve(data):
     for number, wire, value in fields(data):
         if number == 1:
             if wire != 2:
-                raise ValueError('playUrl has unexpected wire type')
+                continue  # Unknown tag variant, consistent with generated protobuf.
             url = value.decode('utf-8')
     return {'playUrl': url}
 

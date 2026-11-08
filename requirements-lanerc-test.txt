@@ -1,0 +1,4 @@
+# Independent offline validation dependencies; no recovered credentials.
+cryptography==50.0.2
+protobuf==7.36.2
+grpcio-tools==1.85.1

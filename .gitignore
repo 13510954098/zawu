@@ -2,3 +2,6 @@
 # Local analysis private keys and decrypted temporary files
 .local/
 __pycache__/
+
+# Dart reference build cache (fixtures and lockfile remain tracked)
+reference/lanerc/.dart_tool/

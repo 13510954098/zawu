@@ -1,0 +1,45 @@
+name: Lanerc independent offline compatibility checks
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths:
+      - .github/workflows/lanerc-reference.yml
+      - reference/lanerc/pubspec.yaml
+      - reference/lanerc/bin/*.dart
+      - requirements-lanerc-test.txt
+      - scripts/lanerc_run_reference_tests.py
+      - tests/test_lanerc_protobuf_reference.py
+      - tests/test_lanerc_dart_reference.py
+permissions:
+  contents: write
+jobs:
+  reference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.9.2
+      - name: Generate independent synthetic fixtures using pinned public libraries
+        working-directory: reference/lanerc
+        run: |
+          dart pub get
+          dart analyze
+          dart run bin/generate_fixtures.dart ../../analysis/lanerc/dart-reference-fixtures.json
+      - name: Run generated protobuf and cross-language checks without production access
+        run: |
+          python3 -m venv /tmp/lanerc-reference-env
+          /tmp/lanerc-reference-env/bin/pip install -r requirements-lanerc-test.txt
+          PYTHONDONTWRITEBYTECODE=1 /tmp/lanerc-reference-env/bin/python scripts/lanerc_run_reference_tests.py
+      - name: Commit public fixtures and compatibility report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analysis/lanerc/dart-reference-fixtures.json analysis/lanerc/reference-validation.json reference/lanerc/pubspec.lock
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record independent Dart and generated protobuf compatibility results"
+          git push origin HEAD:arena/44f5d2ee-zawu
