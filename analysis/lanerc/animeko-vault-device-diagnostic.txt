@@ -1,180 +1,180 @@
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:187)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:304)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:181)
-	at org.gradle.composite.internal.DefaultBuildController.access$000(DefaultBuildController.java:50)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:198)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:198)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: org.gradle.tooling.BuildException: Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
-	at com.android.build.gradle.internal.dexing.DexWorkAction.run(DexWorkAction.kt:53)
-	at com.android.build.gradle.internal.profile.ProfileAwareWorkAction.execute(ProfileAwareWorkAction.kt:66)
-	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:68)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:64)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:61)
-	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:102)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:61)
-	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
-	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
-	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:58)
-	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:176)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
-	at org.gradle.internal.Factories$1.create(Factories.java:30)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withLocksAcquired$0(DefaultWorkerLeaseService.java:269)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:42)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:267)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:259)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
-	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
-	... 7 more
-Caused by: com.android.builder.dexing.DexArchiveBuilderException: Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
-	at com.android.build.gradle.internal.dexing.DexWorkActionKt.process(DexWorkAction.kt:168)
-	at com.android.build.gradle.internal.dexing.DexWorkActionKt.processNonIncrementally(DexWorkAction.kt:132)
-	at com.android.build.gradle.internal.dexing.DexWorkActionKt.launchProcessing(DexWorkAction.kt:68)
-	at com.android.build.gradle.internal.dexing.DexWorkAction.run(DexWorkAction.kt:45)
-	... 38 more
-Caused by: com.android.builder.dexing.DexArchiveBuilderException: Error while dexing.
-	at com.android.builder.dexing.D8DexArchiveBuilder.getExceptionToRethrow(D8DexArchiveBuilder.java:193)
-	at com.android.builder.dexing.D8DexArchiveBuilder.convert(D8DexArchiveBuilder.java:132)
-	at com.android.build.gradle.internal.dexing.DexWorkActionKt.process(DexWorkAction.kt:164)
-	... 41 more
-Caused by: com.android.tools.r8.CompilationFailedException: Compilation failed to complete, origin: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest/me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1.class
-	at Version.fakeStackEntry(Version_9.1.31.java:0)
-	at com.android.tools.r8.r0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:81)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:32)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:31)
-	at com.android.tools.r8.internal.lw0.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-	at com.android.tools.r8.D8.run(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:11)
-	at com.android.builder.dexing.D8DexArchiveBuilder.convert(D8DexArchiveBuilder.java:130)
-	... 42 more
-Caused by: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
-	at com.android.tools.r8.graph.h9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:7)
-	at com.android.tools.r8.graph.h9.d(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:8)
-	at com.android.tools.r8.graph.h9.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:82)
-	at com.android.tools.r8.internal.rv.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:130)
-	at com.android.tools.r8.graph.m9.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:34)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:130)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:131)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:129)
-	at com.android.tools.r8.graph.m9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:125)
-	at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:27)
-	at com.google.common.util.concurrent.TrustedListenableFutureTask$TrustedFutureInterruptibleTask.runInterruptibly(TrustedListenableFutureTask.java:131)
-	at com.google.common.util.concurrent.InterruptibleTask.run(InterruptibleTask.java:76)
-	at com.google.common.util.concurrent.TrustedListenableFutureTask.run(TrustedListenableFutureTask.java:82)
-	at com.google.common.util.concurrent.DirectExecutorService.execute(DirectExecutorService.java:51)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:79)
-	at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:37)
-	at com.android.tools.r8.internal.fg4.submit(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-	at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:19)
-	at com.android.tools.r8.internal.hf4.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-	at com.android.tools.r8.internal.hf4.c(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:112)
-	at com.android.tools.r8.internal.ab1.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
-	at com.android.tools.r8.utils.h.getProgramResources(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-	at com.android.tools.r8.internal.w83.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-	at com.android.tools.r8.utils.i.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:54)
-	at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:83)
-	at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
-	at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:12)
-	at com.android.tools.r8.D8.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:34)
-	at com.android.tools.r8.D8.d(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:20)
-	at com.android.tools.r8.D8.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-	at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
-	... 45 more
-	Suppressed: java.lang.RuntimeException: java.util.concurrent.ExecutionException: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
-		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:70)
-		... 50 more
-	Caused by: java.util.concurrent.ExecutionException: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
-		at com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:596)
-		at com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:555)
-		at com.google.common.util.concurrent.FluentFuture$TrustedFuture.get(FluentFuture.java:91)
-		at com.android.tools.r8.internal.fg4.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
-		at com.android.tools.r8.internal.fg4.awaitFutures(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:20)
-		at com.android.tools.r8.dex.c.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:8)
-		at com.android.tools.r8.internal.dh4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:3)
-		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:77)
-		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:29)
-		... 50 more
-	Caused by: com.android.tools.r8.internal.nw0: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)
-		at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:146)
-		at com.android.tools.r8.internal.lw0.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:129)
-		at com.android.tools.r8.graph.m9.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:125)
-		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:27)
-		at com.google.common.util.concurrent.TrustedListenableFutureTask$TrustedFutureInterruptibleTask.runInterruptibly(TrustedListenableFutureTask.java:131)
-		at com.google.common.util.concurrent.InterruptibleTask.run(InterruptibleTask.java:76)
-		at com.google.common.util.concurrent.TrustedListenableFutureTask.run(TrustedListenableFutureTask.java:82)
-		at com.google.common.util.concurrent.DirectExecutorService.execute(DirectExecutorService.java:51)
-		at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-		at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:79)
-		at com.google.common.util.concurrent.AbstractListeningExecutorService.submit(AbstractListeningExecutorService.java:37)
-		at com.android.tools.r8.internal.fg4.submit(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-		at com.android.tools.r8.internal.hf4.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:19)
-		at com.android.tools.r8.internal.hf4.b(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-		at com.android.tools.r8.internal.hf4.c(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:1)
-		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:112)
-		at com.android.tools.r8.internal.ab1.forEach(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:4)
-		at com.android.tools.r8.utils.h.getProgramResources(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-		at com.android.tools.r8.internal.w83.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:2)
-		at com.android.tools.r8.utils.i.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:54)
-		at com.android.tools.r8.dex.a.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:83)
-		at com.android.tools.r8.dex.c.a(R8_9.1.31_ffb8f76e0cfe19f6a6aff10b55ad38bc82c7544bc91f5b7fd86bc80f9b2412e7:28)
-		... 50 more
-	Caused by: [CIRCULAR REFERENCE: com.android.tools.r8.internal.ez: Space characters in SimpleName 'me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1' are not allowed prior to DEX version 040 (class name `me/him188/ani/app/domain/featureflag/FeatureFlagManagerTest$saved snapshot is used before the first fetch$1$1`)]
+> Task :app:shared:app-data-aidl:compileReleaseLibraryResources FROM-CACHE
+> Task :app:shared:app-lang:mapAndroidMainSourceSetPaths
+> Task :app:shared:app-lang:compileAndroidMainLibraryResources
+> Task :app:shared:app-platform:mapAndroidMainSourceSetPaths
+> Task :app:shared:app-platform:compileAndroidMainLibraryResources FROM-CACHE
+> Task :app:shared:video-player:torrent-source:mapAndroidMainSourceSetPaths
+> Task :app:shared:video-player:torrent-source:compileAndroidMainLibraryResources FROM-CACHE
+> Task :app:shared:video-player:video-player-api:mapAndroidMainSourceSetPaths
+> Task :app:shared:video-player:video-player-api:compileAndroidMainLibraryResources FROM-CACHE
+warn: removing resource me.him188.ani.app.data.test:string/settings_app_use_new_search_api without required default value.
+warn: removing resource me.him188.ani.app.data.test:string/settings_app_use_new_search_api_description without required default value.
 
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794113930698.json
+> Task :app:shared:app-data:processAndroidDeviceTestResources
+> Task :client:mergeAndroidMainJniLibFolders
+> Task :client:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :client:copyAndroidMainJniLibsProjectOnly
+> Task :danmaku:dandanplay:mergeAndroidMainJniLibFolders
+> Task :danmaku:dandanplay:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :danmaku:dandanplay:copyAndroidMainJniLibsProjectOnly
+> Task :danmaku:danmaku-api:mergeAndroidMainJniLibFolders
+> Task :danmaku:danmaku-api:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :danmaku:danmaku-api:copyAndroidMainJniLibsProjectOnly
+> Task :danmaku:danmaku-ui-config:mergeAndroidMainJniLibFolders
+> Task :danmaku:danmaku-ui-config:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :danmaku:danmaku-ui-config:copyAndroidMainJniLibsProjectOnly
+> Task :datasource:datasource-api:mergeAndroidMainJniLibFolders
+> Task :datasource:datasource-api:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :datasource:datasource-api:copyAndroidMainJniLibsProjectOnly
+> Task :datasource:ikaros:mergeAndroidMainJniLibFolders
+> Task :datasource:ikaros:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :datasource:ikaros:copyAndroidMainJniLibsProjectOnly
+> Task :datasource:jellyfin:mergeAndroidMainJniLibFolders
+> Task :datasource:jellyfin:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :datasource:jellyfin:copyAndroidMainJniLibsProjectOnly
+> Task :torrent:anitorrent:mergeAndroidMainJniLibFolders
+> Task :torrent:anitorrent:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :torrent:anitorrent:copyAndroidMainJniLibsProjectOnly
+> Task :torrent:pikpak:mergeAndroidMainJniLibFolders
+> Task :torrent:pikpak:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :torrent:pikpak:copyAndroidMainJniLibsProjectOnly
+> Task :torrent:torrent-api:mergeAndroidMainJniLibFolders
+> Task :torrent:torrent-api:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :torrent:torrent-api:copyAndroidMainJniLibsProjectOnly
+> Task :utils:analytics:mergeAndroidMainJniLibFolders
+> Task :utils:analytics:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:analytics:copyAndroidMainJniLibsProjectOnly
+> Task :utils:androidx-lifecycle-runtime-testing:mergeAndroidMainJniLibFolders
+> Task :utils:androidx-lifecycle-runtime-testing:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:androidx-lifecycle-runtime-testing:copyAndroidMainJniLibsProjectOnly
+> Task :utils:build-config:mergeDefaultReleaseJniLibFolders
+> Task :utils:build-config:mergeDefaultReleaseNativeLibs NO-SOURCE
+> Task :utils:build-config:copyDefaultReleaseJniLibsProjectOnly
+> Task :utils:coroutines:mergeAndroidMainJniLibFolders
+> Task :utils:coroutines:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:coroutines:copyAndroidMainJniLibsProjectOnly
+> Task :utils:http-downloader:mergeAndroidMainJniLibFolders
+> Task :utils:http-downloader:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:http-downloader:copyAndroidMainJniLibsProjectOnly
+> Task :utils:intellij-annotations:mergeAndroidMainJniLibFolders
+> Task :utils:intellij-annotations:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:intellij-annotations:copyAndroidMainJniLibsProjectOnly
+> Task :utils:io:mergeAndroidMainJniLibFolders
+> Task :utils:io:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:io:copyAndroidMainJniLibsProjectOnly
+> Task :utils:ip-parser:mergeAndroidMainJniLibFolders
+> Task :utils:ip-parser:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:ip-parser:copyAndroidMainJniLibsProjectOnly
+> Task :utils:jsonpath:mergeAndroidMainJniLibFolders
+> Task :utils:jsonpath:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:jsonpath:copyAndroidMainJniLibsProjectOnly
+> Task :utils:ktor-client:mergeAndroidMainJniLibFolders
+> Task :utils:ktor-client:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:ktor-client:copyAndroidMainJniLibsProjectOnly
+> Task :utils:logging:mergeAndroidMainJniLibFolders
+> Task :utils:logging:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:logging:copyAndroidMainJniLibsProjectOnly
+> Task :utils:platform:mergeAndroidMainJniLibFolders
+> Task :utils:platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:platform:copyAndroidMainJniLibsProjectOnly
+> Task :utils:serialization:mergeAndroidMainJniLibFolders
+> Task :utils:serialization:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:serialization:copyAndroidMainJniLibsProjectOnly
+> Task :utils:testing:mergeAndroidMainJniLibFolders
+> Task :utils:testing:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:testing:copyAndroidMainJniLibsProjectOnly
+> Task :utils:ui-testing:mergeAndroidMainJniLibFolders
+> Task :utils:ui-testing:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:ui-testing:copyAndroidMainJniLibsProjectOnly
+> Task :utils:xml:mergeAndroidMainJniLibFolders
+> Task :utils:xml:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :utils:xml:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:app-data:mergeAndroidMainJniLibFolders
+> Task :app:shared:app-data:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:app-data:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:app-data:mergeAndroidDeviceTestJniLibFolders
+> Task :app:shared:app-data-aidl:mergeReleaseJniLibFolders
+> Task :app:shared:app-data-aidl:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:shared:app-data-aidl:copyReleaseJniLibsProjectOnly
+> Task :app:shared:app-lang:mergeAndroidMainJniLibFolders
+> Task :app:shared:app-lang:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:app-lang:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:app-platform:mergeAndroidMainJniLibFolders
+> Task :app:shared:app-platform:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:app-platform:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:video-player:torrent-source:mergeAndroidMainJniLibFolders
+> Task :app:shared:video-player:torrent-source:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:video-player:video-player-api:mergeAndroidMainJniLibFolders
+> Task :app:shared:video-player:video-player-api:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:app-data:mergeAndroidDeviceTestNativeLibs
+
+> Task :app:shared:app-data:stripAndroidDeviceTestDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libanitorrent.so, libavcodec.so, libavdevice.so, libavfilter.so, libavformat.so, libavutil.so, libdatastore_shared_counter.so, libffmpeg.so, libffmpegkitjni.so, libonnxruntime.so, libonnxruntime4j_jni.so, libsqliteJni.so, libswresample.so, libswscale.so, libtorrent-rasterbar.so. Run with --info option to learn more.
+
+> Task :app:shared:app-data:validateSigningAndroidDeviceTest
+> Task :app:shared:app-data:writeAndroidDeviceTestSigningConfigVersions
+> Task :app:shared:app-data:compileAndroidMain
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/data/models/subject/SubjectAiringInfo.kt:159:22 'val completeDate: PackedDate' is deprecated. Removed, because we always have episodes now.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/data/repository/episode/EpisodeCollectionRepository.kt:371:31 'val comment: Int' is deprecated. No longer provided.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/data/repository/episode/EpisodeCollectionRepository.kt:402:24 'val comment: Int' is deprecated. Not available anymore.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/data/repository/subject/SubjectCollectionRepository.kt:753:31 Elvis operator (?:) always returns the left operand of non-nullable type 'SubjectRelations'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/danmaku/DanmakuLoader.kt:100:47 This is a delicate API and its use requires care. Make sure you fully read and understand documentation of the declaration that is marked as a delicate API.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/episode/CreateMediaFetchSelectBundleFlowUseCase.kt:155:52 Elvis operator (?:) always returns the left operand of non-nullable type 'Boolean'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/web/SelectorMediaSourceEngine.kt:331:82 'val userAgent: String' is deprecated. Use SelectorSearchConfig.userAgent.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/player/extension/WatchTogetherPlayerExtension.kt:189:67 Elvis operator (?:) always returns the left operand of non-nullable type 'Float'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/watchtogether/SyncGuidanceEngine.kt:68:29 Elvis operator (?:) always returns the left operand of non-nullable type 'Float'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/watchtogether/WatchTogetherManager.kt:123:78 Expression is unused.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/watchtogether/WatchTogetherManager.kt:635:54 Elvis operator (?:) always returns the left operand of non-nullable type 'Float'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonMain/kotlin/domain/watchtogether/WatchTogetherManager.kt:635:83 Elvis operator (?:) always returns the left operand of non-nullable type 'Float'.
+
+> Task :app:shared:app-data:processAndroidMainJavaRes
+> Task :app:shared:app-data:bundleAndroidMainClassesToCompileJar
+> Task :app:shared:app-data:kspAndroidDeviceTest SKIPPED
+> Task :app:shared:app-data:mergeAndroidDeviceTestJavaResource
+> Task :app:shared:app-data:bundleLibRuntimeToDirAndroidMain
+> Task :app:shared:app-data:mergeLibDexAndroidDeviceTest
+
+> Task :app:shared:app-data:compileAndroidDeviceTest
+w: Opt-in requirement marker 'io.ktor.util.KtorExperimentalAPI' is unresolved. Make sure it's present in the module dependencies.
+w: The argument '-Xannotation-default-target=param-property' is redundant for the current language version 2.4.
+w: The argument '-Xannotation-target-all' is redundant for the current language version 2.4.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/data/repository/subject/DefaultBangumiMergeRepositoryTest.kt:501:40 Unnecessary safe call on a non-null receiver of type 'SelfRatingInfo'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/danmaku/DanmakuCacheTest.kt:189:17 'fun CoroutineScope.launch(context: NonCancellable, start: CoroutineStart = ..., block: suspend CoroutineScope.() -> Unit): Job' is deprecated. Passing a NonCancellable to `launch` breaks structured concurrency, leading to hard-to-diagnose errors. This pattern should be avoided. This overload will be deprecated with an error in the future.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/foundation/DefaultHttpClientProviderTest.kt:47:21 'fun CoroutineScope.launch(context: NonCancellable, start: CoroutineStart = ..., block: suspend CoroutineScope.() -> Unit): Job' is deprecated. Passing a NonCancellable to `launch` breaks structured concurrency, leading to hard-to-diagnose errors. This pattern should be avoided. This overload will be deprecated with an error in the future.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/foundation/DefaultHttpClientProviderTest.kt:66:21 'fun CoroutineScope.launch(context: NonCancellable, start: CoroutineStart = ..., block: suspend CoroutineScope.() -> Unit): Job' is deprecated. Passing a NonCancellable to `launch` breaks structured concurrency, leading to hard-to-diagnose errors. This pattern should be avoided. This overload will be deprecated with an error in the future.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/foundation/FlowLoadErrorObserverTest.kt:59:55 Unnecessary non-null assertion (!!) on a non-null receiver of type 'IllegalStateException'.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/mediasource/web/DefaultSelectorMediaSourceEngineCaptchaTest.kt:235:48 No cast needed.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/mediasource/web/SelectorSearchApiLinkTemplateTest.kt:85:22 Redundant creation of Json format. Creating instances for each usage can be slow.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:46:18 'class MediaSelectorTestBuilder : Any' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:68:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:91:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:119:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:162:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:182:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/analytics/PlayFlowFetchObserverTest.kt:201:23 'constructor(testScope: TestScope): MediaSelectorTestBuilder' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/domain/player/extension/CacheOnBtPlayExtensionTest.kt:187:36 'class MediaSelectorTestBuilder : Any' is deprecated. This class is deprecated. Use the new test framework instead.
+w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/src/commonTest/kotlin/tools/TimeFormatterTest.kt:28:9 'fun dayOfMonth(padding: Padding = ...): Unit' is deprecated. Use 'day' instead.
+
+> Task :app:shared:app-data:dexBuilderAndroidDeviceTest
+> Task :app:shared:app-data:mergeProjectDexAndroidDeviceTest
+> Task :app:shared:app-data:packageAndroidDeviceTest
+> Task :app:shared:app-data:createAndroidDeviceTestApkListingFileRedirect
+[EmulatorConsole]: Failed to start Emulator console for 5554
+Starting 3 tests on emulator-5554 - 11
+Finished 3 tests on emulator-5554 - 11
+> Task :app:shared:app-data:connectedAndroidDeviceTest
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794114582905.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':app:shared:app-data:dexBuilderAndroidDeviceTest'.
-> There were multiple failures while executing work items
-   > A failure occurred while executing com.android.build.gradle.internal.dexing.DexWorkAction
-      > Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
-   > A failure occurred while executing com.android.build.gradle.internal.dexing.DexWorkAction
-      > Failed to process: /home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-data/build/classes/kotlin/android/deviceTest
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 8m 47s
-598 actionable tasks: 541 executed, 57 from cache
+BUILD SUCCESSFUL in 9m 52s
+602 actionable tasks: 545 executed, 57 from cache
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794113930698.json
-https://gradle.com/s/bicquakocij4s
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794114582905.json
+https://gradle.com/s/4sp5qbxjv4kju
 
