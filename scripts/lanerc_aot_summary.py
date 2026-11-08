@@ -53,11 +53,15 @@ def summarize(root):
                 selected.update(c for c in fn['calls'] if c in functions)
             if any(c in old for c in fn['calls']):
                 selected.add(addr)
+    if not seeds:
+        selected = set(functions)
     return {
         'scope': 'Static ARM64 direct-call graph; no runtime execution or credential validation',
         'redaction': 'No object pool, raw assembly, string constants, keys, IVs or tokens exported',
         'limitations': 'Obfuscation, inlining, dynamic dispatch and indirect calls limit completeness; names do not prove purpose',
         'total_functions': len(functions), 'seed_count': len(seeds),
+        'assembly_files': [str(p.relative_to(root)) for p in sorted(root.rglob('*.dart'))],
+        'functions_with_calls': sum(bool(f['calls']) for f in functions.values()),
         'seeds': sorted(seeds, key=lambda a: int(a, 16)),
         'functions': [functions[a] for a in sorted(selected, key=lambda a: int(a, 16))],
     }
