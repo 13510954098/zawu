@@ -14,41 +14,30 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: arena/44f5d2ee-zawu
-      - name: Fetch supplied APK
-        shell: python
-        run: |
-          import hashlib, json, pathlib, re, urllib.parse, urllib.request
-          out = pathlib.Path('downloads/lanerc')
-          out.mkdir(parents=True, exist_ok=True)
-          def download(url, limit):
-              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-              with urllib.request.urlopen(req, timeout=90) as response:
-                  data = response.read(limit + 1)
-                  if len(data) > limit:
-                      raise ValueError('Download exceeds size limit')
-                  return data, response.url
-          urls = ['https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTYxOTIzMzQzOTpNRVJDSEFOVDpbQkAyZjc1Mjg0ZDoyMjUzNTM1MjMyOTQzOQ%3D%3D.apk']
-          report = {'source': 'user-provided URL; publisher unverified', 'downloads': []}
-          for i, url in enumerate(urls[:3], 1):
-              if urllib.parse.urlparse(url).scheme not in ('https', 'http'):
-                  continue
-              data, resolved = download(url, 95 * 1024 * 1024)
-              if not data.startswith(b'PK'):
-                  raise ValueError('Linked download is not a ZIP/APK file')
-              name = f'lanerc-supplied-{i}.apk'
-              (out / name).write_bytes(data)
-              report['downloads'].append({'file': name, 'url': resolved, 'size': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
-          (out / 'download-report.json').write_text(json.dumps(report, indent=2))
-          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
-              summary.write('Downloaded user-supplied APK (publisher not verified).\n\n')
-              for item in report['downloads']:
-                  summary.write(f"Size: {item['size']} bytes; SHA-256: `{item['sha256']}`\n")
-      - name: Upload downloads for analysis
-        uses: actions/upload-artifact@v4
+      - name: Retrieve already downloaded APK
+        uses: actions/download-artifact@v4
         with:
           name: lanerc-official-download
           path: downloads/lanerc/
-          retention-days: 3
+          run-id: 42435691449
+          github-token: ${{ github.token }}
+      - name: Handle GitHub single-file size limit
+        run: |
+          python - <<'PYTHON'
+          import pathlib
+          for path in pathlib.Path('downloads/lanerc').glob('*.apk'):
+              if path.stat().st_size >= 100 * 1024 * 1024:
+                  with path.open('rb') as src:
+                      index = 1
+                      while chunk := src.read(50 * 1024 * 1024):
+                          path.with_name(path.name + f'.part{index:02d}').write_bytes(chunk)
+                          index += 1
+                  path.unlink()
+                  pathlib.Path('downloads/lanerc/README.md').write_text(
+                      'APK split to meet GitHub single-file limits. Reassemble with:\n\n'
+                      '```sh\ncat *.apk.part* > lanerc-supplied.apk\n```\n'
+                      'Verify SHA-256 against download-report.json. Publisher unverified.\n')
+          PYTHON
       - name: Commit APK and report to current session branch
         run: |
           git config user.name "github-actions[bot]"
