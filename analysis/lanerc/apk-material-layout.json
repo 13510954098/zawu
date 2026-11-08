@@ -1,0 +1,24 @@
+{
+  "scope": "Static layout probe only; not an implemented or verified Android APK importer",
+  "libapp_sha256": "3868fe78611e22c13cf49f18f8655686f79d03783294b94ecc69d843a29dd9a6",
+  "all_arrays_uniquely_located": false,
+  "arrays": [
+    {
+      "array_index": 0,
+      "matches": []
+    },
+    {
+      "array_index": 1,
+      "matches": []
+    },
+    {
+      "array_index": 2,
+      "matches": []
+    },
+    {
+      "array_index": 3,
+      "matches": []
+    }
+  ],
+  "raw_material_published": false
+}
