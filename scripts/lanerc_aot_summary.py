@@ -7,6 +7,9 @@ import re
 
 def summarize(root):
     functions = {}
+    header_count = 0
+    header_samples = []
+    header_unmatched = 0
     addr_re = re.compile(r'// \*\* addr: (0x[0-9a-f]+), size: (0x[0-9a-f]+)')
     call_re = re.compile(r'\bbl\s+#?(0x[0-9a-f]+)\b')
     focus = re.compile(r'buildSignature|encrypt|decrypt|\bAES\b|\bHmac\b|onRequest|onResponse|Interceptor|ApiService|Doh|Bootstrap', re.I)
@@ -14,6 +17,13 @@ def summarize(root):
         current = None
         previous = ''
         for line in path.read_text(errors='replace').splitlines():
+            if '** addr:' in line:
+                header_count += 1
+                # Numeric/address header only, no literals.
+                if len(header_samples) < 30 and re.fullmatch(r'[ /*a-zA-Z0-9:,]+', line):
+                    header_samples.append(line.strip())
+                if not addr_re.search(line):
+                    header_unmatched += 1
             match = addr_re.search(line)
             if match:
                 # Only the declaration preceding the address, never field initializers.
@@ -60,6 +70,8 @@ def summarize(root):
         'redaction': 'No object pool, raw assembly, string constants, keys, IVs or tokens exported',
         'limitations': 'Obfuscation, inlining, dynamic dispatch and indirect calls limit completeness; names do not prove purpose',
         'total_functions': len(functions), 'seed_count': len(seeds),
+        'header_count': header_count, 'header_unmatched': header_unmatched,
+        'header_samples': header_samples,
         'assembly_files': [str(p.relative_to(root)) for p in sorted(root.rglob('*.dart'))],
         'functions_with_calls': sum(bool(f['calls']) for f in functions.values()),
         'seeds': sorted(seeds, key=lambda a: int(a, 16)),
