@@ -1,0 +1,132 @@
+{
+  "scope": "Independent public-library fixtures only; not original APK execution or production validation",
+  "dartVersion": "3.9.2",
+  "libraries": {
+    "crypto": "3.0.6",
+    "dio": "5.9.0",
+    "encrypt": "5.0.3"
+  },
+  "apkLibraryVersionsConfirmed": false,
+  "syntheticKeyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+  "gcm": {
+    "nonceBytes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "plaintextProtoBase64": "CjNodHRwczovL2V4YW1wbGUuaW52YWxpZC9maXh0dXJlLm0zdTg/bmFtZT0lRTklOUIlQUE=",
+    "encryptedEnvelopeBase64": "AAECAwQFBgcICQoLTTG+b7GVsSGibvLz0IQIAeb47lqGGjMVXEiD7GUddcBkPsPP2vkt9hXJGtCtwhEd1xtFzBu9zoO9HLJr+GH8+tr74V0X",
+    "responseProtoBase64": "CMgBGAEiUQABAgMEBQYHCAkKC00xvm+xlbEhom7y89CECAHm+O5ahhozFVxIg+xlHXXAZD7Dz9r5LfYVyRrQrcIRHdcbRcwbvc6DvRyya/hh/Pra++FdFw==",
+    "expectedPlayUrl": "https://example.invalid/fixture.m3u8?name=%E9%9B%AA"
+  },
+  "ecb": {
+    "ciphertextBase64": "FEyq+c6nvO/pdbMQHHVlt8iPpItbcr5D0zfuxMkyguW3pGSfvM4AJblBg0FAU7KR",
+    "expectedPlaintext": "{\"fixture\":\"Dart to Python 雪\",\"ok\":true}"
+  },
+  "uriSignatures": [
+    {
+      "name": "basic",
+      "baseUrl": "https://example.invalid/api/",
+      "path": "app/config",
+      "query": {},
+      "canonicalUri": "https://example.invalid/api/app/config",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-b389883c729e26bcbc7f9f19f4ed4523"
+    },
+    {
+      "name": "leading-slash",
+      "baseUrl": "https://example.invalid/api/",
+      "path": "/app/config",
+      "query": {},
+      "canonicalUri": "https://example.invalid/api/app/config",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-b389883c729e26bcbc7f9f19f4ed4523"
+    },
+    {
+      "name": "query-order-and-unicode",
+      "baseUrl": "https://example.invalid/",
+      "path": "search",
+      "query": {
+        "q": "雪 空",
+        "page": 2,
+        "enabled": true
+      },
+      "canonicalUri": "https://example.invalid/search?q=%E9%9B%AA+%E7%A9%BA&page=2&enabled=true",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-0df65d54b7a1ce9e4a3b53644863ce14"
+    },
+    {
+      "name": "list-and-null",
+      "baseUrl": "https://example.invalid/",
+      "path": "search",
+      "query": {
+        "tags": [
+          "日漫",
+          "a/b"
+        ],
+        "empty": "",
+        "none": null
+      },
+      "canonicalUri": "https://example.invalid/search?tags=%E6%97%A5%E6%BC%AB&tags=a%2Fb&empty=&none",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-de0d3237d7d258823232a5f8ce35e570"
+    },
+    {
+      "name": "normalize-path",
+      "baseUrl": "https://example.invalid/root/",
+      "path": "../a/./b/%2F",
+      "query": {
+        "q": "a+b & c"
+      },
+      "canonicalUri": "https://example.invalid/a/b/%2F?q=a%2Bb+%26+c",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-9b1481d3795613bdab175ce881f5f2ee"
+    },
+    {
+      "name": "existing-query",
+      "baseUrl": "https://example.invalid/",
+      "path": "app/config?old=1",
+      "query": {
+        "new": "two words"
+      },
+      "canonicalUri": "https://example.invalid/app/config?old=1&new=two+words",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-561bb39e8584c79447a3902fd86fc0f2"
+    },
+    {
+      "name": "absolute-url",
+      "baseUrl": "https://example.invalid/unused/",
+      "path": "https://EXAMPLE.invalid/direct",
+      "query": {
+        "b": 2,
+        "a": 1
+      },
+      "canonicalUri": "https://example.invalid/direct?b=2&a=1",
+      "timestamp": 1700000000,
+      "nonce": "abc",
+      "syntheticSuffix": "fixture-suffix-17",
+      "sign": "1700000000-abc-cda1de3852f49a131e11ef990e5a6414"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "scope": "Offline synthetic cross-implementation checks, plus existing unit tests",
+  "original_apk_executed": false,
+  "production_api_validated": false,
+  "guest_credentials_obtained": false,
+  "private_recovered_material_used": false,
+  "tests_run": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed_without_skips": true,
+  "generated_protobuf_cases": {
+    "outer_messages": 500,
+    "inner_messages": 100
+  },
+  "dart_uri_signature_cases": 7,
+  "dart_version": "3.9.2",
+  "dart_reference_libraries": {
+    "crypto": "3.0.6",
+    "dio": "5.9.0",
+    "encrypt": "5.0.3"
+  },
+  "apk_library_versions_confirmed": false,
+  "python_reference_libraries": {
+    "cryptography": "50.0.2",
+    "protobuf": "7.36.2",
+    "grpcio-tools": "1.85.1"
+  },
+  "compatibility_fix": "Known field numbers with unknown wire types are skipped like generated protobuf, instead of rejected",
+  "limitations": "Confirms agreement with the pinned public-library references and reconstructed schema, not live server acceptance or an exact APK library-version match"
+}
