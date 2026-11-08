@@ -1,6 +1,6 @@
 {
   "scope": "Kotlin JVM core compiled and tested against public Dart fixtures and virtual-time source adapters only",
-  "tests": 29,
+  "tests": 36,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
