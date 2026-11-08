@@ -164,17 +164,17 @@ w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-dat
 > Task :app:shared:app-data:packageAndroidDeviceTest
 > Task :app:shared:app-data:createAndroidDeviceTestApkListingFileRedirect
 [EmulatorConsole]: Failed to start Emulator console for 5554
-Starting 3 tests on emulator-5554 - 11
-Finished 3 tests on emulator-5554 - 11
+Starting 4 tests on emulator-5554 - 11
+Finished 4 tests on emulator-5554 - 11
 > Task :app:shared:app-data:connectedAndroidDeviceTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794114582905.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794116995710.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 9m 52s
+BUILD SUCCESSFUL in 10m 12s
 602 actionable tasks: 545 executed, 57 from cache
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794114582905.json
-https://gradle.com/s/4sp5qbxjv4kju
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794116995710.json
+https://gradle.com/s/yxz3ndkwf7hiu
 

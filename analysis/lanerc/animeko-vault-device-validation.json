@@ -1,8 +1,8 @@
 {
   "scope": "Actual Android KeyStore AES-GCM on API 30 x86_64 emulator with public synthetic data; not hardware device or production playback",
-  "source_commit": "1fa5b0d3794a140219e41362a7cb25b0a332b4c8",
+  "source_commit": "78a1896399bde6f3d9ead6bb9bb5a0a86961e5db",
   "step_outcome": "success",
-  "tests": 3,
+  "tests": 4,
   "failures": 0,
   "errors": 0,
   "skipped": 0
