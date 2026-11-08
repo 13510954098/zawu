@@ -1,0 +1,52 @@
+name: Verify Qishui Source Zip
+
+on:
+  push:
+    branches:
+      - "arena/f32564a0-zawu"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-flutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Unpack and Verify Clean-Room Qishui Project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          unzip -q qishui-source.zip -d /tmp/verify_ws
+          cd /tmp/verify_ws/qishui-source
+          set +e
+          flutter pub get > /tmp/pub.log 2>&1
+          RC_PUB=$?
+          flutter analyze > /tmp/ana.log 2>&1
+          RC_ANA=$?
+          flutter test > /tmp/tst.log 2>&1
+          RC_TST=$?
+          flutter build apk --debug > /tmp/apk.log 2>&1
+          RC_APK=$?
+          SUMMARY="RC_PUB=$RC_PUB RC_ANA=$RC_ANA RC_TST=$RC_TST RC_APK=$RC_APK
+          ---ANA---
+          $(tail -n 30 /tmp/ana.log)
+          ---TST---
+          $(tail -n 30 /tmp/tst.log)
+          ---APK---
+          $(tail -n 30 /tmp/apk.log)"
+          echo "$SUMMARY"
+          gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments" -f "body=$SUMMARY"
+          test $RC_PUB -eq 0 && test $RC_ANA -eq 0 && test $RC_TST -eq 0 && test $RC_APK -eq 0
