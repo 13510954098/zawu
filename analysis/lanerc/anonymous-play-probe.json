@@ -1,6 +1,6 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "7c3b7248df0ce624e50b4a9d1bfab24c48c56ef3",
+  "source_commit": "b25216ed0a0ad807c0cf31aef7c8d985c39141b9",
   "credentials_used": false,
   "captcha_solved": false,
   "media_fetched": true,
@@ -30,6 +30,8 @@
       "url_scheme": "http",
       "network_host_present": true,
       "userinfo_present": false,
+      "media_http_status": 200,
+      "media_content_type": "application/vnd.apple.mpegurl",
       "media_streams": [
         {
           "codec_type": "video",
@@ -38,7 +40,8 @@
           "height": 0
         }
       ],
-      "media_stream_probe_verified": true
+      "media_format": "hls",
+      "media_stream_probe_verified": false
     },
     {
       "operation": "app/v2/guest/play",
