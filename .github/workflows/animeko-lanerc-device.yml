@@ -57,7 +57,7 @@ jobs:
           python - <<'PY'
           import pathlib, xml.etree.ElementTree as ET
           roots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/app-data/build/outputs').rglob('TEST-*.xml') if 'LanercVaultDeviceTest' in p.read_text(errors='replace')]
-          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 3, 'Expected three executed Android KeyStore tests'
+          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 4, 'Expected four executed Android KeyStore tests'
           assert all(int(r.attrib.get(k, 0)) == 0 for r in roots for k in ['failures','errors','skipped'])
           PY
       - name: Preserve actual device test scope and diagnostics

@@ -10,6 +10,15 @@ import kotlin.test.assertTrue
 
 /** Runs on Android's actual KeyStore provider; public synthetic data only. */
 class LanercVaultDeviceTest {
+    @Test fun nativeAccountCannotBeUnsealedAsGuestOrAnotherSourceOrOrigin() {
+        val scope = "account:source-a:https://example.invalid:443"
+        val sealed = LanercPlatform.seal(scope, "synthetic-native-account-token")
+        assertEquals("synthetic-native-account-token", LanercPlatform.unseal(scope, sealed))
+        assertFails { LanercPlatform.unseal("credential:source-a:https://example.invalid:443", sealed) }
+        assertFails { LanercPlatform.unseal("account:source-b:https://example.invalid:443", sealed) }
+        assertFails { LanercPlatform.unseal("account:source-a:https://other.invalid:443", sealed) }
+    }
+
     @Test fun androidKeyStoreRoundTripsUnicodeAndUsesFreshNonces() {
         assertTrue(LanercPlatform.supported)
         val scope = "fixture:source:android"
