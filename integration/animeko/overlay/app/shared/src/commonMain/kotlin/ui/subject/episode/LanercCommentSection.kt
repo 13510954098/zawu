@@ -55,6 +55,7 @@ private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> Lanerc
     var loading by remember(media.mediaId) { mutableStateOf(false) }
     var failed by remember(media.mediaId) { mutableStateOf(false) }
     LaunchedEffect(media.mediaId, page, retry) {
+        replyId = 0L // Never carry a reply target into a different page or refreshed list.
         result = null // Never display a previous page while loading a new episode/source/page.
         failed = false
         loading = true
@@ -86,7 +87,7 @@ private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> Lanerc
         } else Spacer(Modifier.weight(1f))
         if (send != null) {
             if (replyId != 0L) TextButton(onClick = { replyId = 0L }) { Text("取消回复，改为作品评论") }
-            NativeWriteComposer("Lanerc ${if (replyId == 0L) "作品评论" else "评论回复"}", 4096,
+            NativeWriteComposer("Lanerc ${if (replyId == 0L) "作品评论" else "对评论 #$replyId 的回复"}", 4096,
                 onSend = { text -> send(media, text, replyId) }, onSuccess = { retry++; replyId = 0L })
         }
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
