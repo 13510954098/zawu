@@ -1,6 +1,6 @@
 {
   "apk_sha256": "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd",
-  "method": "Static reconstruction, real public bootstrap TXT validation, and independent offline library checks; protected production APIs not tested",
+  "method": "Static reconstruction, independent offline checks, public TXT validation, confidential signed catalog HTTP transport probes, and separately scoped host/UI/emulator tests",
   "key_material": {
     "request_signature_suffix": {
       "status": "statically-reconstructed",
@@ -79,11 +79,27 @@
     "source_format_target": "original Lanerc, not cleanroom DynamicSourceManifest",
     "source_root": "integration/animeko/overlay",
     "report": "animeko-core-validation.json",
-    "kotlin_tests_passed": 29,
+    "kotlin_tests_passed": 52,
     "source_preparation_tests_passed": 4,
-    "android_app_built": false,
-    "ui_integrated": false,
+    "android_app_built": true,
+    "ui_integrated": true,
     "original_source_import_verified": false,
-    "original_release_private_key_required": false
+    "original_release_private_key_required": false,
+    "ui_synthetic_regressions_passed": 6,
+    "android_keystore_emulator_tests_passed": 3,
+    "device_scope": "API30 x86_64 emulator, vault only; not a hardware device or playback test",
+    "apk_provenance": "../../downloads/animeko/build.json",
+    "production_playback_verified": false
+  },
+  "public_catalog_transport": {
+    "probe_run": 42450351022,
+    "native_detail_path": "/app/v2/vod/{id}",
+    "search_http_status": 200,
+    "detail_http_status": 200,
+    "json_business_code_observed": 201,
+    "data_transport": "Native ordered substitutions + base64 + AES-256-ECB/PKCS7 successfully decoded real search/detail/captcha/comments/barrages locally",
+    "client_keys_supplied_to_runner": false,
+    "not_proof_of_guest_auth_or_playback": true,
+    "report": "native-transport-validation.json"
   }
 }

@@ -1,0 +1,219 @@
+{
+  "scope": "Schema from decrypted native responses; all strings/IDs/content are synthetic replacements, arrays truncated. No production credentials, identities, media URLs or ciphertext keys.",
+  "probe_run": 42450351022,
+  "fixtures": {
+    "detail": {
+      "code": 201,
+      "data": {
+        "video_play_info": {
+          "comment_total": "fixture",
+          "vod_total": 1,
+          "vod_blurb": "fixture",
+          "vod_isend": 1,
+          "vod_author": "fixture",
+          "vod_score": 1,
+          "vod_name": "fixture",
+          "vod_class": "fixture",
+          "id": 1,
+          "vod_remarks": "fixture",
+          "vod_pic_screenshot": "fixture",
+          "vod_pic": "fixture",
+          "vod_year": "fixture",
+          "vod_sub": "fixture",
+          "vod_type": 1
+        },
+        "video_play_list": [
+          {
+            "player": "line1",
+            "name": "Fixture line 1",
+            "sort": "fixture",
+            "video": [
+              {
+                "title": "第1集",
+                "resource_id": "resource_1_1",
+                "can_play_without_login": true
+              },
+              {
+                "title": "第2集",
+                "resource_id": "resource_1_2",
+                "can_play_without_login": true
+              }
+            ]
+          },
+          {
+            "player": "line2",
+            "name": "Fixture line 2",
+            "sort": "fixture",
+            "video": [
+              {
+                "title": "第1集",
+                "resource_id": "resource_2_1",
+                "can_play_without_login": true
+              },
+              {
+                "title": "第2集",
+                "resource_id": "resource_2_2",
+                "can_play_without_login": true
+              }
+            ]
+          },
+          {
+            "player": "line3",
+            "name": "Fixture line 3",
+            "sort": "fixture",
+            "video": [
+              {
+                "title": "第1集",
+                "resource_id": "resource_3_1",
+                "can_play_without_login": true
+              },
+              {
+                "title": "第2集",
+                "resource_id": "resource_3_2",
+                "can_play_without_login": true
+              }
+            ]
+          },
+          {
+            "player": "line4",
+            "name": "Fixture line 4",
+            "sort": "fixture",
+            "video": [
+              {
+                "title": "第1集",
+                "resource_id": "resource_4_1",
+                "can_play_without_login": true
+              },
+              {
+                "title": "第2集",
+                "resource_id": "resource_4_2",
+                "can_play_without_login": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "search": {
+      "code": 201,
+      "data": {
+        "search_vods": [
+          {
+            "vod_class": "fixture",
+            "vod_isend": 1,
+            "vod_name": "Fixture subject 1",
+            "vod_pic": "fixture",
+            "vod_total": 1,
+            "vod_year": "fixture",
+            "id": 1,
+            "vod_author": "fixture"
+          },
+          {
+            "vod_year": "fixture",
+            "id": 2,
+            "vod_author": "fixture",
+            "vod_class": "fixture",
+            "vod_isend": 1,
+            "vod_name": "Fixture subject 2",
+            "vod_pic": "fixture",
+            "vod_total": 1
+          }
+        ]
+      }
+    },
+    "comments": {
+      "code": 201,
+      "data": {
+        "vod_comment": {
+          "comment": [
+            {
+              "cid": 1,
+              "created_at": "fixture",
+              "content": "fixture",
+              "user_id": 1,
+              "nick_name": "fixture",
+              "avatar": "fixture",
+              "group_id": 1,
+              "qq_number": "fixture",
+              "replies": [
+                {
+                  "id": 1,
+                  "created_at": "fixture",
+                  "content": "fixture",
+                  "parent_id": 1,
+                  "root_id": 1,
+                  "user_id": 1,
+                  "nick_name": "fixture",
+                  "avatar": "fixture",
+                  "group_id": 1,
+                  "qq_number": "fixture"
+                },
+                {
+                  "id": 1,
+                  "created_at": "fixture",
+                  "content": "fixture",
+                  "parent_id": 1,
+                  "root_id": 1,
+                  "user_id": 1,
+                  "nick_name": "fixture",
+                  "avatar": "fixture",
+                  "group_id": 1,
+                  "qq_number": "fixture"
+                }
+              ]
+            },
+            {
+              "cid": 1,
+              "created_at": "fixture",
+              "content": "fixture",
+              "user_id": 1,
+              "nick_name": "fixture",
+              "avatar": "fixture",
+              "group_id": 1,
+              "qq_number": "fixture",
+              "replies": []
+            }
+          ],
+          "total": 1
+        }
+      }
+    },
+    "barrages": {
+      "code": 201,
+      "data": {
+        "old_barrages": [
+          {
+            "id": 1,
+            "bcolor": "#ffffffff",
+            "position": 0,
+            "second": 1,
+            "content": "Synthetic barrage"
+          },
+          {
+            "id": 2,
+            "bcolor": "#ffffffff",
+            "position": 1,
+            "second": 2,
+            "content": "Synthetic barrage"
+          }
+        ],
+        "new_barrages": [
+          {
+            "id": 1,
+            "bcolor": "#ffffffff",
+            "position": 0,
+            "second": 1,
+            "content": "Synthetic barrage"
+          },
+          {
+            "id": 2,
+            "bcolor": "#ffffffff",
+            "position": 1,
+            "second": 2,
+            "content": "Synthetic barrage"
+          }
+        ]
+      }
+    }
+  }
+}

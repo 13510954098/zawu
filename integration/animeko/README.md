@@ -72,7 +72,7 @@ Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工�
 
 ## 已验证的交付与本轮新增
 
-- Kotlin 核心 50 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
+- Kotlin 核心 52 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
 - Android 编译、UI 编译、打包与上传已成功。构建 42443902879 的红色结论来自之后提交报告失败，不是编译失败。
 - APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。基础 applicationId `me.him188.ani.lanerc`，debug 实际安装包名 `me.him188.ani.lanerc.debug2`（已解析 APK 二进制清单核对），最低 Android 8.1 / API 27，arm64 debug 签名。
 - Code APK 的实际版本以 `downloads/animeko/build.json` 的 `source_commit` 为准，不能用当前分支 HEAD 替代；`native_comments_ui_in_source` 表示该包对应源码是否含原生评论界面。
@@ -84,7 +84,7 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 
 ### 最近已确认与正在执行的验证
 
-- 核心 50 项测试：0 failures/errors/skipped，包含按源长度分隔凭据命名空间，防止清除 `source` 时误删 `source.child`；旧凭据仅在源+origin 的 KeyStore AAD 校验通过后兼容读取/清除。
+- 核心 52 项测试：0 failures/errors/skipped，包含按源长度分隔凭据命名空间，防止清除 `source` 时误删 `source.child`；旧凭据仅在源+origin 的 KeyStore AAD 校验通过后兼容读取/清除。
 - Actions 42448105586：真实宿主桌面 Compose 编译及 6 项 UI/时间线测试全部通过；工具链按上游要求切换为 JBR/JCEF 21，而非 Temurin 冒充桌面依赖完整。
 - Python 源码安全与 APK 交付回归本地共 13 项通过；不等于设备测试。
 - Android KeyStore 新增 3 项 API 30 x86_64 模拟器测试：Unicode 往返/随机 IV、源与 origin AAD 隔离、篡改/截断拒绝；已交由独立 Actions，**尚未宣称通过**，不含生产材料。
@@ -95,3 +95,12 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 进一步核对拦截器发现 `Uri.parse(...).path` 取值此前被误认成完整 URI；健康探测硬编码 `/app/health@` 也与路径输入吻合。旧签名 fixture 的跨语言一致性只能证明大家计算相同输入，不能证明选对了 native 字段。现已修正 Kotlin、Python 与 Dart CLI/fixture 生成器，并交给 Actions 重新验证；之前的成功计数不用于声称此修正已经验证。
 
 通过临时 runner 公钥封装预签名请求，在不把恢复的客户端 MD5/AES 密钥交给 CI 的情况下开始真实接口探测；响应只以分析接收者 CMS 密文保存。首次完整 URL 摘要的 captcha 请求得到 HTTP 404（空 body），不是有效验证码或播放成功。后续按路径签名的探测与新版 APK 必须单独核验。公开元数据不含签名值、challenge/guest credential 或播放 URL。
+
+
+### 真实接口与设备验证更新
+
+- API30 x86_64 模拟器的 3 项 Android KeyStore 测试现已实际通过（run 42449550833）；这不等于实体设备播放验证。
+- run 42450351022：原版 `/app/v2/vod/{id}`、搜索、POST 访客验证码、评论与弹幕全部取得 HTTP200；本地用原版顺序字符替换和 ECB 密钥成功解码，业务 code 为 201。详情为 4 条线路/112 集，评论页含 16 条评论与 2 条回复，弹幕共 5505 条。公开报告仅保留字段、数量和响应 hash，不公开用户内容、挑战 ID、原始明文或恢复密钥。
+- 已加入完全脱敏的 schema 回归 fixture 和 3 项 Kotlin 测试，交由 Actions 验证；不冒充完整生产响应测试，也不嵌入真实密钥。
+- 之前详情探测器仍允许错误的 `/app/vod/{id}`，虽宿主常量已修成 v2，却未同步探测策略。现已对齐，并加入跨文件路径一致性回归。
+- 验证码图像获取成功不等于完成真人验证。没有自动猜解验证码，没有取得 guestCredential，也没有宣称真实播放成功。原发布私钥已从验收阻塞项移除，修改版采用独立签名。

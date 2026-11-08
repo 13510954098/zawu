@@ -53,10 +53,12 @@ def check(material, status, records=None):
         'production_authentication_verified': False,
         'production_playback_verified': False,
         'release_private_key_recovered': False,
+        'release_private_key_required': False,
+        'acceptance_target': 'Modified Animeko with independent signing, original Lanerc format and verified playback/community integration',
         'all_user_goals_completed': False,
         'unresolved_requirements': [
             'Valid server-issued guestCredential and a legitimate production playback response',
-            'Original release keystore/private-key backup for original Android signing identity',
+            'Complete original Lanerc source-format compatibility and Android source/player/community acceptance',
         ],
         'caveat': 'Fingerprint matches confirm material identity, not server acceptance; ECB hostname matching is not authenticity verification. Mapping structure checks do not verify its semantic correctness.',
     }
@@ -86,8 +88,8 @@ def main():
         # Do not disclose raw inputs/paths/decoder exception payloads.
         print('Local audit failed: check input files and JSON structure. No request was sent.')
         return 1
-    print('Local audit saved. Production playback and original release signing remain unverified.')
-    # 0 = all goals verified; 1 = bad material; 2 = offline checks pass but live/signing goals unresolved.
+    print('Local audit saved. Production playback remains unverified; original release signing is not required for the modified Animeko target.')
+    # 0 = all goals verified; 1 = bad material; 2 = offline checks pass but live/integration goals unresolved.
     return 2 if report['offline_checks_passed'] else 1
 
 

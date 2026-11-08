@@ -22,7 +22,9 @@
   "all_user_goals_completed": false,
   "unresolved_requirements": [
     "Valid server-issued guestCredential and a legitimate production playback response",
-    "Original release keystore/private-key backup for original Android signing identity"
+    "Complete original Lanerc source-format compatibility and Android source/player/community acceptance"
   ],
-  "caveat": "Fingerprint matches confirm material identity, not server acceptance; ECB hostname matching is not authenticity verification. Mapping structure checks do not verify its semantic correctness."
+  "caveat": "Fingerprint matches confirm material identity, not server acceptance; ECB hostname matching is not authenticity verification. Mapping structure checks do not verify its semantic correctness.",
+  "release_private_key_required": false,
+  "acceptance_target": "Modified Animeko with independent signing; no original release private key required"
 }

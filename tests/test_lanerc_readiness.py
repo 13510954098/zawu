@@ -37,6 +37,13 @@ class ReadinessTests(unittest.TestCase):
         self.assertNotIn(self.material['response_encryption']['key_hex'], text)
         self.assertNotIn('fixture-suffix-17', text)
 
+    def test_original_release_key_is_not_an_animeko_acceptance_requirement(self):
+        report = check(self.material, self.status)
+        self.assertFalse(report['release_private_key_required'])
+        self.assertTrue(any('source-format' in item for item in report['unresolved_requirements']))
+        self.assertFalse(any('keystore/private-key' in item for item in report['unresolved_requirements']))
+        self.assertFalse(report['all_user_goals_completed'])
+
     def test_tampered_material_fails(self):
         material = copy.deepcopy(self.material)
         material['response_encryption']['key_hex'] = 'ff' * 32

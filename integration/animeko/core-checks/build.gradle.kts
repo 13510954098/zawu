@@ -18,5 +18,6 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
     systemProperty("lanerc.fixtures", file("../../../analysis/lanerc/dart-reference-fixtures.json").absolutePath)
+    systemProperty("lanerc.native.fixtures", file("../../../analysis/lanerc/native-redacted-fixtures.json").absolutePath)
     testLogging { events("passed", "skipped", "failed") }
 }

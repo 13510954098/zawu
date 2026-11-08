@@ -1,0 +1,83 @@
+{
+  "probe_run": 42450351022,
+  "scope": "Real anonymous signed responses decrypted locally using statically recovered native ordered substitutions plus AES-ECB; JSON and field/type inspection. Kotlin tests use only fully redacted schema fixtures, not private full responses.",
+  "client_keys_supplied_to_probe_runner": false,
+  "raw_private_responses_committed": false,
+  "guest_credential_obtained": false,
+  "production_playback_verified": false,
+  "endpoints": [
+    {
+      "endpoint": "detail",
+      "request": 1,
+      "http_status": 200,
+      "body_sha256": "d0e05dc84ee12e2df7b5192aae8f186af7b2d5901c989059a44a484f852cb006",
+      "business_code": 201,
+      "data_json_fields": [
+        "video_play_info",
+        "video_play_list"
+      ],
+      "json_decryption_and_parse_succeeded": true,
+      "lines": 4,
+      "episodes": 112
+    },
+    {
+      "endpoint": "search",
+      "request": 2,
+      "http_status": 200,
+      "body_sha256": "d6151b6d553c02fb23ccc67b01b117a299e876bf123e1084bd381348a866d9de",
+      "business_code": 201,
+      "data_json_fields": [
+        "search_vods"
+      ],
+      "json_decryption_and_parse_succeeded": true,
+      "subjects": 7
+    },
+    {
+      "endpoint": "captcha",
+      "request": 3,
+      "http_status": 200,
+      "body_sha256": "7d4c7e6144b7efb988c2f03a9d80435980f5504ca678a7f1fe4bc26e0b4cde90",
+      "business_code": 201,
+      "data_json_fields": [
+        "challenge_id",
+        "image",
+        "option_count",
+        "expires_in"
+      ],
+      "json_decryption_and_parse_succeeded": true,
+      "option_count": 4,
+      "expires_in": 180,
+      "contains_inline_image": true,
+      "human_verification_completed": false
+    },
+    {
+      "endpoint": "comments",
+      "request": 4,
+      "http_status": 200,
+      "body_sha256": "dcce926f6518fc8e4f65a5ed81879f6674c23400260ccef8ff054a3620ce7573",
+      "business_code": 201,
+      "data_json_fields": [
+        "vod_comment"
+      ],
+      "json_decryption_and_parse_succeeded": true,
+      "comments_on_page": 16,
+      "reply_count": 2
+    },
+    {
+      "endpoint": "barrages",
+      "request": 5,
+      "http_status": 200,
+      "body_sha256": "f0b119cfe1fb400314aba74f023f955db2cd498ea2123c1c5d3d2d13623e088e",
+      "business_code": 201,
+      "data_json_fields": [
+        "old_barrages",
+        "new_barrages"
+      ],
+      "json_decryption_and_parse_succeeded": true,
+      "counts": {
+        "old_barrages": 4746,
+        "new_barrages": 759
+      }
+    }
+  ]
+}
