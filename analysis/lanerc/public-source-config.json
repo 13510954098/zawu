@@ -1,0 +1,19 @@
+{
+  "production_authentication_attempted": false,
+  "records": [
+    {
+      "configuration_index": 0,
+      "redirects_followed": false,
+      "scope": "Unsigned public fallback configuration GET",
+      "transport_tls": false,
+      "error_type": "URLError"
+    },
+    {
+      "configuration_index": 1,
+      "redirects_followed": false,
+      "scope": "Unsigned public fallback configuration GET",
+      "transport_tls": true,
+      "error_type": "URLError"
+    }
+  ]
+}
