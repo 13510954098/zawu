@@ -91,5 +91,17 @@
       "reference_value_mapping_recovered": false
     }
   ],
+  "joint_reference_layout": {
+    "unique": true,
+    "candidate_solution_count_capped_at_two": 1,
+    "offsets": [
+      1074870,
+      1074819,
+      1074769,
+      1074719
+    ],
+    "mapped_nibble_count": 16,
+    "dictionary_sha256": "a57b0b0708a9acf31a4649b663daca8d33fecb532b4c40ae2af29c61df63ddab"
+  },
   "raw_material_published": false
 }
