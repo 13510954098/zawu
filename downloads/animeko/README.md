@@ -2,9 +2,9 @@
 
 APK: `animeko-lanerc-arm64-debug.apk` (arm64-v8a, independent installed application ID `me.him188.ani.lanerc.debug2`; Android 8.1 / API 27 or later).
 
-Build: https://github.com/13510954098/zawu/actions/runs/42449791243
-Source: `af60a6b4c9f7947ba71c844e1c8add73039be919`
-SHA256: `3d2714185a5f5b8deed95a8150939de7c7d1aff20feed02b60ddeaaa252a7953`
+Build: https://github.com/13510954098/zawu/actions/runs/42450838673
+Source: `65b40e6253f5287308d4c368479abe2c493730c8`
+SHA256: `5a42e046187f207ad7f734d2605bd4d2ad4dd0339afac4c19bbf965db8697bd7`
 
 This is a compiled integration preview, **not a verified production-ready release**.
 No recovered production keys or guest credentials are embedded. Configure private
