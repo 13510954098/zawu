@@ -73,5 +73,17 @@
     "reference_report": "reference-validation.json",
     "reference_workflow_run": 42441167497
   },
-  "readiness_report": "readiness-validation.json"
+  "readiness_report": "readiness-validation.json",
+  "animeko_integration": {
+    "target": "open-ani/animeko@6d79729a135cee6af861a7a095d3880d1b452260",
+    "source_format_target": "original Lanerc, not cleanroom DynamicSourceManifest",
+    "source_root": "integration/animeko/overlay",
+    "report": "animeko-core-validation.json",
+    "kotlin_tests_passed": 29,
+    "source_preparation_tests_passed": 4,
+    "android_app_built": false,
+    "ui_integrated": false,
+    "original_source_import_verified": false,
+    "original_release_private_key_required": false
+  }
 }

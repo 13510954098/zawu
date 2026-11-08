@@ -69,3 +69,7 @@ bash gradlew test
 - [ ] 可安装 Android APK、UI 自动化、真机播放与回归测试。
 
 当前是可编译并有测试的集成基础层，**不是已完成的 APP 修改版**。最新执行结果见 `analysis/lanerc/animeko-core-validation.json`；字段明确区分核心测试、Android 构建、UI 集成及原版格式验证。
+
+## 本轮实际执行
+
+GitHub Actions [42442665479](https://github.com/13510954098/zawu/actions/runs/42442665479) 已完成：**29 项 Kotlin 测试全部通过、0 跳过**；另执行 4 项源码解包安全测试，并下载、校验、还原固定版本 Animeko 与源码 overlay。未构建 Android APK，未运行 Animeko UI，未接入生产账户或媒体。
