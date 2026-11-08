@@ -5,18 +5,21 @@ on:
     branches: [arena/44f5d2ee-zawu]
     paths: [.github/workflows/lanerc-fetch.yml]
 permissions:
-  contents: read
+  contents: write
 jobs:
   fetch:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
       - name: Fetch supplied APK
         shell: python
         run: |
           import hashlib, json, pathlib, re, urllib.parse, urllib.request
-          out = pathlib.Path('lanerc-download')
-          out.mkdir()
+          out = pathlib.Path('downloads/lanerc')
+          out.mkdir(parents=True, exist_ok=True)
           def download(url, limit):
               req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
               with urllib.request.urlopen(req, timeout=90) as response:
@@ -29,7 +32,7 @@ jobs:
           for i, url in enumerate(urls[:3], 1):
               if urllib.parse.urlparse(url).scheme not in ('https', 'http'):
                   continue
-              data, resolved = download(url, 300 * 1024 * 1024)
+              data, resolved = download(url, 95 * 1024 * 1024)
               if not data.startswith(b'PK'):
                   raise ValueError('Linked download is not a ZIP/APK file')
               name = f'lanerc-supplied-{i}.apk'
@@ -44,5 +47,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lanerc-official-download
-          path: lanerc-download/
+          path: downloads/lanerc/
           retention-days: 3
+      - name: Commit APK and report to current session branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/lanerc/
+          if git diff --cached --quiet; then
+            echo "Download unchanged; nothing to commit."
+            exit 0
+          fi
+          git commit -m "Store user-supplied Lanerc APK and download checksum"
+          git push origin HEAD:arena/44f5d2ee-zawu
