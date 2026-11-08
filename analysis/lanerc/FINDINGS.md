@@ -1,5 +1,7 @@
 # Flutter AOT 分析结果（静态、脱敏）
 
+> **最新状态：后续已从初始化/请求调用链静态重建响应 AES 密钥与 API 签名后缀。本文保留此前排查过程；当前结果与验证边界请以 `analysis/lanerc/RECOVERY_RESULT.md` 为准。发布签名私钥仍未找回。**
+
 ## 已实际执行
 
 使用固定版本的 Blutter（提交 `4a60ac648bf448c5a7596437243bcd0b9376fdf0`）编译匹配的 Dart 运行时并读取 APK ARM64 快照；使用 Capstone 对 ARM64 `.text` 扫描白名单对象池字符串的加载指令。分析未运行 APK、未调用生产接口。
