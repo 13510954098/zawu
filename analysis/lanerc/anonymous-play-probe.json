@@ -1,9 +1,9 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "5f37bbf6a29f5a568862ae322c92e50ade2d4588",
+  "source_commit": "7c3b7248df0ce624e50b4a9d1bfab24c48c56ef3",
   "credentials_used": false,
   "captcha_solved": false,
-  "media_fetched": false,
+  "media_fetched": true,
   "production_playback_verified": false,
   "requests": [
     {
@@ -29,7 +29,16 @@
       "https_media_url_returned": false,
       "url_scheme": "http",
       "network_host_present": true,
-      "userinfo_present": false
+      "userinfo_present": false,
+      "media_streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "mjpeg",
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "media_stream_probe_verified": true
     },
     {
       "operation": "app/v2/guest/play",
@@ -41,5 +50,6 @@
       "login_mentioned": false
     }
   ],
-  "dynamic_discovery_succeeded": true
+  "dynamic_discovery_succeeded": true,
+  "media_fetch_attempted": true
 }
