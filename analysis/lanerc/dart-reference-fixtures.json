@@ -39,11 +39,11 @@
       "path": "app/config",
       "query": {},
       "canonicalUri": "https://example.invalid/api/app/config",
+      "nativeSignaturePath": "/api/app/config",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe",
-      "nativeSignaturePath": "/api/app/config"
+      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe"
     },
     {
       "name": "leading-slash",
@@ -51,11 +51,11 @@
       "path": "/app/config",
       "query": {},
       "canonicalUri": "https://example.invalid/api/app/config",
+      "nativeSignaturePath": "/api/app/config",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe",
-      "nativeSignaturePath": "/api/app/config"
+      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe"
     },
     {
       "name": "query-order-and-unicode",
@@ -67,11 +67,11 @@
         "enabled": true
       },
       "canonicalUri": "https://example.invalid/search?q=%E9%9B%AA+%E7%A9%BA&page=2&enabled=true",
+      "nativeSignaturePath": "/search",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0",
-      "nativeSignaturePath": "/search"
+      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0"
     },
     {
       "name": "list-and-null",
@@ -86,11 +86,11 @@
         "none": null
       },
       "canonicalUri": "https://example.invalid/search?tags=%E6%97%A5%E6%BC%AB&tags=a%2Fb&empty=&none",
+      "nativeSignaturePath": "/search",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0",
-      "nativeSignaturePath": "/search"
+      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0"
     },
     {
       "name": "normalize-path",
@@ -100,11 +100,11 @@
         "q": "a+b & c"
       },
       "canonicalUri": "https://example.invalid/a/b/%2F?q=a%2Bb+%26+c",
+      "nativeSignaturePath": "/a/b/%2F",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-3ea5f25be7c244a04d9f5865f01a10f9",
-      "nativeSignaturePath": "/a/b/%2F"
+      "sign": "1700000000-abc-3ea5f25be7c244a04d9f5865f01a10f9"
     },
     {
       "name": "existing-query",
@@ -114,11 +114,11 @@
         "new": "two words"
       },
       "canonicalUri": "https://example.invalid/app/config?old=1&new=two+words",
+      "nativeSignaturePath": "/app/config",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-5d598c275be8977a68b393094ff5343f",
-      "nativeSignaturePath": "/app/config"
+      "sign": "1700000000-abc-5d598c275be8977a68b393094ff5343f"
     },
     {
       "name": "absolute-url",
@@ -129,11 +129,11 @@
         "a": 1
       },
       "canonicalUri": "https://example.invalid/direct?b=2&a=1",
+      "nativeSignaturePath": "/direct",
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-4afb07de48f0eeb6a852a83201ca7b53",
-      "nativeSignaturePath": "/direct"
+      "sign": "1700000000-abc-4afb07de48f0eeb6a852a83201ca7b53"
     }
   ]
 }
