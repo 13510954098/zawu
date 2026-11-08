@@ -1,0 +1,11 @@
+{
+  "scope": "Kotlin JVM core compiled and tested against public Dart fixtures and virtual-time source adapters only",
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "android_app_built": false,
+  "animeko_ui_integrated": false,
+  "original_source_import_verified": false,
+  "production_requests_performed": false
+}
