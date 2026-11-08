@@ -13,6 +13,7 @@ import me.him188.ani.app.domain.mediasource.lanerc.core.LanercCrypto
 import me.him188.ani.app.domain.mediasource.lanerc.core.LanercJvmCrypto
 
 actual object LanercPlatform {
+    actual fun hardenHttp(config: io.ktor.client.HttpClientConfig<*>) = config.hardenLanercJvmClient()
     actual val supported = true
     private const val ALIAS = "animeko.lanerc.private.v1"
     actual fun crypto(): LanercCrypto = LanercJvmCrypto()

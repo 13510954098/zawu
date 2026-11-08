@@ -4,6 +4,7 @@ package me.him188.ani.app.domain.mediasource.lanerc.runtime
 import me.him188.ani.app.domain.mediasource.lanerc.core.LanercCrypto
 
 actual object LanercPlatform {
+    actual fun hardenHttp(config: io.ktor.client.HttpClientConfig<*>) = config.hardenLanercJvmClient()
     actual val supported = false
     actual fun crypto(): LanercCrypto = error("Lanerc runtime currently requires Android")
     actual fun seal(scope: String, plaintext: String): String = error("A platform credential vault is required")

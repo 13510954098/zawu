@@ -29,6 +29,7 @@ class LanercSourceSession(
         expectSuccess = false
         followRedirects = false
         proxy(proxyConfig)
+        LanercPlatform.hardenHttp(this)
         install(HttpTimeout) { requestTimeoutMillis = 15_000; connectTimeoutMillis = 8_000; socketTimeoutMillis = 10_000 }
     }
     private val lock = Mutex()
