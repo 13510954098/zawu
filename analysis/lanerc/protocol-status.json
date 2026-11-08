@@ -1,6 +1,6 @@
 {
   "apk_sha256": "4368de63ae2003138dbe63b673422a3b3a5414ab652ffb1feb3424964f88bcfd",
-  "method": "Offline static analysis and local synthetic fixtures; no production requests",
+  "method": "Static reconstruction, real public bootstrap TXT validation, and independent offline library checks; protected production APIs not tested",
   "key_material": {
     "request_signature_suffix": {
       "status": "statically-reconstructed",
@@ -63,8 +63,14 @@
     "status": "not-recovered-not-derivable-from-public-certificate"
   },
   "tests": {
-    "synthetic_test_count": 21,
-    "passed": 21,
-    "real_public_txt_matching_records": 1
+    "synthetic_test_count": 34,
+    "passed": 34,
+    "real_public_txt_matching_records": 1,
+    "skipped": 0,
+    "generated_protobuf_outer_cases": 500,
+    "generated_protobuf_inner_cases": 100,
+    "dart_uri_signature_cases": 7,
+    "reference_report": "reference-validation.json",
+    "reference_workflow_run": 42440603608
   }
 }

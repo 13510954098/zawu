@@ -2,7 +2,7 @@
 
 ## 已取得的结果
 
-2026-11-08，GitHub Actions run [42440460276](https://github.com/13510954098/zawu/actions/runs/42440460276) 实际完成独立参考验证：31 项测试通过、0 失败、0 跳过；本地再次运行也通过。后续 CLI 集成测试的最新总数以 `reference-validation.json` 为准。
+2026-11-08，GitHub Actions run [42440460276](https://github.com/13510954098/zawu/actions/runs/42440460276) 实际完成独立参考验证：31 项测试通过、0 失败、0 跳过；本地再次运行也通过。随后 run [42440603608](https://github.com/13510954098/zawu/actions/runs/42440603608) 加入离线签名 CLI 集成检查，最终 **34 项测试全部通过、0 失败、0 跳过**，其中 CLI 对全部 7 组 URI 完成真实进程调用测试，另外检查旧签名拒绝与错误输入不泄露。机器记录见 `reference-validation.json`。本地未安装 Dart，新增 3 项 CLI 测试在本地跳过，已在该 Actions 中实际执行。
 
 - Dart 3.9.2 / encrypt 5.0.3 生成公开合成 AES-GCM、AES-ECB/PKCS7 数据，Python 工具成功解密；包括 GCM 外层响应与内层播放消息。
 - Dart Dio 5.9.0 / crypto 3.0.6 生成 7 组 URI 与 MD5 签名，覆盖前导斜线、已有 query、中文、空格、布尔值、列表、null、路径规范化、绝对地址。Python 签名工具使用这些规范化 URI 时全部匹配。
