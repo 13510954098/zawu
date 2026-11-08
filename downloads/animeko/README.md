@@ -11,7 +11,7 @@ No recovered production keys or guest credentials are embedded. Configure privat
 protocol material inside the app; the default build does not bypass server login.
 Original-format source import is partial. Native comments UI included in this
 compiled source: **True**. It is read-only, not device/backend verified.
-Native danmaku timeline integration depends on the source commit; device/backend
+Native danmaku timeline included in compiled source: **True**. Device/backend
 verification and native account login/posting remain unfinished. No device test or
 successful production playback is claimed. Debug APKs use the CI-generated debug
 key; later builds may require uninstalling first, which removes app data.
