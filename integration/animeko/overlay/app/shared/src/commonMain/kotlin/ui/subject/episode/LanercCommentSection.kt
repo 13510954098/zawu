@@ -2,6 +2,8 @@
 package me.him188.ani.app.ui.subject.episode
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
@@ -10,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CancellationException
+import me.him188.ani.app.domain.mediasource.lanerc.core.LanercBarrage
 import me.him188.ani.app.domain.mediasource.lanerc.core.LanercComment
 import me.him188.ani.app.domain.mediasource.lanerc.core.LanercCommentPage
 import me.him188.ani.datasources.api.Media
@@ -19,20 +22,25 @@ import me.him188.ani.datasources.api.Media
 internal fun LanercCommentSection(
     media: Media?,
     load: suspend (Media, Int) -> LanercCommentPage,
+    loadBarrages: suspend (Media) -> List<LanercBarrage>,
     animekoContent: @Composable () -> Unit,
 ) {
-    var native by remember(media?.mediaId) { mutableStateOf(false) }
+    var selectedTab by remember(media?.mediaId) { mutableStateOf(0) }
     if (media == null) {
         animekoContent()
         return
     }
     Column(Modifier.fillMaxSize()) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FilterChip(!native, { native = false }, label = { Text("Animeko 评论") }, modifier = Modifier.testTag("lanerc.comments.animeko"))
-            FilterChip(native, { native = true }, label = { Text("Lanerc 作品评论") }, modifier = Modifier.testTag("lanerc.comments.native"))
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FilterChip(selectedTab == 0, { selectedTab = 0 }, label = { Text("Animeko 评论") }, modifier = Modifier.testTag("lanerc.comments.animeko"))
+            FilterChip(selectedTab == 1, { selectedTab = 1 }, label = { Text("Lanerc 作品评论") }, modifier = Modifier.testTag("lanerc.comments.native"))
+            FilterChip(selectedTab == 2, { selectedTab = 2 }, label = { Text("Lanerc 本集弹幕") }, modifier = Modifier.testTag("lanerc.barrages.native"))
         }
-        if (!native) Box(Modifier.weight(1f)) { animekoContent() }
-        else NativeCommentList(media, load, Modifier.weight(1f))
+        when (selectedTab) {
+            0 -> Box(Modifier.weight(1f)) { animekoContent() }
+            1 -> NativeCommentList(media, load, Modifier.weight(1f))
+            2 -> NativeBarrageList(media, loadBarrages, Modifier.weight(1f))
+        }
     }
 }
 
@@ -87,5 +95,47 @@ private fun NativeComment(comment: LanercComment) {
             Text("${reply.nickname.take(120)}：${reply.content.take(3000)}", modifier = Modifier.padding(start = 16.dp), style = MaterialTheme.typography.bodySmall)
         }
         HorizontalDivider()
+    }
+}
+
+
+/** Read-only list until native renderer location mapping has independent evidence. */
+@Composable
+private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<LanercBarrage>, modifier: Modifier) {
+    var result by remember(media.mediaId) { mutableStateOf<List<LanercBarrage>?>(null) }
+    var failed by remember(media.mediaId) { mutableStateOf(false) }
+    var retry by remember(media.mediaId) { mutableStateOf(0) }
+    LaunchedEffect(media.mediaId, retry) {
+        result = null
+        failed = false
+        try { result = load(media).sortedBy { it.second } }
+        catch (cancelled: CancellationException) { throw cancelled }
+        catch (_: Exception) { failed = true }
+    }
+    Column(modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
+        Text("Lanerc 本集弹幕 · 只读列表", style = MaterialTheme.typography.titleSmall)
+        Text("使用原版作品 ID 和线路内选集序号。位置保留原值，尚未接入屏幕飘字及发送。", style = MaterialTheme.typography.bodySmall)
+        when {
+            failed -> {
+                Text("读取失败，请检查源配置及服务可用性。", modifier = Modifier.testTag("lanerc.barrages.error"))
+                TextButton(onClick = { retry++ }) { Text("重试") }
+            }
+            result == null -> LinearProgressIndicator(Modifier.fillMaxWidth())
+            else -> {
+                val rows = result.orEmpty()
+                Text("共 ${rows.size} 条", style = MaterialTheme.typography.labelMedium)
+                LazyColumn(Modifier.weight(1f).testTag("lanerc.barrages.list"), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    if (rows.isEmpty()) item { Text("本集暂无弹幕") }
+                    items(rows) { row ->
+                        Column {
+                            val seconds = row.second.toLong()
+                            Text("${seconds / 60}:${(seconds % 60).toString().padStart(2, '0')} · 位置 ${row.position} · ${row.color.take(32)}", style = MaterialTheme.typography.labelSmall)
+                            Text(row.content.take(12000))
+                            HorizontalDivider()
+                        }
+                    }
+                }
+            }
+        }
     }
 }

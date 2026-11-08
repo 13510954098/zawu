@@ -7,6 +7,30 @@ import kotlin.test.*
 
 /** Synthetic, statically anchored DTO fixtures; these are NOT captured production responses. */
 class LanercCommunityTest {
+    private val nativeParameters = mapOf("resource_id" to "resource-7", "vod_id" to "native-vod-42", "vod_index" to "3")
+    private val nativeUrl = "https://lanerc.invalid/resource/resource-7?vod_index=3"
+
+    @Test fun `community identity uses native vod and one based playlist index`() {
+        assertEquals(LanercCommunityIdentity("native-vod-42", 3),
+            LanercCommunity.identity("source1", "source1", nativeUrl, nativeParameters))
+    }
+    @Test fun `community identities reject other sources and missing native ids`() {
+        assertFails { LanercCommunity.identity("source1", "source2", nativeUrl, nativeParameters) }
+        assertFails { LanercCommunity.identity("", "", nativeUrl, nativeParameters) }
+        assertFails { LanercCommunity.identity("source1", "source1", nativeUrl, nativeParameters - "vod_id") }
+    }
+    @Test fun `community identities reject URL and resource mismatches`() {
+        assertFails { LanercCommunity.identity("s", "s", nativeUrl.replace("lanerc.invalid", "example.invalid"), nativeParameters) }
+        assertFails { LanercCommunity.identity("s", "s", nativeUrl, nativeParameters + ("resource_id" to "another-resource")) }
+        assertFails { LanercCommunity.identity("s", "s", nativeUrl, nativeParameters + ("vod_id" to "../42")) }
+    }
+    @Test fun `native barrage index cannot be zero negative missing or overflow`() {
+        for (bad in listOf("0", "-1", "2147483648", "episode3", "")) {
+            assertFails { LanercCommunity.identity("s", "s", nativeUrl, nativeParameters + ("vod_index" to bad)) }
+        }
+        assertFails { LanercCommunity.identity("s", "s", nativeUrl, nativeParameters - "vod_index") }
+    }
+
     private val key = ByteArray(32) { it.toByte() }
     private val protocol = LanercProtocol(LanercJvmCrypto(), LanercSecrets("fixture-suffix-17", key, key, key, emptyList()))
     private val comments = """{"vod_comment":{"total":2,"comment":[{"cid":19,"created_at":"2026-11-08","nick_name":"用户","content":"<b>纯文本</b>","replies":[{"id":20,"created_at":"2026-11-08","nick_name":"回复者","content":"回复"}]}]}}"""

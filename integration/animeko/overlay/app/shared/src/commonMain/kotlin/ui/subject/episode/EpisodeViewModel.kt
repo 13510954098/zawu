@@ -829,6 +829,14 @@ open class EpisodeViewModel(
         return source.readComments(media, page)
     }
 
+    suspend fun readLanercBarrages(media: Media): List<me.him188.ani.app.domain.mediasource.lanerc.core.LanercBarrage> {
+        val source = mediaSourceManager.allInstances.first().firstOrNull {
+            it.source.mediaSourceId == media.mediaSourceId
+        }?.source as? me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercMediaSource
+            ?: error("Lanerc source no longer exists")
+        return source.readBarrages(media)
+    }
+
     @OptIn(UnsafeEpisodeSessionApi::class)
     protected val episodeDanmakuLoader = EpisodeDanmakuLoader(
         player = player,

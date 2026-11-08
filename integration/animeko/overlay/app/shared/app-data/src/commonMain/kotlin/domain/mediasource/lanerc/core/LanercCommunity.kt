@@ -7,7 +7,22 @@ data class LanercBarrage(val id: String, val color: String, val position: Int, v
 data class LanercComment(val id: String, val createdAt: String, val nickname: String, val content: String, val replies: List<LanercComment>)
 data class LanercCommentPage(val total: Int, val comments: List<LanercComment>)
 
+data class LanercCommunityIdentity(val vid: String, val vodIndex: Int)
+
 object LanercCommunity {
+    /** Only locally generated, source-bound native media metadata is accepted. */
+    fun identity(sourceId: String, mediaSourceId: String, originalUrl: String, parameters: Map<String, String>): LanercCommunityIdentity {
+        require(sourceId.isNotBlank() && sourceId == mediaSourceId) { "Community source mismatch" }
+        val resource = parameters["resource_id"].orEmpty()
+        val vid = parameters["vod_id"].orEmpty()
+        val idPattern = Regex("[A-Za-z0-9_-]{1,128}")
+        require(idPattern.matches(resource) && idPattern.matches(vid)) { "Invalid native identity" }
+        val index = parameters["vod_index"]?.toIntOrNull()
+        require(index != null && index > 0) { "Missing one-based native episode index" }
+        require(originalUrl == "https://lanerc.invalid/resource/$resource?vod_index=$index") { "Native metadata mismatch" }
+        return LanercCommunityIdentity(vid, index)
+    }
+
     // APK 0x664dc4 / 0x664fa4. Both generations use the same record DTO.
     fun barrages(root: JsonElement): List<LanercBarrage> {
         val data = LanercCatalog.payload(root).jsonObject
