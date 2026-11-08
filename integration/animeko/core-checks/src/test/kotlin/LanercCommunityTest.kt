@@ -9,14 +9,14 @@ import kotlin.test.*
 class LanercCommunityTest {
     @Test fun `credential namespaces cannot clear another dotted source id`() {
         val prefix = LanercStorageKeys.guestPrefix("source")
-        assertTrue(LanercStorageKeys.guest("source", "https://example.invalid").startsWith(prefix))
-        assertFalse(LanercStorageKeys.guest("source.child", "https://example.invalid").startsWith(prefix))
-        assertFalse(LanercStorageKeys.guest("source.", "https://example.invalid").startsWith(prefix))
-        assertNotEquals(LanercStorageKeys.guest("source", "https://example.invalid"),
-            LanercStorageKeys.guest("source", "https://other.invalid"))
+        assertTrue(LanercStorageKeys.guest("source", "https://example.invalid:443").startsWith(prefix))
+        assertFalse(LanercStorageKeys.guest("source.child", "https://example.invalid:443").startsWith(prefix))
+        assertFalse(LanercStorageKeys.guest("source.", "https://example.invalid:443").startsWith(prefix))
+        assertNotEquals(LanercStorageKeys.guest("source", "https://example.invalid:443"),
+            LanercStorageKeys.guest("source", "https://other.invalid:443"))
     }
     @Test fun `credential storage requires nonblank source and exact HTTPS origin`() {
-        assertFails { LanercStorageKeys.guest("", "https://example.invalid") }
+        assertFails { LanercStorageKeys.guest("", "https://example.invalid:443") }
         assertFails { LanercStorageKeys.guest("source", "https://example.invalid/api/") }
         assertFails { LanercStorageKeys.guest("source", "http://example.invalid") }
     }
