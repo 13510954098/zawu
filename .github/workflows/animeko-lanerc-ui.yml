@@ -1,0 +1,77 @@
+name: Animeko Lanerc community UI regression checks
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [integration/animeko/overlay/app/shared/src/**, .github/workflows/animeko-lanerc-ui.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: animeko-lanerc-community-ui
+  cancel-in-progress: true
+jobs:
+  ui:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Prepare pinned host and desktop UI dependencies
+        run: |
+          python scripts/prepare_animeko_lanerc.py
+          cat >> .local/animeko/worktree/local.properties <<'EOF'
+          ani.enable.firebase=false
+          ani.enable.ios=false
+          jvm.toolchain.version=21
+          jvm.toolchain.vendor=Eclipse Adoptium
+          EOF
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libgl1 libegl1 libxkbcommon0
+      - name: Run real Compose UI regression tests with synthetic native responses
+        id: tests
+        working-directory: .local/animeko/worktree
+        run: xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
+      - name: Require all three UI tests to have executed without failures
+        run: |
+          python - <<'PY'
+          import pathlib, xml.etree.ElementTree as ET
+          roots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]
+          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 3, 'Expected three executed UI tests'
+          assert all(int(r.attrib.get(k, 0)) == 0 for r in roots for k in ['failures', 'errors', 'skipped'])
+          PY
+      - name: Save UI results and bounded diagnostic log
+        if: always()
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, xml.etree.ElementTree as ET
+          roots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]
+          counts = {key:sum(int(r.attrib.get(key, 0)) for r in roots) for key in ['tests','failures','errors','skipped']}
+          report = {'scope':'Desktop Compose UI with synthetic native comments/barrages; not Android device or production playback', 'source_commit':os.environ['GITHUB_SHA'], 'step_outcome':os.environ.get('TEST_OUTCOME'), **counts}
+          pathlib.Path('analysis/lanerc/animeko-ui-validation.json').write_text(json.dumps(report, indent=2)+'\n')
+          log = pathlib.Path('/tmp/lanerc-ui-tests.log')
+          if log.exists(): pathlib.Path('analysis/lanerc/animeko-ui-diagnostic.txt').write_text('\n'.join(log.read_text(errors='replace').splitlines()[-160:])+'\n')
+          PY
+          git switch -C arena/44f5d2ee-zawu
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/animeko-ui-validation.json
+          if test -f analysis/lanerc/animeko-ui-diagnostic.txt; then git add analysis/lanerc/animeko-ui-diagnostic.txt; fi
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record actual Compose native community UI test outcome'
+          git pull --rebase origin arena/44f5d2ee-zawu
+          git push origin HEAD:arena/44f5d2ee-zawu
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: animeko-lanerc-community-ui-test-results
+          path: .local/animeko/worktree/app/shared/build/reports/tests/
+          if-no-files-found: warn
