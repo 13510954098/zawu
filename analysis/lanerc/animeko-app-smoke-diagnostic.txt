@@ -1,15 +1,80 @@
-Downloading https://services.gradle.org/distributions/gradle-9.3.1-bin.zip
-.............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+> Task :app:shared:paging-compose:mergeAndroidMainJniLibFolders
+> Task :app:shared:paging-compose:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:paging-compose:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:placeholder:mergeAndroidMainJniLibFolders
+> Task :app:shared:placeholder:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:placeholder:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:reorderable:mergeAndroidMainJniLibFolders
+> Task :app:shared:reorderable:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:reorderable:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-adaptive:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-adaptive:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-adaptive:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-comment:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-comment:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-comment:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-download:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-download:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-download:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-episode:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-episode:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-episode:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-exploration:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-exploration:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-exploration:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-exprovider:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-exprovider:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-exprovider:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-foundation:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-foundation:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-foundation:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-mediaselect:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-mediaselect:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-mediaselect:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-notification:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-notification:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-notification:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-onboarding:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-onboarding:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-onboarding:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-settings:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-settings:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-settings:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-subject:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-subject:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-subject:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:ui-watchtogether:mergeAndroidMainJniLibFolders
+> Task :app:shared:ui-watchtogether:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:ui-watchtogether:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:video-player:mergeAndroidMainJniLibFolders
+> Task :app:shared:video-player:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:video-player:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:video-player:torrent-source:mergeAndroidMainJniLibFolders
+> Task :app:shared:video-player:torrent-source:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:video-player:torrent-source:copyAndroidMainJniLibsProjectOnly
+> Task :app:shared:video-player:video-player-api:mergeAndroidMainJniLibFolders
+> Task :app:shared:video-player:video-player-api:mergeAndroidMainNativeLibs NO-SOURCE
+> Task :app:shared:video-player:video-player-api:copyAndroidMainJniLibsProjectOnly
+> Task :app:android:mergeLibDexDefaultDebug
+> Task :app:android:mergeDefaultDebugNativeLibs
+> Task :app:android:validateSigningDefaultDebug
+> Task :app:android:writeDefaultDebugAppMetadata
+> Task :app:android:writeDefaultDebugSigningConfigVersions
 
-Welcome to Gradle 9.3.1!
+> Task :app:android:stripDefaultDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libanitorrent.so, libass.so, libasskt.so, libavcodec.so, libavdevice.so, libavfilter.so, libavformat.so, libavutil.so, libc++_shared.so, libdatastore_shared_counter.so, libffmpeg.so, libffmpegkitjni.so, libimage_processing_util_jni.so, libmediamp_wsola.so, libonnxruntime.so, libonnxruntime4j_jni.so, libsentry-android.so, libsentry.so, libsqliteJni.so, libsurface_util_jni.so, libswresample.so, libswscale.so, libtorrent-rasterbar.so. Run with --info option to learn more.
 
-Here are the highlights of this release:
- - Test reporting improvements
- - Error and warning improvements
- - Build authoring improvements
+> Task :app:android:packageDefaultDebug
+> Task :app:android:createDefaultDebugApkListingFileRedirect
+> Task :app:android:assembleDefaultDebug
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_3-1794118502597.json
 
-For more details see https://docs.gradle.org/9.3.1/release-notes.html
+[Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
-Type-safe project accessors is an incubating feature.
+BUILD SUCCESSFUL in 10m 55s
+1111 actionable tasks: 996 executed, 115 from cache
+
+Publishing Build Scan to Develocity...
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/__run_3-1794118502597.json
+https://gradle.com/s/fvyonfib623ew
+

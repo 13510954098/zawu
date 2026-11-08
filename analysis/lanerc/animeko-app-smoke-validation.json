@@ -1,6 +1,12 @@
 {
-  "source_commit": "f434ed091122c68b93fc063e790d04ff1c9728ea",
-  "scope": "Fresh-install/startup smoke did not reach device verification",
-  "install_verified": false,
-  "launch_verified": false
+  "source_commit": "9c7e051d5bbac4550c61201d6c7770a2d9b0af0d",
+  "scope": "Fresh-install and initial UI launch on API30 x86_64 emulator only",
+  "application_id": "me.him188.ani.lanerc.debug2",
+  "install_verified": true,
+  "launch_verified": true,
+  "arm64_code_apk_device_verified": false,
+  "production_playback_verified": false,
+  "production_account_login_verified": false,
+  "production_publication_verified": false,
+  "apk_sha256": "156a9b35a78fa8839885be32549a497e14c12cc4ffbc74ed243add310342c428"
 }
