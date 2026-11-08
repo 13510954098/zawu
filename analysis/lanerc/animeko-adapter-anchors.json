@@ -121,5 +121,21 @@
         "0x8b4304"
       ]
     }
-  ]
+  ],
+  "signature_input_correction": {
+    "request_sequence": [
+      "0x7ee248 RequestOptions.uri getter",
+      "0x7ee270 URI string",
+      "0x7ee27c Uri.parse",
+      "0x7ee294 Uri path selector",
+      "0x7ee2f8 signature interpolation"
+    ],
+    "corroboration": [
+      "0x2c7320 URI component selector, paired with scheme at 0x2c7344 and pathSegments at 0x2c73c4",
+      "0x96d188 literal /app/health@ for fallback health signature"
+    ],
+    "native_preimage": "Uri.path + @ + seconds + @ + nonce + suffix",
+    "previous_full_URI_fixture_claim": "Withdrawn: cross-library agreement did not prove which URI component the APK signed",
+    "production_confirmation": false
+  }
 }

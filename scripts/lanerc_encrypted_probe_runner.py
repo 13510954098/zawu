@@ -22,7 +22,7 @@ BRANCH = 'arena/44f5d2ee-zawu'
 HOST = 'v3.yyghk.com'
 REPOSITORY = '13510954098/zawu'
 LIMIT = 4 * 1024 * 1024
-GETS = {'/app/v2/guest/captcha', '/app/vod/search', '/app/chat/comment', '/app/chat/barragev2'}
+GETS = {'/app/health', '/app/v2/guest/captcha', '/app/vod/search', '/app/chat/comment', '/app/chat/barragev2'}
 POSTS = {'/app/v2/guest/credential': {'challenge_id', 'selected'}, '/app/v2/guest/play': {'resource_id', 'guest_credential'}}
 
 
@@ -128,7 +128,7 @@ def main():
         publish([cert], 'Publish ephemeral public recipient for encrypted native probe requests')
         for number in range(1, 8):
             request_path = directory / f'request-{number:02d}.p7m'
-            deadline = time.monotonic() + 120
+            deadline = time.monotonic() + 180
             encrypted = None
             while time.monotonic() < deadline:
                 encrypted = read_request(request_path)

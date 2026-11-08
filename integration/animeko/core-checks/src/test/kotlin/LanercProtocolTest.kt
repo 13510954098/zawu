@@ -8,6 +8,12 @@ import kotlin.io.encoding.Base64
 import kotlin.test.*
 
 class LanercProtocolTest {
+    @Test fun `native signature covers Uri path not authority or query`() {
+        val first = protocol().sign("https://one.invalid/app/health?a=1", 1700000000, "abc")
+        assertEquals(first, protocol().sign("https://two.invalid:8443/app/health?a=2", 1700000000, "abc"))
+        assertNotEquals(first, protocol().sign("https://one.invalid/app/config?a=1", 1700000000, "abc"))
+    }
+
     private val fixture = Json.parseToJsonElement(File(System.getProperty("lanerc.fixtures")).readText()).jsonObject
     private val key = ByteArray(32) { it.toByte() }
     private fun protocol(replacements: List<Pair<String, String>> = emptyList()) = LanercProtocol(
@@ -19,6 +25,7 @@ class LanercProtocolTest {
     @Test fun `Dart signatures agree for seven canonical URIs`() {
         for (raw in fixture.getValue("uriSignatures").jsonArray) {
             val case = raw.jsonObject
+            assertEquals(case.text("nativeSignaturePath"), LanercUri.signaturePath(case.text("canonicalUri")))
             assertEquals(case.text("sign"), protocol().sign(case.text("canonicalUri"), case.text("timestamp").toLong(), case.text("nonce")))
         }
     }

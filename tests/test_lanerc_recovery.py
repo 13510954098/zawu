@@ -35,7 +35,7 @@ class StaticRecoveryTests(unittest.TestCase):
 
     def test_signature_format(self):
         import hashlib
-        expected = hashlib.md5(b'https://example.invalid/app/config@1700000000@abctest-only').hexdigest()
+        expected = hashlib.md5(b'/app/config@1700000000@abctest-only').hexdigest()
         self.assertEqual(crypto.sign('https://example.invalid/app/config', 1700000000, 'abc', 'test-only'), '1700000000-abc-' + expected)
 
     def test_invalid_sign_inputs(self):

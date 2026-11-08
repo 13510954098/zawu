@@ -28,11 +28,12 @@ void main(List<String> args) {
     }
     final options = RequestOptions(baseUrl: baseUrl, path: path, queryParameters: query);
     final canonicalUri = options.uri.toString();
-    final digest = md5.convert(utf8.encode('$canonicalUri@$timestamp@$nonce$suffix')).toString();
+    final signaturePath = Uri.parse(canonicalUri).path;
+    final digest = md5.convert(utf8.encode('$signaturePath@$timestamp@$nonce$suffix')).toString();
     final signature = '$timestamp-$nonce-$digest';
     options.queryParameters = {...query, 'sign': signature};
     stdout.writeln(jsonEncode({
-      'canonicalUriBeforeSign': canonicalUri,
+      'canonicalUriBeforeSign': canonicalUri, 'nativeSignaturePath': signaturePath,
       'queryParameterName': 'sign', 'queryParameterValue': signature,
       'signedUri': options.uri.toString(),
       'networkRequestPerformed': false,

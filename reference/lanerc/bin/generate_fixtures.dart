@@ -54,8 +54,9 @@ void main(List<String> args) {
       queryParameters: Map<String, dynamic>.from(test['query'] as Map),
     );
     final uri = options.uri.toString();
-    final digest = md5.convert(utf8.encode('$uri@$timestamp@$nonceText$suffix')).toString();
-    return {...test, 'canonicalUri': uri, 'timestamp': timestamp, 'nonce': nonceText,
+    final signaturePath = Uri.parse(uri).path;
+    final digest = md5.convert(utf8.encode('$signaturePath@$timestamp@$nonceText$suffix')).toString();
+    return {...test, 'canonicalUri': uri, 'nativeSignaturePath': signaturePath, 'timestamp': timestamp, 'nonce': nonceText,
       'syntheticSuffix': suffix, 'sign': '$timestamp-$nonceText-$digest'};
   }).toList();
   final result = {

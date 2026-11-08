@@ -46,6 +46,12 @@ object LanercUri {
         return "https://${parsed.host.lowercase()}$port$normalizedPath" + if (pairs.isEmpty()) "" else "?${pairs.joinToString("&")}"
     }
 
+    /** APK 0x7ee248..0x7ee29c parses RequestOptions.uri then obtains Uri.path. */
+    fun signaturePath(canonical: String): String {
+        require(publicHttpsUrl(canonical)) { "Invalid signing URI" }
+        return Url(canonical).encodedPath.ifEmpty { "/" }
+    }
+
     fun signed(canonical: String, sign: String): String = canonical + if ('?' in canonical) "&sign=${component(sign)}" else "?sign=${component(sign)}"
     fun origin(base: String): String {
         require(publicHttpsUrl(base)) { "Invalid origin" }

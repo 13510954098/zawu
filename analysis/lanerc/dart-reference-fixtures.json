@@ -42,7 +42,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-b389883c729e26bcbc7f9f19f4ed4523"
+      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe",
+      "nativeSignaturePath": "/api/app/config"
     },
     {
       "name": "leading-slash",
@@ -53,7 +54,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-b389883c729e26bcbc7f9f19f4ed4523"
+      "sign": "1700000000-abc-ff345e422c77f8615855b2d8eb1922fe",
+      "nativeSignaturePath": "/api/app/config"
     },
     {
       "name": "query-order-and-unicode",
@@ -68,7 +70,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-0df65d54b7a1ce9e4a3b53644863ce14"
+      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0",
+      "nativeSignaturePath": "/search"
     },
     {
       "name": "list-and-null",
@@ -86,7 +89,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-de0d3237d7d258823232a5f8ce35e570"
+      "sign": "1700000000-abc-da830ee3b4c768705352af66660a99e0",
+      "nativeSignaturePath": "/search"
     },
     {
       "name": "normalize-path",
@@ -99,7 +103,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-9b1481d3795613bdab175ce881f5f2ee"
+      "sign": "1700000000-abc-3ea5f25be7c244a04d9f5865f01a10f9",
+      "nativeSignaturePath": "/a/b/%2F"
     },
     {
       "name": "existing-query",
@@ -112,7 +117,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-561bb39e8584c79447a3902fd86fc0f2"
+      "sign": "1700000000-abc-5d598c275be8977a68b393094ff5343f",
+      "nativeSignaturePath": "/app/config"
     },
     {
       "name": "absolute-url",
@@ -126,7 +132,8 @@
       "timestamp": 1700000000,
       "nonce": "abc",
       "syntheticSuffix": "fixture-suffix-17",
-      "sign": "1700000000-abc-cda1de3852f49a131e11ef990e5a6414"
+      "sign": "1700000000-abc-4afb07de48f0eeb6a852a83201ca7b53",
+      "nativeSignaturePath": "/direct"
     }
   ]
 }

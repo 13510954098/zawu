@@ -53,7 +53,8 @@ class LanercProtocol(private val crypto: LanercCrypto, private val secrets: Lane
     fun sign(canonicalUri: String, timestampSeconds: Long, nonce: String): String {
         require(timestampSeconds >= 0) { "Invalid timestamp" }
         require(Regex("[a-z]{3}").matches(nonce)) { "Invalid nonce" }
-        val digest = crypto.md5("$canonicalUri@$timestampSeconds@$nonce${secrets.suffix}".encodeToByteArray())
+        val path = LanercUri.signaturePath(canonicalUri)
+        val digest = crypto.md5("$path@$timestampSeconds@$nonce${secrets.suffix}".encodeToByteArray())
         require(Regex("[a-f0-9]{32}").matches(digest)) { "Invalid digest implementation" }
         return "$timestampSeconds-$nonce-$digest"
     }

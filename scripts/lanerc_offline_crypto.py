@@ -7,6 +7,7 @@ import hashlib
 import json
 import pathlib
 import re
+import urllib.parse
 
 
 def sign(canonical_uri, unix_seconds, nonce, suffix):
@@ -14,7 +15,11 @@ def sign(canonical_uri, unix_seconds, nonce, suffix):
         raise ValueError('Nonce must be three lowercase ASCII letters')
     if isinstance(unix_seconds, bool) or not isinstance(unix_seconds, int) or unix_seconds < 0:
         raise ValueError('Expected nonnegative integer Unix seconds')
-    preimage = f'{canonical_uri}@{unix_seconds}@{nonce}{suffix}'.encode('utf-8')
+    parsed = urllib.parse.urlsplit(canonical_uri)
+    path = parsed.path or '/'
+    if not path.startswith('/'):
+        raise ValueError('Expected absolute native URI path')
+    preimage = f'{path}@{unix_seconds}@{nonce}{suffix}'.encode('utf-8')
     digest = hashlib.md5(preimage).hexdigest()
     return f'{unix_seconds}-{nonce}-{digest}'
 

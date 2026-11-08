@@ -41,4 +41,5 @@ jobs:
           git add analysis/lanerc/dart-reference-fixtures.json analysis/lanerc/reference-validation.json reference/lanerc/pubspec.lock
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Record independent Dart and generated protobuf compatibility results"
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
