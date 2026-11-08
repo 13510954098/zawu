@@ -1,0 +1,15 @@
+{
+  "run_id": "42450351022",
+  "request": 1,
+  "recipient_certificate_sha256": "c93e3efa54ce1fb466500ac7d9c270a6e6f7359689eecaa665ae508790939a21",
+  "method": "GET",
+  "path": "/app/v2/vod/2302",
+  "query_fields": [
+    "sign"
+  ],
+  "body_fields": [],
+  "http_status": 200,
+  "body_bytes": 53414,
+  "body_sha256": "d0e05dc84ee12e2df7b5192aae8f186af7b2d5901c989059a44a484f852cb006",
+  "client_keys_supplied_to_runner": false
+}
