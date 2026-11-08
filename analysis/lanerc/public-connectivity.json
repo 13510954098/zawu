@@ -1,0 +1,53 @@
+{
+  "checked_at_utc": "2026-11-08T02:43:34.795928+00:00",
+  "scope": "Public DNS TXT and unsigned HTTPS HEAD / only",
+  "recovered_keys_used": false,
+  "credentials_requested": false,
+  "captcha_requested_or_solved": false,
+  "media_or_playback_requested": false,
+  "dns": [
+    {
+      "name": "dohx.lanerc.moe",
+      "dns_status": 0,
+      "authenticated_data": false,
+      "txt_records": [
+        {
+          "record_type": 16,
+          "ttl": 120,
+          "text_length": 44,
+          "text_sha256": "97e9be60bf3ceb6ca44af0bfef226f8b49e12702550bb3a6e887e1c027ff3995",
+          "url_hostnames_only": []
+        }
+      ],
+      "other_record_count": 0
+    },
+    {
+      "name": "diag-20261108024334.dohx.lanerc.moe",
+      "dns_status": 3,
+      "authenticated_data": false,
+      "txt_records": [],
+      "other_record_count": 0
+    }
+  ],
+  "https": [
+    {
+      "host": "dohx.lanerc.moe",
+      "method": "HEAD",
+      "path": "/",
+      "redirects_followed": false,
+      "error": "dns-resolution-failed"
+    },
+    {
+      "host": "v3.yyghk.com",
+      "method": "HEAD",
+      "path": "/",
+      "redirects_followed": false,
+      "resolved_public_addresses": [
+        "157.185.171.239"
+      ],
+      "http_status": 404,
+      "content_type": "text/plain"
+    }
+  ],
+  "limitations": "Public records/root reachability do not prove ownership, API identity, credentials, current media availability or end-to-end compatibility. TXT raw values are redacted and never fetched."
+}
