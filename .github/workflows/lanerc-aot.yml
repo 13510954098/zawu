@@ -10,6 +10,7 @@ on:
       - scripts/lanerc_analyzer_patch.py
       - scripts/lanerc_apk_material_layout.py
       - scripts/lanerc_generate_builtin.py
+      - scripts/lanerc_guest_flow.py
       - scripts/lanerc_recover_material.py
       - tests/test_lanerc_builtin.py
       - analysis/lanerc/analysis-recipient.pem
@@ -144,6 +145,10 @@ jobs:
         if: steps.analysis.outputs.result == 'success'
         run: |
           python3 scripts/lanerc_apk_material_layout.py /tmp/lanerc-libs/libapp.so /tmp/lanerc-aot/pp.txt analysis/lanerc/apk-material-layout.json
+      - name: Inspect native guest/authenticated play control flow without pool literals
+        if: steps.analysis.outputs.result == 'success'
+        run: |
+          /tmp/aot-env/bin/python scripts/lanerc_guest_flow.py /tmp/lanerc-libs/libapp.so analysis/lanerc/pool-anchors.json analysis/lanerc/native-guest-flow.json
       - name: Generate bundled client protocol constants, never user credentials
         if: steps.analysis.outputs.result == 'success'
         run: |
