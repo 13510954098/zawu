@@ -21,6 +21,7 @@
   "target_sdk": "37",
   "build_type": "defaultDebug",
   "shared_client_protocol_constants_embedded": true,
+  "anonymous_first_play_in_source": false,
   "private_production_material_embedded": false,
   "original_source_import_verified": false,
   "production_playback_verified": false,
