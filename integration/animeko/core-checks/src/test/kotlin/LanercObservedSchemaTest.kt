@@ -17,7 +17,8 @@ class LanercObservedSchemaTest {
         val lines = LanercCatalog.lines(fixtures.getValue("detail"))
         assertEquals(4, lines.size)
         assertEquals("line1", lines.first().id)
-        assertEquals("resource_1_1", lines.first().episodes.first().id)
+        assertTrue(lines.first().episodes.first().id.length > 128)
+        assertTrue(lines.first().episodes.first().id.endsWith("_1_1"))
         assertEquals("第1集", lines.first().episodes.first().title)
         assertEquals("app/v2/vod/", LanercEndpoints.DETAIL_PREFIX)
     }

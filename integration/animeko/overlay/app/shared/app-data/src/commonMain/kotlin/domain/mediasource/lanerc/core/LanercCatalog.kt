@@ -3,6 +3,14 @@ package me.him188.ani.app.domain.mediasource.lanerc.core
 
 import kotlinx.serialization.json.*
 
+/** Native resource IDs are opaque URL-safe tokens, not short database IDs.
+ * Real catalog tokens observed at 218..320 characters. Keep them bounded without truncating.
+ */
+object LanercIdentifiers {
+    private val resourcePattern = Regex("[A-Za-z0-9_-]{1,4096}")
+    fun validResource(value: String): Boolean = resourcePattern.matches(value)
+}
+
 data class LanercSubject(val id: String, val title: String)
 data class LanercEpisode(val id: String, val title: String)
 data class LanercLine(val id: String, val name: String, val episodes: List<LanercEpisode>)
@@ -30,7 +38,7 @@ object LanercCatalog {
             val item = value.jsonObject
             LanercLine(text(item, "player"), text(item, "name"), item.getValue("video").jsonArray.map { entry ->
                 val episode = entry.jsonObject
-                LanercEpisode(text(episode, "resource_id").also { require(Regex("[A-Za-z0-9_-]{1,128}").matches(it)) }, text(episode, "title"))
+                LanercEpisode(text(episode, "resource_id").also { require(LanercIdentifiers.validResource(it)) }, text(episode, "title"))
             })
         }
     }

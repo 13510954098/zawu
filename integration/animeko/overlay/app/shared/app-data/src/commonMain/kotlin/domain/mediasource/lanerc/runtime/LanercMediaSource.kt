@@ -88,7 +88,7 @@ class LanercMediaSource(
         val id = episode.url.substringBefore('?').removePrefix("${VIRTUAL}resource/")
         val vodIndex = Url(episode.url).parameters["vod_index"]?.toIntOrNull()
         require(vodIndex != null && vodIndex > 0) { "Missing native danmaku episode index" }
-        require(episode.url.startsWith("${VIRTUAL}resource/") && Regex("[A-Za-z0-9_-]{1,128}").matches(id))
+        require(episode.url.startsWith("${VIRTUAL}resource/") && LanercIdentifiers.validResource(id))
         return DefaultMedia(
             mediaId = "$mediaSourceId.${subjectId(subject)}.${LanercUri.component(channelName.orEmpty())}.$id",
             mediaSourceId = mediaSourceId,

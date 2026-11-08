@@ -7,6 +7,21 @@ import kotlin.test.*
 
 /** Synthetic, statically anchored DTO fixtures; these are NOT captured production responses. */
 class LanercCommunityTest {
+    @Test fun `long native resource tokens bind to community without being confused with subject ids`() {
+        for (length in listOf(218, 320, 4096)) {
+            val token = "R".repeat(length)
+            val parameters = mapOf("resource_id" to token, "vod_id" to "2302", "vod_index" to "1")
+            assertEquals(LanercCommunityIdentity("2302", 1), LanercCommunity.identity("source", "source",
+                "https://lanerc.invalid/resource/$token?vod_index=1", parameters))
+        }
+    }
+    @Test fun `resource token bounds reject traversal control characters and oversized data`() {
+        for (bad in listOf("", "../resource", "token?secret=x", "token/another", "a\nb", "R".repeat(4097))) {
+            assertFalse(LanercIdentifiers.validResource(bad))
+        }
+        assertTrue(LanercIdentifiers.validResource("safe_URL-token_123"))
+    }
+
     @Test fun `credential namespaces cannot clear another dotted source id`() {
         val prefix = LanercStorageKeys.guestPrefix("source")
         assertTrue(LanercStorageKeys.guest("source", "https://example.invalid:443").startsWith(prefix))

@@ -31,7 +31,7 @@ object LanercCommunity {
         val resource = parameters["resource_id"].orEmpty()
         val vid = parameters["vod_id"].orEmpty()
         val idPattern = Regex("[A-Za-z0-9_-]{1,128}")
-        require(idPattern.matches(resource) && idPattern.matches(vid)) { "Invalid native identity" }
+        require(LanercIdentifiers.validResource(resource) && idPattern.matches(vid)) { "Invalid native identity" }
         val index = parameters["vod_index"]?.toIntOrNull()
         require(index != null && index > 0) { "Missing one-based native episode index" }
         require(originalUrl == "https://lanerc.invalid/resource/$resource?vod_index=$index") { "Native metadata mismatch" }

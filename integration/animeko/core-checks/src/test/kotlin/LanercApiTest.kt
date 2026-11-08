@@ -9,6 +9,20 @@ import kotlin.io.encoding.Base64
 import kotlin.test.*
 
 class LanercApiTest {
+    @Test fun `play accepts an observed length opaque token only in JSON body`() = runTest {
+        val token = "R".repeat(320)
+        var observed: LanercRequest? = null
+        val api = LanercApi(protocol, { "https://example.invalid/" }, { 1000 }, { "abc" }) {
+            observed = it
+            byteArrayOf() // Response decoding deliberately fails after request inspection.
+        }
+        assertFails { api.play(token, LanercGuestCredential("https://example.invalid:443", "fixture", 2000)) }
+        val request = requireNotNull(observed)
+        assertEquals(token, Json.parseToJsonElement(request.body!!).jsonObject.getValue("resource_id").jsonPrimitive.content)
+        assertFalse(request.url.contains(token))
+        assertFalse(request.toString().contains(token))
+    }
+
     @Test fun `native ordinary JSON accepts observed 201 and rejects other business codes`() {
         val data = Json.parseToJsonElement("""{"search_vods":[{"id":1,"vod_name":"Fixture"}]}""")
         for (code in listOf(200, 201)) assertEquals("Fixture", LanercCatalog.search(buildJsonObject { put("code", code); put("data", data) }).single().title)

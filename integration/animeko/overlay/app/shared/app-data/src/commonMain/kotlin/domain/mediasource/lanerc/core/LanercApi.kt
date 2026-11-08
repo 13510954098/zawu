@@ -88,7 +88,7 @@ class LanercApi(
 
     suspend fun play(resourceId: String, credential: LanercGuestCredential): LanercPlayResult {
         val base = backend()
-        require(resourceId.isNotBlank()) { "Resource ID is required" }
+        require(LanercIdentifiers.validResource(resourceId)) { "Invalid native resource token" }
         require(credential.origin == LanercUri.origin(base) && credential.expiresAtMillis > nowMillis()) { "Guest credential expired or belongs to another backend" }
         val body = buildJsonObject { put("resource_id", resourceId); put("guest_credential", credential.value) }
         return protocol.decodePlayResponse(request(base, LanercEndpoints.GUEST_PLAY, emptyMap(), body, true))

@@ -79,5 +79,14 @@
         "new_barrages": 759
       }
     }
-  ]
+  ],
+  "resource_token_validation": {
+    "records_inspected": 112,
+    "prior_128_character_limit_rejected": 112,
+    "observed_min_length": 218,
+    "observed_max_length": 320,
+    "observed_alphabet": "ASCII alphanumeric, underscore, hyphen",
+    "corrected_client_limit": 4096,
+    "token_values_published": false
+  }
 }
