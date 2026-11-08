@@ -5,3 +5,8 @@ __pycache__/
 
 # Dart reference build cache (fixtures and lockfile remain tracked)
 reference/lanerc/.dart_tool/
+
+# Local Gradle caches and reports
+integration/animeko/core-checks/.gradle/
+integration/animeko/core-checks/.kotlin/
+integration/animeko/core-checks/build/

@@ -1,0 +1,46 @@
+name: Animeko Lanerc Kotlin core checks
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [integration/animeko/**, .github/workflows/animeko-lanerc-core.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  kotlin-core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compile Kotlin protocol and parallel search with public fixtures only
+        working-directory: integration/animeko/core-checks
+        run: bash gradlew test --no-daemon --stacktrace
+      - name: Record exact verification scope
+        run: |
+          python - <<'PY'
+          import json, pathlib, xml.etree.ElementTree as ET
+          suites = [ET.parse(p).getroot() for p in pathlib.Path('integration/animeko/core-checks/build/test-results/test').glob('TEST-*.xml')]
+          assert suites
+          counts = {key: sum(int(s.attrib.get(key, 0)) for s in suites) for key in ['tests','failures','errors','skipped']}
+          assert counts['tests'] > 0 and counts['failures'] == counts['errors'] == counts['skipped'] == 0
+          report = {'scope':'Kotlin JVM core compiled and tested against public Dart fixtures and virtual-time source adapters only', **counts, 'android_app_built':False, 'animeko_ui_integrated':False, 'original_source_import_verified':False, 'production_requests_performed':False}
+          pathlib.Path('analysis/lanerc/animeko-core-validation.json').write_text(json.dumps(report, indent=2)+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/animeko-core-validation.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record compiled Kotlin Lanerc protocol and parallel search checks'
+          git push origin HEAD:arena/44f5d2ee-zawu
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: animeko-lanerc-kotlin-test-reports
+          path: integration/animeko/core-checks/build/reports/tests/test
