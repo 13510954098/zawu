@@ -30,14 +30,36 @@ jobs:
           ani.enable.firebase=false
           ani.enable.ios=false
           jvm.toolchain.version=21
-          jvm.toolchain.vendor=Eclipse Adoptium
+          jvm.toolchain.vendor=JetBrains
           EOF
           sudo apt-get update -qq
           sudo apt-get install -y xvfb libgl1 libegl1 libxkbcommon0
+      - name: Install the pinned upstream JBR with JCEF required by desktop compilation
+        run: |
+          base=https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk_jcef-21.0.11-linux-x64-b1163.116.tar.gz
+          curl --fail --location --retry 3 "$base" -o /tmp/lanerc-jbr.tar.gz
+          curl --fail --location --retry 3 "$base.checksum" -o /tmp/lanerc-jbr.checksum
+          python - <<'PYCODE'
+          import hashlib, pathlib, re
+          expected = pathlib.Path('/tmp/lanerc-jbr.checksum').read_text().split()[0].lower()
+          assert re.fullmatch('[0-9a-f]{128}', expected)
+          with open('/tmp/lanerc-jbr.tar.gz','rb') as f: actual = hashlib.file_digest(f, 'sha512').hexdigest()
+          assert actual == expected, 'JBR SHA512 mismatch'
+          PYCODE
+          mkdir -p /tmp/lanerc-jbr
+          tar -xf /tmp/lanerc-jbr.tar.gz -C /tmp/lanerc-jbr --strip-components=1
+          echo 'JAVA_HOME=/tmp/lanerc-jbr' >> "$GITHUB_ENV"
+          echo '/tmp/lanerc-jbr/bin' >> "$GITHUB_PATH"
       - name: Run real Compose UI regression tests with synthetic native responses
         id: tests
         working-directory: .local/animeko/worktree
-        run: xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
+        run: |
+          set +e
+          xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
+          status=$?
+          grep -E '(^e:|FAILURE:|Execution failed|FAILED)' /tmp/lanerc-ui-tests.log | head -70
+          tail -60 /tmp/lanerc-ui-tests.log
+          exit "$status"
       - name: Require all six UI and timeline tests to have executed without failures
         run: |
           python - <<'PY'
