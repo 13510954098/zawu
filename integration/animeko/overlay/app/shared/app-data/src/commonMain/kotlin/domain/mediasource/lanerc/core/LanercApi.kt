@@ -76,7 +76,7 @@ class LanercApi(
     suspend fun exchange(captcha: LanercCaptcha, selected: Int): LanercGuestCredential {
         val base = backend()
         require(LanercUri.origin(base) == captcha.origin && captcha.expiresAtMillis > nowMillis()) { "Captcha expired or backend changed" }
-        require(captcha.challengeId.isNotBlank() && selected in 1..captcha.optionCount) { "Invalid captcha selection" }
+        require(captcha.challengeId.isNotBlank() && selected in 0..captcha.optionCount) { "Invalid captcha selection" }
         // APK 0x930984/0x93099c: challenge_id, selected. Selected is converted to String at 0x9309e4.
         val body = buildJsonObject { put("challenge_id", captcha.challengeId); put("selected", selected.toString()) }
         val data = LanercCatalog.payload(jsonAt(base, LanercEndpoints.GUEST_CREDENTIAL, body = body)).jsonObject

@@ -110,7 +110,7 @@ internal fun LanercSettingsCard() {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 TextButton(enabled = !busy && source != null && hasMaterial, onClick = {
                     val active = source ?: return@TextButton
-                    perform { captcha = active.session.api().captcha(); choice = 1; "请人工选择图片中正确答案的序号。" }
+                    perform { captcha = active.session.api().captcha(); choice = -1; "请人工选择图片中正确答案的序号。" }
                 }) { Text("获取访客验证码") }
                 TextButton(enabled = !busy && selected != null, onClick = {
                     val id = selected?.mediaSourceId ?: return@TextButton
@@ -125,11 +125,12 @@ internal fun LanercSettingsCard() {
                 }.getOrNull() }
                 if (image != null) Image(image, "访客验证码", Modifier.fillMaxWidth().height(140.dp))
                 else Text("验证码图像格式尚未支持；不会自动向未知图像地址发送请求。")
+                Text("请按原图标号选择，不自动推断从 0 或 1 编号；服务器会校验答案。")
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    for (number in 1..challenge.optionCount) FilterChip(selected = choice == number, onClick = { choice = number }, enabled = !busy,
+                    for (number in 0..challenge.optionCount) FilterChip(selected = choice == number, onClick = { choice = number }, enabled = !busy,
                         label = { Text(number.toString()) })
                 }
-                TextButton(enabled = !busy && image != null && source != null, onClick = {
+                TextButton(enabled = !busy && image != null && source != null && choice in 0..challenge.optionCount, onClick = {
                     val active = source ?: return@TextButton
                     val id = selected?.mediaSourceId ?: return@TextButton
                     perform {

@@ -44,6 +44,13 @@ class LanercApiTest {
         assertTrue(Json.parseToJsonElement(calls.last().body!!).jsonObject.getValue("selected").jsonPrimitive.isString)
         assertFalse(credential.toString().contains("private-token-marker"))
         assertFalse(calls.last().toString().contains("challenge_id"))
+        // Native selected is a string; no production evidence fixes the image numbering base.
+        api.exchange(captcha, 0)
+        assertEquals("0", Json.parseToJsonElement(calls.last().body!!).jsonObject.getValue("selected").jsonPrimitive.content)
+        val beforeInvalid = calls.size
+        assertFails { api.exchange(captcha, -1) }
+        assertFails { api.exchange(captcha, captcha.optionCount + 1) }
+        assertEquals(beforeInvalid, calls.size)
     }
 
     @Test fun `rotated backend and expired credentials never reach transport`() = runTest {
