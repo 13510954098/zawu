@@ -8,6 +8,7 @@ on:
       - scripts/lanerc_aot_summary.py
       - scripts/lanerc_pool_anchors.py
       - scripts/lanerc_analyzer_patch.py
+      - scripts/lanerc_apk_material_layout.py
       - analysis/lanerc/analysis-recipient.pem
 permissions:
   contents: write
@@ -100,7 +101,11 @@ jobs:
               ]},
           }, indent=2))
           PY
-      - name: Encrypt raw analysis for local-only examination
+      - name: Investigate direct APK import layout without publishing material
+        if: steps.analysis.outputs.result == 'success'
+        run: |
+          python3 scripts/lanerc_apk_material_layout.py /tmp/lanerc-libs/libapp.so /tmp/lanerc-aot/pp.txt analysis/lanerc/apk-material-layout.json
+      - name: Encrypt raw analysis archive (no local analysis required)
         if: steps.analysis.outputs.result == 'success'
         run: |
           tar -czf /tmp/lanerc-analysis.tar.gz -C /tmp/lanerc-aot pp.txt objs.txt asm
