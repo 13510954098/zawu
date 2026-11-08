@@ -1,6 +1,6 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "566087745fb7ce6b374966e72ad0c6c025bdf463",
+  "source_commit": "ecd51d90c0027fd080412fa39d75ef4d6f1c9ef8",
   "credentials_used": false,
   "captcha_solved": false,
   "media_fetched": true,
@@ -45,7 +45,20 @@
         "segment_starts_png": false,
         "segment_starts_html": false,
         "segment_starts_mp4": false,
-        "mpegts_sync_offset": 598
+        "mpegts_sync_offset": 598,
+        "stripped_prefix_streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "codec_type": "audio",
+            "codec_name": "aac"
+          }
+        ],
+        "stripped_prefix_video_metadata_verified": true
       },
       "media_streams": [
         {
