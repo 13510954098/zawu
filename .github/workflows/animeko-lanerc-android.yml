@@ -33,7 +33,7 @@ jobs:
           EOF
       - name: Compile and package the Android integration without private production material
         working-directory: .local/animeko/worktree
-        run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g
+        run: bash gradlew :app:android:assembleDefaultDebug --no-daemon --stacktrace --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-android-gradle.log 2>&1
       - name: Save APK and build provenance
         run: |
           mkdir -p /tmp/lanerc-apk
@@ -57,5 +57,22 @@ jobs:
           git add analysis/lanerc/animeko-android-validation.json
           git diff --cached --quiet && exit 0
           git commit -m 'Record Android Lanerc integration build provenance'
+          git pull --rebase origin arena/44f5d2ee-zawu
+          git push origin HEAD:arena/44f5d2ee-zawu
+
+      - name: Preserve public build diagnostics on failure
+        if: failure()
+        run: |
+          python - <<'PY'
+          import pathlib
+          log = pathlib.Path('/tmp/lanerc-android-gradle.log')
+          text = '\n'.join(log.read_text(errors='replace').splitlines()[-180:]) if log.exists() else 'Build did not reach the Gradle invocation; inspect runner setup and source preparation.'
+          pathlib.Path('analysis/lanerc/animeko-android-build-diagnostic.txt').write_text(text+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis/lanerc/animeko-android-build-diagnostic.txt
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record public Android build failure diagnostics'
           git pull --rebase origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
