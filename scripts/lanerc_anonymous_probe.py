@@ -1,8 +1,13 @@
 """Actions-only bounded anonymous read/play-resolution probe. Never solves captchas,
-logs in, supplies credentials, fetches media, or publishes community content.
-Only response status/counts/boolean classifications are retained.
+logs in, supplies credentials, or publishes community content. Optional media
+metadata probe is explicit and timeout-bounded; no media bytes or URLs are retained.
+Only status/counts/classifications and codec/dimension metadata are retained.
 """
 import json
+import os
+import ipaddress
+import socket
+import subprocess
 import pathlib
 import re
 import secrets
@@ -126,6 +131,22 @@ def run():
                     item['url_scheme'] = uri.scheme if uri.scheme in ('http', 'https', 'magnet') else 'other'
                     item['network_host_present'] = bool(uri.hostname)
                     item['userinfo_present'] = bool(uri.username or uri.password)
+                    if os.environ.get('LANERC_PROBE_MEDIA') == '1':
+                        if uri.scheme not in ('http', 'https') or not uri.hostname or uri.username or uri.password or uri.fragment:
+                            raise ValueError('Invalid media address')
+                        addresses = socket.getaddrinfo(uri.hostname, uri.port or (443 if uri.scheme == 'https' else 80), type=socket.SOCK_STREAM)
+                        if not addresses or not all(ipaddress.ip_address(entry[4][0]).is_global for entry in addresses):
+                            raise ValueError('Non-public media destination')
+                        report['media_fetch_attempted'] = True
+                        process = subprocess.run(['ffprobe', '-v', 'quiet', '-protocol_whitelist', 'http,https,tcp,tls,crypto',
+                            '-rw_timeout', '10000000', '-probesize', '1048576', '-analyzeduration', '2000000',
+                            '-read_intervals', '%+1', '-show_entries', 'stream=codec_type,codec_name,width,height:format=format_name,duration',
+                            '-of', 'json', resolved['playUrl']], capture_output=True, timeout=25)
+                        metadata = json.loads(process.stdout) if process.returncode == 0 else {}
+                        report['media_fetched'] = bool(metadata.get('streams'))
+                        item['media_streams'] = [{key:stream[key] for key in ('codec_type','codec_name','width','height') if key in stream}
+                                                 for stream in metadata.get('streams', [])]
+                        item['media_stream_probe_verified'] = process.returncode == 0 and any(stream.get('codec_type') == 'video' for stream in item['media_streams'])
             except Exception as error:
                 item['error_type'] = type(error).__name__
             report['requests'].append(item)

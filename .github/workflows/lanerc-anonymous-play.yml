@@ -22,7 +22,13 @@ jobs:
         run: |
           python -m py_compile scripts/lanerc_anonymous_probe.py
           python -m pip install cryptography==46.0.3
-      - name: Probe only anonymous reads and two play-resolution endpoints
+      - name: Install bounded media metadata inspector on Actions
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+      - name: Probe anonymous resolution and limited media metadata without credentials
+        env:
+          LANERC_PROBE_MEDIA: '1'
         run: python scripts/lanerc_anonymous_probe.py
       - name: Commit redacted status only, never raw responses or media URLs
         run: |
