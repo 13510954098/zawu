@@ -88,5 +88,6 @@
     "observed_alphabet": "ASCII alphanumeric, underscore, hyphen",
     "corrected_client_limit": 4096,
     "token_values_published": false
-  }
+  },
+  "captured_body_hashes_verified_before_semantic_inspection": true
 }

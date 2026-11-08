@@ -79,7 +79,7 @@
     "source_format_target": "original Lanerc, not cleanroom DynamicSourceManifest",
     "source_root": "integration/animeko/overlay",
     "report": "animeko-core-validation.json",
-    "kotlin_tests_passed": 52,
+    "kotlin_tests_passed": 58,
     "source_preparation_tests_passed": 4,
     "android_app_built": true,
     "ui_integrated": true,
