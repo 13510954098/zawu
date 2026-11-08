@@ -87,7 +87,7 @@ def main():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
     print('Pinned Animeko source prepared at .local/animeko/worktree')
-    print('Overlay currently contains protocol/search core only, not a complete Android UI integration.')
+    print('Overlay includes protocol, source runtime, settings UI and Android integration; production readiness requires separate verification.')
 
 
 if __name__ == '__main__':

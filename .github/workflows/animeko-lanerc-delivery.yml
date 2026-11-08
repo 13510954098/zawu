@@ -1,0 +1,49 @@
+name: Publish compiled Animeko Lanerc APK to Code
+on:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths: [.github/workflows/animeko-lanerc-delivery.yml, scripts/publish_animeko_apk.py]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Android build run with uploaded APK (compilation must have succeeded)
+        default: '42443902879'
+        required: true
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: lanerc-apk-code-delivery
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+          fetch-depth: 0
+      - name: Download compiled APK from the verified build
+        uses: actions/download-artifact@v4
+        with:
+          name: animeko-lanerc-android-debug
+          path: /tmp/lanerc-built-apk
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.run_id || '42443902879' }}
+      - name: Validate build identity and prepare Code delivery
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_RUN: ${{ inputs.run_id || '42443902879' }}
+        run: python scripts/publish_animeko_apk.py --run "$BUILD_RUN" --artifacts /tmp/lanerc-built-apk
+      - name: Commit APK and matching provenance to this session branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add downloads/animeko analysis/lanerc/animeko-android-validation.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Deliver compiled Animeko Lanerc debug APK in Code with SHA256 and build provenance'
+          for attempt in 1 2 3; do
+            git pull --rebase origin arena/44f5d2ee-zawu
+            if git push origin HEAD:arena/44f5d2ee-zawu; then exit 0; fi
+          done
+          exit 1
