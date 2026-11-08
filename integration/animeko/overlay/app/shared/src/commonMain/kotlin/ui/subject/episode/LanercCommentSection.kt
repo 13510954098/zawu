@@ -23,6 +23,8 @@ internal fun LanercCommentSection(
     media: Media?,
     load: suspend (Media, Int) -> LanercCommentPage,
     loadBarrages: suspend (Media) -> List<LanercBarrage>,
+    sendComment: (suspend (Media, String, Long) -> Unit)? = null,
+    sendBarrage: (suspend (Media, String, Boolean) -> Unit)? = null,
     animekoContent: @Composable () -> Unit,
 ) {
     var selectedTab by remember(media?.mediaId) { mutableStateOf(0) }
@@ -38,14 +40,15 @@ internal fun LanercCommentSection(
         }
         when (selectedTab) {
             0 -> Box(Modifier.weight(1f)) { animekoContent() }
-            1 -> NativeCommentList(media, load, Modifier.weight(1f))
-            2 -> NativeBarrageList(media, loadBarrages, Modifier.weight(1f))
+            1 -> NativeCommentList(media, load, Modifier.weight(1f), sendComment)
+            2 -> NativeBarrageList(media, loadBarrages, Modifier.weight(1f), sendBarrage)
         }
     }
 }
 
 @Composable
-private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> LanercCommentPage, modifier: Modifier) {
+private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> LanercCommentPage, modifier: Modifier, send: (suspend (Media, String, Long) -> Unit)?) {
+    var replyId by remember(media.mediaId) { mutableStateOf(0L) }
     var page by remember(media.mediaId) { mutableStateOf(1) }
     var retry by remember(media.mediaId) { mutableStateOf(0) }
     var result by remember(media.mediaId) { mutableStateOf<LanercCommentPage?>(null) }
@@ -62,7 +65,7 @@ private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> Lanerc
     }
     Column(modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
         Text("Lanerc 原版作品级评论（不是 Bangumi 单集评论）", style = MaterialTheme.typography.labelMedium)
-        Text("当前只读；原版用户登录与发送尚未接入。", style = MaterialTheme.typography.bodySmall)
+        Text("发送需要此源的原版账号，不使用访客或 Animeko 登录。", style = MaterialTheme.typography.bodySmall)
         if (loading) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("lanerc.comments.loading"))
         if (failed) {
             Text("读取失败：请检查 Lanerc 源配置、网络及服务可用性。", modifier = Modifier.testTag("lanerc.comments.error"))
@@ -74,9 +77,18 @@ private fun NativeCommentList(media: Media, load: suspend (Media, Int) -> Lanerc
             LazyColumn(Modifier.weight(1f).testTag("lanerc.comments.list"), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 if (current.comments.isEmpty()) item { Text("本页暂无评论") }
                 // Index identity avoids collisions in untrusted or repeated native comment IDs.
-                items(current.comments) { comment -> NativeComment(comment) }
+                items(current.comments) { comment ->
+                    NativeComment(comment)
+                    val id = comment.id.toLongOrNull()
+                    if (send != null && id != null && id > 0) TextButton(onClick = { replyId = id }) { Text("回复此评论") }
+                }
             }
         } else Spacer(Modifier.weight(1f))
+        if (send != null) {
+            if (replyId != 0L) TextButton(onClick = { replyId = 0L }) { Text("取消回复，改为作品评论") }
+            NativeWriteComposer("Lanerc ${if (replyId == 0L) "作品评论" else "评论回复"}", 4096,
+                onSend = { text -> send(media, text, replyId) }, onSuccess = { retry++; replyId = 0L })
+        }
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             TextButton(onClick = { page-- }, enabled = !loading && page > 1) { Text("上一页") }
             TextButton(onClick = { page++ }, enabled = !loading && !current?.comments.isNullOrEmpty() && page < 10000) { Text("下一页") }
@@ -101,7 +113,7 @@ private fun NativeComment(comment: LanercComment) {
 
 /** Read-only list until native renderer location mapping has independent evidence. */
 @Composable
-private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<LanercBarrage>, modifier: Modifier) {
+private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<LanercBarrage>, modifier: Modifier, send: (suspend (Media, String, Boolean) -> Unit)?) {
     var result by remember(media.mediaId) { mutableStateOf<List<LanercBarrage>?>(null) }
     var failed by remember(media.mediaId) { mutableStateOf(false) }
     var retry by remember(media.mediaId) { mutableStateOf(0) }
@@ -114,7 +126,13 @@ private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<Lanerc
     }
     Column(modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
         Text("Lanerc 本集弹幕 · 只读列表", style = MaterialTheme.typography.titleSmall)
-        Text("使用原版作品 ID 和线路内选集序号。播放器已接入顶部/滚动时间线；发送仍未接入。", style = MaterialTheme.typography.bodySmall)
+        Text("使用原版作品 ID 和线路内选集序号；发送需要在设置中登录此源的原版账号。", style = MaterialTheme.typography.bodySmall)
+        var top by remember(media.mediaId) { mutableStateOf(false) }
+        if (send != null) {
+            FilterChip(top, { top = !top }, label = { Text(if (top) "顶部弹幕" else "滚动弹幕") })
+            NativeWriteComposer("Lanerc 当前播放位置的弹幕", 500,
+                onSend = { text -> send(media, text, top) }, onSuccess = { retry++ })
+        }
         when {
             failed -> {
                 Text("读取失败，请检查源配置及服务可用性。", modifier = Modifier.testTag("lanerc.barrages.error"))

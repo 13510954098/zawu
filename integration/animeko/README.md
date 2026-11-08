@@ -106,3 +106,12 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 - 验证码图像获取成功不等于完成真人验证。没有自动猜解验证码，没有取得 guestCredential，也没有宣称真实播放成功。原发布私钥已从验收阻塞项移除，修改版采用独立签名。
 
 真实详情还发现旧 128 字符资源 ID 上限会拒绝样本全部 112 集（实际令牌长 218～320 字符）。已统一修正详情、媒体创建、社区身份和播放请求为有界 4096 字符 URL-safe opaque token；脱敏样例保留长度而不保留原令牌，加入超长、路径穿越、控制字符及请求 body 隔离回归。新修改等待 Actions，不据此声称生产播放成功。
+
+
+### 原版账号与发布接线（新增，待新一轮 Actions 验证）
+
+已从原 APK 恢复登录 `app/user/login` 的 `account` / `pwd` 及返回 `token`，评论发布 `content` / `vod_id` / `parent_id`，弹幕发布 `video_id` / **数字选集序号 `video_url`** / `color` / `second` / `position` / `content`。证据见 `analysis/lanerc/native-account-anchors.json`，没有向真实后台登录或发布内容。
+
+新增源设置原版账号登录/退出：先显示并确认后端 origin，域名变化拒绝发送密码；密码不持久化，原版 token 使用独立 KeyStore AAD 和长度分隔命名空间，不与 guestCredential 或 Animeko 登录共享。评论支持顶层发布和对原版评论 ID 的回复；弹幕在用户确认时取当前播放秒数，提供滚动/顶部选择。所有写入均需点击确认，失败/超时不会自动重试，避免不确定结果造成重复发布。
+
+这些新增代码和合成测试不等于真实账号成功；现有 Code APK 是否已包含它们必须核对其 source_commit，新构建成功才会自动更新。

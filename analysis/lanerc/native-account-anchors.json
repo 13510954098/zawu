@@ -1,0 +1,758 @@
+{
+  "method": "Exact whitelisted object-pool strings and ARM64 x27-relative loads",
+  "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
+  "pool_marker_slots": [
+    {
+      "offset": "0xb6c0",
+      "label": "auth-header"
+    },
+    {
+      "offset": "0x24168",
+      "label": "native-login"
+    },
+    {
+      "offset": "0x249a0",
+      "label": "native-send-barrage"
+    },
+    {
+      "offset": "0x31398",
+      "label": "native-send-comment"
+    }
+  ],
+  "code_anchors": [
+    {
+      "marker": "auth-header",
+      "instruction": "0x3ebed0",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x3ebb6c",
+      "distance_from_hint": 868,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x963eb4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x48afb0",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x48ae1c",
+      "distance_from_hint": 404,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x963c2c",
+        "0x963c2c",
+        "0x963c2c",
+        "0x963c2c",
+        "0x963c2c",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x48b14c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x48ae1c",
+      "distance_from_hint": 816,
+      "recent_direct_call_targets": [
+        "0x3ec0ac",
+        "0x9635a4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x639780",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x639740",
+      "distance_from_hint": 64,
+      "recent_direct_call_targets": [
+        "0x3ebcec",
+        "0x9635a4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x665cb8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x665ae0",
+      "distance_from_hint": 472,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x6d0870",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x6d02a8",
+      "distance_from_hint": 1480,
+      "recent_direct_call_targets": [
+        "0x9703a0",
+        "0x9635a4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8dd214",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8dc908",
+      "distance_from_hint": 2316,
+      "recent_direct_call_targets": [
+        "0x48b574",
+        "0x9627d0",
+        "0x8d1c90",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8ea3c0",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8e9cfc",
+      "distance_from_hint": 1732,
+      "recent_direct_call_targets": [
+        "0x961748",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fa164",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8f9fa4",
+      "distance_from_hint": 448,
+      "recent_direct_call_targets": [
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fa384",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8f9fa4",
+      "distance_from_hint": 992,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fa52c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fa410",
+      "distance_from_hint": 284,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fa750",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fa410",
+      "distance_from_hint": 832,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fa8f4",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fa84c",
+      "distance_from_hint": 168,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fad34",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fa84c",
+      "distance_from_hint": 1256,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fb628",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fb530",
+      "distance_from_hint": 248,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x8fb868",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x8fb530",
+      "distance_from_hint": 824,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x915744",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x914ec4",
+      "distance_from_hint": 2176,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x918a6c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91807c",
+      "distance_from_hint": 2544,
+      "recent_direct_call_targets": [
+        "0x961bac",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x918ce8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91807c",
+      "distance_from_hint": 3180,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x918fac",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x918d60",
+      "distance_from_hint": 588,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x9191fc",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x919138",
+      "distance_from_hint": 196,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91938c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91930c",
+      "distance_from_hint": 128,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x9194f4",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91930c",
+      "distance_from_hint": 488,
+      "recent_direct_call_targets": [
+        "0x919578",
+        "0x8be300",
+        "0x3e5ee4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x9196c8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91930c",
+      "distance_from_hint": 956,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91980c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91930c",
+      "distance_from_hint": 1280,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91a4ec",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91a3fc",
+      "distance_from_hint": 240,
+      "recent_direct_call_targets": [
+        "0x816218",
+        "0x9627d0",
+        "0x8d1c90",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91a774",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91a3fc",
+      "distance_from_hint": 888,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91aa38",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91a8f0",
+      "distance_from_hint": 328,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x963c2c",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91acb8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91a8f0",
+      "distance_from_hint": 968,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91b338",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91b270",
+      "distance_from_hint": 200,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91b9c4",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91b8ec",
+      "distance_from_hint": 216,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91bc50",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91b8ec",
+      "distance_from_hint": 868,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x91c468",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x91bcbc",
+      "distance_from_hint": 1964,
+      "recent_direct_call_targets": [
+        "0x9242e4",
+        "0x8be300",
+        "0x665d3c",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x922408",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x9221c8",
+      "distance_from_hint": 576,
+      "recent_direct_call_targets": [
+        "0x961724",
+        "0x9635a4",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x929c64",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x929b94",
+      "distance_from_hint": 208,
+      "recent_direct_call_targets": [
+        "0x96240c",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92ac18",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92a9fc",
+      "distance_from_hint": 540,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92adf0",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92a9fc",
+      "distance_from_hint": 1012,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92b088",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92ae5c",
+      "distance_from_hint": 556,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92b2b4",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92ae5c",
+      "distance_from_hint": 1112,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92b564",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92ae5c",
+      "distance_from_hint": 1800,
+      "recent_direct_call_targets": [
+        "0x9627d0",
+        "0x8d1c90",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "native-login",
+      "instruction": "0x92b6b4",
+      "pool_offset": "0x24168",
+      "preceding_known_entry_hint": "0x92ae5c",
+      "distance_from_hint": 2136,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92d4bc",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92cf5c",
+      "distance_from_hint": 1376,
+      "recent_direct_call_targets": [
+        "0x9627d0",
+        "0x4163a4",
+        "0x8be300",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92d880",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92d768",
+      "distance_from_hint": 280,
+      "recent_direct_call_targets": [
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92dddc",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92d768",
+      "distance_from_hint": 1652,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "native-send-comment",
+      "instruction": "0x92de1c",
+      "pool_offset": "0x31398",
+      "preceding_known_entry_hint": "0x92d768",
+      "distance_from_hint": 1716,
+      "recent_direct_call_targets": [
+        "0x3e5ee4",
+        "0x96349c",
+        "0x2bcf5c",
+        "0x8e7404"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92e094",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92df88",
+      "distance_from_hint": 268,
+      "recent_direct_call_targets": [
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92eee0",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92ed5c",
+      "distance_from_hint": 388,
+      "recent_direct_call_targets": [
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x92f3d8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x92ed5c",
+      "distance_from_hint": 1660,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "native-send-barrage",
+      "instruction": "0x92f418",
+      "pool_offset": "0x249a0",
+      "preceding_known_entry_hint": "0x92ed5c",
+      "distance_from_hint": 1724,
+      "recent_direct_call_targets": [
+        "0x3e5ee4",
+        "0x96349c",
+        "0x2bcf5c",
+        "0x8e7404"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x931478",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x931208",
+      "distance_from_hint": 624,
+      "recent_direct_call_targets": [
+        "0x9627d0",
+        "0x8d1c90",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x9318a8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x931208",
+      "distance_from_hint": 1696,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x93215c",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x932058",
+      "distance_from_hint": 260,
+      "recent_direct_call_targets": [
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x932388",
+        "0x8be300",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x932320",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x932058",
+      "distance_from_hint": 712,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x9409c8",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x940144",
+      "distance_from_hint": 2180,
+      "recent_direct_call_targets": [
+        "0x9635a4",
+        "0x9635a4",
+        "0x8be6f0",
+        "0x9615e4"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x940d88",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x940144",
+      "distance_from_hint": 3140,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "auth-header",
+      "instruction": "0x96ba90",
+      "pool_offset": "0xb6c0",
+      "preceding_known_entry_hint": "0x9687d0",
+      "distance_from_hint": 12992,
+      "recent_direct_call_targets": [
+        "0x96c664",
+        "0x8be300",
+        "0x96c0dc",
+        "0x8be300",
+        "0x96baf0",
+        "0x8be300",
+        "0x961bcc"
+      ]
+    }
+  ],
+  "confirmed_wire_fields": {
+    "login": {
+      "path": "app/user/login",
+      "method": "POST",
+      "body": [
+        "account",
+        "pwd"
+      ],
+      "body_anchor": "0x68ff1c..0x68ff50",
+      "token_response_anchor": "0x48b618",
+      "token_field": "token"
+    },
+    "send_comment": {
+      "path": "app/chat/sendcomment",
+      "method": "POST",
+      "authorization": "exact native token header; not guestCredential",
+      "body": [
+        "content",
+        "vod_id",
+        "parent_id"
+      ],
+      "root_parent_id": 0,
+      "body_anchor": "0x92d92c..0x92d9f8",
+      "header_anchor": "0x92dddc"
+    },
+    "send_barrage": {
+      "path": "app/chat/sendbarrage",
+      "method": "POST",
+      "body": [
+        "video_id",
+        "video_url",
+        "color",
+        "second",
+        "position",
+        "content"
+      ],
+      "video_url": "numeric one-based selected episode index; NOT a media URL",
+      "body_anchor": "0x92f010..0x92f214",
+      "header_anchor": "0x92f3d8"
+    },
+    "validation_scope": "static disassembly only; no real login or publication performed"
+  }
+}

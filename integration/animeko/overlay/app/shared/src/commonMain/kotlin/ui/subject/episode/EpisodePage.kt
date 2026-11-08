@@ -710,7 +710,7 @@ private fun EpisodeScreenSidebar(
 
                 1 -> {
                     val nativeMedia by vm.lanercCommunityMedia.collectAsStateWithLifecycle(null)
-                    LanercCommentSection(nativeMedia, vm::readLanercComments, vm::readLanercBarrages) {
+                    LanercCommentSection(nativeMedia, vm::readLanercComments, vm::readLanercBarrages, vm::sendLanercComment, vm::sendLanercBarrage) {
                     EpisodeCommentColumn(
                         commentState = vm.episodeCommentState,
                         commentReportState = vm.commentReportState,

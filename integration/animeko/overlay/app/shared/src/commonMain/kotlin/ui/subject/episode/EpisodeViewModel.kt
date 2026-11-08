@@ -838,6 +838,20 @@ open class EpisodeViewModel(
         return source.readBarrages(media)
     }
 
+    private suspend fun nativeWriteSource(media: Media): me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercMediaSource {
+        require(lanercCommunityMedia.first()?.mediaId == media.mediaId) { "Selected media changed" }
+        return mediaSourceManager.allInstances.first().firstOrNull { it.source.mediaSourceId == media.mediaSourceId }?.source
+            as? me.him188.ani.app.domain.mediasource.lanerc.runtime.LanercMediaSource ?: error("Native source removed")
+    }
+    suspend fun sendLanercComment(media: Media, content: String, parentId: Long) {
+        nativeWriteSource(media).sendComment(media, content, parentId)
+    }
+    suspend fun sendLanercBarrage(media: Media, content: String, top: Boolean) {
+        val source = nativeWriteSource(media)
+        val second = player.currentPositionMillis.first() / 1000
+        source.sendBarrage(media, second, content, top)
+    }
+
     @OptIn(UnsafeEpisodeSessionApi::class)
     protected val episodeDanmakuLoader = EpisodeDanmakuLoader(
         player = player,

@@ -39,6 +39,7 @@ class LanercSourceSession(
         http.prepareRequest(request.url) {
             method = if (request.body == null) HttpMethod.Get else HttpMethod.Post
             header(HttpHeaders.Accept, if (request.protobuf) "application/x-protobuf" else "application/json")
+            request.authorization?.let { header(HttpHeaders.Authorization, it) }
             request.body?.let { contentType(ContentType.Application.Json); setBody(it) }
         }.execute { response ->
             require(response.status.value in 200..299) { "Lanerc HTTP request failed" }

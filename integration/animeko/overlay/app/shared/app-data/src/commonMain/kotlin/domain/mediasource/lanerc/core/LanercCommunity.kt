@@ -77,6 +77,12 @@ object LanercCommunity {
 
 /** Length-delimited namespaces prevent clearing `source` from also deleting `source.child`. */
 object LanercStorageKeys {
+    fun accountPrefix(sourceId: String): String = guestPrefix(sourceId).replaceFirst("lanerc.guest.v2.", "lanerc.account.v1.")
+    fun account(sourceId: String, origin: String): String {
+        require(LanercUri.origin(origin) == origin) { "Expected canonical backend origin" }
+        return accountPrefix(sourceId) + origin
+    }
+
     fun guestPrefix(sourceId: String): String {
         require(sourceId.isNotBlank() && sourceId.length <= 200) { "Invalid source identity" }
         return "lanerc.guest.v2.${sourceId.length}:$sourceId."

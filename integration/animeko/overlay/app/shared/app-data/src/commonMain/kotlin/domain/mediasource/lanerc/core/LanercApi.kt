@@ -4,7 +4,7 @@ package me.him188.ani.app.domain.mediasource.lanerc.core
 import kotlinx.serialization.json.*
 
 /** Transport implementations must disable redirects and cookies and must not log request URLs/bodies. */
-class LanercRequest(val url: String, val body: String?, val protobuf: Boolean) {
+class LanercRequest(val url: String, val body: String?, val protobuf: Boolean, val authorization: String? = null) {
     override fun toString() = "LanercRequest(REDACTED)"
 }
 class LanercCaptcha(val origin: String, val challengeId: String, val image: String, val optionCount: Int, val expiresAtMillis: Long) {
@@ -12,6 +12,15 @@ class LanercCaptcha(val origin: String, val challengeId: String, val image: Stri
 }
 class LanercGuestCredential(val origin: String, val value: String, val expiresAtMillis: Long) {
     override fun toString() = "LanercGuestCredential(REDACTED)"
+}
+
+/** Original native account token, distinct from a guest play credential. No invented expiry. */
+class LanercAccountCredential(val origin: String, val value: String) {
+    init {
+        require(LanercUri.origin(origin) == origin) { "Invalid account origin" }
+        require(value.isNotBlank() && value.length <= 16384 && value == value.trim() && value.all { it.code in 32..126 }) { "Invalid account token" }
+    }
+    override fun toString() = "LanercAccountCredential(REDACTED)"
 }
 
 /** API primitives for one source. Credentials are origin-bound and never exported with source definitions. */
@@ -26,18 +35,19 @@ class LanercApi(
     suspend fun json(path: String, query: Map<String, JsonElement> = emptyMap()): JsonElement =
         jsonAt(backend(), path, query)
 
-    private suspend fun request(base: String, path: String, query: Map<String, JsonElement>, body: JsonObject?, protobuf: Boolean): ByteArray {
+    private suspend fun request(base: String, path: String, query: Map<String, JsonElement>, body: JsonObject?, protobuf: Boolean, account: LanercAccountCredential? = null): ByteArray {
         val canonical = LanercUri.canonical(base, path, query)
         // Absolute endpoint overrides must never forward a credential to another origin.
         require(LanercUri.origin(canonical) == LanercUri.origin(base)) { "Cross-origin API request rejected" }
+        require(account == null || account.origin == LanercUri.origin(base)) { "Account belongs to another backend" }
         val sign = protocol.sign(canonical, nowMillis() / 1000, nonce())
-        return transport(LanercRequest(LanercUri.signed(canonical, sign), body?.toString(), protobuf)).also {
+        return transport(LanercRequest(LanercUri.signed(canonical, sign), body?.toString(), protobuf, account?.value)).also {
             require(it.size <= LanercProtocol.MAX_BYTES) { "Response size limit" }
         }
     }
 
-    private suspend fun jsonAt(base: String, path: String, query: Map<String, JsonElement> = emptyMap(), body: JsonObject? = null): JsonElement {
-        val raw = request(base, path, query, body, false).decodeToString(throwOnInvalidSequence = true)
+    private suspend fun jsonAt(base: String, path: String, query: Map<String, JsonElement> = emptyMap(), body: JsonObject? = null, account: LanercAccountCredential? = null): JsonElement {
+        val raw = request(base, path, query, body, false, account).decodeToString(throwOnInvalidSequence = true)
         fun decodeString(value: String): JsonElement = if (value.trimStart().startsWith('{') || value.trimStart().startsWith('['))
             Json.parseToJsonElement(value) else protocol.decodeJsonTransport(value)
         return try {
@@ -61,6 +71,42 @@ class LanercApi(
     suspend fun comments(vid: String, page: Int = 1): LanercCommentPage {
         require(Regex("[A-Za-z0-9_-]{1,128}").matches(vid) && page > 0)
         return LanercCommunity.comments(json("app/chat/comment", linkedMapOf("vid" to JsonPrimitive(vid), "page" to JsonPrimitive(page.toString()))))
+    }
+
+    /** APK 0x68ff1c/0x68ff38, 0x92b6b4, response token at 0x48b618. */
+    suspend fun login(account: String, password: String, expectedOrigin: String? = null): LanercAccountCredential {
+        require(account.isNotBlank() && account.length <= 320 && password.isNotEmpty() && password.length <= 4096)
+        val base = backend()
+        require(expectedOrigin == null || LanercUri.origin(base) == expectedOrigin) { "Login backend changed; confirm its origin again" }
+        val root = jsonAt(base, "app/user/login", body = buildJsonObject { put("account", account); put("pwd", password) })
+        val data = LanercCatalog.payload(root).jsonObject
+        val token = data.getValue("token").jsonPrimitive
+        require(token.isString && token != JsonNull) { "Missing native account token" }
+        return LanercAccountCredential(LanercUri.origin(base), token.content)
+    }
+
+    private suspend fun writeAccount(path: String, body: JsonObject, account: LanercAccountCredential) {
+        val root = jsonAt(backend(), path, body = body, account = account).jsonObject
+        require(root["code"]?.jsonPrimitive?.intOrNull in listOf(200, 201)) { "Native write was not acknowledged" }
+    }
+
+    /** APK 0x92d92c/0x92d94c/0x92d9e4; top-level parent_id is zero. */
+    suspend fun sendComment(vid: String, content: String, parentId: Long, account: LanercAccountCredential) {
+        require(Regex("[0-9]{1,18}").matches(vid) && parentId >= 0)
+        require(content.isNotBlank() && content.length <= 4096 && content.none { it == '\u0000' })
+        writeAccount("app/chat/sendcomment", buildJsonObject {
+            put("content", content); put("vod_id", vid.toLong()); put("parent_id", parentId)
+        }, account)
+    }
+
+    /** APK 0x92f010..0x92f1d0: video_url is the ONE-BASED INDEX, not a URL/resource token. */
+    suspend fun sendBarrage(vid: String, vodIndex: Int, second: Long, content: String, top: Boolean, account: LanercAccountCredential) {
+        require(Regex("[0-9]{1,18}").matches(vid) && vodIndex > 0 && second in 0..604800)
+        require(content.isNotBlank() && content.length <= 500 && content.none { it == '\u0000' })
+        writeAccount("app/chat/sendbarrage", buildJsonObject {
+            put("video_id", vid.toLong()); put("video_url", vodIndex); put("color", "#FFFFFFFF")
+            put("second", second); put("position", if (top) 1 else 0); put("content", content)
+        }, account)
     }
 
     suspend fun captcha(): LanercCaptcha {

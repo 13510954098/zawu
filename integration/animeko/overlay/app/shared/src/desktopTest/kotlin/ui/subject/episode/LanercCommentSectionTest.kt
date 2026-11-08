@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import me.him188.ani.app.domain.mediasource.lanerc.core.*
 import me.him188.ani.app.ui.framework.runAniComposeUiTest
 import me.him188.ani.datasources.api.*
@@ -91,6 +92,34 @@ class LanercCommentSectionTest {
         onNodeWithTag("lanerc.comments.animeko").performClick()
         onNodeWithText("original-comments").assertExists()
     }
+    @Test fun nativePostingRequiresExplicitConfirmationAndCancelDoesNotPublish() = runAniComposeUiTest {
+        var posts = 0
+        setContent { MaterialTheme { NativeWriteComposer("fixture destination", 500, { text ->
+            assertEquals("fixture-publication", text); posts++
+        }, {}) } }
+        onNodeWithTag("lanerc.write.input").performTextInput("fixture-publication")
+        runOnIdle { assertEquals(0, posts) }
+        onNodeWithTag("lanerc.write.open").performClick()
+        runOnIdle { assertEquals(0, posts) }
+        onNodeWithText("取消").performClick()
+        runOnIdle { assertEquals(0, posts) }
+        onNodeWithTag("lanerc.write.open").performClick()
+        onNodeWithTag("lanerc.write.confirm").performClick()
+        waitForIdle()
+        runOnIdle { assertEquals(1, posts) }
+        onNodeWithText("服务器已确认接收。").assertExists()
+    }
+    @Test fun failedNativePublicationIsNotAutomaticallyRetriedOrReportedAsSuccess() = runAniComposeUiTest {
+        var posts = 0
+        setContent { MaterialTheme { NativeWriteComposer("fixture destination", 500, { posts++; error("fixture failure") }, {}) } }
+        onNodeWithTag("lanerc.write.input").performTextInput("fixture draft")
+        onNodeWithTag("lanerc.write.open").performClick()
+        onNodeWithTag("lanerc.write.confirm").performClick()
+        waitForIdle()
+        runOnIdle { assertEquals(1, posts) }
+        onNodeWithText("服务器已确认接收。").assertDoesNotExist()
+    }
+
     @Test fun nativeTimelineMapsTopScrollTimeAndDeduplicatesWithoutChangingOriginalServices() = runTest {
         val emissions = flowOf<Media?>(media("resource1")).lanercDanmakuResults {
             listOf(LanercBarrage("a", "#ffff0000", 1, 1.25, "top"),

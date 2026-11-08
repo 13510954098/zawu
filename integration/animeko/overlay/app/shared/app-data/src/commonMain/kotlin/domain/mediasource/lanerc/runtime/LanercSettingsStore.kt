@@ -46,10 +46,26 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
             saved.takeIf { it.origin == origin && it.value.isNotBlank() && it.expiresAtMillis > nowMillis }
         } catch (_: Exception) { null }
     }
+    suspend fun saveAccount(sourceId: String, account: LanercAccountCredential) {
+        val sealed = LanercPlatform.seal("account:$sourceId:${account.origin}", account.value)
+        preferences.edit { it[stringPreferencesKey(LanercStorageKeys.account(sourceId, account.origin))] = sealed }
+    }
+    suspend fun account(sourceId: String, origin: String): LanercAccountCredential? {
+        val sealed = preferences.data.first()[stringPreferencesKey(LanercStorageKeys.account(sourceId, origin))] ?: return null
+        return try { LanercAccountCredential(origin, LanercPlatform.unseal("account:$sourceId:$origin", sealed)) }
+        catch (_: Exception) { null }
+    }
+    suspend fun logoutAccount(sourceId: String) {
+        preferences.edit { values ->
+            values.asMap().keys.filter { it.name.startsWith(LanercStorageKeys.accountPrefix(sourceId)) }.forEach { values.remove(it) }
+        }
+    }
+
     suspend fun clearPrivate(sourceId: String) {
         preferences.edit { values ->
             values.asMap().filter { (key, value) ->
                 key.name == materialKey(sourceId).name || key.name.startsWith(LanercStorageKeys.guestPrefix(sourceId)) ||
+                    key.name.startsWith(LanercStorageKeys.accountPrefix(sourceId)) ||
                     legacyCredentialBelongsTo(sourceId, key.name, value as? String)
             }.keys.forEach { values.remove(it) }
         }

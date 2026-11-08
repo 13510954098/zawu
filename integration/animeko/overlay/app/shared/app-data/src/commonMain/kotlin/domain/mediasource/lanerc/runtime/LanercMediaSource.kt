@@ -114,6 +114,26 @@ class LanercMediaSource(
             }
         }
     }
+    suspend fun loginAccount(account: String, password: String, expectedOrigin: String) {
+        settings.saveAccount(mediaSourceId, session.api().login(account, password, expectedOrigin))
+    }
+    suspend fun logoutAccount() { settings.logoutAccount(mediaSourceId) }
+
+    private suspend fun nativeAccount(api: LanercApi): LanercAccountCredential =
+        settings.account(mediaSourceId, LanercUri.origin(api.backend()))
+            ?: error("请在 Lanerc 源设置中登录原版账号；访客播放凭据不能发送评论或弹幕")
+
+    suspend fun sendComment(media: Media, content: String, parentId: Long = 0) {
+        val identity = communityIdentity(media)
+        val api = session.api()
+        api.sendComment(identity.vid, content, parentId, nativeAccount(api))
+    }
+    suspend fun sendBarrage(media: Media, second: Long, content: String, top: Boolean) {
+        val identity = communityIdentity(media)
+        val api = session.api()
+        api.sendBarrage(identity.vid, identity.vodIndex, second, content, top, nativeAccount(api))
+    }
+
     private fun communityIdentity(media: Media): LanercCommunityIdentity = LanercCommunity.identity(
         mediaSourceId, media.mediaSourceId, media.originalUrl,
         (media.download as? ResourceLocation.WebVideo)?.apiParameters ?: error("Missing native source metadata"),

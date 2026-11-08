@@ -117,6 +117,7 @@ internal fun LanercSettingsCard() {
                     dialog = "clear"; input = id
                 }) { Text("清除此源私密数据") }
             }
+            source?.let { active -> key(active) { LanercAccountControls(active, hasMaterial) } }
             captcha?.let { challenge ->
                 val image = remember(challenge) { runCatching {
                     require(challenge.image.length <= 2 * 1024 * 1024)
