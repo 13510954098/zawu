@@ -45,7 +45,7 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m 'Deliver compiled Animeko Lanerc debug APK in Code with SHA256 and build provenance'
           for attempt in 1 2 3; do
-            git pull --rebase origin arena/44f5d2ee-zawu
+            git pull --rebase -X theirs origin arena/44f5d2ee-zawu
             if git push origin HEAD:arena/44f5d2ee-zawu; then exit 0; fi
           done
           exit 1

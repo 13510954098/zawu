@@ -70,7 +70,7 @@ jobs:
           git add downloads/animeko analysis/lanerc/animeko-android-validation.json
           git diff --cached --quiet && exit 0
           git commit -m 'Record Android Lanerc integration build provenance'
-          git pull --rebase origin arena/44f5d2ee-zawu
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
 
       - name: Preserve public build diagnostics on failure
@@ -93,5 +93,5 @@ jobs:
           git add analysis/lanerc/animeko-android-build-diagnostic.txt
           git diff --cached --quiet && exit 0
           git commit -m 'Record public Android build failure diagnostics'
-          git pull --rebase origin arena/44f5d2ee-zawu
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
