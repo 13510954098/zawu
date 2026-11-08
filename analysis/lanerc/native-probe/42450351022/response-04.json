@@ -1,0 +1,17 @@
+{
+  "run_id": "42450351022",
+  "request": 4,
+  "recipient_certificate_sha256": "c93e3efa54ce1fb466500ac7d9c270a6e6f7359689eecaa665ae508790939a21",
+  "method": "GET",
+  "path": "/app/chat/comment",
+  "query_fields": [
+    "page",
+    "sign",
+    "vid"
+  ],
+  "body_fields": [],
+  "http_status": 200,
+  "body_bytes": 5822,
+  "body_sha256": "dcce926f6518fc8e4f65a5ed81879f6674c23400260ccef8ff054a3620ce7573",
+  "client_keys_supplied_to_runner": false
+}
