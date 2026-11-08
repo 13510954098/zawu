@@ -1,0 +1,4 @@
+
+# Local analysis private keys and decrypted temporary files
+.local/
+__pycache__/

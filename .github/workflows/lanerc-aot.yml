@@ -7,6 +7,7 @@ on:
       - .github/workflows/lanerc-aot.yml
       - scripts/lanerc_aot_summary.py
       - scripts/lanerc_pool_anchors.py
+      - analysis/lanerc/analysis-recipient.pem
 permissions:
   contents: write
 jobs:
@@ -96,7 +97,15 @@ jobs:
               ]},
           }, indent=2))
           PY
-      - name: Commit metadata only to session branch
+      - name: Encrypt raw analysis for local-only examination
+        if: steps.analysis.outputs.result == 'success'
+        run: |
+          tar -czf /tmp/lanerc-analysis.tar.gz -C /tmp/lanerc-aot pp.txt objs.txt asm
+          test "$(stat -c%s /tmp/lanerc-analysis.tar.gz)" -le 5242880
+          openssl cms -encrypt -binary -aes-256-cbc \
+            -in /tmp/lanerc-analysis.tar.gz -outform DER \
+            -out analysis/lanerc/private-bundle.p7m analysis/lanerc/analysis-recipient.pem
+      - name: Commit metadata and encrypted bundle to session branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
