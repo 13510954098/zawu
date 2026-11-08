@@ -1,0 +1,14 @@
+{
+  "run_id": "42449791095",
+  "request": 1,
+  "method": "GET",
+  "path": "/app/health",
+  "query_fields": [
+    "sign"
+  ],
+  "body_fields": [],
+  "http_status": 200,
+  "body_bytes": 15,
+  "body_sha256": "edc48cd3b0bc4fa7ba23aad40b8508a17d370ca38be174bae2a2f64634e65a2b",
+  "client_keys_supplied_to_runner": false
+}
