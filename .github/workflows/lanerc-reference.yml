@@ -11,6 +11,7 @@ on:
       - scripts/lanerc_run_reference_tests.py
       - tests/test_lanerc_protobuf_reference.py
       - tests/test_lanerc_dart_reference.py
+      - tests/test_lanerc_dart_cli.py
 permissions:
   contents: write
 jobs:
