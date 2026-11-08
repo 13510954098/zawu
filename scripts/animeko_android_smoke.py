@@ -33,7 +33,7 @@ def main():
         report['install_verified'] = True
         adb('shell', 'input', 'keyevent', 'KEYCODE_WAKEUP')
         adb('shell', 'wm', 'dismiss-keyguard')
-        activity = adb('shell', 'cmd', 'package', 'resolve-activity', '--brief', PACKAGE).splitlines()[-1]
+        activity = adb('shell', 'cmd', 'package', 'resolve-activity', '--brief', '-a', 'android.intent.action.MAIN', '-c', 'android.intent.category.LAUNCHER', '-p', PACKAGE).splitlines()[-1]
         if not activity.startswith(PACKAGE + '/'):
             raise RuntimeError('Unexpected launcher activity')
         adb('logcat', '-c')
@@ -57,7 +57,7 @@ def main():
     finally:
         # Fresh emulator only; no account input or production material is ever provided.
         try:
-            (OUTPUT / 'startup-log.txt').write_text(adb('logcat', '-d', '-t', '250'))
+            (OUTPUT / 'startup-log.txt').write_text(adb('logcat', '-d', '-t', '250', 'AndroidRuntime:E', '*:S'))
         finally:
             (OUTPUT / 'validation.json').write_text(json.dumps(report, indent=2) + '\n')
 

@@ -34,6 +34,23 @@ jobs:
           jvm.toolchain.vendor=Eclipse Adoptium
           EOF
           sudo chmod 666 /dev/kvm
+      - name: Verify delivered arm64 APK integrity and Android signature on Actions
+        run: |
+          mkdir -p /tmp/lanerc-app-smoke
+          python - <<'PY'
+          import hashlib, json, pathlib
+          root = pathlib.Path('downloads/animeko')
+          report = json.loads((root / 'build.json').read_text())
+          item = report['apk_files'][0]
+          apk = root / item['name']
+          assert apk.stat().st_size == item['bytes'], 'Delivered APK size mismatch'
+          with apk.open('rb') as source: digest = hashlib.file_digest(source, 'sha256').hexdigest()
+          assert digest == item['sha256'], 'Delivered APK SHA256 mismatch'
+          pathlib.Path('/tmp/lanerc-app-smoke/code-apk-integrity.json').write_text(json.dumps({'source_commit':report['source_commit'], 'sha256':digest, 'bytes':apk.stat().st_size, 'integrity_verified':True}, indent=2)+'\n')
+          PY
+          signer=$(find "$ANDROID_HOME/build-tools" -name apksigner | sort -V | tail -1)
+          test -n "$signer"
+          "$signer" verify --verbose --print-certs downloads/animeko/animeko-lanerc-arm64-debug.apk > /tmp/lanerc-app-smoke/code-apk-signature.txt
       - name: Build x86_64 APK before starting emulator
         working-directory: .local/animeko/worktree
         run: |
