@@ -9,8 +9,9 @@ SHA256: `a4e7c5828e01dae3bc2fb133511058bffaf0f238f9385068c8d54be3587fe15d`
 This is a compiled integration preview, **not a verified production-ready release**.
 No recovered production keys or guest credentials are embedded. Configure private
 protocol material inside the app; the default build does not bypass server login.
-Original-format source import is partial. Lanerc comments/danmaku currently have
-read-only protocol DTOs, not a complete player integration. No device test or
+Original-format source import is partial. Native comments UI included in this
+compiled source: **False**. It is read-only, not device/backend verified.
+Danmaku rendering and native account login/posting remain unfinished. No device test or
 successful production playback is claimed. Debug APKs use the CI-generated debug
 key; later builds may require uninstalling first, which removes app data.
 

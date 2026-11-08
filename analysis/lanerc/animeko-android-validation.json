@@ -6,6 +6,7 @@
   "android_app_built": true,
   "ui_compiled": true,
   "ui_device_tested": false,
+  "native_comments_ui_in_source": false,
   "application_id": "me.him188.ani.lanerc.debug2",
   "base_application_id": "me.him188.ani.lanerc",
   "version_name": "4.9.0-dev",
