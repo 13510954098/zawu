@@ -1,0 +1,21 @@
+{
+  "source_commit": "2e3cce687e8eeab44c1099d252627f4dc7bbff2a",
+  "build_run": 42443902879,
+  "build_url": "https://github.com/13510954098/zawu/actions/runs/42443902879",
+  "upstream_commit": "6d79729a135cee6af861a7a095d3880d1b452260",
+  "android_app_built": true,
+  "ui_compiled": true,
+  "ui_device_tested": false,
+  "application_id": "me.him188.ani.lanerc",
+  "build_type": "defaultDebug",
+  "private_production_material_embedded": false,
+  "original_source_import_verified": false,
+  "production_playback_verified": false,
+  "apk_files": [
+    {
+      "name": "animeko-lanerc-arm64-debug.apk",
+      "sha256": "a4e7c5828e01dae3bc2fb133511058bffaf0f238f9385068c8d54be3587fe15d",
+      "bytes": 77943138
+    }
+  ]
+}
