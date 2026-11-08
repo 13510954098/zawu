@@ -125,7 +125,7 @@ private fun NativeBarrageList(media: Media, load: suspend (Media) -> List<Lanerc
         catch (_: Exception) { failed = true }
     }
     Column(modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
-        Text("Lanerc 本集弹幕 · 只读列表", style = MaterialTheme.typography.titleSmall)
+        Text(if (send == null) "Lanerc 本集弹幕 · 只读列表" else "Lanerc 本集弹幕", style = MaterialTheme.typography.titleSmall)
         Text("使用原版作品 ID 和线路内选集序号；发送需要在设置中登录此源的原版账号。", style = MaterialTheme.typography.bodySmall)
         var top by remember(media.mediaId) { mutableStateOf(false) }
         if (send != null) {

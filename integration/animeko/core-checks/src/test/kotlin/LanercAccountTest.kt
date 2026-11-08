@@ -63,6 +63,13 @@ class LanercAccountTest {
             assertFails { api { response.encodeToByteArray() }.sendComment("42", "text", 0, LanercAccountCredential(origin, "fixture")) }
         }
     }
+    @Test fun `acknowledged write does not require decrypting irrelevant empty or plain data strings`() = runTest {
+        for (data in listOf("", "acknowledged", "not-encrypted")) {
+            val reply = buildJsonObject { put("code", 201); put("data", data) }.toString().encodeToByteArray()
+            api { reply }.sendBarrage("42", 3, 65, "fixture", false, LanercAccountCredential(origin, "fixture"))
+        }
+    }
+
     @Test fun `account header rejects injection and remains in a distinct source length delimited namespace`() {
         for (token in listOf("", " token", "token\r\nInjected: yes", "token\u0000", "x".repeat(16385))) {
             assertFails { LanercAccountCredential(origin, token) }

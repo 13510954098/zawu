@@ -46,7 +46,7 @@ class LanercApi(
         }
     }
 
-    private suspend fun jsonAt(base: String, path: String, query: Map<String, JsonElement> = emptyMap(), body: JsonObject? = null, account: LanercAccountCredential? = null): JsonElement {
+    private suspend fun jsonAt(base: String, path: String, query: Map<String, JsonElement> = emptyMap(), body: JsonObject? = null, account: LanercAccountCredential? = null, decodeData: Boolean = true): JsonElement {
         val raw = request(base, path, query, body, false, account).decodeToString(throwOnInvalidSequence = true)
         fun decodeString(value: String): JsonElement = if (value.trimStart().startsWith('{') || value.trimStart().startsWith('['))
             Json.parseToJsonElement(value) else protocol.decodeJsonTransport(value)
@@ -54,7 +54,7 @@ class LanercApi(
             val root = Json.parseToJsonElement(raw)
             when {
                 root is JsonPrimitive && root.isString -> decodeString(root.content)
-                root is JsonObject && root["data"] is JsonPrimitive && root.getValue("data").jsonPrimitive.isString ->
+                decodeData && root is JsonObject && root["data"] is JsonPrimitive && root.getValue("data").jsonPrimitive.isString ->
                     JsonObject(root + ("data" to decodeString(root.getValue("data").jsonPrimitive.content)))
                 else -> root
             }
@@ -86,7 +86,7 @@ class LanercApi(
     }
 
     private suspend fun writeAccount(path: String, body: JsonObject, account: LanercAccountCredential) {
-        val root = jsonAt(backend(), path, body = body, account = account).jsonObject
+        val root = jsonAt(backend(), path, body = body, account = account, decodeData = false).jsonObject
         require(root["code"]?.jsonPrimitive?.intOrNull in listOf(200, 201)) { "Native write was not acknowledged" }
     }
 
