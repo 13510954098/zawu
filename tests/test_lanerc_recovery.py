@@ -28,6 +28,8 @@ class StaticRecoveryTests(unittest.TestCase):
         self.assertEqual(material['response_encryption']['key_hex'], bytes(range(32)).hex())
         self.assertEqual(material['request_signature']['secret_suffix'], 'x' * 17)
         self.assertIsNone(material['release_signing']['private_key'])
+        self.assertIn('Uri.parse(canonical_uri).path', material['request_signature']['preimage'])
+        self.assertIn('query are excluded', material['request_signature']['uri_note'])
 
     def test_invalid_nibble_rejected(self):
         with self.assertRaises(ValueError):

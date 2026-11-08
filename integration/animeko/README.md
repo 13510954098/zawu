@@ -62,7 +62,7 @@ Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工�
 
 - [ ] 原版源文件导入/导出兼容、异常格式回归样本。
 - [x] Animeko 源注册、独立持久化、设置入口与三模式 UI；已编译，未设备验证。
-- [x] Android KeyStore 安全存储、按源与 origin 隔离凭据、URI 规范化桥接；未设备验证。
+- [x] Android KeyStore 安全存储、按源与 origin 隔离凭据、URI 规范化桥接；API30 模拟器 vault 验证通过，未实体设备验证。
 - [x] 搜索/详情/剧集与 MediaSource/ApiVideoResolver 代码接线；不是生产播放成功。
 - [ ] 合法验证码交互、guestCredential 生命周期与生产播放验证。
 - [ ] Lanerc 弹幕加载/发送、评论列表/分页/回复及登录要求，与 Animeko 原有服务分开。
@@ -72,7 +72,7 @@ Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工�
 
 ## 已验证的交付与本轮新增
 
-- Kotlin 核心 52 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
+- Kotlin 核心 58 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
 - Android 编译、UI 编译、打包与上传已成功。构建 42443902879 的红色结论来自之后提交报告失败，不是编译失败。
 - APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。基础 applicationId `me.him188.ani.lanerc`，debug 实际安装包名 `me.him188.ani.lanerc.debug2`（已解析 APK 二进制清单核对），最低 Android 8.1 / API 27，arm64 debug 签名。
 - Code APK 的实际版本以 `downloads/animeko/build.json` 的 `source_commit` 为准，不能用当前分支 HEAD 替代；`native_comments_ui_in_source` 表示该包对应源码是否含原生评论界面。
@@ -84,10 +84,10 @@ Actions UI 工作流执行 6 项合成回归：保留原评论、显式加载/�
 
 ### 最近已确认与正在执行的验证
 
-- 核心 52 项测试：0 failures/errors/skipped，包含按源长度分隔凭据命名空间，防止清除 `source` 时误删 `source.child`；旧凭据仅在源+origin 的 KeyStore AAD 校验通过后兼容读取/清除。
+- 核心 58 项测试：0 failures/errors/skipped，包含按源长度分隔凭据命名空间，防止清除 `source` 时误删 `source.child`；旧凭据仅在源+origin 的 KeyStore AAD 校验通过后兼容读取/清除。
 - Actions 42448105586：真实宿主桌面 Compose 编译及 6 项 UI/时间线测试全部通过；工具链按上游要求切换为 JBR/JCEF 21，而非 Temurin 冒充桌面依赖完整。
 - Python 源码安全与 APK 交付回归本地共 13 项通过；不等于设备测试。
-- Android KeyStore 新增 3 项 API 30 x86_64 模拟器测试：Unicode 往返/随机 IV、源与 origin AAD 隔离、篡改/截断拒绝；已交由独立 Actions，**尚未宣称通过**，不含生产材料。
+- Android KeyStore 新增 3 项 API 30 x86_64 模拟器测试：Unicode 往返/随机 IV、源与 origin AAD 隔离、篡改/截断拒绝；独立 Actions 的 3 项模拟器测试均已实际通过，不含生产材料。
 - 验证码不再默认替用户选择第 1 项，允许按原图实际编号手选；原版编号基数未生产核实，不能把合成测试当作真实验证码成功。
 
 ### 签名输入纠正与生产探测边界

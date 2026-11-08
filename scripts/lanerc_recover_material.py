@@ -40,12 +40,12 @@ def recover(text):
         'request_signature': {
             'digest': 'MD5', 'secret_suffix': suffix,
             'suffix_sha256': hashlib.sha256(suffix.encode()).hexdigest(),
-            'preimage': 'canonical_uri + @ + unix_seconds + @ + nonce + secret_suffix',
+            'preimage': 'Uri.parse(canonical_uri).path + @ + unix_seconds + @ + nonce + secret_suffix',
             'query_parameter': 'sign', 'parameter_value': 'unix_seconds-nonce-lowercase_md5_hex',
             'placement_evidence': 'RequestOptions queryParameters field offset 0x50 is merged at 0x7ee380-0x7ee448; URI getter reads same field at 0x4a9930',
             'nonce': '3 lowercase ASCII letters',
             'source': 'request interceptor 0x7ee08c; suffix pool slot 0x11b70',
-            'uri_note': 'Use the exact final Dart/Dio URI string, including query encoding/order; Python URI normalization is not assumed equivalent',
+            'uri_note': 'Canonicalize the URI using Dart/Dio, then take Uri.path; origin and query are excluded from the MD5 preimage',
         },
         'release_signing': {
             'private_key': None,
