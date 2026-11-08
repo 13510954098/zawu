@@ -121,7 +121,11 @@ def run():
                 item['login_mentioned'] = any(word in message for word in ('登录', 'login'))
                 if item['format'] == 'protobuf' and outer.get('code') == 200:
                     resolved = decode_play_response(raw, bytes.fromhex(material['response_encryption']['key_hex']))
-                    item['https_media_url_returned'] = urllib.parse.urlsplit(resolved['playUrl']).scheme == 'https'
+                    uri = urllib.parse.urlsplit(resolved['playUrl'])
+                    item['https_media_url_returned'] = uri.scheme == 'https'
+                    item['url_scheme'] = uri.scheme if uri.scheme in ('http', 'https', 'magnet') else 'other'
+                    item['network_host_present'] = bool(uri.hostname)
+                    item['userinfo_present'] = bool(uri.username or uri.password)
             except Exception as error:
                 item['error_type'] = type(error).__name__
             report['requests'].append(item)
