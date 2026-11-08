@@ -4,12 +4,12 @@ APK: `animeko-lanerc-arm64-debug.apk` (arm64-v8a, independent installed applicat
 
 Version: `6.4.0-post15.lanerc.preview` (Lanerc preview, not an official Animeko release).
 Upstream: `6d79729a135cee6af861a7a095d3880d1b452260`
-Build: https://github.com/13510954098/zawu/actions/runs/42457616715
-Source: `69ae478d9e87f30a42bf4e6a8acc6f1c8f9ff961`
-SHA256: `63df3690773ff51155069af45e2bccba93e9acb9f0c0501c8d42bbc778e622a5`
+Build: https://github.com/13510954098/zawu/actions/runs/42460389836
+Source: `9e319f478027f6ac17daaad02f2e9ab0c73a7bd8`
+SHA256: `a7a7aa049c2a48286a87e0d306e69db74afb35601aea91205f4d3c4fe7af80d9`
 
 This is a compiled integration preview, **not a verified production-ready release**.
-Shared original-APK client protocol constants bundled: **False**.
+Shared original-APK client protocol constants bundled: **True**.
 No user passwords, account tokens or guest credentials are bundled. Legacy builds
 without shared constants require manual protocol configuration. Bundling client
 constants does not bypass service-side authentication or verification.
