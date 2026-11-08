@@ -1,0 +1,188 @@
+{
+  "method": "Exact whitelisted object-pool strings and ARM64 x27-relative loads",
+  "limitations": "Heuristic register tracking; no constant values exported; nearest entry is not proven ownership; incomplete function metadata",
+  "pool_marker_slots": [
+    {
+      "offset": "0x1efe0",
+      "label": "new-danmaku"
+    },
+    {
+      "offset": "0x1f018",
+      "label": "old-danmaku"
+    },
+    {
+      "offset": "0x1f068",
+      "label": "danmaku-color"
+    },
+    {
+      "offset": "0x1f098",
+      "label": "danmaku-time"
+    },
+    {
+      "offset": "0x29ed0",
+      "label": "comments-read-path"
+    }
+  ],
+  "code_anchors": [
+    {
+      "marker": "new-danmaku",
+      "instruction": "0x664b4c",
+      "pool_offset": "0x1efe0",
+      "preceding_known_entry_hint": "0x664a74",
+      "distance_from_hint": 216,
+      "recent_direct_call_targets": [
+        "0x8cb700",
+        "0x664b1c",
+        "0x9635a4"
+      ]
+    },
+    {
+      "marker": "old-danmaku",
+      "instruction": "0x664bdc",
+      "pool_offset": "0x1f018",
+      "preceding_known_entry_hint": "0x664a74",
+      "distance_from_hint": 360,
+      "recent_direct_call_targets": [
+        "0x8b7298",
+        "0x367498"
+      ]
+    },
+    {
+      "marker": "new-danmaku",
+      "instruction": "0x664cb0",
+      "pool_offset": "0x1efe0",
+      "preceding_known_entry_hint": "0x664a74",
+      "distance_from_hint": 572,
+      "recent_direct_call_targets": [
+        "0x922e74",
+        "0x9635a4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "old-danmaku",
+      "instruction": "0x664d2c",
+      "pool_offset": "0x1f018",
+      "preceding_known_entry_hint": "0x664a74",
+      "distance_from_hint": 696,
+      "recent_direct_call_targets": [
+        "0x9627d0",
+        "0x407984",
+        "0x367498",
+        "0x961748"
+      ]
+    },
+    {
+      "marker": "danmaku-color",
+      "instruction": "0x664e78",
+      "pool_offset": "0x1f068",
+      "preceding_known_entry_hint": "0x664dc4",
+      "distance_from_hint": 180,
+      "recent_direct_call_targets": [
+        "0x96349c",
+        "0x963724",
+        "0x961748"
+      ]
+    },
+    {
+      "marker": "danmaku-time",
+      "instruction": "0x664f00",
+      "pool_offset": "0x1f098",
+      "preceding_known_entry_hint": "0x664dc4",
+      "distance_from_hint": 316,
+      "recent_direct_call_targets": [
+        "0x961748",
+        "0x963724",
+        "0x961748"
+      ]
+    },
+    {
+      "marker": "danmaku-color",
+      "instruction": "0x665080",
+      "pool_offset": "0x1f068",
+      "preceding_known_entry_hint": "0x664fa4",
+      "distance_from_hint": 220,
+      "recent_direct_call_targets": [
+        "0x970a98"
+      ]
+    },
+    {
+      "marker": "danmaku-time",
+      "instruction": "0x66513c",
+      "pool_offset": "0x1f098",
+      "preceding_known_entry_hint": "0x664fa4",
+      "distance_from_hint": 408,
+      "recent_direct_call_targets": [
+        "0x970a98"
+      ]
+    },
+    {
+      "marker": "comments-read-path",
+      "instruction": "0x8fb1f0",
+      "pool_offset": "0x29ed0",
+      "preceding_known_entry_hint": "0x8fae3c",
+      "distance_from_hint": 948,
+      "recent_direct_call_targets": [
+        "0x8be6f0",
+        "0x9615e4",
+        "0x3e5ee4",
+        "0x96349c"
+      ]
+    },
+    {
+      "marker": "danmaku-time",
+      "instruction": "0x92f168",
+      "pool_offset": "0x1f098",
+      "preceding_known_entry_hint": "0x92ed5c",
+      "distance_from_hint": 1036,
+      "recent_direct_call_targets": [
+        "0x961748"
+      ]
+    }
+  ],
+  "verified_field_reads": {
+    "playlist": {
+      "resource_id": "0x633f78",
+      "line_name": "0x633d5c",
+      "line_player": "0x633d00"
+    },
+    "barrages": {
+      "request": "0x922d38",
+      "vid_argument": "0x922ba8..0x922bf4 (detail.info integer field converted to string)",
+      "vod_argument": "0x922c00..0x922c34 (selected index plus one converted to string)",
+      "fields": [
+        "id",
+        "bcolor",
+        "position",
+        "second",
+        "content"
+      ],
+      "record_constructor": "0x664fa4"
+    },
+    "comments": {
+      "data_JSON_decode": "0x4f3410",
+      "root": "vod_comment",
+      "root_fields": [
+        "comment",
+        "total"
+      ],
+      "record_fields": [
+        "cid",
+        "created_at",
+        "content",
+        "user_id",
+        "nick_name",
+        "avatar",
+        "group_id",
+        "qq_number",
+        "replies"
+      ],
+      "record_constructor": "0x4f3e9c",
+      "reply_constructor": "0x4f4328",
+      "reply_id_field": "id",
+      "page_suffix": "&page="
+    }
+  },
+  "production_responses_verified": false,
+  "position_enum_verified": false
+}

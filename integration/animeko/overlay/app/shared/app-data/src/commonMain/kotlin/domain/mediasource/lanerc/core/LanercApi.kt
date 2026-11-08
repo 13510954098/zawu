@@ -38,17 +38,29 @@ class LanercApi(
 
     private suspend fun jsonAt(base: String, path: String, query: Map<String, JsonElement> = emptyMap(), body: JsonObject? = null): JsonElement {
         val raw = request(base, path, query, body, false).decodeToString(throwOnInvalidSequence = true)
+        fun decodeString(value: String): JsonElement = if (value.trimStart().startsWith('{') || value.trimStart().startsWith('['))
+            Json.parseToJsonElement(value) else protocol.decodeJsonTransport(value)
         return try {
             val root = Json.parseToJsonElement(raw)
             when {
-                root is JsonPrimitive && root.isString -> protocol.decodeJsonTransport(root.content)
+                root is JsonPrimitive && root.isString -> decodeString(root.content)
                 root is JsonObject && root["data"] is JsonPrimitive && root.getValue("data").jsonPrimitive.isString ->
-                    JsonObject(root + ("data" to protocol.decodeJsonTransport(root.getValue("data").jsonPrimitive.content)))
+                    JsonObject(root + ("data" to decodeString(root.getValue("data").jsonPrimitive.content)))
                 else -> root
             }
         } catch (_: Exception) {
             throw IllegalArgumentException("Unsupported or invalid Lanerc JSON transport")
         }
+    }
+
+    suspend fun barrages(vid: String, vodIndex: Int): List<LanercBarrage> {
+        require(Regex("[A-Za-z0-9_-]{1,128}").matches(vid) && vodIndex > 0)
+        return LanercCommunity.barrages(json("app/chat/barragev2", linkedMapOf("vid" to JsonPrimitive(vid), "vod" to JsonPrimitive(vodIndex.toString()))))
+    }
+
+    suspend fun comments(vid: String, page: Int = 1): LanercCommentPage {
+        require(Regex("[A-Za-z0-9_-]{1,128}").matches(vid) && page > 0)
+        return LanercCommunity.comments(json("app/chat/comment", linkedMapOf("vid" to JsonPrimitive(vid), "page" to JsonPrimitive(page.toString()))))
     }
 
     suspend fun captcha(): LanercCaptcha {

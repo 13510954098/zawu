@@ -34,7 +34,7 @@ jobs:
           assert suites
           counts = {key: sum(int(s.attrib.get(key, 0)) for s in suites) for key in ['tests','failures','errors','skipped']}
           assert counts['tests'] > 0 and counts['failures'] == counts['errors'] == counts['skipped'] == 0
-          report = {'scope':'Kotlin JVM core compiled and tested against public Dart fixtures and virtual-time source adapters only', **counts, 'android_app_built':False, 'animeko_ui_integrated':False, 'original_source_import_verified':False, 'production_requests_performed':False, 'pinned_upstream_source_materialized':True, 'source_preparation_security_tests':4}
+          report = {'scope':'Kotlin JVM core compiled and tested against public Dart fixtures and synthetic statically anchored API/community DTOs; no production responses', **counts, 'android_app_built_by_this_check':False, 'animeko_ui_compiled_by_this_check':False, 'original_source_import_verified':False, 'production_requests_performed':False, 'pinned_upstream_source_materialized':True, 'source_preparation_security_tests':4}
           pathlib.Path('analysis/lanerc/animeko-core-validation.json').write_text(json.dumps(report, indent=2)+'\n')
           PY
           git config user.name 'github-actions[bot]'

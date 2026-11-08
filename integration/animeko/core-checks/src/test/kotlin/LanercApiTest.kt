@@ -84,7 +84,7 @@ class LanercApiTest {
     @Test fun `native catalog uses APK keys and preserves all lines`() {
         val search = Json.parseToJsonElement("""{"code":200,"data":{"search_vods":[{"id":123,"vod_name":"Example"}]}}""")
         assertEquals(LanercSubject("123", "Example"), LanercCatalog.search(search).single())
-        val detail = Json.parseToJsonElement("""{"video_play_list":[{"player":"Line","video":[{"id":"one","title":"第1集"},{"id":"two","title":"第2集"}]}]}""")
+        val detail = Json.parseToJsonElement("""{"video_play_list":[{"player":"line1","name":"Line","video":[{"resource_id":"one","title":"第1集"},{"resource_id":"two","title":"第2集"}]}]}""")
         assertEquals(2, LanercCatalog.lines(detail).single().episodes.size)
         assertFails { LanercCatalog.search(Json.parseToJsonElement("""{"items":[]}""")) }
         assertFails { LanercCatalog.search(Json.parseToJsonElement("""{"code":403,"data":{"search_vods":[]}}""")) }

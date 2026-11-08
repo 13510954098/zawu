@@ -4,6 +4,7 @@ package me.him188.ani.app.domain.mediasource.lanerc.runtime
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.Serializable
+import io.ktor.http.Url
 import kotlinx.serialization.json.JsonPrimitive
 import me.him188.ani.app.domain.mediasource.codec.*
 import me.him188.ani.app.domain.mediasource.codec.MediaSourceTier
@@ -74,9 +75,9 @@ class LanercMediaSource(
         val root = session.api().json(LanercEndpoints.DETAIL_PREFIX + subjectId(subject))
         val lines = LanercCatalog.lines(root)
         return lines.mapIndexed { index, line ->
-            val name = if (lines.count { it.name == line.name } > 1) "${line.name} #${index + 1}" else line.name
-            BrowseChannel(name, episodes = line.episodes.map { episode ->
-                BrowseEpisode(episode.title, "${VIRTUAL}resource/${episode.id}", parseSort(episode.title))
+            val name = if (lines.count { it.id == line.id } > 1) "${line.id} #${index + 1}" else line.id
+            BrowseChannel(name, label = line.name, episodes = line.episodes.mapIndexed { episodeIndex, episode ->
+                BrowseEpisode(episode.title, "${VIRTUAL}resource/${episode.id}?vod_index=${episodeIndex + 1}", parseSort(episode.title))
             })
         }
     }
@@ -84,13 +85,15 @@ class LanercMediaSource(
         .matchEntire(title)?.groupValues?.get(1)?.let { EpisodeSort(it) }
 
     override fun createMedia(subject: BrowseSubject, channelName: String?, episode: BrowseEpisode, episodeSort: EpisodeSort?): Media {
-        val id = episode.url.removePrefix("${VIRTUAL}resource/")
+        val id = episode.url.substringBefore('?').removePrefix("${VIRTUAL}resource/")
+        val vodIndex = Url(episode.url).parameters["vod_index"]?.toIntOrNull()
+        require(vodIndex != null && vodIndex > 0) { "Missing native danmaku episode index" }
         require(episode.url.startsWith("${VIRTUAL}resource/") && Regex("[A-Za-z0-9_-]{1,128}").matches(id))
         return DefaultMedia(
             mediaId = "$mediaSourceId.${subjectId(subject)}.${LanercUri.component(channelName.orEmpty())}.$id",
             mediaSourceId = mediaSourceId,
             originalUrl = episode.url,
-            download = ResourceLocation.WebVideo(episode.url, apiParameters = mapOf("resource_id" to id, "vod_id" to subjectId(subject))),
+            download = ResourceLocation.WebVideo(episode.url, apiParameters = mapOf("resource_id" to id, "vod_id" to subjectId(subject), "vod_index" to vodIndex.toString())),
             originalTitle = "${subject.name} ${episode.name}", publishedTime = 0L,
             properties = MediaProperties(subjectName = subject.name, episodeName = episode.name,
                 subtitleLanguageIds = emptyList(), resolution = "", alliance = channelName.orEmpty(),

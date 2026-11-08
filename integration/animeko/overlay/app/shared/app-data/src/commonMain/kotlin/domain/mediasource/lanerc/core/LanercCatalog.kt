@@ -5,7 +5,7 @@ import kotlinx.serialization.json.*
 
 data class LanercSubject(val id: String, val title: String)
 data class LanercEpisode(val id: String, val title: String)
-data class LanercLine(val name: String, val episodes: List<LanercEpisode>)
+data class LanercLine(val id: String, val name: String, val episodes: List<LanercEpisode>)
 
 /** Original APK field names. Unknown response shapes fail visibly instead of producing demo content. */
 object LanercCatalog {
@@ -28,9 +28,9 @@ object LanercCatalog {
         val list = data["video_play_list"]?.jsonArray ?: error("Unsupported original detail response shape")
         return list.map { value ->
             val item = value.jsonObject
-            LanercLine(text(item, "player"), item.getValue("video").jsonArray.map { entry ->
+            LanercLine(text(item, "player"), text(item, "name"), item.getValue("video").jsonArray.map { entry ->
                 val episode = entry.jsonObject
-                LanercEpisode(id(episode), text(episode, "title"))
+                LanercEpisode(text(episode, "resource_id").also { require(Regex("[A-Za-z0-9_-]{1,128}").matches(it)) }, text(episode, "title"))
             })
         }
     }
