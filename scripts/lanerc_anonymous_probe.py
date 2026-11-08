@@ -71,6 +71,51 @@ def discover(material):
     raise ValueError('No valid HTTPS backend discovered')
 
 
+def inspect_hls(url):
+    """At most three 64KiB resource prefixes; no URLs or bytes retained."""
+    result = {}
+    for depth in range(3):
+        uri = urllib.parse.urlsplit(url)
+        if uri.scheme not in ('http', 'https') or not uri.hostname or uri.username or uri.password:
+            raise ValueError('Invalid media destination')
+        addresses = socket.getaddrinfo(uri.hostname, uri.port or (443 if uri.scheme == 'https' else 80), type=socket.SOCK_STREAM)
+        if not addresses or not all(ipaddress.ip_address(entry[4][0]).is_global for entry in addresses):
+            raise ValueError('Non-public media destination')
+        request = urllib.request.Request(url, headers={'Range':'bytes=0-65535'})
+        try:
+            connection = opener.open(request, timeout=10)
+        except urllib.error.HTTPError as error:
+            connection = error
+        with connection:
+            raw = connection.read(65536)
+            status = connection.status
+            content_type = connection.headers.get('Content-Type', '').split(';')[0][:80]
+        if raw.lstrip(b'\xef\xbb\xbf\r\n ').startswith(b'#EXTM3U'):
+            text = raw.decode('utf-8', errors='replace')
+            entries = [line.strip() for line in text.splitlines() if line.strip() and not line.lstrip().startswith('#')]
+            result['playlist_http_status'] = status
+            result['playlist_entries'] = len(entries)
+            result['master_playlist'] = '#EXT-X-STREAM-INF' in text
+            methods = re.findall(r'#EXT-X-KEY:METHOD=([A-Z0-9-]+)', text)
+            result['encryption_methods'] = sorted({method if method in ('NONE','AES-128','SAMPLE-AES') else 'other' for method in methods})
+            result['init_map_present'] = '#EXT-X-MAP' in text
+            if not entries:
+                return result
+            if depth == 2:
+                result['depth_limit_reached'] = True
+                return result
+            url = urllib.parse.urljoin(url, entries[0])
+            continue
+        result.update(segment_http_status=status, segment_content_type=content_type, segment_prefix_bytes=len(raw),
+                      segment_starts_jpeg=raw.startswith(b'\xff\xd8\xff'), segment_starts_png=raw.startswith(b'\x89PNG'),
+                      segment_starts_html=raw.lstrip().lower().startswith((b'<!doctype html', b'<html')),
+                      segment_starts_mp4=len(raw) >= 8 and raw[4:8] in (b'ftyp', b'styp', b'moof'))
+        result['mpegts_sync_offset'] = next((offset for offset in range(min(len(raw), 4096))
+            if offset + 188*3 < len(raw) and all(raw[offset + 188*i] == 0x47 for i in range(4))), None)
+        return result
+    return result
+
+
 def run():
     report = {'scope':'Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace',
               'source_commit': __import__('os').environ['GITHUB_SHA'], 'credentials_used':False, 'captcha_solved':False,
@@ -149,6 +194,10 @@ def run():
                                 item['media_content_type'] = connection.headers.get('Content-Type', '').split(';')[0][:80]
                         except Exception as error:
                             item['media_head_error_type'] = type(error).__name__
+                        try:
+                            item['hls_diagnostics'] = inspect_hls(resolved['playUrl'])
+                        except Exception as error:
+                            item['hls_diagnostic_error_type'] = type(error).__name__
                         process = subprocess.run(['ffprobe', '-v', 'quiet', '-protocol_whitelist', 'http,https,tcp,tls,crypto',
                             '-rw_timeout', '10000000', '-probesize', '1048576', '-analyzeduration', '2000000',
                             '-read_intervals', '%+1', '-show_entries', 'stream=codec_type,codec_name,width,height:format=format_name,duration',
