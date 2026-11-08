@@ -1,0 +1,93 @@
+name: Lanerc AOT metadata analysis
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/44f5d2ee-zawu]
+    paths:
+      - .github/workflows/lanerc-aot.yml
+      - scripts/lanerc_aot_summary.py
+permissions:
+  contents: write
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CMAKE_BUILD_PARALLEL_LEVEL: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/44f5d2ee-zawu
+      - name: Prepare verified APK libraries
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          root = pathlib.Path('downloads/lanerc')
+          data = b''.join(p.read_bytes() for p in sorted(root.glob('*.apk.part*')))
+          expected = json.loads((root / 'download-report.json').read_text())['downloads'][0]
+          assert len(data) == expected['size']
+          assert hashlib.sha256(data).hexdigest() == expected['sha256']
+          apk = pathlib.Path('/tmp/lanerc.apk')
+          apk.write_bytes(data)
+          with zipfile.ZipFile(apk) as z:
+              for name in ['libapp.so', 'libflutter.so']:
+                  out = pathlib.Path('/tmp/lanerc-libs') / name
+                  out.parent.mkdir(exist_ok=True)
+                  out.write_bytes(z.read('lib/arm64-v8a/' + name))
+          PY
+      - name: Install build tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y g++-13 cmake ninja-build pkg-config libicu-dev libcapstone-dev python3-venv
+          python3 -m venv /tmp/aot-env
+          /tmp/aot-env/bin/pip install pyelftools requests
+      - name: Build pinned analyzer and analyze locally on runner
+        id: analysis
+        env:
+          CC: gcc-13
+          CXX: g++-13
+        run: |
+          git clone https://github.com/worawit/blutter.git /tmp/blutter
+          git -C /tmp/blutter checkout 4a60ac648bf448c5a7596437243bcd0b9376fdf0
+          # Raw output stays in ephemeral runner storage, never in public logs/artifacts.
+          if /tmp/aot-env/bin/python /tmp/blutter/blutter.py /tmp/lanerc-libs /tmp/lanerc-aot > /tmp/aot-build.log 2>&1; then
+            echo "result=success" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Export redacted graph or build failure status
+        env:
+          ANALYSIS_RESULT: ${{ steps.analysis.outputs.result }}
+        run: |
+          mkdir -p analysis/lanerc
+          if [ "$ANALYSIS_RESULT" = success ]; then
+            python3 scripts/lanerc_aot_summary.py /tmp/lanerc-aot/asm analysis/lanerc/aot-callgraph.json
+          fi
+          python3 - <<'PY'
+          import json, os, pathlib, re
+          result = os.environ['ANALYSIS_RESULT']
+          log = pathlib.Path('/tmp/aot-build.log').read_text(errors='replace')
+          # Only fixed error classifications, not raw log lines or object values.
+          categories = [label for pattern, label in [
+              ('out of memory|Killed signal', 'compiler-memory-limit'),
+              ('snapshot.*(mismatch|incompat)|Wrong.*snapshot', 'snapshot-compatibility'),
+              ('fatal error:', 'compiler-fatal-error'),
+              ('Assertion.*failed', 'analyzer-assertion'),
+              ('HTTPError|ConnectionError|Could not resolve', 'dependency-network-error'),
+              ('FAILED:', 'build-command-failed'),
+          ] if re.search(pattern, log, re.I)]
+          pathlib.Path('analysis/lanerc/aot-status.json').write_text(json.dumps({
+              'result': result, 'run_id': os.environ['GITHUB_RUN_ID'],
+              'analyzer_commit': '4a60ac648bf448c5a7596437243bcd0b9376fdf0',
+              'dart_version_observed': '3.9.2', 'error_categories': categories,
+              'raw_outputs': 'Not published: ephemeral runner files only',
+          }, indent=2))
+          PY
+      - name: Commit metadata only to session branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add analysis/lanerc/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record redacted Lanerc AOT analysis metadata"
+          git push origin HEAD:arena/44f5d2ee-zawu
