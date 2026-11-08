@@ -38,7 +38,12 @@ jobs:
               pass
           else:
               raise AssertionError('Malformed material structure was not rejected')
-          print('Synthetic layout and malformed-structure checks passed; no real values printed')
+          references = [(v*v + 3*v + 17) % 251 for v in range(16)]
+          indirect = b'\xff'*8 + b'\xff'.join(bytes(references[v] for v in chunk) for chunk in chunks) + b'\xff'*8
+          result = probe(indirect, pool)
+          assert not result['all_arrays_uniquely_located'], 'Reference structure is not a recovered key mapping'
+          assert all(any(candidate['width'] == 1 and 8 + 17*i in candidate['offsets'] for candidate in row['reference_structure_candidates']) for i, row in enumerate(result['arrays']))
+          print('Synthetic literal/reference layouts and malformed structures passed; no real values printed')
           PY
       - name: Prepare verified APK libraries
         run: |

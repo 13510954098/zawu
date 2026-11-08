@@ -634,7 +634,9 @@ private fun EpisodeScreenSidebar(
                 ),
         )
 
-        // ExternalContent("", Modifier.fillMaxWidth().height(128.dp))
+        // Provenance follows the selected native media, never the search-mode switch.
+        val selectedNativeMedia by vm.lanercCommunityMedia.collectAsStateWithLifecycle(null)
+        LanercSourceNotice(selectedNativeMedia)
 
         TabRow(
             pagerState, scope, { vm.episodeCommentState.count }, Modifier.fillMaxWidth(),

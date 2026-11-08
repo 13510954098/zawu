@@ -26,6 +26,22 @@ import kotlin.test.assertEquals
 
 /** Synthetic UI tests only: no native account, production server or real video. */
 class LanercCommentSectionTest {
+    @Test fun sourceNoticeDoesNotAppearWithoutSelectedNativeMedia() = runAniComposeUiTest {
+        setContent { MaterialTheme { LanercSourceNotice(null) } }
+        onNodeWithTag("lanerc.source.notice").assertDoesNotExist()
+    }
+
+    @Test fun sourceNoticeFollowsSelectionWithoutClaimingPlayback() = runAniComposeUiTest {
+        val selected = mutableStateOf<Media?>(media("resource1"))
+        setContent { MaterialTheme { LanercSourceNotice(selected.value) } }
+        onNodeWithText("资源来源：Lanerc").assertExists()
+        onNodeWithText("已选择 Lanerc 资源；不代表已解析或开始播放。").assertExists()
+        runOnIdle { selected.value = null }
+        onNodeWithTag("lanerc.source.notice").assertDoesNotExist()
+        runOnIdle { selected.value = media("resource2") }
+        onNodeWithText("资源来源：Lanerc").assertExists()
+    }
+
     private fun media(id: String) = DefaultMedia(
         mediaId = id, mediaSourceId = "native-source", originalTitle = id, publishedTime = 0L,
         originalUrl = "https://lanerc.invalid/resource/$id?vod_index=1",

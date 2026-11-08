@@ -30,7 +30,34 @@ def probe(binary, pool):
                         if offset >= 0:
                             matches.append({'offset': offset, 'stride': stride, 'bias': bias, 'width': width, 'endian': endian,
                                             'unique': binary.find(encoded, offset + 1) < 0})
-        records.append({'array_index': index, 'matches': matches})
+        reference_candidates = []
+        if not matches:
+            # Snapshot arrays may store arbitrary object-reference IDs rather
+            # than literal Smi values. Match equality structure, not key bytes.
+            # No mapping or captured values are exported.
+            for width in (1, 2, 3, 4, 8):
+                groups = {}
+                pattern = []
+                for value in chunk:
+                    if value in groups:
+                        pattern.append(f'(?P={groups[value]})')
+                    else:
+                        name = f'n{len(groups)}'
+                        if groups:
+                            pattern.append('(?!(?:' + '|'.join(f'(?P={group})' for group in groups.values()) + '))')
+                        pattern.append(f'(?P<{name}>.{{{width}}})')
+                        groups[value] = name
+                expression = re.compile(('(?=' + ''.join(pattern) + ')').encode(), re.DOTALL)
+                found = []
+                for match in expression.finditer(binary):
+                    found.append(match.start())
+                    if len(found) == 65:
+                        break
+                if found:
+                    reference_candidates.append({'width': width, 'offsets': found[:64], 'truncated': len(found) > 64})
+        records.append({'array_index': index, 'matches': matches,
+                        'reference_structure_candidates': reference_candidates,
+                        'reference_value_mapping_recovered': False})
     return {'scope': 'Static layout probe only; not an implemented or verified Android APK importer',
             'libapp_sha256': hashlib.sha256(binary).hexdigest(),
             'all_arrays_uniquely_located': all(any(m['unique'] for m in record['matches']) for record in records),

@@ -60,12 +60,12 @@ jobs:
           grep -E '(^e:|FAILURE:|Execution failed|FAILED)' /tmp/lanerc-ui-tests.log | head -70
           tail -60 /tmp/lanerc-ui-tests.log
           exit "$status"
-      - name: Require all eight UI and timeline tests to have executed without failures
+      - name: Require all ten UI and timeline tests to have executed without failures
         run: |
           python - <<'PY'
           import pathlib, xml.etree.ElementTree as ET
           roots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]
-          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 8, 'Expected eight executed UI and timeline tests'
+          assert sum(int(r.attrib.get('tests', 0)) for r in roots) == 10, 'Expected ten executed UI and timeline tests'
           assert all(int(r.attrib.get(k, 0)) == 0 for r in roots for k in ['failures', 'errors', 'skipped'])
           PY
       - name: Save UI results and bounded diagnostic log
