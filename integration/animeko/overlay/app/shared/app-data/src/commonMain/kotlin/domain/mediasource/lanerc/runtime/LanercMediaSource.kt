@@ -114,6 +114,15 @@ class LanercMediaSource(
             }
         }
     }
+    suspend fun readComments(media: Media, page: Int = 1): LanercCommentPage {
+        require(media.mediaSourceId == mediaSourceId) { "Community source mismatch" }
+        require(media.originalUrl.startsWith("${VIRTUAL}resource/")) { "Not a native Lanerc resource" }
+        val parameters = (media.download as? ResourceLocation.WebVideo)?.apiParameters
+            ?: error("Missing native source metadata")
+        val vid = parameters["vod_id"] ?: error("Missing native subject ID")
+        return session.api().comments(vid, page)
+    }
+
     override suspend fun resolveApiVideo(media: Media): WebVideo? {
         val parameters = (media.download as? ResourceLocation.WebVideo)?.apiParameters ?: return null
         val resource = parameters["resource_id"] ?: return null

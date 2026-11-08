@@ -24,7 +24,7 @@ bash gradlew test
 
 ### Kotlin 协议核心
 
-- 请求 MD5 签名，要求传入**添加 sign 前的准确 Dio 规范化 URI**。当前不把 Ktor 的 URL 编码冒充已验证的 Dio 行为。
+- 请求 MD5 签名，要求传入**添加 sign 前的准确 Dio 规范化 URI**。Kotlin URI 桥已对 7 组 Dart/Dio fixture 与 Ktor URLBuilder roundtrip 做一致性验证。
 - 三套独立密钥的用途隔离：播放 GCM、普通响应 ECB、公开 TXT ECB。
 - GCM `nonce[12] || ciphertext || tag[16]` 认证解密；普通响应按顺序字符替换、Base64、ECB/PKCS7 解码。
 - 限长 Protobuf wire 解码、未知字段与不匹配 wire type 跳过、重复字段最后值生效、int32 符号处理、非 200/空 URL 拒绝。
@@ -35,7 +35,7 @@ bash gradlew test
 
 `LanercBootstrapPlan.builtIn()` 内置原 APK 的 TXT 域名池与 DoH provider，不把当前 `v3.yyghk.com` 固定成源地址。发现引擎接收注入的 HTTP transport，按原版 TXT ECB 逻辑解码、检查 HTTPS URL，并按 DNS TTL 缓存；失效后失败不会返回演示数据或无限复用旧地址。同一源的并发发现去重，不同源不共享缓存。
 
-这是发现逻辑，不是已经接入 APP 的完整“内置源”。HTTP transport、私密材料的本机加载、源注册与 UI 仍需连接。加密 TXT 本身不等于 DNSSEC 或后端来源认证；后续凭据必须绑定源与后端 origin，不能跨源转发。
+Android 已连接独立 HTTP transport、本机 KeyStore 材料加载、源工厂/codec 注册、设置 UI 和三模式过滤；用户可添加动态内置源。加密 TXT 本身不等于 DNSSEC 或后端来源认证；后续凭据必须绑定源与后端 origin，不能跨源转发。
 
 ### 并行搜索执行器
 
@@ -55,21 +55,27 @@ bash gradlew test
 - 原版后备配置读取 `domain` 字段：ARM64 `0x96cfd8`，pool `0x11b48`。
 - 后备地址存在 `Ahttps://` / `Ahttp://` 特殊前缀处理，且有后续签名探测逻辑；不能只去掉字母 A 就认定全部协议已经复现。
 - 原版评论读取路径是 `app/chat/comment`，不是 cleanroom 的 `app/chat/comments`。
-- `app/v2/guest/captcha`、`app/v2/guest/credential`、`app/v2/guest/play` 与 `playResolveProtobuf` 的已确认部分可复用，但验证码提交字段、用户会话、评论/弹幕完整模型仍需还原。
+- `app/v2/guest/captcha`、`app/v2/guest/credential`、`app/v2/guest/play` 与 `playResolveProtobuf` 的已确认部分可复用，验证码提交字段 `challenge_id` / `selected`（字符串）、评论与弹幕只读 DTO 已由静态证据恢复；用户登录与发送仍未接入。
 - 2026-11-08 对 APK 中两条公开后备配置地址进行了无凭据 GET，两条均网络失败，**没有取得配置内容**。见 `analysis/lanerc/public-source-config.json`；不能把网络诊断成功运行说成取得真实源文件。
 
 ## 未完成的验收项
 
 - [ ] 原版源文件导入/导出兼容、异常格式回归样本。
-- [ ] Animeko 的源注册、独立持久化、设置入口与三模式 UI；保留原源设置与订阅。
-- [ ] Android 本机密钥加载/安全存储、按源与 origin 隔离凭据、真实 URI 规范化桥接。
-- [ ] 搜索/详情/剧集协议适配及现有 MediaSource/ApiVideoResolver 播放链连接。
+- [x] Animeko 源注册、独立持久化、设置入口与三模式 UI；已编译，未设备验证。
+- [x] Android KeyStore 安全存储、按源与 origin 隔离凭据、URI 规范化桥接；未设备验证。
+- [x] 搜索/详情/剧集与 MediaSource/ApiVideoResolver 代码接线；不是生产播放成功。
 - [ ] 合法验证码交互、guestCredential 生命周期与生产播放验证。
 - [ ] Lanerc 弹幕加载/发送、评论列表/分页/回复及登录要求，与 Animeko 原有服务分开。
 - [ ] 可安装 Android APK、UI 自动化、真机播放与回归测试。
 
-当前是可编译并有测试的集成基础层，**不是已完成的 APP 修改版**。最新执行结果见 `analysis/lanerc/animeko-core-validation.json`；字段明确区分核心测试、Android 构建、UI 集成及原版格式验证。
+当前已生成 Android 集成预览 APK，**不是生产验收完成的版本**。最新执行结果见 `analysis/lanerc/animeko-core-validation.json`；字段明确区分核心测试、Android 构建、UI 集成及原版格式验证。
 
-## 本轮实际执行
+## 已验证的交付与本轮新增
 
-GitHub Actions [42442665479](https://github.com/13510954098/zawu/actions/runs/42442665479) 已完成：**29 项 Kotlin 测试全部通过、0 跳过**；另执行 4 项源码解包安全测试，并下载、校验、还原固定版本 Animeko 与源码 overlay。未构建 Android APK，未运行 Animeko UI，未接入生产账户或媒体。
+- Kotlin 核心 42 项测试通过、0 失败/跳过，源码安全准备 4 项通过。
+- Android 编译、UI 编译、打包与上传已成功。构建 42443902879 的红色结论来自之后提交报告失败，不是编译失败。
+- APK 已实际放入 Code：[`downloads/animeko/`](../../downloads/animeko/)，配套 SHA256SUMS、build.json；本地重新拉取并校验通过。applicationId `me.him188.ani.lanerc`，arm64 debug 签名。
+- 当前 Code APK 对应 `2e3cce6`，不包含后续新增的评论页面；后续构建必须分别确认。
+- 新增播放器评论页独立 Lanerc 作品评论切换入口，使用选中媒体的原版 `vod_id`，而非 Bangumi ID；仅原生 Lanerc 源可请求。保留 Animeko 评论，支持手动选择、分页、失败重试，切换媒体取消旧请求，不显示敏感后台错误。**此新增代码正在进行 Android 编译验证，未做真机测试。**
+- 弹幕目前保留原版字段及接口 DTO；播放器渲染位置枚举与发送尚未接入。评论发送、原版用户登录也未接入。
+- 构建不嵌入恢复密钥或生产凭据。现有 APK 不是无需配置即可播放的成品，也没有真实播放成功的证据。
