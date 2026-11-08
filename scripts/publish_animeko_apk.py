@@ -80,6 +80,9 @@ def main():
     native_posting = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
         ':integration/animeko/overlay/app/shared/src/commonMain/kotlin/ui/subject/episode/NativeWriteComposer.kt'],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+    shared_constants = subprocess.run(['git', 'cat-file', '-e', run['head_sha'] +
+        ':integration/animeko/overlay/app/shared/app-data/src/commonMain/kotlin/domain/mediasource/lanerc/core/LanercBuiltInMaterial.kt'],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
     destination = ROOT / 'downloads/animeko'
     destination.mkdir(parents=True, exist_ok=True)
     filename = 'animeko-lanerc-arm64-debug.apk'
@@ -99,6 +102,7 @@ def main():
         'application_id': application_id, 'base_application_id': 'me.him188.ani.lanerc',
         'version_name': manifest.get('@android:versionName'), 'min_sdk': sdk.get('@android:minSdkVersion'),
         'target_sdk': sdk.get('@android:targetSdkVersion'), 'build_type': 'defaultDebug',
+        'shared_client_protocol_constants_embedded': shared_constants,
         'private_production_material_embedded': False, 'original_source_import_verified': False,
         'production_playback_verified': False,
         'apk_files': [{'name': filename, 'sha256': digest, 'bytes': apk.stat().st_size}],
@@ -112,8 +116,10 @@ APK: `{filename}` (arm64-v8a, independent installed application ID `{application
 Version: `{report['version_name']}` (Lanerc preview, not an official Animeko release).\nUpstream: `{source_pin['commit']}`\nBuild: {run['html_url']}\nSource: `{run['head_sha']}`\nSHA256: `{digest}`
 
 This is a compiled integration preview, **not a verified production-ready release**.
-No recovered production keys or guest credentials are embedded. Configure private
-protocol material inside the app; the default build does not bypass server login.
+Shared original-APK client protocol constants bundled: **{shared_constants}**.
+No user passwords, account tokens or guest credentials are bundled. Legacy builds
+without shared constants require manual protocol configuration. Bundling client
+constants does not bypass service-side authentication or verification.
 Original-format source import is partial. Native comments UI included in this
 compiled source: **{native_comments_ui}**. Not device/backend verified.
 Native danmaku timeline included in compiled source: **{native_timeline}**. Device/backend

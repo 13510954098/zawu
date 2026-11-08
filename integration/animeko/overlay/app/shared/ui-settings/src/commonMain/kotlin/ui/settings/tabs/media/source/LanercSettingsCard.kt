@@ -106,7 +106,7 @@ internal fun LanercSettingsCard() {
                     perform { active.session.api().backend(); "动态源发现成功；这不代表已验证播放权限。" }
                 }) { Text("检查动态发现") }
             }
-            Text(if (hasMaterial) "协议材料已保存在本机密钥库保护的存储中。" else "未导入协议材料。源定义不包含 AES 材料或访客凭据。")
+            Text(if (hasMaterial) "内置共用协议可用；自定义覆盖仍在本机加密保存。账号和访客凭据不会内置。" else "正在检查协议配置。")
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 TextButton(enabled = !busy && source != null && hasMaterial, onClick = {
                     val active = source ?: return@TextButton
@@ -154,7 +154,7 @@ internal fun LanercSettingsCard() {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(when (currentDialog) {
                     "material" -> "粘贴恢复的私密 JSON。仅保存在 Android 本机；不会随源导出。输入不会进入页面恢复状态。"
-                    "clear" -> "将删除协议材料和此源的所有访客凭据，不删除其他源或 Animeko 账号。"
+                    "clear" -> "将删除此源自定义协议材料、原版账号和访客凭据，恢复内置共用协议；不删除其他源或 Animeko 账号。"
                     else -> "仅接受原版后备配置中已确认的 domain HTTPS 字段。完整原版源包格式尚未核实，不会伪称已兼容。"
                 })
                 if (currentDialog != "clear") OutlinedTextField(input, onValueChange = { if (it.length <= 65536) input = it }, enabled = !busy,
@@ -182,7 +182,7 @@ internal fun LanercSettingsCard() {
                         manager.addInstance(id, id, LanercMediaSource.FactoryId, MediaSourceConfig(
                             serializedArguments = MediaSourceConfig.serializeArguments(LanercMediaSourceArguments.serializer(), arguments)))
                         selectedId = id
-                        "已导入 domain 配置子集；此源需要单独导入本机协议材料。"
+                        "已导入 domain 配置子集，可使用内置共用协议；不代表完整原版源格式兼容。"
                     }
                 }
             }

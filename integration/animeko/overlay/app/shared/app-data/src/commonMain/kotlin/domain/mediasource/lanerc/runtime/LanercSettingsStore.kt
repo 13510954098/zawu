@@ -14,10 +14,13 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
     val mode = preferences.data.map { values -> SourceMode.entries.firstOrNull { it.name == values[modeKey] } ?: SourceMode.ANIMEKO }
     suspend fun setMode(mode: SourceMode) { preferences.edit { it[modeKey] = mode.name } }
     private fun materialKey(sourceId: String) = stringPreferencesKey("lanerc.protocol.$sourceId")
+    // An opaque cache version: a sealed user override, or the bundled client version.
+    private val bundledVersion get() = "builtin:${LanercBuiltInMaterial.VERSION}"
     internal suspend fun sealedMaterial(sourceId: String): String =
-        preferences.data.first()[materialKey(sourceId)] ?: error("请在 Lanerc 源设置中导入本机协议材料")
+        preferences.data.first()[materialKey(sourceId)] ?: bundledVersion
 
-    suspend fun hasMaterial(sourceId: String): Boolean = preferences.data.first()[materialKey(sourceId)] != null
+    suspend fun hasMaterial(sourceId: String): Boolean =
+        preferences.data.first()[materialKey(sourceId)] != null || LanercBuiltInMaterial.RAW.isNotBlank()
     suspend fun importMaterial(sourceId: String, raw: String) {
         require(raw.length <= 65536) { "材料文件过大" }
         parseMaterial(raw) // Validate all required fields before replacing any previous material.
@@ -25,7 +28,7 @@ class LanercSettingsStore(private val preferences: DataStore<Preferences>) {
         preferences.edit { it[materialKey(sourceId)] = sealed }
     }
     internal fun unsealMaterial(sourceId: String, sealed: String): LanercSecrets = try {
-        parseMaterial(LanercPlatform.unseal("protocol:$sourceId", sealed))
+        parseMaterial(if (sealed == bundledVersion) LanercBuiltInMaterial.RAW else LanercPlatform.unseal("protocol:$sourceId", sealed))
     } catch (_: Exception) { error("本机协议材料无法读取，请重新导入") }
 
     private fun credentialKey(sourceId: String, origin: String) = stringPreferencesKey(LanercStorageKeys.guest(sourceId, origin))

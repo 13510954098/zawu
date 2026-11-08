@@ -152,7 +152,7 @@ class LanercMediaSource(
         val api = session.api()
         val origin = LanercUri.origin(api.backend())
         val credential = settings.credential(mediaSourceId, origin, currentTimeMillis())
-            ?: error("请在设置 → 数据源 → Lanerc 完成人工访客验证码，再重试播放")
+            ?: error("尚未取得游客播放凭据，无需先登录账号。原版自动获取流程仍在核实；可在源设置中尝试游客验证。")
         val url = api.play(resource, credential).playUrl
         require(publicHttpsUrl(url)) { "Lanerc 返回了无效或不安全的播放地址" }
         return WebVideo(url, emptyMap()) // API credentials are never forwarded to the media CDN.
