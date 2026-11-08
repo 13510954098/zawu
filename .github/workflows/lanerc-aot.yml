@@ -107,7 +107,7 @@ jobs:
           test "$(stat -c%s /tmp/lanerc-analysis.tar.gz)" -le 5242880
           openssl cms -encrypt -binary -aes-256-cbc \
             -in /tmp/lanerc-analysis.tar.gz -outform DER \
-            -out analysis/lanerc/private-bundle.p7m analysis/lanerc/analysis-recipient.pem
+            -out analysis/lanerc/private-bundle.p7m analysis/lanerc/session-recipient.pem
       - name: Commit metadata and encrypted bundle to session branch
         run: |
           git config user.name "github-actions[bot]"
@@ -115,4 +115,5 @@ jobs:
           git add analysis/lanerc/
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Record redacted Lanerc AOT analysis metadata"
+          git pull --rebase -X theirs origin arena/44f5d2ee-zawu
           git push origin HEAD:arena/44f5d2ee-zawu
