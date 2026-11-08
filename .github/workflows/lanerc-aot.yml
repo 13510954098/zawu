@@ -22,6 +22,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: arena/44f5d2ee-zawu
+      - name: Test layout probe against public synthetic arrays on Actions
+        run: |
+          python3 - <<'PY'
+          from scripts.lanerc_apk_material_layout import probe
+          chunks = [list(range(16)), list(reversed(range(16))), [(v*3)%16 for v in range(16)], [(v*5)%16 for v in range(16)]]
+          pool = '[pp+0xe238] ' + ' '.join('List<int>(16) [' + ','.join(map(str, chunk)) + ']' for chunk in chunks)
+          binary = b'\xff'*8 + b'\xff'.join(bytes(chunk) for chunk in chunks) + b'\xff'*8
+          result = probe(binary, pool)
+          assert result['all_arrays_uniquely_located']
+          assert all(any(m['offset'] == 8 + 17*i and m['stride'] == 1 and m['bias'] == 0 and m['width'] == 1 for m in row['matches']) for i, row in enumerate(result['arrays']))
+          try:
+              probe(binary, '[pp+0xe238] List<int>(16) [16]')
+          except ValueError:
+              pass
+          else:
+              raise AssertionError('Malformed material structure was not rejected')
+          print('Synthetic layout and malformed-structure checks passed; no real values printed')
+          PY
       - name: Prepare verified APK libraries
         run: |
           python3 - <<'PY'
