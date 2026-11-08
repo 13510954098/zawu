@@ -1,0 +1,15 @@
+{
+  "run_id": "42450351022",
+  "request": 3,
+  "recipient_certificate_sha256": "c93e3efa54ce1fb466500ac7d9c270a6e6f7359689eecaa665ae508790939a21",
+  "method": "POST",
+  "path": "/app/v2/guest/captcha",
+  "query_fields": [
+    "sign"
+  ],
+  "body_fields": [],
+  "http_status": 200,
+  "body_bytes": 21182,
+  "body_sha256": "7d4c7e6144b7efb988c2f03a9d80435980f5504ca678a7f1fe4bc26e0b4cde90",
+  "client_keys_supplied_to_runner": false
+}
