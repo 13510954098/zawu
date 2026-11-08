@@ -49,6 +49,10 @@ def summarize(root):
                 for needle, label in [
                     ('Authorization', 'authorization-header'),
                     ('app/v2/play', 'playback-endpoint'),
+                    ('app/v2/guest/captcha', 'guest-captcha-endpoint'),
+                    ('app/v2/guest/credential', 'guest-credential-endpoint'),
+                    ('app/v2/guest/play', 'guest-play-endpoint'),
+                    ('guest_credential', 'guest-credential-field'),
                     ('app/config', 'configuration-endpoint'),
                     ('application/json', 'json-mime'),
                     ('String: "', 'string-constant-present'),
