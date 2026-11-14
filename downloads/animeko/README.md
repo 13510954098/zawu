@@ -4,9 +4,9 @@ APK: `animeko-lanerc-arm64-debug.apk` (arm64-v8a, independent installed applicat
 
 Version: `6.4.0-post15.lanerc.preview` (Lanerc preview, not an official Animeko release).
 Upstream: `6d79729a135cee6af861a7a095d3880d1b452260`
-Build: https://github.com/13510954098/zawu/actions/runs/42461386876
-Source: `a9e28a318e08f175e5a93b4f778ad8e97a6ea750`
-SHA256: `cdb5569d1b9a0c7b8d4a660a3f6e2c57b5c28dc76f3221d266422d7dccf22984`
+Build: https://github.com/13510954098/zawu/actions/runs/43548067941
+Source: `f71d2c5ceac8166695de5ae3c1702ecf95b0b576`
+SHA256: `a20e0e023ba87d213a1cc0f52cf82c7319221c1e7514f12b69b33f106801514e`
 
 This is a compiled integration preview, **not a verified production-ready release**.
 Shared original-APK client protocol constants bundled: **True**.

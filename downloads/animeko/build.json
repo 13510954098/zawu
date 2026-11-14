@@ -1,7 +1,7 @@
 {
-  "source_commit": "a9e28a318e08f175e5a93b4f778ad8e97a6ea750",
-  "build_run": 42461386876,
-  "build_url": "https://github.com/13510954098/zawu/actions/runs/42461386876",
+  "source_commit": "f71d2c5ceac8166695de5ae3c1702ecf95b0b576",
+  "build_run": 43548067941,
+  "build_url": "https://github.com/13510954098/zawu/actions/runs/43548067941",
   "upstream_commit": "6d79729a135cee6af861a7a095d3880d1b452260",
   "baseline_release": "6.4.0",
   "commits_after_release": 15,
@@ -28,8 +28,8 @@
   "apk_files": [
     {
       "name": "animeko-lanerc-arm64-debug.apk",
-      "sha256": "cdb5569d1b9a0c7b8d4a660a3f6e2c57b5c28dc76f3221d266422d7dccf22984",
-      "bytes": 78026334
+      "sha256": "a20e0e023ba87d213a1cc0f52cf82c7319221c1e7514f12b69b33f106801514e",
+      "bytes": 78027298
     }
   ]
 }
