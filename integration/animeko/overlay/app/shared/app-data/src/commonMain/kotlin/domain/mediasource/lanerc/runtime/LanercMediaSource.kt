@@ -23,7 +23,8 @@ import me.him188.ani.utils.platform.currentTimeMillis
 data class LanercMediaSourceArguments(
     override val name: String = "Lanerc 动态内置源",
     val backendOverride: String = "",
-    override val tier: MediaSourceTier = MediaSourceTier.Fallback,
+    // tier 数值越小优先级越高 (Animeko 的 Fallback = 2u). 用最高档, 否则自动选择只会把它排在最后.
+    override val tier: MediaSourceTier = MediaSourceTier(0u),
 ) : MediaSourceArguments
 
 object LanercMediaSourceCodec : DefaultMediaSourceCodec<LanercMediaSourceArguments>(
@@ -40,6 +41,9 @@ class LanercMediaSource(
         val FactoryId = FactoryId("lanerc-native")
         const val BUILTIN_ID = "lanerc.builtin"
         private const val VIRTUAL = "https://lanerc.invalid/"
+
+        /** 少于该长度的标题片段不参与包含匹配, 避免 "剧场版" 这类短串误命中. */
+        private const val MIN_TITLE_MATCH_LENGTH = 3
     }
     val arguments = config.deserializeArgumentsOrNull(LanercMediaSourceArguments.serializer()) ?: LanercMediaSourceArguments()
     @Suppress("DEPRECATION")
@@ -104,12 +108,26 @@ class LanercMediaSource(
     override suspend fun fetch(query: MediaFetchRequest): SizedSource<MediaMatch> = SinglePagePagedSource {
         flow {
             val names = query.subjectNames.distinct().take(3)
-            val exactNames = names.map { ParallelSourceSearch.normalizedTitle(it) }.toSet()
-            val seen = mutableSetOf<String>()
+            val needles = names.map { ParallelSourceSearch.normalizedTitle(it) }.filter { it.isNotEmpty() }.toSet()
+            if (needles.isEmpty()) return@flow
+            val seenSubject = mutableSetOf<String>()
+            val seenMedia = mutableSetOf<String>()
             for (keyword in names) for (subject in searchSubjects(keyword)) {
-                if (ParallelSourceSearch.normalizedTitle(subject.name) !in exactNames || !seen.add(subject.url)) continue
+                if (!seenSubject.add(subject.url)) continue
+                val title = ParallelSourceSearch.normalizedTitle(subject.name)
+                if (title.isEmpty()) continue
+                // 完全一致 -> EXACT (进入精确档), 包含关系 -> FUZZY (进入模糊档), 都不算则跳过.
+                val exact = title in needles
+                val fuzzy = needles.any { needle ->
+                    (needle.length >= MIN_TITLE_MATCH_LENGTH && title.contains(needle)) ||
+                        (title.length >= MIN_TITLE_MATCH_LENGTH && needle.contains(title))
+                }
+                if (!exact && !fuzzy) continue
+                val kind = if (exact) MatchKind.EXACT else MatchKind.FUZZY
                 for (channel in browseSubject(subject)) for (episode in channel.episodes) {
-                    emit(MediaMatch(createMedia(subject, channel.name, episode, episode.episodeSort), MatchKind.FUZZY))
+                    val media = createMedia(subject, channel.name, episode, episode.episodeSort)
+                    if (!seenMedia.add(media.mediaId)) continue
+                    emit(MediaMatch(media, kind))
                 }
             }
         }
