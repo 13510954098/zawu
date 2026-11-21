@@ -22,7 +22,7 @@ env:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -34,7 +34,7 @@ jobs:
       - name: 装工具链（固定版本 + 哈希校验）
         run: |
           sudo apt-get update -qq || true
-          sudo apt-get install -y -qq unzip curl openssl > /dev/null
+          sudo apt-get install -y -qq unzip curl openssl ninja-build cmake git > /dev/null
           curl -fsSL --retry 3 -o /tmp/apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
           echo 'dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423  /tmp/apktool.jar' | sha256sum -c -
           sudo mv /tmp/apktool.jar /opt/apktool.jar
@@ -53,7 +53,8 @@ jobs:
           java -version 2>&1 | head -1
           apktool --version
           jadx --version | head -1
-          echo 'ok'
+          cmake --version | head -1
+          ninja --version
 
       - name: 下载 APK 并记录哈希
         env:
@@ -71,11 +72,46 @@ jobs:
       - name: 加固指纹
         run: apkid -j work/app.apk > work/apkid.json 2>/dev/null || echo 'apkid 无输出'
 
-      - name: jadx 反编译（失败不阻塞）
-        run: timeout 2400 jadx -d work/jadx --no-res --threads-count 4 work/app.apk > work/jadx.log 2>&1 || echo 'jadx 未完整结束'
+      - name: jadx 反编译（记录状态，不阻塞）
+        run: |
+          set +e
+          export JAVA_OPTS='-Xmx6g'
+          timeout 3600 jadx -d work/jadx --no-res --threads-count 8 work/app.apk > work/jadx.log 2>&1
+          RC=$?
+          echo "jadx_exit=$RC" | tee work/jadx.status
+          tail -5 work/jadx.log || true
+          exit 0
+
+      - name: Dart AOT 深挖（blutter，尽力而为）
+        continue-on-error: true
+        run: |
+          set +e
+          git clone --depth 1 https://github.com/worawit/blutter /opt/blutter
+          mkdir -p work/blutter
+          cd /opt/blutter
+          python3 blutter.py "$GITHUB_WORKSPACE/work/decoded/lib/arm64-v8a" "$GITHUB_WORKSPACE/work/blutter" > "$GITHUB_WORKSPACE/work/blutter.log" 2>&1
+          echo "blutter_exit=$?" | tee "$GITHUB_WORKSPACE/work/blutter.status"
+          tail -20 "$GITHUB_WORKSPACE/work/blutter.log"
+          ls -la "$GITHUB_WORKSPACE/work/blutter" | head -20
+          exit 0
 
       - name: 生成静态报告
         run: python3 re/analyze_apk.py --apk work/app.apk --decoded work/decoded --apkid work/apkid.json --outdir work
+
+      - name: 把深挖状态并入报告
+        run: |
+          {
+            echo ''
+            echo '## 深挖状态（机器生成）'
+            echo "- jadx: $(cat work/jadx.status 2>/dev/null || echo '未运行')"
+            echo "- blutter: $(cat work/blutter.status 2>/dev/null || echo '未运行')"
+            if [ -s work/blutter/pp.txt ]; then
+              echo "- blutter 产物: pp.txt $(wc -l < work/blutter/pp.txt) 行"
+            else
+              echo '- blutter 未产出 pp.txt（引擎版本匹配或依赖问题，需单独排查）'
+            fi
+            echo "- jadx 日志末尾: $(tail -1 work/jadx.log 2>/dev/null)"
+          } >> work/report.md
 
       - name: 写入 Job Summary
         run: |
@@ -87,9 +123,11 @@ jobs:
           SHA12=$(cut -c1-12 work/sha256.txt)
           DEST="reports/apk-${SHA12}"
           mkdir -p "$DEST" work/app-src
-          cp work/report.md work/facts.json work/domains.txt "$DEST/"
+          cp work/report.md work/facts.json work/domains.txt work/jadx.status "$DEST/"
+          cp work/blutter.status "$DEST/" 2>/dev/null || true
           cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
           cp -r work/jadx/sources/com/hbsclj "work/app-src/" 2>/dev/null || true
+          cp work/blutter/pp.txt "$DEST/dart-pp.txt" 2>/dev/null || true
           git config user.name 're-bot'
           git config user.email 're-bot@users.noreply.github.com'
           git checkout -B "re/apk-${SHA12}"
@@ -109,5 +147,7 @@ jobs:
             work/apkid.json
             work/apktool.log
             work/jadx.log
+            work/blutter.log
+            work/blutter/pp.txt
             work/app-src
           retention-days: 14
