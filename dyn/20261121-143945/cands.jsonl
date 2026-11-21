@@ -1,0 +1,875 @@
+{"msg": {"t": "recvhooked"}, "dlen": 0}
+{"msg": {"t": "readhooked"}, "dlen": 0}
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"rpc_avail": ["dump"]}
+{"msg": {"t": "bigread", "fn": "read", "fd": 130, "n": 261194, "at": "0x7a07175fd3b0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 130, "n": 243519, "at": "0x7a0a2739f8c0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 138, "n": 280501, "at": "0x7a0a3ec1c840", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 292, "n": 274581, "at": "0x7a0a3e279f60", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 292, "n": 300758, "at": "0x7a071743e920", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 300, "n": 411476, "at": "0x7a0716c628a0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 151, "n": 317126, "at": "0x7a0714396930", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 297, "n": 272235, "at": "0x7a0a3e27a890", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 237, "n": 262564, "at": "0x7a076ad3fe50", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 238, "n": 100485, "at": "0x7a0a2f5e7770", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 307, "n": 56535, "at": "0x7a098f5ff0d0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 127, "n": 484980, "at": "0x7a071771c980", "magic": "8950"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 137, "n": 300758, "at": "0x7a071743e920", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 297, "n": 411476, "at": "0x7a0716c628a0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 327, "n": 317126, "at": "0x7a0714396930", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 206, "n": 261194, "at": "0x7a07175fd3b0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 328, "n": 272235, "at": "0x7a0a3ec1e890", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 333, "n": 243519, "at": "0x7a0a2739f8c0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 330, "n": 262564, "at": "0x7a076ad3fe50", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 334, "n": 274581, "at": "0x7a0a3e279f60", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 335, "n": 280501, "at": "0x7a0776d96840", "magic": "ffd8"}, "dlen": 96}
+{"t": "go_dump_seen", "at": 143.0}
+{"msg": {"t": "range", "base": "0x4015e000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x4015e000", "size": 20480, "idx": 0}
+{"msg": {"t": "range", "base": "0x401e1000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x401e1000", "size": 20480, "idx": 20480}
+{"msg": {"t": "range", "base": "0x40341000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x40341000", "size": 16384, "idx": 40960}
+{"msg": {"t": "range", "base": "0x40499000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x40499000", "size": 20480, "idx": 57344}
+{"msg": {"t": "range", "base": "0x405bb000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x405bb000", "size": 20480, "idx": 77824}
+{"msg": {"t": "range", "base": "0x405d5000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x405d5000", "size": 20480, "idx": 98304}
+{"msg": {"t": "range", "base": "0x4069f000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x4069f000", "size": 20480, "idx": 118784}
+{"msg": {"t": "range", "base": "0x406e8000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x406e8000", "size": 20480, "idx": 139264}
+{"msg": {"t": "range", "base": "0x4078b000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x4078b000", "size": 20480, "idx": 159744}
+{"msg": {"t": "range", "base": "0x40908000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x40908000", "size": 24576, "idx": 180224}
+{"msg": {"t": "range", "base": "0x40a21000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x40a21000", "size": 20480, "idx": 204800}
+{"msg": {"t": "range", "base": "0x40af2000", "size": 36864}, "dlen": 0}
+{"t": "memref", "base": "0x40af2000", "size": 36864, "idx": 225280}
+{"msg": {"t": "range", "base": "0x40c29000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x40c29000", "size": 20480, "idx": 262144}
+{"msg": {"t": "range", "base": "0x40c72000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x40c72000", "size": 20480, "idx": 282624}
+{"msg": {"t": "range", "base": "0x40e5c000", "size": 69632}, "dlen": 0}
+{"t": "memref", "base": "0x40e5c000", "size": 69632, "idx": 303104}
+{"msg": {"t": "range", "base": "0x40e9e000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x40e9e000", "size": 20480, "idx": 372736}
+{"msg": {"t": "range", "base": "0x41001000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41001000", "size": 20480, "idx": 393216}
+{"msg": {"t": "range", "base": "0x41023000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41023000", "size": 20480, "idx": 413696}
+{"msg": {"t": "range", "base": "0x41135000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41135000", "size": 20480, "idx": 434176}
+{"msg": {"t": "range", "base": "0x41280000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41280000", "size": 20480, "idx": 454656}
+{"msg": {"t": "range", "base": "0x412dd000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x412dd000", "size": 16384, "idx": 475136}
+{"msg": {"t": "range", "base": "0x41426000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41426000", "size": 20480, "idx": 491520}
+{"msg": {"t": "range", "base": "0x414c4000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x414c4000", "size": 20480, "idx": 512000}
+{"msg": {"t": "range", "base": "0x4150f000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x4150f000", "size": 20480, "idx": 532480}
+{"msg": {"t": "range", "base": "0x41633000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41633000", "size": 20480, "idx": 552960}
+{"msg": {"t": "range", "base": "0x41741000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41741000", "size": 20480, "idx": 573440}
+{"msg": {"t": "range", "base": "0x417f6000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x417f6000", "size": 20480, "idx": 593920}
+{"msg": {"t": "range", "base": "0x418b4000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x418b4000", "size": 20480, "idx": 614400}
+{"msg": {"t": "range", "base": "0x418e2000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x418e2000", "size": 20480, "idx": 634880}
+{"msg": {"t": "range", "base": "0x41a10000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41a10000", "size": 20480, "idx": 655360}
+{"msg": {"t": "range", "base": "0x41a48000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41a48000", "size": 20480, "idx": 675840}
+{"msg": {"t": "range", "base": "0x41cad000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41cad000", "size": 20480, "idx": 696320}
+{"msg": {"t": "range", "base": "0x41ed1000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x41ed1000", "size": 20480, "idx": 716800}
+{"msg": {"t": "range", "base": "0x41f65000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x41f65000", "size": 24576, "idx": 737280}
+{"msg": {"t": "range", "base": "0x56c00000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56c00000", "size": 16384, "idx": 761856}
+{"msg": {"t": "range", "base": "0x56c10000", "size": 192512}, "dlen": 0}
+{"t": "memref", "base": "0x56c10000", "size": 192512, "idx": 778240}
+{"msg": {"t": "range", "base": "0x56c44000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x56c44000", "size": 20480, "idx": 970752}
+{"msg": {"t": "range", "base": "0x56c4a000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x56c4a000", "size": 24576, "idx": 991232}
+{"msg": {"t": "range", "base": "0x56c5f000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56c5f000", "size": 16384, "idx": 1015808}
+{"msg": {"t": "range", "base": "0x56c81000", "size": 94208}, "dlen": 0}
+{"t": "memref", "base": "0x56c81000", "size": 94208, "idx": 1032192}
+{"msg": {"t": "range", "base": "0x56c9c000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x56c9c000", "size": 40960, "idx": 1126400}
+{"msg": {"t": "range", "base": "0x56cad000", "size": 57344}, "dlen": 0}
+{"t": "memref", "base": "0x56cad000", "size": 57344, "idx": 1167360}
+{"msg": {"t": "range", "base": "0x56cc1000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x56cc1000", "size": 24576, "idx": 1224704}
+{"msg": {"t": "range", "base": "0x56cd6000", "size": 315392}, "dlen": 0}
+{"t": "memref", "base": "0x56cd6000", "size": 315392, "idx": 1249280}
+{"msg": {"t": "range", "base": "0x56d29000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x56d29000", "size": 24576, "idx": 1564672}
+{"msg": {"t": "range", "base": "0x56d33000", "size": 557056}, "dlen": 0}
+{"t": "memref", "base": "0x56d33000", "size": 557056, "idx": 1589248}
+{"msg": {"t": "range", "base": "0x56dc4000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56dc4000", "size": 16384, "idx": 2146304}
+{"msg": {"t": "range", "base": "0x56dd8000", "size": 65536}, "dlen": 0}
+{"t": "memref", "base": "0x56dd8000", "size": 65536, "idx": 2162688}
+{"msg": {"t": "range", "base": "0x56dec000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56dec000", "size": 16384, "idx": 2228224}
+{"msg": {"t": "range", "base": "0x56e14000", "size": 147456}, "dlen": 0}
+{"t": "memref", "base": "0x56e14000", "size": 147456, "idx": 2244608}
+{"msg": {"t": "range", "base": "0x56e42000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x56e42000", "size": 40960, "idx": 2392064}
+{"msg": {"t": "range", "base": "0x56e50000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56e50000", "size": 16384, "idx": 2433024}
+{"msg": {"t": "range", "base": "0x56e58000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x56e58000", "size": 16384, "idx": 2449408}
+{"msg": {"t": "range", "base": "0x56e68000", "size": 49152}, "dlen": 0}
+{"t": "memref", "base": "0x56e68000", "size": 49152, "idx": 2465792}
+{"msg": {"t": "range", "base": "0x56e7c000", "size": 45056}, "dlen": 0}
+{"t": "memref", "base": "0x56e7c000", "size": 45056, "idx": 2514944}
+{"msg": {"t": "range", "base": "0x709e8000", "size": 2678784}, "dlen": 0}
+{"t": "memref", "base": "0x709e8000", "size": 2678784, "idx": 2560000}
+{"msg": {"t": "range", "base": "0x70c76000", "size": 270336}, "dlen": 0}
+{"t": "memref", "base": "0x70c76000", "size": 270336, "idx": 5238784}
+{"msg": {"t": "range", "base": "0x70cb8000", "size": 167936}, "dlen": 0}
+{"t": "memref", "base": "0x70cb8000", "size": 167936, "idx": 5509120}
+{"msg": {"t": "range", "base": "0x70ce1000", "size": 274432}, "dlen": 0}
+{"t": "memref", "base": "0x70ce1000", "size": 274432, "idx": 5677056}
+{"msg": {"t": "range", "base": "0x70d24000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x70d24000", "size": 4096, "idx": 5951488}
+{"msg": {"t": "range", "base": "0x710ec000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x710ec000", "size": 4096, "idx": 5955584}
+{"msg": {"t": "range", "base": "0x710ed000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x710ed000", "size": 77824, "idx": 5959680}
+{"msg": {"t": "range", "base": "0x71101000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x71101000", "size": 4096, "idx": 6037504}
+{"msg": {"t": "range", "base": "0x71156000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x71156000", "size": 4096, "idx": 6041600}
+{"msg": {"t": "range", "base": "0x71157000", "size": 12288}, "dlen": 0}
+{"t": "memref", "base": "0x71157000", "size": 12288, "idx": 6045696}
+{"msg": {"t": "range", "base": "0x7115b000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7115b000", "size": 4096, "idx": 6057984}
+{"msg": {"t": "range", "base": "0x7119f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7119f000", "size": 4096, "idx": 6062080}
+{"msg": {"t": "range", "base": "0x711a0000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x711a0000", "size": 8192, "idx": 6066176}
+{"msg": {"t": "range", "base": "0x711a3000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x711a3000", "size": 4096, "idx": 6074368}
+{"msg": {"t": "range", "base": "0x711c1000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x711c1000", "size": 4096, "idx": 6078464}
+{"msg": {"t": "range", "base": "0x711c2000", "size": 36864}, "dlen": 0}
+{"t": "memref", "base": "0x711c2000", "size": 36864, "idx": 6082560}
+{"msg": {"t": "range", "base": "0x711cc000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x711cc000", "size": 4096, "idx": 6119424}
+{"msg": {"t": "range", "base": "0x711d0000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x711d0000", "size": 20480, "idx": 6123520}
+{"msg": {"t": "range", "base": "0x711d6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x711d6000", "size": 4096, "idx": 6144000}
+{"msg": {"t": "range", "base": "0x711d7000", "size": 12677120}, "dlen": 0}
+{"t": "memref", "base": "0x711d7000", "size": 4194304, "idx": 6148096}
+{"t": "memref", "base": "0x715d7000", "size": 4194304, "idx": 10342400}
+{"t": "memref", "base": "0x719d7000", "size": 4194304, "idx": 14536704}
+{"t": "memref", "base": "0x71dd7000", "size": 94208, "idx": 18731008}
+{"msg": {"t": "range", "base": "0x71dee000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x71dee000", "size": 4096, "idx": 18825216}
+{"msg": {"t": "range", "base": "0x71def000", "size": 122880}, "dlen": 0}
+{"t": "memref", "base": "0x71def000", "size": 122880, "idx": 18829312}
+{"msg": {"t": "range", "base": "0x71e0d000", "size": 1425408}, "dlen": 0}
+{"t": "memref", "base": "0x71e0d000", "size": 1425408, "idx": 18952192}
+{"msg": {"t": "range", "base": "0x71f69000", "size": 655360}, "dlen": 0}
+{"t": "memref", "base": "0x71f69000", "size": 655360, "idx": 20377600}
+{"msg": {"t": "range", "base": "0x72009000", "size": 294912}, "dlen": 0}
+{"t": "memref", "base": "0x72009000", "size": 294912, "idx": 21032960}
+{"msg": {"t": "range", "base": "0x72051000", "size": 1515520}, "dlen": 0}
+{"t": "memref", "base": "0x72051000", "size": 1515520, "idx": 21327872}
+{"msg": {"t": "range", "base": "0x72ad4000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72ad4000", "size": 4096, "idx": 22843392}
+{"msg": {"t": "range", "base": "0x72ad5000", "size": 516096}, "dlen": 0}
+{"t": "memref", "base": "0x72ad5000", "size": 516096, "idx": 22847488}
+{"msg": {"t": "range", "base": "0x72b54000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b54000", "size": 4096, "idx": 23363584}
+{"msg": {"t": "range", "base": "0x72b59000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b59000", "size": 4096, "idx": 23367680}
+{"msg": {"t": "range", "base": "0x72b5b000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b5b000", "size": 4096, "idx": 23371776}
+{"msg": {"t": "range", "base": "0x72b75000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b75000", "size": 4096, "idx": 23375872}
+{"msg": {"t": "range", "base": "0x72b77000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b77000", "size": 4096, "idx": 23379968}
+{"msg": {"t": "range", "base": "0x72b7e000", "size": 53248}, "dlen": 0}
+{"t": "memref", "base": "0x72b7e000", "size": 53248, "idx": 23384064}
+{"msg": {"t": "range", "base": "0x72b8c000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b8c000", "size": 4096, "idx": 23437312}
+{"msg": {"t": "range", "base": "0x72b91000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x72b91000", "size": 20480, "idx": 23441408}
+{"msg": {"t": "range", "base": "0x72b97000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b97000", "size": 4096, "idx": 23461888}
+{"msg": {"t": "range", "base": "0x72b9a000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x72b9a000", "size": 8192, "idx": 23465984}
+{"msg": {"t": "range", "base": "0x72b9d000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72b9d000", "size": 4096, "idx": 23474176}
+{"msg": {"t": "range", "base": "0x72cb0000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72cb0000", "size": 4096, "idx": 23478272}
+{"msg": {"t": "range", "base": "0x72cb1000", "size": 36864}, "dlen": 0}
+{"t": "memref", "base": "0x72cb1000", "size": 36864, "idx": 23482368}
+{"msg": {"t": "range", "base": "0x72cbb000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x72cbb000", "size": 4096, "idx": 23519232}
+{"msg": {"t": "range", "base": "0x72cbc000", "size": 8183808}, "dlen": 0}
+{"t": "memref", "base": "0x72cbc000", "size": 4194304, "idx": 23523328}
+{"t": "memref", "base": "0x730bc000", "size": 3989504, "idx": 27717632}
+{"msg": {"t": "range", "base": "0x7348a000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7348a000", "size": 4096, "idx": 31707136}
+{"msg": {"t": "range", "base": "0x7348b000", "size": 163840}, "dlen": 0}
+{"t": "memref", "base": "0x7348b000", "size": 163840, "idx": 31711232}
+{"msg": {"t": "range", "base": "0x764bd000", "size": 8384512}, "dlen": 0}
+{"t": "memref", "base": "0x764bd000", "size": 4194304, "idx": 31875072}
+{"t": "memref", "base": "0x768bd000", "size": 4190208, "idx": 36069376}
+{"msg": {"t": "range", "base": "0x362400001000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x362400001000", "size": 8192, "idx": 40259584}
+{"msg": {"t": "range", "base": "0x36240000c000", "size": 372736}, "dlen": 0}
+{"t": "memref", "base": "0x36240000c000", "size": 372736, "idx": 40267776}
+{"msg": {"t": "range", "base": "0x362400068000", "size": 159744}, "dlen": 0}
+{"t": "memref", "base": "0x362400068000", "size": 159744, "idx": 40640512}
+{"msg": {"t": "range", "base": "0x362400090000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400090000", "size": 61440, "idx": 40800256}
+{"msg": {"t": "range", "base": "0x3624000a0000", "size": 45056}, "dlen": 0}
+{"t": "memref", "base": "0x3624000a0000", "size": 45056, "idx": 40861696}
+{"msg": {"t": "range", "base": "0x3624000ac000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x3624000ac000", "size": 28672, "idx": 40906752}
+{"msg": {"t": "range", "base": "0x3624000b4000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x3624000b4000", "size": 61440, "idx": 40935424}
+{"msg": {"t": "range", "base": "0x3624000c4000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x3624000c4000", "size": 77824, "idx": 40996864}
+{"msg": {"t": "range", "base": "0x3624000d8000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x3624000d8000", "size": 28672, "idx": 41074688}
+{"msg": {"t": "range", "base": "0x3624000e0000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x3624000e0000", "size": 61440, "idx": 41103360}
+{"msg": {"t": "range", "base": "0x3624000f0000", "size": 94208}, "dlen": 0}
+{"t": "memref", "base": "0x3624000f0000", "size": 94208, "idx": 41164800}
+{"msg": {"t": "range", "base": "0x362400108000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x362400108000", "size": 28672, "idx": 41259008}
+{"msg": {"t": "range", "base": "0x362400110000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400110000", "size": 61440, "idx": 41287680}
+{"msg": {"t": "range", "base": "0x362400120000", "size": 274432}, "dlen": 0}
+{"t": "memref", "base": "0x362400120000", "size": 274432, "idx": 41349120}
+{"msg": {"t": "range", "base": "0x362400164000", "size": 73728}, "dlen": 0}
+{"t": "memref", "base": "0x362400164000", "size": 73728, "idx": 41623552}
+{"msg": {"t": "range", "base": "0x362400178000", "size": 126976}, "dlen": 0}
+{"t": "memref", "base": "0x362400178000", "size": 126976, "idx": 41697280}
+{"msg": {"t": "range", "base": "0x362400198000", "size": 45056}, "dlen": 0}
+{"t": "memref", "base": "0x362400198000", "size": 45056, "idx": 41824256}
+{"msg": {"t": "range", "base": "0x3624001a4000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x3624001a4000", "size": 77824, "idx": 41869312}
+{"msg": {"t": "range", "base": "0x3624001b8000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x3624001b8000", "size": 61440, "idx": 41947136}
+{"msg": {"t": "range", "base": "0x3624001c8000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x3624001c8000", "size": 61440, "idx": 42008576}
+{"msg": {"t": "range", "base": "0x3624001d8000", "size": 114688}, "dlen": 0}
+{"t": "memref", "base": "0x3624001d8000", "size": 114688, "idx": 42070016}
+{"msg": {"t": "range", "base": "0x362400201000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x362400201000", "size": 8192, "idx": 42184704}
+{"msg": {"t": "range", "base": "0x36240020c000", "size": 847872}, "dlen": 0}
+{"t": "memref", "base": "0x36240020c000", "size": 847872, "idx": 42192896}
+{"msg": {"t": "range", "base": "0x3624002dc000", "size": 143360}, "dlen": 0}
+{"t": "memref", "base": "0x3624002dc000", "size": 143360, "idx": 43040768}
+{"msg": {"t": "range", "base": "0x362400300000", "size": 110592}, "dlen": 0}
+{"t": "memref", "base": "0x362400300000", "size": 110592, "idx": 43184128}
+{"msg": {"t": "range", "base": "0x36240031c000", "size": 57344}, "dlen": 0}
+{"t": "memref", "base": "0x36240031c000", "size": 57344, "idx": 43294720}
+{"msg": {"t": "range", "base": "0x36240032c000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x36240032c000", "size": 77824, "idx": 43352064}
+{"msg": {"t": "range", "base": "0x362400340000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x362400340000", "size": 77824, "idx": 43429888}
+{"msg": {"t": "range", "base": "0x362400354000", "size": 671744}, "dlen": 0}
+{"t": "memref", "base": "0x362400354000", "size": 671744, "idx": 43507712}
+{"msg": {"t": "range", "base": "0x362400401000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x362400401000", "size": 8192, "idx": 44179456}
+{"msg": {"t": "range", "base": "0x36240040c000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x36240040c000", "size": 61440, "idx": 44187648}
+{"msg": {"t": "range", "base": "0x36240041c000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x36240041c000", "size": 28672, "idx": 44249088}
+{"msg": {"t": "range", "base": "0x362400424000", "size": 110592}, "dlen": 0}
+{"t": "memref", "base": "0x362400424000", "size": 110592, "idx": 44277760}
+{"msg": {"t": "range", "base": "0x362400440000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400440000", "size": 61440, "idx": 44388352}
+{"msg": {"t": "range", "base": "0x362400450000", "size": 110592}, "dlen": 0}
+{"t": "memref", "base": "0x362400450000", "size": 110592, "idx": 44449792}
+{"msg": {"t": "range", "base": "0x36240046c000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x36240046c000", "size": 28672, "idx": 44560384}
+{"msg": {"t": "range", "base": "0x362400474000", "size": 110592}, "dlen": 0}
+{"t": "memref", "base": "0x362400474000", "size": 110592, "idx": 44589056}
+{"msg": {"t": "range", "base": "0x362400490000", "size": 94208}, "dlen": 0}
+{"t": "memref", "base": "0x362400490000", "size": 94208, "idx": 44699648}
+{"msg": {"t": "range", "base": "0x3624004a8000", "size": 45056}, "dlen": 0}
+{"t": "memref", "base": "0x3624004a8000", "size": 45056, "idx": 44793856}
+{"msg": {"t": "range", "base": "0x3624004b4000", "size": 94208}, "dlen": 0}
+{"t": "memref", "base": "0x3624004b4000", "size": 94208, "idx": 44838912}
+{"msg": {"t": "range", "base": "0x3624004cc000", "size": 94208}, "dlen": 0}
+{"t": "memref", "base": "0x3624004cc000", "size": 94208, "idx": 44933120}
+{"msg": {"t": "range", "base": "0x3624004e4000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x3624004e4000", "size": 61440, "idx": 45027328}
+{"msg": {"t": "range", "base": "0x3624004f4000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x3624004f4000", "size": 77824, "idx": 45088768}
+{"msg": {"t": "range", "base": "0x362400508000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400508000", "size": 61440, "idx": 45166592}
+{"msg": {"t": "range", "base": "0x362400518000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400518000", "size": 61440, "idx": 45228032}
+{"msg": {"t": "range", "base": "0x362400528000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x362400528000", "size": 61440, "idx": 45289472}
+{"msg": {"t": "range", "base": "0x362400538000", "size": 208896}, "dlen": 0}
+{"t": "memref", "base": "0x362400538000", "size": 208896, "idx": 45350912}
+{"msg": {"t": "range", "base": "0x36240056c000", "size": 45056}, "dlen": 0}
+{"t": "memref", "base": "0x36240056c000", "size": 45056, "idx": 45559808}
+{"msg": {"t": "range", "base": "0x362400578000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x362400578000", "size": 40960, "idx": 45604864}
+{"msg": {"t": "range", "base": "0x362400584000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x362400584000", "size": 40960, "idx": 45645824}
+{"msg": {"t": "range", "base": "0x362400590000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x362400590000", "size": 40960, "idx": 45686784}
+{"msg": {"t": "range", "base": "0x36240059c000", "size": 241664}, "dlen": 0}
+{"t": "memref", "base": "0x36240059c000", "size": 241664, "idx": 45727744}
+{"msg": {"t": "range", "base": "0x3624005d8000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x3624005d8000", "size": 40960, "idx": 45969408}
+{"msg": {"t": "range", "base": "0x3624005e4000", "size": 40960}, "dlen": 0}
+{"t": "memref", "base": "0x3624005e4000", "size": 40960, "idx": 46010368}
+{"msg": {"t": "range", "base": "0x362400601000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x362400601000", "size": 8192, "idx": 46051328}
+{"msg": {"t": "range", "base": "0x36240060c000", "size": 368640}, "dlen": 0}
+{"t": "memref", "base": "0x36240060c000", "size": 368640, "idx": 46059520}
+{"msg": {"t": "range", "base": "0x362400668000", "size": 700416}, "dlen": 0}
+{"t": "memref", "base": "0x362400668000", "size": 700416, "idx": 46428160}
+{"msg": {"t": "range", "base": "0x362400714000", "size": 110592}, "dlen": 0}
+{"t": "memref", "base": "0x362400714000", "size": 110592, "idx": 47128576}
+{"msg": {"t": "range", "base": "0x362400730000", "size": 405504}, "dlen": 0}
+{"t": "memref", "base": "0x362400730000", "size": 405504, "idx": 47239168}
+{"msg": {"t": "range", "base": "0x38fc00201000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x38fc00201000", "size": 4096, "idx": 47644672}
+{"msg": {"t": "range", "base": "0x38fc0020c000", "size": 192512}, "dlen": 0}
+{"t": "memref", "base": "0x38fc0020c000", "size": 192512, "idx": 47648768}
+{"msg": {"t": "range", "base": "0x38fc0023c000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x38fc0023c000", "size": 77824, "idx": 47841280}
+{"msg": {"t": "range", "base": "0x38fc00250000", "size": 258048}, "dlen": 0}
+{"t": "memref", "base": "0x38fc00250000", "size": 258048, "idx": 47919104}
+{"msg": {"t": "range", "base": "0x38fc00290000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x38fc00290000", "size": 77824, "idx": 48177152}
+{"msg": {"t": "range", "base": "0x38fc002a4000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x38fc002a4000", "size": 61440, "idx": 48254976}
+{"msg": {"t": "range", "base": "0x38fc002b4000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x38fc002b4000", "size": 61440, "idx": 48316416}
+{"msg": {"t": "range", "base": "0x38fc002c4000", "size": 77824}, "dlen": 0}
+{"t": "memref", "base": "0x38fc002c4000", "size": 77824, "idx": 48377856}
+{"msg": {"t": "range", "base": "0x38fc002d8000", "size": 61440}, "dlen": 0}
+{"t": "memref", "base": "0x38fc002d8000", "size": 61440, "idx": 48455680}
+{"msg": {"t": "range", "base": "0x38fc002e8000", "size": 180224}, "dlen": 0}
+{"t": "memref", "base": "0x38fc002e8000", "size": 180224, "idx": 48517120}
+{"msg": {"t": "range", "base": "0x38fc00401000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x38fc00401000", "size": 4096, "idx": 48697344}
+{"msg": {"t": "range", "base": "0x38fc00404000", "size": 180224}, "dlen": 0}
+{"t": "memref", "base": "0x38fc00404000", "size": 180224, "idx": 48701440}
+{"msg": {"t": "range", "base": "0x7a0600000000", "size": 14680064}, "dlen": 0}
+{"t": "memref", "base": "0x7a0600000000", "size": 4194304, "idx": 48881664}
+{"t": "memref", "base": "0x7a0600400000", "size": 4194304, "idx": 53075968}
+{"t": "memref", "base": "0x7a0600800000", "size": 4194304, "idx": 57270272}
+{"t": "memref", "base": "0x7a0600c00000", "size": 2097152, "idx": 61464576}
+{"msg": {"t": "range", "base": "0x7a0600f00000", "size": 524288}, "dlen": 0}
+{"t": "memref", "base": "0x7a0600f00000", "size": 524288, "idx": 63561728}
+{"msg": {"t": "range", "base": "0x7a0601180000", "size": 524288}, "dlen": 0}
+{"t": "memref", "base": "0x7a0601180000", "size": 524288, "idx": 64086016}
+{"msg": {"t": "range", "base": "0x7a0705db6000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0705db6000", "size": 1028096, "idx": 64610304}
+{"msg": {"t": "range", "base": "0x7a0705eb4000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0705eb4000", "size": 1073152, "idx": 65638400}
+{"msg": {"t": "range", "base": "0x7a0705fbd000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0705fbd000", "size": 1024000, "idx": 66711552}
+{"msg": {"t": "range", "base": "0x7a07065c9000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07065c9000", "size": 1028096, "idx": 67735552}
+{"msg": {"t": "range", "base": "0x7a07066c6000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a07066c6000", "size": 4194304, "idx": 68763648}
+{"t": "memref", "base": "0x7a0706ac6000", "size": 528384, "idx": 72957952}
+{"msg": {"t": "range", "base": "0x7a0706f4c000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0706f4c000", "size": 1028096, "idx": 73486336}
+{"msg": {"t": "range", "base": "0x7a070704a000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a070704a000", "size": 1024000, "idx": 74514432}
+{"msg": {"t": "range", "base": "0x7a0707147000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707147000", "size": 1073152, "idx": 75538432}
+{"msg": {"t": "range", "base": "0x7a070724f000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a070724f000", "size": 1028096, "idx": 76611584}
+{"msg": {"t": "range", "base": "0x7a070734c000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a070734c000", "size": 1028096, "idx": 77639680}
+{"msg": {"t": "range", "base": "0x7a0707449000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707449000", "size": 1028096, "idx": 78667776}
+{"msg": {"t": "range", "base": "0x7a0707546000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707546000", "size": 1028096, "idx": 79695872}
+{"msg": {"t": "range", "base": "0x7a0707643000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707643000", "size": 1028096, "idx": 80723968}
+{"msg": {"t": "range", "base": "0x7a0707740000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707740000", "size": 1028096, "idx": 81752064}
+{"msg": {"t": "range", "base": "0x7a070783e000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a070783e000", "size": 1024000, "idx": 82780160}
+{"msg": {"t": "range", "base": "0x7a070793a000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a070793a000", "size": 1028096, "idx": 83804160}
+{"msg": {"t": "range", "base": "0x7a0707a37000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707a37000", "size": 1028096, "idx": 84832256}
+{"msg": {"t": "range", "base": "0x7a0707b35000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707b35000", "size": 1024000, "idx": 85860352}
+{"msg": {"t": "range", "base": "0x7a0707c32000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707c32000", "size": 1024000, "idx": 86884352}
+{"msg": {"t": "range", "base": "0x7a0707d2e000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707d2e000", "size": 1028096, "idx": 87908352}
+{"msg": {"t": "range", "base": "0x7a0707e2c000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707e2c000", "size": 1024000, "idx": 88936448}
+{"msg": {"t": "range", "base": "0x7a0707f28000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0707f28000", "size": 1028096, "idx": 89960448}
+{"msg": {"t": "range", "base": "0x7a0708026000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0708026000", "size": 1024000, "idx": 90988544}
+{"msg": {"t": "range", "base": "0x7a0708122000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0708122000", "size": 1028096, "idx": 92012544}
+{"msg": {"t": "range", "base": "0x7a070821e000", "size": 4194304}, "dlen": 0}
+{"t": "memref", "base": "0x7a070821e000", "size": 4194304, "idx": 93040640}
+{"msg": {"t": "range", "base": "0x7a07091a3000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07091a3000", "size": 1073152, "idx": 97234944}
+{"msg": {"t": "range", "base": "0x7a07093b5000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07093b5000", "size": 1073152, "idx": 98308096}
+{"msg": {"t": "range", "base": "0x7a0709544000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0709544000", "size": 1060864, "idx": 99381248}
+{"msg": {"t": "range", "base": "0x7a0709baa000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0709baa000", "size": 1073152, "idx": 100442112}
+{"msg": {"t": "range", "base": "0x7a0709cb3000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0709cb3000", "size": 1073152, "idx": 101515264}
+{"msg": {"t": "range", "base": "0x7a070aa2c000", "size": 4005888}, "dlen": 0}
+{"t": "memref", "base": "0x7a070aa2c000", "size": 4005888, "idx": 102588416}
+{"msg": {"t": "range", "base": "0x7a070adff000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a070adff000", "size": 4096, "idx": 106594304}
+{"msg": {"t": "range", "base": "0x7a070d203000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a070d203000", "size": 1073152, "idx": 106598400}
+{"msg": {"t": "range", "base": "0x7a070dab5000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a070dab5000", "size": 1073152, "idx": 107671552}
+{"msg": {"t": "range", "base": "0x7a070e0ac000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a070e0ac000", "size": 1073152, "idx": 108744704}
+{"msg": {"t": "range", "base": "0x7a0710912000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0710912000", "size": 1073152, "idx": 109817856}
+{"msg": {"t": "range", "base": "0x7a0710a1b000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0710a1b000", "size": 1073152, "idx": 110891008}
+{"msg": {"t": "range", "base": "0x7a0710b24000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0710b24000", "size": 1073152, "idx": 111964160}
+{"msg": {"t": "range", "base": "0x7a0710c2d000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0710c2d000", "size": 1073152, "idx": 113037312}
+{"msg": {"t": "range", "base": "0x7a0711083000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0711083000", "size": 1073152, "idx": 114110464}
+{"msg": {"t": "range", "base": "0x7a07113d0000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07113d0000", "size": 1073152, "idx": 115183616}
+{"msg": {"t": "range", "base": "0x7a07114d9000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07114d9000", "size": 1073152, "idx": 116256768}
+{"msg": {"t": "range", "base": "0x7a07115e2000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07115e2000", "size": 1073152, "idx": 117329920}
+{"msg": {"t": "range", "base": "0x7a07116eb000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07116eb000", "size": 1073152, "idx": 118403072}
+{"msg": {"t": "range", "base": "0x7a07117f4000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07117f4000", "size": 1073152, "idx": 119476224}
+{"msg": {"t": "range", "base": "0x7a0711b34000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0711b34000", "size": 4096, "idx": 120549376}
+{"msg": {"t": "range", "base": "0x7a0711db1000", "size": 1785856}, "dlen": 0}
+{"t": "memref", "base": "0x7a0711db1000", "size": 1785856, "idx": 120553472}
+{"msg": {"t": "range", "base": "0x7a071202c000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a071202c000", "size": 1060864, "idx": 122339328}
+{"msg": {"t": "range", "base": "0x7a0712132000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0712132000", "size": 1024000, "idx": 123400192}
+{"msg": {"t": "range", "base": "0x7a0712304000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0712304000", "size": 1073152, "idx": 124424192}
+{"msg": {"t": "range", "base": "0x7a071240d000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a071240d000", "size": 1024000, "idx": 125497344}
+{"msg": {"t": "range", "base": "0x7a0712f95000", "size": 2035712}, "dlen": 0}
+{"t": "memref", "base": "0x7a0712f95000", "size": 2035712, "idx": 126521344}
+{"msg": {"t": "range", "base": "0x7a0713226000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0713226000", "size": 1060864, "idx": 128557056}
+{"msg": {"t": "range", "base": "0x7a071332b000", "size": 512000}, "dlen": 0}
+{"t": "memref", "base": "0x7a071332b000", "size": 512000, "idx": 129617920}
+{"msg": {"t": "range", "base": "0x7a07133aa000", "size": 512000}, "dlen": 0}
+{"t": "memref", "base": "0x7a07133aa000", "size": 512000, "idx": 130129920}
+{"msg": {"t": "range", "base": "0x7a071342a000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a071342a000", "size": 1060864, "idx": 130641920}
+{"msg": {"t": "range", "base": "0x7a071352f000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a071352f000", "size": 1060864, "idx": 131702784}
+{"msg": {"t": "range", "base": "0x7a0713634000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0713634000", "size": 1060864, "idx": 132763648}
+{"msg": {"t": "range", "base": "0x7a0713739000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0713739000", "size": 1060864, "idx": 133824512}
+{"msg": {"t": "range", "base": "0x7a071383f000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a071383f000", "size": 1073152, "idx": 134885376}
+{"msg": {"t": "range", "base": "0x7a07143d8000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a07143d8000", "size": 1060864, "idx": 135958528}
+{"msg": {"t": "range", "base": "0x7a07161c9000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a07161c9000", "size": 4194304, "idx": 137019392}
+{"t": "memref", "base": "0x7a07165c9000", "size": 528384, "idx": 141213696}
+{"msg": {"t": "range", "base": "0x7a071664c000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a071664c000", "size": 4194304, "idx": 141742080}
+{"t": "memref", "base": "0x7a0716a4c000", "size": 528384, "idx": 145936384}
+{"msg": {"t": "range", "base": "0x7a0716af2000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0716af2000", "size": 1073152, "idx": 146464768}
+{"msg": {"t": "range", "base": "0x7a0716cbb000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0716cbb000", "size": 1060864, "idx": 147537920}
+{"msg": {"t": "range", "base": "0x7a0716eb7cf0", "size": 13072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0716eb7cf0", "size": 13072, "idx": 148598784}
+{"msg": {"t": "range", "base": "0x7a0716fb4cf0", "size": 13072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0716fb4cf0", "size": 13072, "idx": 148611856}
+{"msg": {"t": "range", "base": "0x7a0716fba000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0716fba000", "size": 1028096, "idx": 148624928}
+{"msg": {"t": "range", "base": "0x7a07171aecf0", "size": 13072}, "dlen": 0}
+{"t": "memref", "base": "0x7a07171aecf0", "size": 13072, "idx": 149653024}
+{"msg": {"t": "range", "base": "0x7a07171bb000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a07171bb000", "size": 1060864, "idx": 149666096}
+{"msg": {"t": "range", "base": "0x7a07172c1000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07172c1000", "size": 1073152, "idx": 150726960}
+{"msg": {"t": "range", "base": "0x7a0717472000", "size": 598016}, "dlen": 0}
+{"t": "memref", "base": "0x7a0717472000", "size": 598016, "idx": 151800112}
+{"msg": {"t": "range", "base": "0x7a0717506000", "size": 1339392}, "dlen": 0}
+{"t": "memref", "base": "0x7a0717506000", "size": 1339392, "idx": 152398128}
+{"msg": {"t": "range", "base": "0x7a07176a5000", "size": 495616}, "dlen": 0}
+{"t": "memref", "base": "0x7a07176a5000", "size": 495616, "idx": 153737520}
+{"msg": {"t": "range", "base": "0x7a0717720000", "size": 471040}, "dlen": 0}
+{"t": "memref", "base": "0x7a0717720000", "size": 471040, "idx": 154233136}
+{"msg": {"t": "range", "base": "0x7a0717795000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0717795000", "size": 1060864, "idx": 154704176}
+{"msg": {"t": "range", "base": "0x7a0717d62000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a0717d62000", "size": 4194304, "idx": 155765040}
+{"t": "memref", "base": "0x7a0718162000", "size": 528384, "idx": 159959344}
+{"msg": {"t": "range", "base": "0x7a071822f000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a071822f000", "size": 1060864, "idx": 160487728}
+{"msg": {"t": "range", "base": "0x7a0718334000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0718334000", "size": 1028096, "idx": 161548592}
+{"msg": {"t": "range", "base": "0x7a07185b0000", "size": 20480}, "dlen": 0}
+{"t": "memref", "base": "0x7a07185b0000", "size": 20480, "idx": 162576688}
+{"msg": {"t": "range", "base": "0x7a07185e8000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a07185e8000", "size": 4194304, "idx": 162597168}
+{"t": "memref", "base": "0x7a07189e8000", "size": 528384, "idx": 166791472}
+{"msg": {"t": "range", "base": "0x7a0718a6b000", "size": 4722688}, "dlen": 0}
+{"t": "memref", "base": "0x7a0718a6b000", "size": 4194304, "idx": 167319856}
+{"t": "memref", "base": "0x7a0718e6b000", "size": 528384, "idx": 171514160}
+{"msg": {"t": "range", "base": "0x7a0718f91000", "size": 323584}, "dlen": 0}
+{"t": "memref", "base": "0x7a0718f91000", "size": 323584, "idx": 172042544}
+{"msg": {"t": "range", "base": "0x7a07190f8000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a07190f8000", "size": 1024000, "idx": 172366128}
+{"msg": {"t": "range", "base": "0x7a07191f5000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a07191f5000", "size": 1024000, "idx": 173390128}
+{"msg": {"t": "range", "base": "0x7a07192f1000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a07192f1000", "size": 1060864, "idx": 174414128}
+{"msg": {"t": "range", "base": "0x7a07193f6000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07193f6000", "size": 1028096, "idx": 175474992}
+{"msg": {"t": "range", "base": "0x7a0719d42000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0719d42000", "size": 4096, "idx": 176503088}
+{"msg": {"t": "range", "base": "0x7a0719d72000", "size": 577536}, "dlen": 0}
+{"t": "memref", "base": "0x7a0719d72000", "size": 577536, "idx": 176507184}
+{"msg": {"t": "range", "base": "0x7a071b41c000", "size": 266240}, "dlen": 0}
+{"t": "memref", "base": "0x7a071b41c000", "size": 266240, "idx": 177084720}
+{"msg": {"t": "range", "base": "0x7a071b460000", "size": 2105344}, "dlen": 0}
+{"t": "memref", "base": "0x7a071b460000", "size": 2105344, "idx": 177350960}
+{"msg": {"t": "range", "base": "0x7a071b665000", "size": 2105344}, "dlen": 0}
+{"t": "memref", "base": "0x7a071b665000", "size": 2105344, "idx": 179456304}
+{"msg": {"t": "range", "base": "0x7a071b86a000", "size": 2105344}, "dlen": 0}
+{"t": "memref", "base": "0x7a071b86a000", "size": 2105344, "idx": 181561648}
+{"msg": {"t": "range", "base": "0x7a071c5d0000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x7a071c5d0000", "size": 24576, "idx": 183666992}
+{"msg": {"t": "range", "base": "0x7a071c5d6000", "size": 53248}, "dlen": 0}
+{"t": "memref", "base": "0x7a071c5d6000", "size": 53248, "idx": 183691568}
+{"msg": {"t": "range", "base": "0x7a071e28c000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a071e28c000", "size": 4096, "idx": 183744816}
+{"msg": {"t": "range", "base": "0x7a071e28d000", "size": 69632}, "dlen": 0}
+{"t": "memref", "base": "0x7a071e28d000", "size": 69632, "idx": 183748912}
+{"msg": {"t": "range", "base": "0x7a071e304000", "size": 1028096}, "dlen": 0}
+{"t": "memref", "base": "0x7a071e304000", "size": 1028096, "idx": 183818544}
+{"msg": {"t": "range", "base": "0x7a0721a19000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721a19000", "size": 1060864, "idx": 184846640}
+{"msg": {"t": "range", "base": "0x7a0721b3b000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721b3b000", "size": 4096, "idx": 185907504}
+{"msg": {"t": "range", "base": "0x7a0721b65000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721b65000", "size": 4096, "idx": 185911600}
+{"msg": {"t": "range", "base": "0x7a0721ba1000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721ba1000", "size": 4096, "idx": 185915696}
+{"msg": {"t": "range", "base": "0x7a0721bf4000", "size": 1060864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721bf4000", "size": 1060864, "idx": 185919792}
+{"msg": {"t": "range", "base": "0x7a0721cfa000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721cfa000", "size": 1024000, "idx": 186980656}
+{"msg": {"t": "range", "base": "0x7a0721ef9cf0", "size": 13072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721ef9cf0", "size": 13072, "idx": 188004656}
+{"msg": {"t": "range", "base": "0x7a0721f00000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0721f00000", "size": 1073152, "idx": 188017728}
+{"msg": {"t": "range", "base": "0x7a0722035000", "size": 19943424}, "dlen": 0}
+{"t": "memref", "base": "0x7a0722035000", "size": 4194304, "idx": 189090880}
+{"t": "memref", "base": "0x7a0722435000", "size": 4194304, "idx": 193285184}
+{"t": "memref", "base": "0x7a0722835000", "size": 4194304, "idx": 197479488}
+{"t": "memref", "base": "0x7a0722c35000", "size": 4194304, "idx": 201673792}
+{"t": "memref", "base": "0x7a0723035000", "size": 3166208, "idx": 205868096}
+{"msg": {"t": "range", "base": "0x7a072333b000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a072333b000", "size": 4096, "idx": 209034304}
+{"msg": {"t": "range", "base": "0x7a072707a000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a072707a000", "size": 4096, "idx": 209038400}
+{"msg": {"t": "range", "base": "0x7a07270af000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a07270af000", "size": 1024000, "idx": 209042496}
+{"msg": {"t": "range", "base": "0x7a07271ac000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07271ac000", "size": 4096, "idx": 210066496}
+{"msg": {"t": "range", "base": "0x7a07271ae000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07271ae000", "size": 4096, "idx": 210070592}
+{"msg": {"t": "range", "base": "0x7a07271dc000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07271dc000", "size": 4096, "idx": 210074688}
+{"msg": {"t": "range", "base": "0x7a07271de000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07271de000", "size": 4096, "idx": 210078784}
+{"msg": {"t": "range", "base": "0x7a0727203000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0727203000", "size": 1024000, "idx": 210082880}
+{"msg": {"t": "range", "base": "0x7a0727300000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0727300000", "size": 1024000, "idx": 211106880}
+{"msg": {"t": "range", "base": "0x7a07273fd000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a07273fd000", "size": 1024000, "idx": 212130880}
+{"msg": {"t": "range", "base": "0x7a07274fa000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a07274fa000", "size": 1073152, "idx": 213154880}
+{"msg": {"t": "range", "base": "0x7a0727603000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0727603000", "size": 1073152, "idx": 214228032}
+{"msg": {"t": "range", "base": "0x7a072770c000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a072770c000", "size": 1073152, "idx": 215301184}
+{"msg": {"t": "range", "base": "0x7a0727815000", "size": 1073152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0727815000", "size": 1073152, "idx": 216374336}
+{"msg": {"t": "range", "base": "0x7a072791e000", "size": 1056768}, "dlen": 0}
+{"t": "memref", "base": "0x7a072791e000", "size": 1056768, "idx": 217447488}
+{"msg": {"t": "range", "base": "0x7a072edc1000", "size": 479232}, "dlen": 0}
+{"t": "memref", "base": "0x7a072edc1000", "size": 479232, "idx": 218504256}
+{"msg": {"t": "range", "base": "0x7a072ee36000", "size": 1814528}, "dlen": 0}
+{"t": "memref", "base": "0x7a072ee36000", "size": 1814528, "idx": 218983488}
+{"msg": {"t": "range", "base": "0x7a072f045000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a072f045000", "size": 4096, "idx": 220798016}
+{"msg": {"t": "range", "base": "0x7a072f046000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a072f046000", "size": 4096, "idx": 220802112}
+{"msg": {"t": "range", "base": "0x7a0767d1f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0767d1f000", "size": 4096, "idx": 220806208}
+{"msg": {"t": "range", "base": "0x7a076a71f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a71f000", "size": 4096, "idx": 220810304}
+{"msg": {"t": "range", "base": "0x7a076a772000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a772000", "size": 4096, "idx": 220814400}
+{"msg": {"t": "range", "base": "0x7a076a82f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a82f000", "size": 4096, "idx": 220818496}
+{"msg": {"t": "range", "base": "0x7a076a8ad000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a8ad000", "size": 4096, "idx": 220822592}
+{"msg": {"t": "range", "base": "0x7a076a8ae000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a8ae000", "size": 4096, "idx": 220826688}
+{"msg": {"t": "range", "base": "0x7a076a9a6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a9a6000", "size": 4096, "idx": 220830784}
+{"msg": {"t": "range", "base": "0x7a076a9e8000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a9e8000", "size": 4096, "idx": 220834880}
+{"msg": {"t": "range", "base": "0x7a076a9e9000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076a9e9000", "size": 4096, "idx": 220838976}
+{"msg": {"t": "range", "base": "0x7a076aa77000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aa77000", "size": 4096, "idx": 220843072}
+{"msg": {"t": "range", "base": "0x7a076aab8000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aab8000", "size": 4096, "idx": 220847168}
+{"msg": {"t": "range", "base": "0x7a076ab3e000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076ab3e000", "size": 4096, "idx": 220851264}
+{"msg": {"t": "range", "base": "0x7a076abe8000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076abe8000", "size": 4096, "idx": 220855360}
+{"msg": {"t": "range", "base": "0x7a076acac000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076acac000", "size": 4096, "idx": 220859456}
+{"msg": {"t": "range", "base": "0x7a076acad000", "size": 12288}, "dlen": 0}
+{"t": "memref", "base": "0x7a076acad000", "size": 12288, "idx": 220863552}
+{"msg": {"t": "range", "base": "0x7a076acf6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076acf6000", "size": 4096, "idx": 220875840}
+{"msg": {"t": "range", "base": "0x7a076ad1f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076ad1f000", "size": 4096, "idx": 220879936}
+{"msg": {"t": "range", "base": "0x7a076adff000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076adff000", "size": 4096, "idx": 220884032}
+{"msg": {"t": "range", "base": "0x7a076ae49000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076ae49000", "size": 4096, "idx": 220888128}
+{"msg": {"t": "range", "base": "0x7a076ae4b000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076ae4b000", "size": 4096, "idx": 220892224}
+{"msg": {"t": "range", "base": "0x7a076aeab000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aeab000", "size": 4096, "idx": 220896320}
+{"msg": {"t": "range", "base": "0x7a076aead000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aead000", "size": 4096, "idx": 220900416}
+{"msg": {"t": "range", "base": "0x7a076aec6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aec6000", "size": 4096, "idx": 220904512}
+{"msg": {"t": "range", "base": "0x7a076aec8000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076aec8000", "size": 4096, "idx": 220908608}
+{"msg": {"t": "range", "base": "0x7a076bf25000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076bf25000", "size": 4096, "idx": 220912704}
+{"msg": {"t": "range", "base": "0x7a076bf7d000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076bf7d000", "size": 4096, "idx": 220916800}
+{"msg": {"t": "range", "base": "0x7a076bff2000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076bff2000", "size": 4096, "idx": 220920896}
+{"msg": {"t": "range", "base": "0x7a076c03a000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076c03a000", "size": 4096, "idx": 220924992}
+{"msg": {"t": "range", "base": "0x7a076c13d000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076c13d000", "size": 4096, "idx": 220929088}
+{"msg": {"t": "range", "base": "0x7a076c13e000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076c13e000", "size": 4096, "idx": 220933184}
+{"msg": {"t": "range", "base": "0x7a076c3a1000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076c3a1000", "size": 4096, "idx": 220937280}
+{"msg": {"t": "range", "base": "0x7a076c3a2000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x7a076c3a2000", "size": 8192, "idx": 220941376}
+{"msg": {"t": "range", "base": "0x7a076fe65000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076fe65000", "size": 4096, "idx": 220949568}
+{"msg": {"t": "range", "base": "0x7a076feea000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a076feea000", "size": 4096, "idx": 220953664}
+{"msg": {"t": "range", "base": "0x7a076fff6000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x7a076fff6000", "size": 8192, "idx": 220957760}
+{"msg": {"t": "range", "base": "0x7a076fff8000", "size": 28672}, "dlen": 0}
+{"t": "memref", "base": "0x7a076fff8000", "size": 28672, "idx": 220965952}
+{"msg": {"t": "range", "base": "0x7a07703ec000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07703ec000", "size": 4096, "idx": 220994624}
+{"msg": {"t": "range", "base": "0x7a07703ed000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x7a07703ed000", "size": 24576, "idx": 220998720}
+{"msg": {"t": "range", "base": "0x7a07704ac000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07704ac000", "size": 4096, "idx": 221023296}
+{"msg": {"t": "range", "base": "0x7a07704ad000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x7a07704ad000", "size": 16384, "idx": 221027392}
+{"msg": {"t": "range", "base": "0x7a07704fe000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x7a07704fe000", "size": 8192, "idx": 221043776}
+{"msg": {"t": "range", "base": "0x7a0770579000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0770579000", "size": 4096, "idx": 221051968}
+{"msg": {"t": "range", "base": "0x7a0771f49000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0771f49000", "size": 1024000, "idx": 221056064}
+{"msg": {"t": "range", "base": "0x7a0772046000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0772046000", "size": 1024000, "idx": 222080064}
+{"msg": {"t": "range", "base": "0x7a0772143000", "size": 1024000}, "dlen": 0}
+{"t": "memref", "base": "0x7a0772143000", "size": 1024000, "idx": 223104064}
+{"msg": {"t": "range", "base": "0x7a077223e000", "size": 921600}, "dlen": 0}
+{"t": "memref", "base": "0x7a077223e000", "size": 921600, "idx": 224128064}
+{"msg": {"t": "range", "base": "0x7a077231f000", "size": 921600}, "dlen": 0}
+{"t": "memref", "base": "0x7a077231f000", "size": 921600, "idx": 225049664}
+{"msg": {"t": "range", "base": "0x7a0772400000", "size": 67108864}, "dlen": 0}
+{"t": "memref", "base": "0x7a0772400000", "size": 4194304, "idx": 225971264}
+{"t": "memref", "base": "0x7a0772800000", "size": 4194304, "idx": 230165568}
+{"t": "memref", "base": "0x7a0772c00000", "size": 4194304, "idx": 234359872}
+{"t": "memref", "base": "0x7a0773000000", "size": 4194304, "idx": 238554176}
+{"t": "memref", "base": "0x7a0773400000", "size": 4194304, "idx": 242748480}
+{"t": "memref", "base": "0x7a0773800000", "size": 4194304, "idx": 246942784}
+{"t": "memref", "base": "0x7a0773c00000", "size": 4194304, "idx": 251137088}
+{"t": "memref", "base": "0x7a0774000000", "size": 4194304, "idx": 255331392}
+{"t": "memref", "base": "0x7a0774400000", "size": 4194304, "idx": 259525696}
+{"t": "memref", "base": "0x7a0774800000", "size": 4194304, "idx": 263720000}
+{"t": "memref", "base": "0x7a0774c00000", "size": 4194304, "idx": 267914304}
+{"t": "memref", "base": "0x7a0775000000", "size": 4194304, "idx": 272108608}
+{"t": "memref", "base": "0x7a0775400000", "size": 4194304, "idx": 276302912}
+{"t": "memref", "base": "0x7a0775800000", "size": 4194304, "idx": 280497216}
+{"t": "memref", "base": "0x7a0775c00000", "size": 4194304, "idx": 284691520}
+{"t": "memref", "base": "0x7a0776000000", "size": 4194304, "idx": 288885824}
+{"msg": {"t": "range", "base": "0x7a0776d77000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0776d77000", "size": 4096, "idx": 293080128}
+{"msg": {"t": "range", "base": "0x7a07793ea000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07793ea000", "size": 4096, "idx": 293084224}
+{"msg": {"t": "range", "base": "0x7a07793eb000", "size": 24576}, "dlen": 0}
+{"t": "memref", "base": "0x7a07793eb000", "size": 24576, "idx": 293088320}
+{"msg": {"t": "range", "base": "0x7a077c27a000", "size": 12288}, "dlen": 0}
+{"t": "memref", "base": "0x7a077c27a000", "size": 12288, "idx": 293112896}
+{"msg": {"t": "range", "base": "0x7a077c2bd000", "size": 12288}, "dlen": 0}
+{"t": "memref", "base": "0x7a077c2bd000", "size": 12288, "idx": 293125184}
+{"msg": {"t": "range", "base": "0x7a077dcd1000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a077dcd1000", "size": 4096, "idx": 293137472}
+{"msg": {"t": "range", "base": "0x7a077dd28000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a077dd28000", "size": 4096, "idx": 293141568}
+{"msg": {"t": "range", "base": "0x7a077dd29000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a077dd29000", "size": 4096, "idx": 293145664}
+{"msg": {"t": "range", "base": "0x7a077dd76000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a077dd76000", "size": 4096, "idx": 293149760}
+{"msg": {"t": "range", "base": "0x7a077ddbd000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a077ddbd000", "size": 4096, "idx": 293153856}
+{"msg": {"t": "range", "base": "0x7a0780277000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0780277000", "size": 4096, "idx": 293157952}
+{"msg": {"t": "range", "base": "0x7a0780278000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0780278000", "size": 4096, "idx": 293162048}
+{"msg": {"t": "range", "base": "0x7a078031f000", "size": 131072}, "dlen": 0}
+{"t": "memref", "base": "0x7a078031f000", "size": 131072, "idx": 293166144}
+{"msg": {"t": "range", "base": "0x7a078033f000", "size": 131072}, "dlen": 0}
+{"t": "memref", "base": "0x7a078033f000", "size": 131072, "idx": 293297216}
+{"msg": {"t": "range", "base": "0x7a0780367000", "size": 262144}, "dlen": 0}
+{"t": "memref", "base": "0x7a0780367000", "size": 262144, "idx": 293428288}
+{"msg": {"t": "range", "base": "0x7a07803ed000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a07803ed000", "size": 4096, "idx": 293690432}
+{"msg": {"t": "range", "base": "0x7a0781a78000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781a78000", "size": 4096, "idx": 293694528}
+{"msg": {"t": "range", "base": "0x7a0781a7b000", "size": 131072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781a7b000", "size": 131072, "idx": 293698624}
+{"msg": {"t": "range", "base": "0x7a0781aaf000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781aaf000", "size": 4096, "idx": 293829696}
+{"msg": {"t": "range", "base": "0x7a0781ae5000", "size": 131072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781ae5000", "size": 131072, "idx": 293833792}
+{"msg": {"t": "range", "base": "0x7a0781b66000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781b66000", "size": 4096, "idx": 293964864}
+{"msg": {"t": "range", "base": "0x7a0781ba5000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781ba5000", "size": 4096, "idx": 293968960}
+{"msg": {"t": "range", "base": "0x7a0781bf1000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781bf1000", "size": 4096, "idx": 293973056}
+{"msg": {"t": "range", "base": "0x7a0781c35000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781c35000", "size": 4096, "idx": 293977152}
+{"msg": {"t": "range", "base": "0x7a0781c38000", "size": 131072}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781c38000", "size": 131072, "idx": 293981248}
+{"msg": {"t": "range", "base": "0x7a0781da4000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781da4000", "size": 8192, "idx": 294112320}
+{"msg": {"t": "range", "base": "0x7a0781da6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0781da6000", "size": 4096, "idx": 294120512}
+{"msg": {"t": "range", "base": "0x7a0782e7d000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782e7d000", "size": 4096, "idx": 294124608}
+{"msg": {"t": "range", "base": "0x7a0782e83000", "size": 32768}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782e83000", "size": 32768, "idx": 294128704}
+{"msg": {"t": "range", "base": "0x7a0782ebf000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782ebf000", "size": 4096, "idx": 294161472}
+{"msg": {"t": "range", "base": "0x7a0782ec6000", "size": 32768}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782ec6000", "size": 32768, "idx": 294165568}
+{"msg": {"t": "range", "base": "0x7a0782ee6000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782ee6000", "size": 4096, "idx": 294198336}
+{"msg": {"t": "range", "base": "0x7a0782fa9000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782fa9000", "size": 4096, "idx": 294202432}
+{"msg": {"t": "range", "base": "0x7a0782faa000", "size": 8192}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782faa000", "size": 8192, "idx": 294206528}
+{"msg": {"t": "range", "base": "0x7a0782ff3000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0782ff3000", "size": 4096, "idx": 294214720}
+{"msg": {"t": "range", "base": "0x7a078303d000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a078303d000", "size": 4096, "idx": 294218816}
+{"msg": {"t": "range", "base": "0x7a078303e000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a078303e000", "size": 4096, "idx": 294222912}
+{"msg": {"t": "range", "base": "0x7a078344e000", "size": 1048576}, "dlen": 0}
+{"t": "memref", "base": "0x7a078344e000", "size": 1048576, "idx": 294227008}
+{"msg": {"t": "range", "base": "0x7a078354e000", "size": 16777216}, "dlen": 0}
+{"t": "memref", "base": "0x7a078354e000", "size": 4194304, "idx": 295275584}
+{"t": "memref", "base": "0x7a078394e000", "size": 4194304, "idx": 299469888}
+{"t": "memref", "base": "0x7a0783d4e000", "size": 4194304, "idx": 303664192}
+{"t": "memref", "base": "0x7a078414e000", "size": 4194304, "idx": 307858496}
+{"msg": {"t": "range", "base": "0x7a078454e000", "size": 2097152}, "dlen": 0}
+{"t": "memref", "base": "0x7a078454e000", "size": 2097152, "idx": 312052800}
+{"msg": {"t": "range", "base": "0x7a078474e000", "size": 8388608}, "dlen": 0}
+{"t": "memref", "base": "0x7a078474e000", "size": 4194304, "idx": 314149952}
+{"t": "memref", "base": "0x7a0784b4e000", "size": 4194304, "idx": 318344256}
+{"msg": {"t": "range", "base": "0x7a0784f4e000", "size": 2097152}, "dlen": 0}
+{"t": "memref", "base": "0x7a0784f4e000", "size": 2097152, "idx": 322538560}
+{"msg": {"t": "range", "base": "0x7a078514e000", "size": 8388608}, "dlen": 0}
+{"t": "memref", "base": "0x7a078514e000", "size": 4194304, "idx": 324635712}
+{"t": "memref", "base": "0x7a078554e000", "size": 4194304, "idx": 328830016}
+{"msg": {"t": "range", "base": "0x7a0787d51000", "size": 1048576}, "dlen": 0}
+{"t": "memref", "base": "0x7a0787d51000", "size": 1048576, "idx": 333024320}
+{"msg": {"t": "range", "base": "0x7a0787e51000", "size": 1048576}, "dlen": 0}
+{"t": "memref", "base": "0x7a0787e51000", "size": 1048576, "idx": 334072896}
+{"msg": {"t": "range", "base": "0x7a078bf90000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x7a078bf90000", "size": 16384, "idx": 335121472}
+{"msg": {"t": "range", "base": "0x7a078bf94000", "size": 16384}, "dlen": 0}
+{"t": "memref", "base": "0x7a078bf94000", "size": 16384, "idx": 335137856}
+{"msg": {"t": "range", "base": "0x7a078bfa0000", "size": 32768}, "dlen": 0}
+{"t": "memref", "base": "0x7a078bfa0000", "size": 32768, "idx": 335154240}
+{"msg": {"t": "range", "base": "0x7a078f400000", "size": 65536}, "dlen": 0}
+{"t": "memref", "base": "0x7a078f400000", "size": 65536, "idx": 335187008}
+{"msg": {"t": "range", "base": "0x7a078f4e2000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a078f4e2000", "size": 4096, "idx": 335252544}
+{"msg": {"t": "range", "base": "0x7a078f4ef000", "size": 139264}, "dlen": 0}
+{"t": "memref", "base": "0x7a078f4ef000", "size": 139264, "idx": 335256640}
+{"msg": {"t": "range", "base": "0x7a078f513000", "size": 135168}, "dlen": 0}
+{"t": "memref", "base": "0x7a078f513000", "size": 135168, "idx": 335395904}
+{"msg": {"t": "range", "base": "0x7a0a1f55f000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0a1f55f000", "size": 4096, "idx": 335531072}
+{"msg": {"t": "range", "base": "0x7a0a1f66c000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0a1f66c000", "size": 4096, "idx": 335535168}
+{"msg": {"t": "range", "base": "0x7a0a1f6b2000", "size": 4096}, "dlen": 0}
+{"t": "memref", "base": "0x7a0a1f6b2000", "size": 4096, "idx": 335539264}
+{"msg": {"t": "dumpdone", "total": 335543360}, "dlen": 0}
+{"rpc": "dump", "ok": true}
+{"rpc": "scan", "err": "unable to find method 'scan'"}
