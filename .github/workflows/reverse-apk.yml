@@ -93,7 +93,6 @@ jobs:
           echo "blutter_exit=$?" | tee "$GITHUB_WORKSPACE/work/blutter.status"
           tail -20 "$GITHUB_WORKSPACE/work/blutter.log"
           ls -la "$GITHUB_WORKSPACE/work/blutter" | head -20
-          cp "$GITHUB_WORKSPACE/work/blutter.log" "$GITHUB_WORKSPACE/work/blutter.log.full"
           exit 0
 
       - name: 生成静态报告
@@ -101,6 +100,10 @@ jobs:
 
       - name: Dart 文案提取（UTF-16 兜底）
         run: python3 re/dart_strings.py --decoded work/decoded --outdir work
+
+      - name: Dart 深度报告（pp.txt 整理）
+        if: hashFiles('work/blutter/pp.txt') != ''
+        run: python3 re/dart_deep.py --pp work/blutter/pp.txt --blutter-log work/blutter.log --outdir work
 
       - name: 把深挖结果并入报告
         run: |
@@ -123,6 +126,8 @@ jobs:
             echo '```'
           } >> work/report.md
           cat work/dart-findings.md >> work/report.md 2>/dev/null || true
+          echo '' >> work/report.md
+          echo '完整 Dart 侧结果见 dart-deep.md（接口清单、域名、中文文案）。' >> work/report.md
 
       - name: 写入 Job Summary
         run: |
@@ -136,6 +141,7 @@ jobs:
           mkdir -p "$DEST" work/app-src
           cp work/report.md work/facts.json work/domains.txt work/jadx.status "$DEST/"
           cp work/dart-findings.md "$DEST/" 2>/dev/null || true
+          cp work/dart-deep.md work/dart-strings.txt "$DEST/" 2>/dev/null || true
           cp work/blutter.status "$DEST/" 2>/dev/null || true
           cp work/blutter.log "$DEST/" 2>/dev/null || true
           cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
@@ -155,6 +161,8 @@ jobs:
           name: apk-re-${{ github.run_number }}
           path: |
             work/report.md
+            work/dart-deep.md
+            work/dart-strings.txt
             work/facts.json
             work/domains.txt
             work/apkid.json
