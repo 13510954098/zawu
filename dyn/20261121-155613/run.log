@@ -5,3 +5,9 @@ curl_exit=0 sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 frida 16.5.9
 [15:57:29] toolchain-ready
 [15:57:32] avd-ready
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+boot_ok_loop=3
+restarting adbd as root
+Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
+[15:58:57] app-up
