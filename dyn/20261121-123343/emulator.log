@@ -180,3 +180,5 @@ INFO         | Setting display: 0 configuration to: 1080x2340, dpi: 440x440
 INFO         | setDisplayActiveConfig: id:0, 1080x2340
 INFO         | emulatorSetupEnvironment: Environment scene is not required
 USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+INFO         | Boot completed in 37654 ms
+INFO         | Increasing screen off timeout, logcat buffer size to 2M.

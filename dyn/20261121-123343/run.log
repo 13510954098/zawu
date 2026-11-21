@@ -31,3 +31,5 @@ emu_pid=3617
 * daemon not running; starting now at tcp:5037
 * daemon started successfully
 [12:36:12] emulator-up
+boot_ok_loop=2
+[12:36:24] boot-ok
