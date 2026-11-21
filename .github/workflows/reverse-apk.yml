@@ -26,31 +26,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 装工具链（apktool / jadx / apkid）
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: 装工具链（固定版本 + 哈希校验）
         run: |
-          set -euo pipefail
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq unzip curl openssl
-          APKTOOL_JAR=$(curl -fsSL https://api.github.com/repos/iBotPeaches/Apktool/releases/latest | jq -r '.assets[]|select(.name|endswith(".jar"))|.browser_download_url' | head -1)
-          sudo curl -fsSL -o /opt/apktool.jar "$APKTOOL_JAR"
+          sudo apt-get update -qq || true
+          sudo apt-get install -y -qq unzip curl openssl > /dev/null
+          curl -fsSL --retry 3 -o /tmp/apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
+          echo 'dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423  /tmp/apktool.jar' | sha256sum -c -
+          sudo mv /tmp/apktool.jar /opt/apktool.jar
           sudo tee /usr/local/bin/apktool > /dev/null <<'EOF'
           #!/bin/sh
-          exec java -jar /opt/apktool.jar "$@"
+          exec java -Xmx2g -jar /opt/apktool.jar "$@"
           EOF
           sudo chmod +x /usr/local/bin/apktool
-          JADX_ZIP=$(curl -fsSL https://api.github.com/repos/skylot/jadx/releases/latest | jq -r '.assets[]|select(.name|endswith(".zip"))|.browser_download_url' | head -1)
-          sudo curl -fsSL -o /tmp/jadx.zip "$JADX_ZIP"
+          curl -fsSL --retry 3 -o /tmp/jadx.zip https://github.com/skylot/jadx/releases/download/v1.5.7/jadx-1.5.7.zip
+          echo '1755e4242ade71a077438723689f404079592ec7764a3a0572f98fef94ebcbf3  /tmp/jadx.zip' | sha256sum -c -
+          sudo rm -rf /opt/jadx && sudo mkdir -p /opt/jadx
           sudo unzip -q /tmp/jadx.zip -d /opt/jadx
           sudo ln -sf /opt/jadx/bin/jadx /usr/local/bin/jadx
           pip3 install --break-system-packages -q apkid || echo 'apkid 跳过'
+          echo '--- 自检 ---'
+          java -version 2>&1 | head -1
           apktool --version
           jadx --version | head -1
+          echo 'ok'
 
       - name: 下载 APK 并记录哈希
         env:
           INPUT_URL: ${{ github.event.inputs.apk_url }}
         run: |
-          set -euo pipefail
           URL="${INPUT_URL:-$DEFAULT_APK_URL}"
           mkdir -p work
           curl -fsSL --retry 3 --max-time 900 -o work/app.apk "$URL"
@@ -76,7 +84,6 @@ jobs:
 
       - name: 报告提交到分支
         run: |
-          set -euo pipefail
           SHA12=$(cut -c1-12 work/sha256.txt)
           DEST="reports/apk-${SHA12}"
           mkdir -p "$DEST" work/app-src
