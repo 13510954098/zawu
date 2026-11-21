@@ -54,3 +54,11 @@ launch_exit=0
 observe_minutes=12
 interact=modal-dismiss done
 [12:18:17] tick-3m
+interact=login done
+Traceback (most recent call last):
+  File "/tmp/forge.py", line 4, in <module>
+    for line in open(p, errors='replace'):
+                ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'dyn/20261121-121207/api-flows.jsonl'
+interact=read done
+[12:22:36] tick-6m
