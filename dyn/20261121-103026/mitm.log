@@ -1,2 +1,184 @@
 /usr/lib/python3/dist-packages/mitmproxy/certs.py:103: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
   return datetime.datetime.utcnow() > self._cert.not_valid_after
+Loading script /tmp/dump_flows.py
+Proxy server listening at *:8080
+127.0.0.1:41428: client connect
+127.0.0.1:41428: client disconnect
+127.0.0.1:40932: client connect
+127.0.0.1:40946: client connect
+127.0.0.1:40946: server connect 172.253.122.190:443
+127.0.0.1:40960: client connect
+127.0.0.1:40960: server connect 172.217.117.4:443
+127.0.0.1:40946: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:40946: client disconnect
+127.0.0.1:40946: server disconnect 172.253.122.190:443
+127.0.0.1:40960: Client TLS handshake failed. The client does not trust the proxy's certificate for youtubei.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:40960: client disconnect
+127.0.0.1:40960: server disconnect 172.217.117.4:443
+127.0.0.1:40972: client connect
+127.0.0.1:40972: server connect 142.251.155.120:443
+127.0.0.1:40972: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:40972: client disconnect
+127.0.0.1:40972: server disconnect 142.251.155.120:443
+127.0.0.1:40984: client connect
+127.0.0.1:40994: client connect
+127.0.0.1:40984: server connect 142.251.157.119:443
+127.0.0.1:40994: server connect 172.253.122.91:443
+127.0.0.1:41008: client connect
+127.0.0.1:41008: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:41008: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:41008: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:41008: client disconnect
+127.0.0.1:40994: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:40994: client disconnect
+127.0.0.1:40994: server disconnect 172.253.122.91:443
+127.0.0.1:40984: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:40984: client disconnect
+127.0.0.1:40984: server disconnect 142.251.157.119:443
+127.0.0.1:41022: client connect
+127.0.0.1:41022: server connect www.google.com:80 (142.251.152.119:80)
+127.0.0.1:41022: GET http://www.google.com/gen_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:41022: server disconnect www.google.com:80 (142.251.152.119:80)
+127.0.0.1:41022: client disconnect
+127.0.0.1:41026: client connect
+127.0.0.1:41026: server connect 142.251.154.120:443
+127.0.0.1:41026: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:41026: client disconnect
+127.0.0.1:41026: server disconnect 142.251.154.120:443
+127.0.0.1:41036: client connect
+127.0.0.1:41036: server connect 142.251.152.120:443
+127.0.0.1:41036: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:41036: client disconnect
+127.0.0.1:41036: server disconnect 142.251.152.120:443
+127.0.0.1:41040: client connect
+127.0.0.1:41040: error establishing server connection: [Errno 111] Connect call failed ('127.0.0.53', 853)
+127.0.0.1:41040: CONNECT 127.0.0.53:853
+              << 502 Bad Gateway 85b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:41040: client disconnect
+127.0.0.1:41056: client connect
+127.0.0.1:41056: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:41056: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:41056: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:41056: client disconnect
+127.0.0.1:41064: client connect
+127.0.0.1:41064: server connect 142.251.153.119:443
+127.0.0.1:41064: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:41064: client disconnect
+127.0.0.1:41064: server disconnect 142.251.153.119:443
+127.0.0.1:41076: client connect
+127.0.0.1:41076: server connect www.google.com:80 (142.251.155.119:80)
+127.0.0.1:41076: GET http://www.google.com/gen_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
