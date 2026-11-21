@@ -27,3 +27,4 @@ emu_pid=3306
 [09:05:10] emulator-up
 [09:06:02] wait-boot-6
 [09:07:03] wait-boot-12
+[09:08:04] wait-boot-18
