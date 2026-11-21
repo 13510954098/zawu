@@ -1,0 +1,11 @@
+total 88
+drwx------  10 u0_a174 u0_a174        4096 2026-11-21 10:55 .
+drwxrwx--x 208 system  system        12288 2026-11-21 10:55 ..
+drwxrwx--x   2 u0_a174 u0_a174        4096 2026-11-21 10:55 app_flutter
+drwxrwx--x   2 u0_a174 u0_a174        4096 2026-11-21 10:55 app_textures
+drwx------   3 u0_a174 u0_a174        4096 2026-11-21 10:56 app_webview
+drwxrws--x   4 u0_a174 u0_a174_cache  4096 2026-11-21 10:56 cache
+drwxrws--x   3 u0_a174 u0_a174_cache  4096 2026-11-21 10:55 code_cache
+drwxrwx--x   2 u0_a174 u0_a174        4096 2026-11-21 10:55 databases
+drwxrwx--x   6 u0_a174 u0_a174        4096 2026-11-21 10:57 files
+drwxrwx--x   2 u0_a174 u0_a174        4096 2026-11-21 10:57 shared_prefs
