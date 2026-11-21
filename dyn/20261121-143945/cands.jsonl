@@ -1,0 +1,61 @@
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"rpc_avail": ["scan"]}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"t": "go_dump_seen", "at": 139.0}
+{"rpc": "dump", "err": "unable to find method 'dump'"}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"rpc": "scan", "ok": true}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
+{"msg": {"t": "scandone", "f8d9": 0, "mpbeiv": 0, "doh": 0}, "dlen": 0}
+{"msg": {"t": "ctx_f8d9", "at": "0x729d0008f620"}, "dlen": 8192}
