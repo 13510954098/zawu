@@ -20,3 +20,13 @@ login_check px=(254, 203, 24)
 fast-fail: 登录未成，触发dump后提前收尾
 [14:06:09] fastfail-login
 [14:06:11] uidrive-done
+11 /tmp/cands.jsonl
+ls: cannot access '/tmp/memdump.bin': No such file or directory
+/tmp/ctx_002.bin
+/tmp/ctx_004.bin
+/tmp/ctx_006.bin
+/tmp/ctx_008.bin
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+total candidates: 356
+HITS: 0
+[14:06:32] -a done
