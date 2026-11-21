@@ -45,3 +45,8 @@ logcat_lines=78525
 restarting adbd as root
 tar_bytes=7723520
 [09:30:36] datadir-done
+OK: killing emulator, bye bye
+OK
+pcap_bytes=26713
+dns_hosts=0 sni_hosts=0
+[09:30:51] parsed
