@@ -1,6 +1,6 @@
 {
   "scope": "Desktop Compose UI with synthetic native comments/barrages; not Android device or production playback",
-  "source_commit": "69ae478d9e87f30a42bf4e6a8acc6f1c8f9ff961",
+  "source_commit": "bd3aa7affaf8720ade24f331b343b51131d14472",
   "step_outcome": "success",
   "tests": 10,
   "failures": 0,

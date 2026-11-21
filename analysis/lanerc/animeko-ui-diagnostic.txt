@@ -147,14 +147,14 @@ w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/src/des
 > Task :app:shared:compileDesktopTestJava NO-SOURCE
 > Task :app:shared:desktopTestClasses
 > Task :app:shared:desktopTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794121828678.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1795252811086.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 8m 47s
+BUILD SUCCESSFUL in 7m 4s
 338 actionable tasks: 338 executed
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794121828678.json
-https://gradle.com/s/hg56p2hjlxsrm
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1795252811086.json
+https://gradle.com/s/w5zphd4ygktjm
 
