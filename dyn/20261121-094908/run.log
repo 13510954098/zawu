@@ -7,3 +7,12 @@ size=43291746 expect=43291746
 sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 expect_sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 [09:49:13] downloaded
+crw-rw---- 1 root kvm 10, 232 Nov 21 09:48 /dev/kvm
+/home/runner/work/_temp/fbe31231-1a87-482d-8323-58ba6a9a9a03.sh: line 4: /usr/local/lib/android/sdk/emulator/bin/kvm-ok: No such file or directory
+kvm-ok: 不可用
+tshark=/usr/bin/tshark tcpdump=/usr/bin/tcpdump
+mitmdump=/usr/bin/mitmdump
+sdk_exit=0
+adb=Android Debug Bridge version 1.0.41
+emulator=
+[09:50:43] toolchain-ready
