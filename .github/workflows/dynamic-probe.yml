@@ -1,4 +1,4 @@
-name: RE-APK 动态探针 v2
+name: RE-APK 动态探针 v2.1
 
 # v2 全量重写（v1 三轮失败根因，不在修补）：
 # 1) 手写 AVD 与 ANDROID_AVD_HOME 不一致 -> emulator "Unknown AVD name"。
@@ -9,6 +9,7 @@ name: RE-APK 动态探针 v2
 #    不命中 branches 过滤，不会自我触发循环（v1 的教训是 paths: re/** 太宽）。
 # 5) 第三方 emulator-runner 黑盒失败无日志 -> 不用第三方 action，全部内联 bash，逐步落盘 + 心跳提交。
 # 6) 抓包改用 emulator 自带 -tcpdump（guest 侧流量），tshark 仅做解析；DNS/SNI/HTTP host 全量落盘。
+# 7) v2.1：所有用 adb 的步骤显式把 platform-tools 加入 PATH（v2 首轮暴露：runner PATH 无 adb）。
 
 on:
   workflow_dispatch:
@@ -100,7 +101,7 @@ jobs:
 
       - name: 2. 工具链（KVM / tshark / SDK / 系统镜像）
         run: |
-          export PATH=/usr/local/lib/android/sdk/cmdline-tools/latest/bin:$PATH
+          export PATH=/usr/local/lib/android/sdk/cmdline-tools/latest/bin:/usr/local/lib/android/sdk/platform-tools:$PATH
           ls -l /dev/kvm >> "dyn/$TS/run.log" 2>&1 || true
           sudo chmod 666 /dev/kvm >> "dyn/$TS/run.log" 2>&1 || true
           /usr/local/lib/android/sdk/emulator/bin/kvm-ok >> "dyn/$TS/run.log" 2>&1 || echo "kvm-ok: 不可用" >> "dyn/$TS/run.log"
@@ -112,7 +113,10 @@ jobs:
           sdkmanager --install "emulator" "platform-tools" "system-images;android-$API;google_apis;$ABI" >> "dyn/$TS/sdk.log" 2>&1 || RC=$?
           echo "sdk_exit=$RC" >> "dyn/$TS/run.log"
           ls "/usr/local/lib/android/sdk/system-images/android-$API/google_apis/$ABI" >/dev/null 2>&1 || { /tmp/hb.sh "$TS" sdk-image-missing; exit 1; }
-          echo "emulator=$(/usr/local/lib/android/sdk/emulator/emulator -version | head -1)" >> "dyn/$TS/run.log"
+          ADB_BIN=/usr/local/lib/android/sdk/platform-tools/adb
+          [ -x "$ADB_BIN" ] || { echo "adb 缺失: $ADB_BIN" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" adb-missing; exit 1; }
+          echo "adb=$($ADB_BIN version | head -1)" >> "dyn/$TS/run.log"
+          echo "emulator=$(/usr/local/lib/android/sdk/emulator/emulator -version 2>/dev/null | head -1)" >> "dyn/$TS/run.log"
           /tmp/hb.sh "$TS" toolchain-ready
 
       - name: 3. 创建 AVD（自检 probe.ini / config.ini / list-avds）
@@ -140,6 +144,7 @@ jobs:
 
       - name: 4. 启动模拟器（存活自检 + 软渲染回退）
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
           EMU=/usr/local/lib/android/sdk/emulator/emulator
           OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -tcpdump dyn/$TS/net.pcap"
@@ -166,7 +171,9 @@ jobs:
 
       - name: 5. 等待开机（上限 10 分钟，无挂死）
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
+          command -v adb >/dev/null || { echo "adb 不在 PATH" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" adb-missing; exit 1; }
           BOOTED=0
           for i in $(seq 1 60); do
             B=$(timeout 15 adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
@@ -183,6 +190,7 @@ jobs:
 
       - name: 6. 安装 APK 并启动 App
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
           RC=0
           timeout 300 adb install -r -t -g /tmp/app.apk > "dyn/$TS/install.log" 2>&1 || RC=$?
@@ -205,6 +213,7 @@ jobs:
 
       - name: 7. 运行观测（每分钟截屏 + 每 3 分钟心跳）
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
           if [ -z "$DUR" ]; then DUR=12; fi
           [ "$DUR" -ge 5 ] || DUR=5
@@ -222,6 +231,7 @@ jobs:
 
       - name: 8. 抓取 App 数据目录
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
           timeout 60 adb root >> "dyn/$TS/run.log" 2>&1 || true
           sleep 5
@@ -233,6 +243,7 @@ jobs:
 
       - name: 9. 停止模拟器并解析流量
         run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
           timeout 30 adb emu kill >> "dyn/$TS/run.log" 2>&1 || true
           sleep 8
