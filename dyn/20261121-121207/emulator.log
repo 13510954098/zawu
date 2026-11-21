@@ -192,3 +192,9 @@ ERROR        | Failed to bind to texture: invalid color buffer.
 INFO         | Boot completed in 30402 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
 WARNING      | Netsim Wifi ipv6:%5B::1%5D:46707 is gone due to Stream removed (Socket closed)
+INFO         | Wait for emulator (pid 3759) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+
+USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+INFO         | Saving snapshot 'default_boot' took 0 ms
+INFO         | ipv6:%5B::1%5D:45303: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {http2_error:2}
+INFO         | removeAll
