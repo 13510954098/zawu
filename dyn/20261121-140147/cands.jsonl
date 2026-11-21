@@ -1,0 +1,10 @@
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"msg": {"t": "sbox", "at": "0x7097074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 1}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x7097074c"}, "dlen": 131072}
+{"rpc": "dump", "err": "unable to find method 'dump'"}
+{"msg": {"t": "sboxdone", "hits": 2}, "dlen": 0}
+{"rpc": "scan", "ok": true}
+{"msg": {"t": "sbox", "at": "0x7097074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 3}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x7097074c"}, "dlen": 131072}
