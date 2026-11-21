@@ -1,6 +1,6 @@
 {
   "scope": "Anonymous Actions-network probe with no account, device identity or guest credential; not an original-device first-play trace",
-  "source_commit": "ecd51d90c0027fd080412fa39d75ef4d6f1c9ef8",
+  "source_commit": "bd3aa7affaf8720ade24f331b343b51131d14472",
   "credentials_used": false,
   "captcha_solved": false,
   "media_fetched": true,
