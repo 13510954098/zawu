@@ -192,3 +192,4 @@ INFO         | Boot completed in 31134 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
 ERROR        | bad color buffer handle 277
 ERROR        | bad color buffer handle 284
+WARNING      | Netsim Wifi ipv6:%5B::1%5D:45213 is gone due to Stream removed (recvmsg:Connection reset by peer (104))
