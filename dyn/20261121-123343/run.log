@@ -2,3 +2,8 @@
 arch=x86_64 cpu=4
 disk_free=88G
 [12:33:43] init-v32
+curl_exit=0
+size=43291746 expect=43291746
+sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
+expect_sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
+[12:33:46] downloaded
