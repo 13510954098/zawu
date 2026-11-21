@@ -23,3 +23,34 @@ chk[reader] inter-loginpage.png y=0.336  inter-page0.png y=0.000  same=False
 go_dump armed at reader
 uiflow=done
 [14:32:59] uidrive-done
+960 /tmp/cands.jsonl
+-rw-r--r-- 1 runner runner 335543360 Nov 21 14:31 /tmp/memdump.bin
+/tmp/ctx_003.bin
+/tmp/ctx_004.bin
+/tmp/ctx_005.bin
+/tmp/ctx_006.bin
+/tmp/ctx_007.bin
+/tmp/ctx_008.bin
+/tmp/ctx_009.bin
+/tmp/ctx_010.bin
+/tmp/ctx_011.bin
+/tmp/ctx_012.bin
+/tmp/ctx_013.bin
+/tmp/ctx_014.bin
+/tmp/ctx_015.bin
+/tmp/ctx_016.bin
+/tmp/ctx_017.bin
+/tmp/ctx_018.bin
+/tmp/ctx_019.bin
+/tmp/ctx_020.bin
+/tmp/ctx_021.bin
+/tmp/ctx_022.bin
+/tmp/ctx_023.bin
+/tmp/ctx_024.bin
+/tmp/ctx_025.bin
+/tmp/ctx_026.bin
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+memdump scanned 335543360
+total candidates: 677
+HITS: 0
+[14:33:36] -a done
