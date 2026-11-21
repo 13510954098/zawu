@@ -79,7 +79,7 @@ jobs:
           timeout 3600 jadx -d work/jadx --no-res --threads-count 8 work/app.apk > work/jadx.log 2>&1
           RC=$?
           echo "jadx_exit=$RC" | tee work/jadx.status
-          tail -5 work/jadx.log || true
+          tail -3 work/jadx.log || true
           exit 0
 
       - name: Dart AOT 深挖（blutter，尽力而为）
@@ -98,7 +98,10 @@ jobs:
       - name: 生成静态报告
         run: python3 re/analyze_apk.py --apk work/app.apk --decoded work/decoded --apkid work/apkid.json --outdir work
 
-      - name: 把深挖状态并入报告
+      - name: Dart 文案提取（UTF-16 兜底）
+        run: python3 re/dart_strings.py --decoded work/decoded --outdir work
+
+      - name: 把深挖结果并入报告
         run: |
           {
             echo ''
@@ -108,10 +111,15 @@ jobs:
             if [ -s work/blutter/pp.txt ]; then
               echo "- blutter 产物: pp.txt $(wc -l < work/blutter/pp.txt) 行"
             else
-              echo '- blutter 未产出 pp.txt（引擎版本匹配或依赖问题，需单独排查）'
+              echo '- blutter 未产出 pp.txt（引擎版本匹配或依赖问题）'
             fi
-            echo "- jadx 日志末尾: $(tail -1 work/jadx.log 2>/dev/null)"
+            echo ''
+            echo '### blutter 日志末尾'
+            echo '```'
+            tail -12 work/blutter.log 2>/dev/null || echo '无日志'
+            echo '```'
           } >> work/report.md
+          cat work/dart-findings.md >> work/report.md 2>/dev/null || true
 
       - name: 写入 Job Summary
         run: |
@@ -124,7 +132,8 @@ jobs:
           DEST="reports/apk-${SHA12}"
           mkdir -p "$DEST" work/app-src
           cp work/report.md work/facts.json work/domains.txt work/jadx.status "$DEST/"
-          cp work/blutter.status "$DEST/" 2>/dev/null || true
+          cp work/dart-findings.md "$DEST/" 2>/dev/null || true
+          cp work/blutter.status work/blutter.log "$DEST/" 2>/dev/null || true
           cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
           cp -r work/jadx/sources/com/hbsclj "work/app-src/" 2>/dev/null || true
           cp work/blutter/pp.txt "$DEST/dart-pp.txt" 2>/dev/null || true
