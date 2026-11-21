@@ -22,3 +22,8 @@ uiflow=done
 regions: 867 total 364412928
 mem bytes 363352106 cands 668
 [14:33:39] procfs-done
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+memdump scanned 363352106
+total candidates: 668
+HITS: 0
+[14:34:14] -a done
