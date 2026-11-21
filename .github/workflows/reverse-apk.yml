@@ -1,4 +1,5 @@
 name: RE-APK 静态首轮
+# v9: dart_hot 改为全文本扫描（asm 目录文件名不规则）后重跑一次
 
 on:
   workflow_dispatch:
@@ -92,7 +93,8 @@ jobs:
           timeout 2400 python3 blutter.py "$GITHUB_WORKSPACE/work/decoded/lib/arm64-v8a" "$GITHUB_WORKSPACE/work/blutter" > "$GITHUB_WORKSPACE/work/blutter.log" 2>&1
           echo "blutter_exit=$?" | tee "$GITHUB_WORKSPACE/work/blutter.status"
           tail -20 "$GITHUB_WORKSPACE/work/blutter.log"
-          ls -la "$GITHUB_WORKSPACE/work/blutter" | head -24
+          echo '--- asm ---'
+          ls -la "$GITHUB_WORKSPACE/work/blutter/asm" 2>/dev/null | head -20 || echo '无 asm 目录'
           exit 0
 
       - name: 生成静态报告
@@ -127,6 +129,8 @@ jobs:
             echo '### blutter 目录'
             echo '```'
             ls work/blutter 2>/dev/null || echo '空'
+            echo '--- asm 文件数 ---'
+            ls work/blutter/asm 2>/dev/null | wc -l || echo 0
             echo '```'
           } >> work/report.md
           cat work/dart-findings.md >> work/report.md 2>/dev/null || true
@@ -173,7 +177,6 @@ jobs:
             work/apktool.log
             work/jadx.log
             work/blutter.log
-            work/blutter/pp.txt
             work/blutter
             work/app-src
           retention-days: 14
