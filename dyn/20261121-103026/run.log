@@ -33,3 +33,14 @@ emu_pid=3783
 [10:32:47] emulator-up
 boot_ok_loop=6
 [10:33:39] boot-ok
+ca_hash=c8750f0d
+restarting adbd as root
+Successfully disabled verity. Reboot the device for changes to take effect.
+verity is already disabled
+using overlayfs
+Now reboot your device for settings to take effect
+reboot_ok_loop=3
+remount succeeded
+/tmp/c8750f0d.0: 1 file pushed, 0 skipped. 54.2 MB/s (4261 bytes in 0.000s)
+-rw-r--r-- 1 root root 4261 2026-11-21 10:33 /system/etc/security/cacerts/c8750f0d.0
+[10:34:29] ca-push-ok
