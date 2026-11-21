@@ -26,3 +26,6 @@ state[login] inter-page0.png mid=0.000 bot=0.000 white=0.070
 go_dump armed at reader
 uiflow=done
 [14:47:10] uidrive-done
+regions: 592 total 367001600
+mem bytes 367001600 cands 680
+[14:47:31] procfs-done
