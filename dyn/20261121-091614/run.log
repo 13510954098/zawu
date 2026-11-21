@@ -42,3 +42,6 @@ observe_minutes=12
 [09:30:26] tick-12m
 logcat_lines=78525
 [09:30:28] observe-done
+restarting adbd as root
+tar_bytes=7723520
+[09:30:36] datadir-done
