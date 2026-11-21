@@ -1,77 +1,99 @@
 Build run: 42447005800
 Selected errors:
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988245Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9989247Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994129Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994805Z hint: Resolve all conflicts manually, mark them as resolved with
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995288Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9997767Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9988249Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9989487Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9994135Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9994808Z hint: Resolve all conflicts manually, mark them as resolved with
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9995290Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9997772Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
 Log tail:
-ui	Run real Compose UI regression tests with synthetic native responses	﻿2026-11-08T04:30:01.2093274Z ##[group]Run xvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2095399Z ^[[36;1mxvfb-run -a bash gradlew :app:shared:desktopTest --tests '*LanercCommentSectionTest' --no-daemon --no-configuration-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx5g > /tmp/lanerc-ui-tests.log 2>&1^[[0m
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116002Z shell: /usr/bin/bash -e {0}
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116267Z env:
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2116574Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117094Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117544Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2117856Z   GRADLE_USER_HOME: /home/runner/.gradle
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118149Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118444Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2118914Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119390Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119704Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:30:01.2119966Z ##[endgroup]
-ui	Run real Compose UI regression tests with synthetic native responses	2026-11-08T04:37:18.2010046Z ##[error]Process completed with exit code 1.
-ui	Save UI results and bounded diagnostic log	﻿2026-11-08T04:37:18.2072106Z ##[group]Run python - <<'PY'
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2072442Z ^[[36;1mpython - <<'PY'^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2072766Z ^[[36;1mimport json, os, pathlib, xml.etree.ElementTree as ET^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2073563Z ^[[36;1mroots = [ET.parse(p).getroot() for p in pathlib.Path('.local/animeko/worktree/app/shared/build/test-results').rglob('TEST-*LanercCommentSectionTest*.xml')]^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2074822Z ^[[36;1mcounts = {key:sum(int(r.attrib.get(key, 0)) for r in roots) for key in ['tests','failures','errors','skipped']}^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2075956Z ^[[36;1mreport = {'scope':'Desktop Compose UI with synthetic native comments/barrages; not Android device or production playback', 'source_commit':os.environ['GITHUB_SHA'], 'step_outcome':os.environ.get('TEST_OUTCOME'), **counts}^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2077120Z ^[[36;1mpathlib.Path('analysis/lanerc/animeko-ui-validation.json').write_text(json.dumps(report, indent=2)+'\n')^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2077735Z ^[[36;1mlog = pathlib.Path('/tmp/lanerc-ui-tests.log')^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2078492Z ^[[36;1mif log.exists(): pathlib.Path('analysis/lanerc/animeko-ui-diagnostic.txt').write_text('\n'.join(log.read_text(errors='replace').splitlines()[-160:])+'\n')^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079158Z ^[[36;1mPY^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079382Z ^[[36;1mgit switch -C arena/44f5d2ee-zawu^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2079709Z ^[[36;1mgit config user.name 'github-actions[bot]'^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2080163Z ^[[36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2081016Z ^[[36;1mgit add analysis/lanerc/animeko-ui-validation.json^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2082012Z ^[[36;1mif test -f analysis/lanerc/animeko-ui-diagnostic.txt; then git add analysis/lanerc/animeko-ui-diagnostic.txt; fi^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2082924Z ^[[36;1mgit diff --cached --quiet && exit 0^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2083359Z ^[[36;1mgit commit -m 'Record actual Compose native community UI test outcome'^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2085721Z ^[[36;1mgit pull --rebase origin arena/44f5d2ee-zawu^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2086122Z ^[[36;1mgit push origin HEAD:arena/44f5d2ee-zawu^[[0m
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107242Z shell: /usr/bin/bash -e {0}
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107502Z env:
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2107823Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2108484Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2108932Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109265Z   GRADLE_USER_HOME: /home/runner/.gradle
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109558Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2109872Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2110312Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2110791Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111107Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111555Z   TEST_OUTCOME: failure
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2111775Z ##[endgroup]
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.2511398Z Switched to a new branch 'arena/44f5d2ee-zawu'
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5951139Z [arena/44f5d2ee-zawu 2fb5052] Record actual Compose native community UI test outcome
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5951789Z  2 files changed, 169 insertions(+)
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5952167Z  create mode 100644 analysis/lanerc/animeko-ui-diagnostic.txt
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.5952773Z  create mode 100644 analysis/lanerc/animeko-ui-validation.json
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9855495Z From https://github.com/13510954098/zawu
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9855926Z  * branch            arena/44f5d2ee-zawu -> FETCH_HEAD
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9856366Z    406a610..043a4bf  arena/44f5d2ee-zawu -> origin/arena/44f5d2ee-zawu
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9987699Z Auto-merging analysis/lanerc/animeko-ui-diagnostic.txt
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988245Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9988764Z Auto-merging analysis/lanerc/animeko-ui-validation.json
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9989247Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9993301Z Rebasing (1/1)
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994129Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9994805Z hint: Resolve all conflicts manually, mark them as resolved with
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995288Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9995772Z hint: You can instead skip this commit: run "git rebase --skip".
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9996266Z hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9996874Z hint: Disable this message with "git config set advice.mergeConflict false"
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:18.9997767Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
-ui	Save UI results and bounded diagnostic log	2026-11-08T04:37:19.0007889Z ##[error]Process completed with exit code 1.
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2079160Z ^[[36;1mPY^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2079384Z ^[[36;1mgit switch -C arena/44f5d2ee-zawu^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2079711Z ^[[36;1mgit config user.name 'github-actions[bot]'^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2080166Z ^[[36;1mgit config user.email '41898282+github-actions[bot]@users.noreply.github.com'^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2081020Z ^[[36;1mgit add analysis/lanerc/animeko-ui-validation.json^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2082017Z ^[[36;1mif test -f analysis/lanerc/animeko-ui-diagnostic.txt; then git add analysis/lanerc/animeko-ui-diagnostic.txt; fi^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2082928Z ^[[36;1mgit diff --cached --quiet && exit 0^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2083361Z ^[[36;1mgit commit -m 'Record actual Compose native community UI test outcome'^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2085740Z ^[[36;1mgit pull --rebase origin arena/44f5d2ee-zawu^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2086125Z ^[[36;1mgit push origin HEAD:arena/44f5d2ee-zawu^[[0m
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2107250Z shell: /usr/bin/bash -e {0}
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2107504Z env:
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2107825Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2108486Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2108935Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2109267Z   GRADLE_USER_HOME: /home/runner/.gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2109560Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2109875Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2110315Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2110793Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2111109Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2111563Z   TEST_OUTCOME: failure
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2111777Z ##[endgroup]
+ui	UNKNOWN STEP	2026-11-08T04:37:18.2511433Z Switched to a new branch 'arena/44f5d2ee-zawu'
+ui	UNKNOWN STEP	2026-11-08T04:37:18.5951180Z [arena/44f5d2ee-zawu 2fb5052] Record actual Compose native community UI test outcome
+ui	UNKNOWN STEP	2026-11-08T04:37:18.5951795Z  2 files changed, 169 insertions(+)
+ui	UNKNOWN STEP	2026-11-08T04:37:18.5952170Z  create mode 100644 analysis/lanerc/animeko-ui-diagnostic.txt
+ui	UNKNOWN STEP	2026-11-08T04:37:18.5952781Z  create mode 100644 analysis/lanerc/animeko-ui-validation.json
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9855521Z From https://github.com/13510954098/zawu
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9855930Z  * branch            arena/44f5d2ee-zawu -> FETCH_HEAD
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9856370Z    406a610..043a4bf  arena/44f5d2ee-zawu -> origin/arena/44f5d2ee-zawu
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9987716Z Auto-merging analysis/lanerc/animeko-ui-diagnostic.txt
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9988249Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-diagnostic.txt
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9988766Z Auto-merging analysis/lanerc/animeko-ui-validation.json
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9989487Z CONFLICT (add/add): Merge conflict in analysis/lanerc/animeko-ui-validation.json
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9993308Z Rebasing (1/1)
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9994135Z error: could not apply 2fb5052... Record actual Compose native community UI test outcome
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9994808Z hint: Resolve all conflicts manually, mark them as resolved with
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9995290Z hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9995774Z hint: You can instead skip this commit: run "git rebase --skip".
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9996268Z hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9996879Z hint: Disable this message with "git config set advice.mergeConflict false"
+ui	UNKNOWN STEP	2026-11-08T04:37:18.9997772Z Could not apply 2fb5052... # Record actual Compose native community UI test outcome
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0007897Z ##[error]Process completed with exit code 1.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0067560Z ##[group]Run actions/upload-artifact@v4
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0067860Z with:
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0068102Z   name: animeko-lanerc-community-ui-test-results
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0068493Z   path: .local/animeko/worktree/app/shared/build/reports/tests/
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0068849Z   if-no-files-found: warn
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0069084Z   compression-level: 6
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0069300Z   overwrite: false
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0069517Z   include-hidden-files: false
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0069775Z env:
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0070080Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0070594Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-9/x64
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0071022Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0071329Z   GRADLE_USER_HOME: /home/runner/.gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0071618Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0071943Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0072388Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0072888Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0073218Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+ui	UNKNOWN STEP	2026-11-08T04:37:19.0073486Z ##[endgroup]
+ui	UNKNOWN STEP	2026-11-08T04:37:19.1840907Z (node:3656) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.1842236Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ui	UNKNOWN STEP	2026-11-08T04:37:19.1862242Z ##[warning]No files were found with the provided path: .local/animeko/worktree/app/shared/build/reports/tests/. No artifacts will be uploaded.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.2264779Z Post job cleanup.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.4947119Z In post-action step
+ui	UNKNOWN STEP	2026-11-08T04:37:19.4960420Z Cache is read-only: will not save state for use in subsequent builds.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.4969022Z Generating Job Summary
+ui	UNKNOWN STEP	2026-11-08T04:37:19.5004707Z Completed post-action step
+ui	UNKNOWN STEP	2026-11-08T04:37:19.5328183Z Post job cleanup.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.6778680Z (node:3681) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.6779996Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ui	UNKNOWN STEP	2026-11-08T04:37:19.6943932Z Post job cleanup.
+ui	UNKNOWN STEP	2026-11-08T04:37:19.7924609Z [command]/usr/bin/git version
+ui	UNKNOWN STEP	2026-11-08T04:37:19.7973006Z git version 2.56.0
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8047229Z Temporarily overriding HOME='/home/runner/work/_temp/ce961059-bd27-4166-9363-8fd44d9472e6' before making global git config changes
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8058200Z Adding repository directory to the temporary git global config as a safe directory
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8059799Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/zawu/zawu
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8109604Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8177517Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8532755Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8573512Z http.https://github.com/.extraheader
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8587139Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8633881Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8942061Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ui	UNKNOWN STEP	2026-11-08T04:37:19.8994814Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ui	UNKNOWN STEP	2026-11-08T04:37:19.9401349Z Cleaning up orphan processes
+ui	UNKNOWN STEP	2026-11-08T04:37:19.9869497Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4, gradle/actions/setup-gradle@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
