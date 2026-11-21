@@ -321,9 +321,9 @@ jobs:
               timeout 20 adb shell input tap 270 700 || true
               sleep 25
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail1.png" 2>/dev/null || true
-              timeout 20 adb shell input swipe 540 1800 540 600 300 || true
+              timeout 20 adb shell input tap 700 2150 || true
               sleep 15
-              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-read1.png" 2>/dev/null || true
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-reader1.png" 2>/dev/null || true
               timeout 20 adb shell input keyevent 4 || true
               sleep 5
               echo "interact=detail1 done" >> "dyn/$TS/run.log"
@@ -332,9 +332,9 @@ jobs:
               timeout 20 adb shell input tap 810 700 || true
               sleep 25
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail2.png" 2>/dev/null || true
-              timeout 20 adb shell input swipe 540 1800 540 600 300 || true
+              timeout 20 adb shell input tap 700 2150 || true
               sleep 15
-              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-read2.png" 2>/dev/null || true
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-reader2.png" 2>/dev/null || true
               timeout 20 adb shell input keyevent 4 || true
               sleep 5
               echo "interact=detail2 done" >> "dyn/$TS/run.log"
