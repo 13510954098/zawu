@@ -40,3 +40,5 @@ observe_minutes=12
 [09:24:49] tick-6m
 [09:27:38] tick-9m
 [09:30:26] tick-12m
+logcat_lines=78525
+[09:30:28] observe-done
