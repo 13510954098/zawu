@@ -15,3 +15,12 @@ Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 root            46     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
 root            47     2       0      0 kthread_worker_fn   0 S [erofs_worker/1]
 [14:43:28] frida-server-up
+collector=sbox pid=
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.954
+detail_miss=1
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=2
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=3
+NAVFAIL: 三次尝试未进详情页
+[14:45:24] -a nav-fail
