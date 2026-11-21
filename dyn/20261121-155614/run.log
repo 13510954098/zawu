@@ -32,3 +32,40 @@ state[login] inter-page0.png mid=0.000 bot=0.000 white=0.070
 go_dump armed at reader
 uiflow=done
 [16:03:54] uidrive-done
+64 /tmp/cands.jsonl
+ls: cannot access '/tmp/memdump.bin': No such file or directory
+/tmp/ctx_001.bin
+/tmp/ctx_003.bin
+/tmp/ctx_005.bin
+/tmp/ctx_007.bin
+/tmp/ctx_009.bin
+/tmp/ctx_011.bin
+/tmp/ctx_013.bin
+/tmp/ctx_015.bin
+/tmp/ctx_017.bin
+/tmp/ctx_019.bin
+/tmp/ctx_021.bin
+/tmp/ctx_023.bin
+/tmp/ctx_025.bin
+/tmp/ctx_027.bin
+/tmp/ctx_029.bin
+/tmp/ctx_031.bin
+/tmp/ctx_033.bin
+/tmp/ctx_035.bin
+/tmp/ctx_037.bin
+/tmp/ctx_039.bin
+/tmp/ctx_041.bin
+/tmp/ctx_043.bin
+/tmp/ctx_045.bin
+/tmp/ctx_047.bin
+/tmp/ctx_049.bin
+/tmp/ctx_051.bin
+/tmp/ctx_053.bin
+/tmp/ctx_055.bin
+/tmp/ctx_057.bin
+/tmp/ctx_059.bin
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+raw key candidates: 0
+total candidates: 356
+HITS: 0
+[16:09:09] -a done
