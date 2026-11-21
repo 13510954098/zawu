@@ -19,3 +19,8 @@ fast-fail: 登录未成，触发dump后提前收尾
 regions: 864 total 352948224
 mem bytes 352948224 cands 680
 [14:07:03] procfs-done
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+memdump scanned 352948224
+total candidates: 680
+HITS: 0
+[14:07:28] -a done
