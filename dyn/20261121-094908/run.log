@@ -61,3 +61,6 @@ interact=detail2 done
 [10:02:17] tick-12m
 logcat_lines=63618
 [10:02:18] observe-done
+adbd is already running as root
+tar_bytes=27023872
+[10:02:25] datadir-done
