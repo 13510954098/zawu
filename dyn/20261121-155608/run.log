@@ -27,3 +27,8 @@ heapbrute: dump window open
 [16:01:36] heap-window
 heapbrute pid=3360
 [16:05:08] heapbrute-done
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+raw key candidates: 0
+total candidates: 356
+HITS: 0
+[16:05:18] -a done
