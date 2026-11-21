@@ -11,3 +11,11 @@ boot_ok_loop=3
 restarting adbd as root
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 [14:28:59] app-up
+procfs: post-harvest instead
+login_attempt=1
+chk[login] inter-loginpage.png y=0.336  inter-loggedin.png y=0.009  same=False
+login_verdict=1
+chk[reader] inter-loginpage.png y=0.336  inter-page0.png y=0.000  same=False
+go_dump armed at reader
+uiflow=done
+[14:33:14] uidrive-done
