@@ -34,7 +34,7 @@ jobs:
       - name: 装工具链（固定版本 + 哈希校验）
         run: |
           sudo apt-get update -qq || true
-          sudo apt-get install -y -qq unzip curl openssl ninja-build cmake git > /dev/null
+          sudo apt-get install -y -qq unzip curl openssl ninja-build cmake git pkg-config libcapstone-dev > /dev/null
           curl -fsSL --retry 3 -o /tmp/apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
           echo 'dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423  /tmp/apktool.jar' | sha256sum -c -
           sudo mv /tmp/apktool.jar /opt/apktool.jar
@@ -54,6 +54,7 @@ jobs:
           apktool --version
           jadx --version | head -1
           python3 -c 'import elftools; print("pyelftools ok")'
+          pkg-config --modversion capstone
 
       - name: 下载 APK 并记录哈希
         env:
@@ -92,6 +93,7 @@ jobs:
           echo "blutter_exit=$?" | tee "$GITHUB_WORKSPACE/work/blutter.status"
           tail -20 "$GITHUB_WORKSPACE/work/blutter.log"
           ls -la "$GITHUB_WORKSPACE/work/blutter" | head -20
+          cp "$GITHUB_WORKSPACE/work/blutter.log" "$GITHUB_WORKSPACE/work/blutter.log.full"
           exit 0
 
       - name: 生成静态报告
@@ -102,20 +104,22 @@ jobs:
 
       - name: 把深挖结果并入报告
         run: |
+          grep -m1 'Dart version' work/blutter.log > work/dartver.txt 2>/dev/null || true
           {
             echo ''
             echo '## 深挖状态（机器生成）'
             echo "- jadx: $(cat work/jadx.status 2>/dev/null || echo '未运行')"
             echo "- blutter: $(cat work/blutter.status 2>/dev/null || echo '未运行')"
+            echo "- Dart 引擎信息: $(cat work/dartver.txt 2>/dev/null || echo '未识别')"
             if [ -s work/blutter/pp.txt ]; then
               echo "- blutter 产物: pp.txt $(wc -l < work/blutter/pp.txt) 行"
             else
-              echo '- blutter 未产出 pp.txt（引擎版本匹配或依赖问题）'
+              echo '- blutter 未产出 pp.txt'
             fi
             echo ''
             echo '### blutter 日志末尾'
             echo '```'
-            tail -12 work/blutter.log 2>/dev/null || echo '无日志'
+            tail -8 work/blutter.log 2>/dev/null || echo '无日志'
             echo '```'
           } >> work/report.md
           cat work/dart-findings.md >> work/report.md 2>/dev/null || true
@@ -132,7 +136,8 @@ jobs:
           mkdir -p "$DEST" work/app-src
           cp work/report.md work/facts.json work/domains.txt work/jadx.status "$DEST/"
           cp work/dart-findings.md "$DEST/" 2>/dev/null || true
-          cp work/blutter.status work/blutter.log "$DEST/" 2>/dev/null || true
+          cp work/blutter.status "$DEST/" 2>/dev/null || true
+          cp work/blutter.log "$DEST/" 2>/dev/null || true
           cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
           cp -r work/jadx/sources/com/hbsclj "work/app-src/" 2>/dev/null || true
           cp work/blutter/pp.txt "$DEST/dart-pp.txt" 2>/dev/null || true
