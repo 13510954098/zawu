@@ -167,14 +167,14 @@ w: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/app/shared/app-dat
 Starting 4 tests on emulator-5554 - 11
 Finished 4 tests on emulator-5554 - 11
 > Task :app:shared:app-data:connectedAndroidDeviceTest
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1794116995710.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/tests-1795252850826.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/zawu/zawu/.local/animeko/worktree/build/reports/problems/problems-report.html
 
-BUILD SUCCESSFUL in 10m 12s
+BUILD SUCCESSFUL in 7m 46s
 602 actionable tasks: 545 executed, 57 from cache
 
 Publishing Build Scan to Develocity...
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1794116995710.json
-https://gradle.com/s/yxz3ndkwf7hiu
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-scans/tests-1795252850826.json
+https://gradle.com/s/wipgawkatrxki
 
