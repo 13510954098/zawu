@@ -1,0 +1,80 @@
+ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
+Display #0 (activities from top to bottom):
+  * Task{a07f46e #7 type=standard I=com.hbsclj.uth/.MainActivity U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}
+    mLastNonFullscreenBounds=Rect(268, 665 - 813, 1745)
+    isSleeping=false
+    topResumedActivity=ActivityRecord{3c5839c u0 com.hbsclj.uth/.MainActivity} t7}
+    * Hist  #0: ActivityRecord{3c5839c u0 com.hbsclj.uth/.MainActivity} t7}
+      packageName=com.hbsclj.uth processName=com.hbsclj.uth
+      launchedFromUid=0 launchedFromPackage=com.android.shell launchedFromFeature=null userId=0
+      app=ProcessRecord{368a52a 3736:com.hbsclj.uth/u0a174}
+      Intent { flg=0x10000000 cmp=com.hbsclj.uth/.MainActivity }
+      rootOfTask=true task=Task{a07f46e #7 type=standard I=com.hbsclj.uth/.MainActivity}
+      taskAffinity=null
+      mActivityComponent=com.hbsclj.uth/.MainActivity
+      baseDir=/data/app/~~_Sr2VbhYEROfPfKvfPMo3w==/com.hbsclj.uth-4mQROr3GZugX5FFnjqSUTQ==/base.apk
+      dataDir=/data/user/0/com.hbsclj.uth
+      stateNotNeeded=false componentSpecified=false mActivityType=standard
+      compat={440dpi} labelRes=0x0 icon=0x7f0e0016 theme=0x7f1100d3
+      mLastReportedConfigurations:
+        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.71 fontWeightAdjustment=0}
+        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.1 fontWeightAdjustment=0}
+      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.1 fontWeightAdjustment=0}
+      taskDescription: label="栗子漫画" icon=null iconResource=com.hbsclj.uth/0 iconFilename=null primaryColor=fffecb18
+        backgroundColor=ffffffff statusBarColor=0 navigationBarColor=0
+       backgroundColorFloating=ffffffff
+      launchFailed=false launchCount=1 lastLaunchTime=-20s554ms
+      mHaveState=false mIcicle=null
+      state=RESUMED stopped=false delayedResume=false finishing=false
+      keysPaused=false inHistory=true idle=true
+      occludesParent=true noDisplay=false immersive=false launchMode=1
+      frozenBeforeDestroy=false forceNewConfig=false
+      mActivityType=standard
+      mImeInsetsFrozenUntilStartInput=false
+      windows=[Window{54e7918 u0 com.hbsclj.uth/com.hbsclj.uth.MainActivity}]
+      windowType=2
+      mOccludesParent=true
+      overrideOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+      requestedOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+      mVisibleRequested=true mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true
+      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=true)
+      startingData=null firstWindowDrawn=true mIsExiting=false
+      nowVisible=true lastVisibleTime=-18s351ms
+      resizeMode=RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION
+      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
+      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
+      configChanges=0x40003fb7
+      neverSandboxDisplayApis=false
+      alwaysSandboxDisplayApis=false
+      areBoundsLetterboxed=false
+      mCameraCompatControlState=hidden
+      mCameraCompatControlEnabled=false
+
+  * Task{a50f0a4 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+    * Task{f30b637 #6 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+      mLastPausedActivity: ActivityRecord{941e90d u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity} t6}
+      mLastNonFullscreenBounds=Rect(268, 665 - 813, 1745)
+      isSleeping=false
+      * Hist  #0: ActivityRecord{941e90d u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity} t6}
+        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher
+        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
+        app=ProcessRecord{51fc4e4 1226:com.google.android.apps.nexuslauncher/u0a153}
+        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }
+        rootOfTask=true task=Task{f30b637 #6 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}
+        taskAffinity=null
+        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity
+        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk
+        dataDir=/data/user/0/com.google.android.apps.nexuslauncher
+        stateNotNeeded=true componentSpecified=false mActivityType=home
+        compat={440dpi} labelRes=0x7f130065 icon=0x7f080286 theme=0x7f140014
+        mLastReportedConfigurations:
+          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.101 fontWeightAdjustment=0}
+          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.3 fontWeightAdjustment=0}
+        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw393dp w393dp h777dp 440dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2340) mAppBounds=Rect(0, 136 - 1080, 2274) mMaxBounds=Rect(0, 0 - 1080, 2340) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.4 fontWeightAdjustment=0}
+        RequestedOverrideConfiguration={0.0 ?mcc?mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mDisplayWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} as.3 ?fontWeightAdjustment}
+        taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff0f0f3
+          backgroundColor=fff0f0f3 statusBarColor=0 navigationBarColor=0
+         backgroundColorFloating=fff0f0f3
+        launchFailed=false launchCount=0 lastLaunchTime=-44s612ms
+        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=8208]
+        state=STOPPED stopped=true delayedResume=false finishing=false
