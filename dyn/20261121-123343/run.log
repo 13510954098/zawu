@@ -53,3 +53,10 @@ launch_exit=0
 observe_minutes=12
 interact=modal-dismiss done
 [12:40:00] tick-3m
+interact=login done
+login: OK
+POST progress: ERR HTTP Error 404: Not Found
+QUERY: {"code":200}
+STATE: completed=3 remaining=11876 cooldown=1795264984
+interact=read done
+[12:44:35] tick-6m
