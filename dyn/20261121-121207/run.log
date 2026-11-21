@@ -65,3 +65,5 @@ interact=read done
 interact=detail2 done
 [12:25:26] tick-9m
 [12:27:29] tick-12m
+logcat_lines=66506
+[12:27:31] observe-done
