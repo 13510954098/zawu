@@ -56,3 +56,5 @@ interact=modal-dismiss done
 [09:54:53] tick-3m
 interact=detail1 done
 [09:57:33] tick-6m
+interact=detail2 done
+[10:00:13] tick-9m
