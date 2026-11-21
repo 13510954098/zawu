@@ -1,2 +1,9 @@
 == start Sat Nov 21 14:54:14 UTC 2026 variant=offlinebrute ==
 [14:54:14] init
+deps ok
+offlinebrute: no emulator
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+raw key candidates: 0
+total candidates: 356
+HITS: 0
+[14:54:32] -a done
