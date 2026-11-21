@@ -1,4 +1,4 @@
-name: RE-Frida 密钥猎杀矩阵 v3
+name: RE-Frida 密钥猎杀矩阵 v4
 
 on:
   workflow_dispatch: {}
@@ -222,51 +222,81 @@ jobs:
         run: |
           echo "offlinebrute: no emulator" >> "dyn/$TS/run.log"
 
-      - name: 7. UI 驱动（v3.5 原版顺序 + 登录硬校验 + 阅读器才倾倒）
+      - name: 7. UI 驱动（状态机版：首页→封面→详情→开始阅读→登录→阅读器）
         if: ${{ matrix.variant != 'offlinebrute' }}
         run: |
           A() { timeout 25 adb shell "$@" || true; }
           SH() { timeout 40 adb exec-out screencap -p > "dyn/$TS/$1" 2>/dev/null || true; }
-          echo "aW1wb3J0IHN5cwpmcm9tIFBJTCBpbXBvcnQgSW1hZ2UKCmRlZiByYXRpbyhwKToKICAgIGltID0gSW1hZ2Uub3BlbihwKS5jb252ZXJ0KCdSR0InKQogICAgVywgSCA9IGltLnNpemUKICAgIHhzID0gcmFuZ2UoaW50KFcgKiAwLjA2KSwgaW50KFcgKiAwLjk0KSwgNikKICAgIHlzID0gcmFuZ2UoaW50KEggKiAwLjQwKSwgaW50KEggKiAwLjU2KSwgNCkKICAgIG4gPSB0ID0gMAogICAgZm9yIHkgaW4geXM6CiAgICAgICAgZm9yIHggaW4geHM6CiAgICAgICAgICAgIHIsIGcsIGIgPSBpbS5nZXRwaXhlbCgoeCwgeSkpCiAgICAgICAgICAgIHQgKz0gMQogICAgICAgICAgICBpZiByID4gMjAwIGFuZCBnID4gMTUwIGFuZCBiIDwgMTQwIGFuZCByIC0gYiA+IDcwOgogICAgICAgICAgICAgICAgbiArPSAxCiAgICByZXR1cm4gbiAvIGZsb2F0KHQpCgphLCBiLCBvdXQgPSBzeXMuYXJndlsxXSwgc3lzLmFyZ3ZbMl0sIHN5cy5hcmd2WzNdCm1vZGUgPSBzeXMuYXJndls0XSBpZiBsZW4oc3lzLmFyZ3YpID4gNCBlbHNlICdsb2dpbicKdHJ5OgogICAgcmEsIHJiID0gcmF0aW8oYSksIHJhdGlvKGIpCiAgICBzYW1lID0gb3BlbihhLCAncmInKS5yZWFkKCkgPT0gb3BlbihiLCAncmInKS5yZWFkKCkKICAgIHByaW50KCdjaGtbJXNdICVzIHk9JS4zZiAgJXMgeT0lLjNmICBzYW1lPSVzJyAlIChtb2RlLCBhLnNwbGl0KCcvJylbLTFdLCByYSwgYi5zcGxpdCgnLycpWy0xXSwgcmIsIHNhbWUpKQogICAgaWYgbW9kZSA9PSAnbG9naW4nOgogICAgICAgIG9rID0gbm90IChyYiA+IDAuMTIgb3Igc2FtZSkKICAgIGVsc2U6CiAgICAgICAgb2sgPSBub3Qgc2FtZSBhbmQgcmIgPD0gMC4xMgogICAgb3BlbihvdXQsICd3Jykud3JpdGUoJzEnIGlmIG9rIGVsc2UgJzAnKQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICBwcmludCgnY2hrIGVycicsIGUpCiAgICBvcGVuKG91dCwgJ3cnKS53cml0ZSgnMCcpCg==" | base64 -d > /tmp/chk.py
-          rm -f /tmp/LOGINOK /tmp/READEROK /tmp/go_dump
+          ST() { python3 /tmp/state.py "dyn/$TS/$1" "/tmp/ST_$2" "$2" >> "dyn/$TS/run.log" 2>&1 || true; cat "/tmp/ST_$2" 2>/dev/null || echo 0; }
+          echo "aW1wb3J0IHN5cwpmcm9tIFBJTCBpbXBvcnQgSW1hZ2UKCgpkZWYgYmFuZHMocCk6CiAgICBpbSA9IEltYWdlLm9wZW4ocCkuY29udmVydCgnUkdCJykKICAgIFcsIEggPSBpbS5zaXplCgogICAgZGVmIHllbGxvdyh5MCwgeTEpOgogICAgICAgIG4gPSB0ID0gMAogICAgICAgIGZvciB5IGluIHJhbmdlKGludChIICogeTApLCBpbnQoSCAqIHkxKSwgNCk6CiAgICAgICAgICAgIGZvciB4IGluIHJhbmdlKGludChXICogMC4wOCksIGludChXICogMC45MiksIDYpOgogICAgICAgICAgICAgICAgciwgZywgYiA9IGltLmdldHBpeGVsKCh4LCB5KSkKICAgICAgICAgICAgICAgIHQgKz0gMQogICAgICAgICAgICAgICAgaWYgciA+IDIwMCBhbmQgZyA+IDE1MCBhbmQgYiA8IDE0MCBhbmQgciAtIGIgPiA3MDoKICAgICAgICAgICAgICAgICAgICBuICs9IDEKICAgICAgICByZXR1cm4gbiAvIGZsb2F0KHQpIGlmIHQgZWxzZSAwLjAKCiAgICBtaWQgPSB5ZWxsb3coMC40MCwgMC41NikKICAgIGJvdCA9IHllbGxvdygwLjgzLCAwLjk2KQogICAgdyA9IHQyID0gMAogICAgZm9yIHkgaW4gcmFuZ2UoMCwgSCwgMjApOgogICAgICAgIGZvciB4IGluIHJhbmdlKDAsIFcsIDIwKToKICAgICAgICAgICAgciwgZywgYiA9IGltLmdldHBpeGVsKCh4LCB5KSkKICAgICAgICAgICAgdDIgKz0gMQogICAgICAgICAgICBpZiByID4gMjM1IGFuZCBnID4gMjM1IGFuZCBiID4gMjM1OgogICAgICAgICAgICAgICAgdyArPSAxCiAgICB3aGl0ZSA9IHcgLyBmbG9hdCh0MikgaWYgdDIgZWxzZSAwLjAKICAgIHJldHVybiBtaWQsIGJvdCwgd2hpdGUKCgppbWcsIG91dCwgbW9kZSA9IHN5cy5hcmd2WzFdLCBzeXMuYXJndlsyXSwgc3lzLmFyZ3ZbM10KdHJ5OgogICAgbWlkLCBib3QsIHdoaXRlID0gYmFuZHMoaW1nKQogICAgcHJpbnQoJ3N0YXRlWyVzXSAlcyBtaWQ9JS4zZiBib3Q9JS4zZiB3aGl0ZT0lLjNmJyAlIChtb2RlLCBpbWcuc3BsaXQoJy8nKVstMV0sIG1pZCwgYm90LCB3aGl0ZSkpCiAgICBpZiBtb2RlID09ICdkZXRhaWwnOgogICAgICAgIG9rID0gYm90ID4gMC4xMAogICAgZWxpZiBtb2RlID09ICdsb2dpbic6CiAgICAgICAgb2sgPSBtaWQgPiAwLjEyCiAgICBlbGlmIG1vZGUgPT0gJ3JlYWRlcic6CiAgICAgICAgb2sgPSBtaWQgPD0gMC4xMgogICAgZWxpZiBtb2RlID09ICdzaGVsZic6CiAgICAgICAgb2sgPSB3aGl0ZSA+IDAuOTMKICAgIGVsc2U6CiAgICAgICAgb2sgPSBGYWxzZQogICAgb3BlbihvdXQsICd3Jykud3JpdGUoJzEnIGlmIG9rIGVsc2UgJzAnKQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICBwcmludCgnc3RhdGUgZXJyJywgZSkKICAgIG9wZW4ob3V0LCAndycpLndyaXRlKCcwJykK" | base64 -d > /tmp/state.py
+          echo "aW1wb3J0IHN5cwpmcm9tIFBJTCBpbXBvcnQgSW1hZ2UKcCwgb3V0ID0gc3lzLmFyZ3ZbMV0sIHN5cy5hcmd2WzJdCnRyeToKICAgIGltID0gSW1hZ2Uub3BlbihwKS5jb252ZXJ0KCdSR0InKQogICAgVywgSCA9IGltLnNpemUKICAgIG4gPSAwCiAgICBmb3IgeSBpbiByYW5nZShpbnQoSCowLjM3KSwgaW50KEgqMC40NiksIDMpOgogICAgICAgIGZvciB4IGluIHJhbmdlKGludChXKjAuMDIpLCBpbnQoVyowLjE0KSwgMyk6CiAgICAgICAgICAgIHIsIGcsIGIgPSBpbS5nZXRwaXhlbCgoeCwgeSkpCiAgICAgICAgICAgIGlmIHIgPiAxOTAgYW5kIGcgPiAxNDAgYW5kIGIgPCAxNTAgYW5kIHIgLSBiID4gNTA6CiAgICAgICAgICAgICAgICBuICs9IDEKICAgIHByaW50KCdjYiB5ZWxsb3dfcHg9JWQnICUgbikKICAgIG9wZW4ob3V0LCAndycpLndyaXRlKCcxJyBpZiBuID4gMTIgZWxzZSAnMCcpCmV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgIHByaW50KCdjYiBlcnInLCBlKQogICAgb3BlbihvdXQsICd3Jykud3JpdGUoJzAnKQo=" | base64 -d > /tmp/cb.py
+          goto_detail() {
+            for i in 1 2 3; do
+              A input tap 127 2100; sleep 6
+              A input tap 270 700; sleep 22
+              SH nav-detail.png
+              if [ "$(ST nav-detail.png detail)" = "1" ]; then echo "detail_ok=$i" >> "dyn/$TS/run.log"; return 0; fi
+              echo "detail_miss=$i" >> "dyn/$TS/run.log"
+              A input keyevent 4; sleep 3
+            done
+            return 1
+          }
+          fill_login() {
+            A input tap 450 640; sleep 3
+            A input tap 450 700; sleep 2
+            A input text "928081274@qq.com"; sleep 3
+            A input keyevent 111; sleep 2
+            A input tap 450 815; sleep 3
+            A input tap 450 875; sleep 2
+            A input text "Zmh20100227"; sleep 3
+            A input keyevent 111; sleep 3
+            A input tap 78 950; sleep 3
+            SH cb.png
+            python3 /tmp/cb.py "dyn/$TS/cb.png" /tmp/CB >> "dyn/$TS/run.log" 2>&1 || true
+            if [ "$(cat /tmp/CB 2>/dev/null || echo 0)" != "1" ]; then A input tap 78 1015; sleep 2; fi
+            SH inter-loginfilled.png
+            A input tap 540 1157; sleep 20
+            SH inter-loggedin.png
+          }
+          rm -f /tmp/go_dump /tmp/ST_* /tmp/CB
           sleep 8
           A input tap 925 715; sleep 5; A input tap 925 715; sleep 5
           SH inter-modal.png
-          A input tap 270 700; sleep 25
-          SH inter-detail.png
-          A input tap 700 2150; sleep 15
-          SH inter-loginpage.png
-          for attempt in 1 2; do
-            echo "login_attempt=$attempt" >> "dyn/$TS/run.log"
-            A input tap 450 730; sleep 5
-            A input text "928081274@qq.com"; sleep 4
-            A input keyevent 111; sleep 2
-            A input tap 78 1015; sleep 2
-            A input tap 450 890; sleep 5
-            A input text "Zmh20100227"; sleep 4
-            A input keyevent 111; sleep 2
-            SH inter-loginfilled.png
-            A input tap 540 1212; sleep 20
-            SH inter-loggedin.png
-            python3 /tmp/chk.py "dyn/$TS/inter-loginpage.png" "dyn/$TS/inter-loggedin.png" /tmp/LOGINOK login >> "dyn/$TS/run.log" 2>&1 || true
-            echo "login_verdict=$(cat /tmp/LOGINOK 2>/dev/null || echo none)" >> "dyn/$TS/run.log"
-            [ "$(cat /tmp/LOGINOK 2>/dev/null)" = "1" ] && break
-            sleep 5
-          done
-          if [ "$(cat /tmp/LOGINOK 2>/dev/null)" != "1" ]; then
-            echo "LOGINFAIL: 两次尝试后仍在登录墙，放弃本轮，不倾倒无效堆" >> "dyn/$TS/run.log"
-            /tmp/hb.sh "$TS" -a login-fail
+          if ! goto_detail; then
+            echo "NAVFAIL: 三次尝试未进详情页" >> "dyn/$TS/run.log"
+            /tmp/hb.sh "$TS" -a nav-fail
             exit 1
           fi
-          A input keyevent 4; sleep 4
-          A input keyevent 4; sleep 4
-          A input tap 270 700; sleep 20
-          SH inter-detail2.png
-          A input tap 700 2150; sleep 20
+          A input tap 700 2150; sleep 18
+          SH inter-afterclick.png
+          if [ "$(ST inter-afterclick.png login)" = "1" ]; then
+            cp "dyn/$TS/inter-afterclick.png" "dyn/$TS/inter-loginpage.png"
+            for attempt in 1 2; do
+              echo "login_attempt=$attempt" >> "dyn/$TS/run.log"
+              fill_login
+              if [ "$(ST inter-loggedin.png login)" = "0" ]; then echo "login_ok=$attempt" >> "dyn/$TS/run.log"; break; fi
+              echo "login_retry_$attempt" >> "dyn/$TS/run.log"
+            done
+            if [ "$(ST inter-loggedin.png login)" = "1" ]; then
+              echo "LOGINFAIL: 两次填表后仍在登录墙" >> "dyn/$TS/run.log"
+              /tmp/hb.sh "$TS" -a login-fail
+              exit 1
+            fi
+            SH inter-postlogin.png
+            if [ "$(ST inter-postlogin.png detail)" = "1" ]; then
+              echo "postlogin=detail" >> "dyn/$TS/run.log"
+              A input tap 700 2150; sleep 20
+            elif [ "$(ST inter-postlogin.png shelf)" = "1" ]; then
+              echo "postlogin=shelf" >> "dyn/$TS/run.log"
+              if ! goto_detail; then echo "NAVFAIL2: 登录后回不到详情" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" -a nav2-fail; exit 1; fi
+              A input tap 700 2150; sleep 20
+            else
+              echo "postlogin=unknown, 假定已在阅读器" >> "dyn/$TS/run.log"
+            fi
+          fi
           SH inter-page0.png
-          python3 /tmp/chk.py "dyn/$TS/inter-loginpage.png" "dyn/$TS/inter-page0.png" /tmp/READEROK reader >> "dyn/$TS/run.log" 2>&1 || true
-          if [ "$(cat /tmp/READEROK 2>/dev/null)" != "1" ]; then
-            echo "READERFAIL: 点开始阅读后仍回到登录墙" >> "dyn/$TS/run.log"
+          if [ "$(ST inter-page0.png login)" = "1" ]; then
+            echo "READERFAIL: 触发阅读后仍回登录墙" >> "dyn/$TS/run.log"
             /tmp/hb.sh "$TS" -a reader-fail
             exit 1
           fi
