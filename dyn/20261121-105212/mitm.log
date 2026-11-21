@@ -11488,3 +11488,130 @@ Addon error: Traceback (most recent call last):
     raise ValueError(f"unserializable object: {value} ({type(value)})")
 ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
 
+127.0.0.1:48044: client disconnect
+127.0.0.1:48048: client connect
+127.0.0.1:48048: server connect 142.251.154.120:443
+127.0.0.1:51470: client connect
+127.0.0.1:51482: client connect
+127.0.0.1:51496: client connect
+127.0.0.1:51470: server connect 172.217.119.4:443
+127.0.0.1:51496: server connect 172.217.119.4:443
+127.0.0.1:51482: server connect 172.217.119.4:443
+127.0.0.1:51496: 127.0.0.1:51496: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51482: 127.0.0.1:51482: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51496: client disconnect
+127.0.0.1:51482: client disconnect
+127.0.0.1:51496: server disconnect 172.217.119.4:443
+127.0.0.1:51482: server disconnect 172.217.119.4:443
+127.0.0.1:51502: client connect
+127.0.0.1:51518: client connect
+127.0.0.1:51502: server connect 172.217.119.4:443
+127.0.0.1:51518: server connect 172.217.119.4:443
+127.0.0.1:51502: 127.0.0.1:51502: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51502: client disconnect
+127.0.0.1:51502: server disconnect 172.217.119.4:443
+127.0.0.1:51470: 127.0.0.1:51470: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51470: client disconnect
+127.0.0.1:51470: server disconnect 172.217.119.4:443
+127.0.0.1:51528: client connect
+127.0.0.1:51528: server connect 172.217.119.4:443
+127.0.0.1:51518: 127.0.0.1:51518: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51518: client disconnect
+127.0.0.1:51518: server disconnect 172.217.119.4:443
+127.0.0.1:51528: 127.0.0.1:51528: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51528: client disconnect
+127.0.0.1:51528: server disconnect 172.217.119.4:443
+127.0.0.1:51534: client connect
+127.0.0.1:51544: client connect
+127.0.0.1:51550: client connect
+127.0.0.1:51534: server connect 172.217.119.4:443
+127.0.0.1:51544: server connect 172.217.119.4:443
+127.0.0.1:51550: server connect 172.217.119.4:443
+127.0.0.1:51534: 127.0.0.1:51534: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51534: client disconnect
+127.0.0.1:51534: server disconnect 172.217.119.4:443
+127.0.0.1:51560: client connect
+127.0.0.1:51544: 127.0.0.1:51544: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51544: client disconnect
+127.0.0.1:51544: server disconnect 172.217.119.4:443
+127.0.0.1:51574: client connect
+127.0.0.1:51550: 127.0.0.1:51550: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51550: client disconnect
+127.0.0.1:51550: server disconnect 172.217.119.4:443
+127.0.0.1:51586: client connect
+127.0.0.1:51560: server connect 172.217.119.4:443
+127.0.0.1:51574: server connect 172.217.119.4:443
+127.0.0.1:51586: server connect 172.217.119.4:443
+127.0.0.1:51560: 127.0.0.1:51560: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51560: client disconnect
+127.0.0.1:51560: server disconnect 172.217.119.4:443
+127.0.0.1:51574: 127.0.0.1:51574: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51574: client disconnect
+127.0.0.1:51574: server disconnect 172.217.119.4:443
+127.0.0.1:51586: 127.0.0.1:51586: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:51586: client disconnect
+127.0.0.1:51586: server disconnect 172.217.119.4:443
+127.0.0.1:39116: client connect
+127.0.0.1:39116: server connect 142.251.152.119:443
+127.0.0.1:37522: server connect 101.47.15.217:443
+127.0.0.1:37522: POST https://101.47.15.217/4b3c2c18
+ << Client disconnected.
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 165, in error
+    self.response(flow)
+    ~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:37522: server disconnect 101.47.15.217:443
+127.0.0.1:37522: client disconnect
+127.0.0.1:33940: client connect
+127.0.0.1:33940: server connect 101.47.15.217:443
+127.0.0.1:33940: Server TLS handshake failed. Certificate verify failed: IP address mismatch
+127.0.0.1:33940: Unable to establish TLS connection with server (Certificate verify failed: IP address mismatch). Trying to establish TLS with client anyway.
+127.0.0.1:33940: server disconnect 101.47.15.217:443
+127.0.0.1:33940: POST https://101.47.15.217/4b3c2c18
+ << Certificate verify failed: IP address mismatch
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 165, in error
+    self.response(flow)
+    ~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
