@@ -11,3 +11,7 @@ boot_ok_loop=4
 restarting adbd as root
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 [14:04:44] app-up
+/tmp/fs: 1 file pushed, 0 skipped. 168.7 MB/s (113499416 bytes in 0.641s)
+root            44     2       0      0 worker_thread       0 I [kworker/u5:0-fscrypt_read_queue]
+root            45     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
+[14:04:53] frida-server-up
