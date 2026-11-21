@@ -2,6 +2,9 @@ name: RE-Frida 密钥猎杀矩阵 v1
 
 on:
   workflow_dispatch: {}
+  push:
+    branches:
+      - re/frida-*
 
 permissions:
   contents: write
