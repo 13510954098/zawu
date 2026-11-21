@@ -1,0 +1,14 @@
+{"msg": {"t": "recvhooked"}, "dlen": 0}
+{"msg": {"t": "readhooked"}, "dlen": 0}
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"msg": {"t": "bigread", "fn": "read", "fd": 127, "n": 272235, "at": "0x7305c20f6890", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 133, "n": 274581, "at": "0x7302a1471f60", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 208, "n": 317126, "at": "0x7305c21b1930", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 228, "n": 262564, "at": "0x7302a1474e50", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 166, "n": 261194, "at": "0x7305c21bf3b0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 130, "n": 300758, "at": "0x7302e1ff1920", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 130, "n": 280501, "at": "0x7302932c7840", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 208, "n": 411476, "at": "0x73028de2b8a0", "magic": "ffd8"}, "dlen": 96}
+{"msg": {"t": "bigread", "fn": "read", "fd": 289, "n": 243519, "at": "0x7305c20fd8c0", "magic": "ffd8"}, "dlen": 96}
+{"rpc": "dump", "err": "unable to find method 'dump'"}
+{"rpc": "scan", "err": "unable to find method 'scan'"}
