@@ -18,9 +18,12 @@ jobs:
           pkg-config --modversion icu-uc capstone
           df -h / | tail -1
 
-      - name: 1. 下载 APK 并抽取 arm64 libapp.so
+      - name: 1. 下载 APK 并抽取 arm64 libapp.so（动态从 configv2 取最新分发 URL）
         run: |
-          curl -sL --max-time 300 -o lz.apk "https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX3NwX2FwcDo1NjUxMTIxNTQ3Ok1FUkNIQU5UOltCQDczMTcyNjJlOjI0MTk5NzMyMDIzNTQ3BqQ%3D.apk"
+          APK_URL=$(curl -s --max-time 20 "https://mh.lizimh.net/app/api/configv2?platform=android&packname=com.hbsclj.uth&ver=1.1.7" -A "Dart/3.5 (dart:io)" | python3 -c "import json,sys; print(json.load(sys.stdin)['data']['cfg_update']['download_url'])") || true
+          echo "动态URL: $APK_URL"
+          [ -z "$APK_URL" ] && APK_URL="https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTY1MTEyMTU0NzpNRVJDSEFOVDpbQkA3MzE3MjYyZToyNDE5OTczMjAyMzU0Nw%3D%3D.apk"
+          curl -sL --max-time 300 -o lz.apk "$APK_URL"
           ls -la lz.apk
           sha256sum lz.apk
           unzip -o -q lz.apk "lib/arm64-v8a/*" -d apklib
