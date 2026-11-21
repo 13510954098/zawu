@@ -11,3 +11,7 @@ boot_ok_loop=4
 restarting adbd as root
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 [14:05:06] app-up
+procfs: post-harvest instead
+login_check px=(254, 203, 24)
+fast-fail: 登录未成，触发dump后提前收尾
+[14:06:32] fastfail-login
