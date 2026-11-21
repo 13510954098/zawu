@@ -185,3 +185,5 @@ INFO         | Increasing screen off timeout, logcat buffer size to 2M.
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'
 ERROR        | bad color buffer handle 136
+INFO         | Created VkInstance:0x5f297894f800 for application:'Chromium' engine:''.
+INFO         | Created VkDevice:0x5f299ed42010 for application:'Chromium' instance:0x5f297894f800. ASTC emulation:on CPU decoding:off. Protected memory:off
