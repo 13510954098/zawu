@@ -188,3 +188,4 @@ INFO         | Boot completed in 25988 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay list ' failed: 'adb: device offline'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay list ' failed: 'adb: device 'emulator-5554' not found'
+WARNING      | Netsim Wifi ipv6:%5B::1%5D:36001 is gone due to Stream removed (Socket closed)
