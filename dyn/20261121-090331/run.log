@@ -22,3 +22,6 @@ drwxr-xr-x 3 runner runner    4096 Nov 21 09:04 ..
 -rw-r--r-- 1 runner runner 1048576 Nov 21 09:04 userdata.img
 list_avds=probe
 [09:04:39] avd-ready
+emu_pid=3306
+/home/runner/work/_temp/df4c0f61-f57c-49c4-9d52-df6844da1360.sh: line 22: adb: command not found
+[09:05:10] emulator-up
