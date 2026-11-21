@@ -92,7 +92,7 @@ jobs:
           timeout 2400 python3 blutter.py "$GITHUB_WORKSPACE/work/decoded/lib/arm64-v8a" "$GITHUB_WORKSPACE/work/blutter" > "$GITHUB_WORKSPACE/work/blutter.log" 2>&1
           echo "blutter_exit=$?" | tee "$GITHUB_WORKSPACE/work/blutter.status"
           tail -20 "$GITHUB_WORKSPACE/work/blutter.log"
-          ls -la "$GITHUB_WORKSPACE/work/blutter" | head -20
+          ls -la "$GITHUB_WORKSPACE/work/blutter" | head -24
           exit 0
 
       - name: 生成静态报告
@@ -104,6 +104,10 @@ jobs:
       - name: Dart 深度报告（pp.txt 整理）
         if: hashFiles('work/blutter/pp.txt') != ''
         run: python3 re/dart_deep.py --pp work/blutter/pp.txt --blutter-log work/blutter.log --outdir work
+
+      - name: Dart 敏感函数定位（asm 扫描）
+        if: hashFiles('work/blutter') != ''
+        run: python3 re/dart_hot.py --blutter work/blutter --outdir work
 
       - name: 把深挖结果并入报告
         run: |
@@ -120,14 +124,14 @@ jobs:
               echo '- blutter 未产出 pp.txt'
             fi
             echo ''
-            echo '### blutter 日志末尾'
+            echo '### blutter 目录'
             echo '```'
-            tail -8 work/blutter.log 2>/dev/null || echo '无日志'
+            ls work/blutter 2>/dev/null || echo '空'
             echo '```'
           } >> work/report.md
           cat work/dart-findings.md >> work/report.md 2>/dev/null || true
           echo '' >> work/report.md
-          echo '完整 Dart 侧结果见 dart-deep.md（接口清单、域名、中文文案）。' >> work/report.md
+          echo '完整 Dart 侧结果见 dart-deep.md 与 dart-hot.md。' >> work/report.md
 
       - name: 写入 Job Summary
         run: |
@@ -140,8 +144,7 @@ jobs:
           DEST="reports/apk-${SHA12}"
           mkdir -p "$DEST" work/app-src
           cp work/report.md work/facts.json work/domains.txt work/jadx.status "$DEST/"
-          cp work/dart-findings.md "$DEST/" 2>/dev/null || true
-          cp work/dart-deep.md work/dart-strings.txt "$DEST/" 2>/dev/null || true
+          cp work/dart-findings.md work/dart-deep.md work/dart-strings.txt work/dart-hot.md "$DEST/" 2>/dev/null || true
           cp work/blutter.status "$DEST/" 2>/dev/null || true
           cp work/blutter.log "$DEST/" 2>/dev/null || true
           cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
@@ -163,6 +166,7 @@ jobs:
             work/report.md
             work/dart-deep.md
             work/dart-strings.txt
+            work/dart-hot.md
             work/facts.json
             work/domains.txt
             work/apkid.json
@@ -170,5 +174,6 @@ jobs:
             work/jadx.log
             work/blutter.log
             work/blutter/pp.txt
+            work/blutter
             work/app-src
           retention-days: 14
