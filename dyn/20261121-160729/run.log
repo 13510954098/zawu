@@ -26,3 +26,5 @@ postlogin=detail
 state[reader] fast-reader.png mid=0.000 bot=0.000 white=0.070
 heapbrute: dump window open
 [16:12:59] heap-window
+heapbrute pid=3695
+[16:17:17] heapbrute-done

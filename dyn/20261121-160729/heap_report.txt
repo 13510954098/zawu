@@ -1,0 +1,14 @@
+regions_total=253 selected=253 bytes=889536512
+dump_bytes=884232192 in 17.7s
+JPEG_IN_MEM heap off=590012568 bytes=411476 JPEG (1672, 1200)
+JPEG_IN_MEM heap off=595930592 bytes=56535 JPEG (540, 780)
+JPEG_IN_MEM heap off=596108720 bytes=100485 JPEG (630, 840)
+JPEG_IN_MEM heap off=597876888 bytes=280501 JPEG (836, 1200)
+JPEG_IN_MEM heap off=598401176 bytes=300758 JPEG (836, 1200)
+JPEG_IN_MEM heap off=599449752 bytes=262564 JPEG (836, 1200)
+harvest_count=6
+blob page=1 bytes=263793
+kbf klen=16 file=/tmp/heap.bin 99s hits=0
+kbf klen=32 file=/tmp/heap.bin 138s hits=1
+cand klen=32 key=39cb70010038100f4600000e00ffffa4528ceccf7a0000f049177100000000e0 verify=not-image cannot identify image file <_io.BytesIO 
+FINAL NOHIT
