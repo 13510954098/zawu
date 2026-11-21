@@ -1,0 +1,121 @@
+/data/data/com.hbsclj.uth/cache/WebView/Default/HTTP Cache/Code Cache/js/index
+/data/data/com.hbsclj.uth/cache/WebView/Default/HTTP Cache/Code Cache/js/index-dir/the-real-index
+/data/data/com.hbsclj.uth/cache/WebView/Default/HTTP Cache/Code Cache/wasm/index
+/data/data/com.hbsclj.uth/cache/WebView/Default/HTTP Cache/Code Cache/wasm/index-dir/the-real-index
+/data/data/com.hbsclj.uth/cache/WebView/font_unique_name_table.pb
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fc5f4010-e593-11f1-963b-3dc8378868a6.jpg
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fd24da00-e593-11f1-963b-3dc8378868a6.jpg
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fd3a0fb0-e593-11f1-963b-3dc8378868a6.jpg
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fd379eb0-e593-11f1-963b-3dc8378868a6.jpg
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fd44e520-e593-11f1-963b-3dc8378868a6.jpg
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fdb35e60-e593-11f1-963b-3dc8378868a6.png
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fdd11f90-e593-11f1-963b-3dc8378868a6.png
+/data/data/com.hbsclj.uth/cache/libCachedImageData/fe277cf0-e593-11f1-963b-3dc8378868a6.png
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/70d338766ae20514eca6f5d387445bc8d553f73f
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/2811ff467fcbc63f9aa860de22e56b702c90249d
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/24ad82eea619ea04aeba9a5286c3a33447cf1793
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/2f46477e084d644c9484d5eb5f167aa96c7108a5
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/5f5dd003eaa24005e7ab14db902f3efb7ca955ae
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/5a551daf3d51192724478ed516c3602fe7474765
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/f17ec4e6286c3fb2ab7c368367a730d9712a1a4d
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/5ffc79cf5681441fe86a3f18e8990894967d717c
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/7c701853b258be372def48e8de3bf6afd29a406b
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/6b6195ba1a69b3d10673e750c52f17f20834284e
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/52e324f4f96c8f19433f34a699554e0c4e7dd480
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/518afbb487509437449a35ffa0f9a2d02ed15392
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/f2e0b0965f4791d83e26960cc742ba86f35ab675
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/b084e9beb46742ba125e7b8743987d860a67759f
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/d0c5da1852a1947fbbbbe6fd767f9d9de32c7cba
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/25511d7dfbcb15ba0bd125ff192bfd54433600c4
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/335d278417743125ac05dc26032e6cf4a19c0ace
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/2bbbb4beb4e5f32a1b49f4a93d65f13f30798ff8
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/e240e4b5975c6ad68fe26a08f1ea3402f08ae14d
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/96347f94bcb4932a71fcb799d580d17b6db427b8
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/14a3faa5b5cfad9260fbfcf51031a268336a5745
+/data/data/com.hbsclj.uth/code_cache/flutter_engine/a18df97ca57a249df5d8d68cd0820600223ce262/skia/93461bed7394e3c554125b0c50b00fb81eea42c6/89d8414f7f4802c90410f7293f1bb1e1152ec6f0
+/data/data/com.hbsclj.uth/files/tktp/anythink_adx_rpr.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_adx_rpr.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_sdk.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_sdk.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_uservalue.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_uservalue.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_placement_load.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_placement_load.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_onlineapi_file.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_onlineapi_file.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_network_init_data.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_network_init_data.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythinkadx_file.kva
+/data/data/com.hbsclj.uth/files/tktp/anythinkadx_file.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythinkown_offerid_impression.kva
+/data/data/com.hbsclj.uth/files/tktp/anythinkown_offerid_impression.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_placement_strategy_update_check.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_placement_strategy_update_check.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_wt_cache_info.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_wt_cache_info.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_wf_first_load.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_wf_first_load.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_proverb_price.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_proverb_price.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_last_b_rec.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_last_b_rec.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_app_pl_cl_retry.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_app_pl_cl_retry.kvb
+/data/data/com.hbsclj.uth/files/tktp/anythink_crash.kva
+/data/data/com.hbsclj.uth/files/tktp/anythink_crash.kvb
+/data/data/com.hbsclj.uth/files/lzmh_database.sqlite
+/data/data/com.hbsclj.uth/files/libCachedImageData.db
+/data/data/com.hbsclj.uth/files/libCachedImageData.db-journal
+/data/data/com.hbsclj.uth/files/profileinstaller_profileWrittenFor_lastUpdateTime.dat
+/data/data/com.hbsclj.uth/files/profileInstalled
+/data/data/com.hbsclj.uth/files/TD_AES_DATA_LOCK
+/data/data/com.hbsclj.uth/files/_Ladder_Project/Archimedes_p1
+/data/data/com.hbsclj.uth/files/_Ladder_Project/Archimedes_p2
+/data/data/com.hbsclj.uth/files/_Ladder_Project/Archimedes_p3
+/data/data/com.hbsclj.uth/files/Archimedes_p4
+/data/data/com.hbsclj.uth/files/Archimedes_p5
+/data/data/com.hbsclj.uth/files/TD_AES_IV_LOCK
+/data/data/com.hbsclj.uth/files/mPBE/iv
+/data/data/com.hbsclj.uth/files/mPBE/salt
+/data/data/com.hbsclj.uth/files/TD_AES_SALT_LOCK
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255925583_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255925605_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255925654_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255962284_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255962830_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795255993677_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256018165_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256066551_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256133654_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256275052_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256331969_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/td_database2SaaS/1795256390892_3736
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/Lock2
+/data/data/com.hbsclj.uth/files/__database_reborn_January_one__/Lock99
+/data/data/com.hbsclj.uth/files/TD__SDK_Synchronous_Lock__
+/data/data/com.hbsclj.uth/files/TD__Env_Synchronous_Lock__
+/data/data/com.hbsclj.uth/shared_prefs/FlutterSharedPreferences.xml
+/data/data/com.hbsclj.uth/shared_prefs/TD_app_pefercen_profile.xml
+/data/data/com.hbsclj.uth/shared_prefs/TDpref_longtime.xml
+/data/data/com.hbsclj.uth/shared_prefs/WebViewChromiumPrefs.xml
+/data/data/com.hbsclj.uth/shared_prefs/TDpref_longtime99.xml
+/data/data/com.hbsclj.uth/shared_prefs/TDpref_shorttime.xml
+/data/data/com.hbsclj.uth/shared_prefs/tdid.xml
+/data/data/com.hbsclj.uth/shared_prefs/TD_IP_CACHE.xml
+/data/data/com.hbsclj.uth/shared_prefs/TDpref_shorttime99.xml
+/data/data/com.hbsclj.uth/databases/anythink.db
+/data/data/com.hbsclj.uth/databases/anythink.db-journal
+/data/data/com.hbsclj.uth/databases/anythink_upload.db
+/data/data/com.hbsclj.uth/databases/anythink_upload.db-journal
+/data/data/com.hbsclj.uth/app_webview/variations_seed_new
+/data/data/com.hbsclj.uth/app_webview/variations_stamp
+/data/data/com.hbsclj.uth/app_webview/webview_data.lock
+/data/data/com.hbsclj.uth/app_webview/pref_store
+/data/data/com.hbsclj.uth/app_webview/Default/Local Storage/leveldb/LOG
+/data/data/com.hbsclj.uth/app_webview/Default/Local Storage/leveldb/LOCK
+/data/data/com.hbsclj.uth/app_webview/Default/Local Storage/leveldb/MANIFEST-000001
+/data/data/com.hbsclj.uth/app_webview/Default/Local Storage/leveldb/000003.log
+/data/data/com.hbsclj.uth/app_webview/Default/Local Storage/leveldb/CURRENT
+/data/data/com.hbsclj.uth/app_webview/Default/Web Data
+/data/data/com.hbsclj.uth/app_webview/Default/Web Data-journal
+/data/data/com.hbsclj.uth/app_webview/BrowserMetrics-spare.pma
