@@ -2,3 +2,5 @@
 [16:07:26] init
 curl_exit=0 sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 [16:07:33] downloaded
+frida 16.5.9
+[16:09:09] toolchain-ready
