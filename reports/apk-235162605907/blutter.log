@@ -1,0 +1,719 @@
+Cloning into '/opt/blutter/dartsdk/v3.5.4'...
+remote: Enumerating objects: 2434, done.        
+remote: Counting objects:   0% (1/2434)        remote: Counting objects:   1% (25/2434)        remote: Counting objects:   2% (49/2434)        remote: Counting objects:   3% (74/2434)        remote: Counting objects:   4% (98/2434)        remote: Counting objects:   5% (122/2434)        remote: Counting objects:   6% (147/2434)        remote: Counting objects:   7% (171/2434)        remote: Counting objects:   8% (195/2434)        remote: Counting objects:   9% (220/2434)        remote: Counting objects:  10% (244/2434)        remote: Counting objects:  11% (268/2434)        remote: Counting objects:  12% (293/2434)        remote: Counting objects:  13% (317/2434)        remote: Counting objects:  14% (341/2434)        remote: Counting objects:  15% (366/2434)        remote: Counting objects:  16% (390/2434)        remote: Counting objects:  17% (414/2434)        remote: Counting objects:  18% (439/2434)        remote: Counting objects:  19% (463/2434)        remote: Counting objects:  20% (487/2434)        remote: Counting objects:  21% (512/2434)        remote: Counting objects:  22% (536/2434)        remote: Counting objects:  23% (560/2434)        remote: Counting objects:  24% (585/2434)        remote: Counting objects:  25% (609/2434)        remote: Counting objects:  26% (633/2434)        remote: Counting objects:  27% (658/2434)        remote: Counting objects:  28% (682/2434)        remote: Counting objects:  29% (706/2434)        remote: Counting objects:  30% (731/2434)        remote: Counting objects:  31% (755/2434)        remote: Counting objects:  32% (779/2434)        remote: Counting objects:  33% (804/2434)        remote: Counting objects:  34% (828/2434)        remote: Counting objects:  35% (852/2434)        remote: Counting objects:  36% (877/2434)        remote: Counting objects:  37% (901/2434)        remote: Counting objects:  38% (925/2434)        remote: Counting objects:  39% (950/2434)        remote: Counting objects:  40% (974/2434)        remote: Counting objects:  41% (998/2434)        remote: Counting objects:  42% (1023/2434)        remote: Counting objects:  43% (1047/2434)        remote: Counting objects:  44% (1071/2434)        remote: Counting objects:  45% (1096/2434)        remote: Counting objects:  46% (1120/2434)        remote: Counting objects:  47% (1144/2434)        remote: Counting objects:  48% (1169/2434)        remote: Counting objects:  49% (1193/2434)        remote: Counting objects:  50% (1217/2434)        remote: Counting objects:  51% (1242/2434)        remote: Counting objects:  52% (1266/2434)        remote: Counting objects:  53% (1291/2434)        remote: Counting objects:  54% (1315/2434)        remote: Counting objects:  55% (1339/2434)        remote: Counting objects:  56% (1364/2434)        remote: Counting objects:  57% (1388/2434)        remote: Counting objects:  58% (1412/2434)        remote: Counting objects:  59% (1437/2434)        remote: Counting objects:  60% (1461/2434)        remote: Counting objects:  61% (1485/2434)        remote: Counting objects:  62% (1510/2434)        remote: Counting objects:  63% (1534/2434)        remote: Counting objects:  64% (1558/2434)        remote: Counting objects:  65% (1583/2434)        remote: Counting objects:  66% (1607/2434)        remote: Counting objects:  67% (1631/2434)        remote: Counting objects:  68% (1656/2434)        remote: Counting objects:  69% (1680/2434)        remote: Counting objects:  70% (1704/2434)        remote: Counting objects:  71% (1729/2434)        remote: Counting objects:  72% (1753/2434)        remote: Counting objects:  73% (1777/2434)        remote: Counting objects:  74% (1802/2434)        remote: Counting objects:  75% (1826/2434)        remote: Counting objects:  76% (1850/2434)        remote: Counting objects:  77% (1875/2434)        remote: Counting objects:  78% (1899/2434)        remote: Counting objects:  79% (1923/2434)        remote: Counting objects:  80% (1948/2434)        remote: Counting objects:  81% (1972/2434)        remote: Counting objects:  82% (1996/2434)        remote: Counting objects:  83% (2021/2434)        remote: Counting objects:  84% (2045/2434)        remote: Counting objects:  85% (2069/2434)        remote: Counting objects:  86% (2094/2434)        remote: Counting objects:  87% (2118/2434)        remote: Counting objects:  88% (2142/2434)        remote: Counting objects:  89% (2167/2434)        remote: Counting objects:  90% (2191/2434)        remote: Counting objects:  91% (2215/2434)        remote: Counting objects:  92% (2240/2434)        remote: Counting objects:  93% (2264/2434)        remote: Counting objects:  94% (2288/2434)        remote: Counting objects:  95% (2313/2434)        remote: Counting objects:  96% (2337/2434)        remote: Counting objects:  97% (2361/2434)        remote: Counting objects:  98% (2386/2434)        remote: Counting objects:  99% (2410/2434)        remote: Counting objects: 100% (2434/2434)        remote: Counting objects: 100% (2434/2434), done.        
+remote: Compressing objects:   0% (1/1965)        remote: Compressing objects:   1% (20/1965)        remote: Compressing objects:   2% (40/1965)        remote: Compressing objects:   3% (59/1965)        remote: Compressing objects:   4% (79/1965)        remote: Compressing objects:   5% (99/1965)        remote: Compressing objects:   6% (118/1965)        remote: Compressing objects:   7% (138/1965)        remote: Compressing objects:   8% (158/1965)        remote: Compressing objects:   9% (177/1965)        remote: Compressing objects:  10% (197/1965)        remote: Compressing objects:  11% (217/1965)        remote: Compressing objects:  12% (236/1965)        remote: Compressing objects:  13% (256/1965)        remote: Compressing objects:  14% (276/1965)        remote: Compressing objects:  15% (295/1965)        remote: Compressing objects:  16% (315/1965)        remote: Compressing objects:  17% (335/1965)        remote: Compressing objects:  18% (354/1965)        remote: Compressing objects:  19% (374/1965)        remote: Compressing objects:  20% (393/1965)        remote: Compressing objects:  21% (413/1965)        remote: Compressing objects:  22% (433/1965)        remote: Compressing objects:  23% (452/1965)        remote: Compressing objects:  24% (472/1965)        remote: Compressing objects:  25% (492/1965)        remote: Compressing objects:  26% (511/1965)        remote: Compressing objects:  27% (531/1965)        remote: Compressing objects:  28% (551/1965)        remote: Compressing objects:  29% (570/1965)        remote: Compressing objects:  30% (590/1965)        remote: Compressing objects:  31% (610/1965)        remote: Compressing objects:  32% (629/1965)        remote: Compressing objects:  33% (649/1965)        remote: Compressing objects:  34% (669/1965)        remote: Compressing objects:  35% (688/1965)        remote: Compressing objects:  36% (708/1965)        remote: Compressing objects:  37% (728/1965)        remote: Compressing objects:  38% (747/1965)        remote: Compressing objects:  39% (767/1965)        remote: Compressing objects:  40% (786/1965)        remote: Compressing objects:  41% (806/1965)        remote: Compressing objects:  42% (826/1965)        remote: Compressing objects:  43% (845/1965)        remote: Compressing objects:  44% (865/1965)        remote: Compressing objects:  45% (885/1965)        remote: Compressing objects:  46% (904/1965)        remote: Compressing objects:  47% (924/1965)        remote: Compressing objects:  48% (944/1965)        remote: Compressing objects:  49% (963/1965)        remote: Compressing objects:  50% (983/1965)        remote: Compressing objects:  51% (1003/1965)        remote: Compressing objects:  52% (1022/1965)        remote: Compressing objects:  53% (1042/1965)        remote: Compressing objects:  54% (1062/1965)        remote: Compressing objects:  55% (1081/1965)        remote: Compressing objects:  56% (1101/1965)        remote: Compressing objects:  57% (1121/1965)        remote: Compressing objects:  58% (1140/1965)        remote: Compressing objects:  59% (1160/1965)        remote: Compressing objects:  60% (1179/1965)        remote: Compressing objects:  61% (1199/1965)        remote: Compressing objects:  62% (1219/1965)        remote: Compressing objects:  63% (1238/1965)        remote: Compressing objects:  64% (1258/1965)        remote: Compressing objects:  65% (1278/1965)        remote: Compressing objects:  66% (1297/1965)        remote: Compressing objects:  67% (1317/1965)        remote: Compressing objects:  68% (1337/1965)        remote: Compressing objects:  69% (1356/1965)        remote: Compressing objects:  70% (1376/1965)        remote: Compressing objects:  71% (1396/1965)        remote: Compressing objects:  72% (1415/1965)        remote: Compressing objects:  73% (1435/1965)        remote: Compressing objects:  74% (1455/1965)        remote: Compressing objects:  75% (1474/1965)        remote: Compressing objects:  76% (1494/1965)        remote: Compressing objects:  77% (1514/1965)        remote: Compressing objects:  78% (1533/1965)        remote: Compressing objects:  79% (1553/1965)        remote: Compressing objects:  80% (1572/1965)        remote: Compressing objects:  81% (1592/1965)        remote: Compressing objects:  82% (1612/1965)        remote: Compressing objects:  83% (1631/1965)        remote: Compressing objects:  84% (1651/1965)        remote: Compressing objects:  85% (1671/1965)        remote: Compressing objects:  86% (1690/1965)        remote: Compressing objects:  87% (1710/1965)        remote: Compressing objects:  88% (1730/1965)        remote: Compressing objects:  89% (1749/1965)        remote: Compressing objects:  90% (1769/1965)        remote: Compressing objects:  91% (1789/1965)        remote: Compressing objects:  92% (1808/1965)        remote: Compressing objects:  93% (1828/1965)        remote: Compressing objects:  94% (1848/1965)        remote: Compressing objects:  95% (1867/1965)        remote: Compressing objects:  96% (1887/1965)        remote: Compressing objects:  97% (1907/1965)        remote: Compressing objects:  98% (1926/1965)        remote: Compressing objects:  99% (1946/1965)        remote: Compressing objects: 100% (1965/1965)        remote: Compressing objects: 100% (1965/1965), done.        
+Receiving objects:   0% (1/2434)Receiving objects:   1% (25/2434)Receiving objects:   2% (49/2434)Receiving objects:   3% (74/2434)Receiving objects:   4% (98/2434)Receiving objects:   5% (122/2434)Receiving objects:   6% (147/2434)Receiving objects:   7% (171/2434)Receiving objects:   8% (195/2434)Receiving objects:   9% (220/2434)Receiving objects:  10% (244/2434)Receiving objects:  11% (268/2434)Receiving objects:  12% (293/2434)Receiving objects:  13% (317/2434)Receiving objects:  14% (341/2434)Receiving objects:  15% (366/2434)Receiving objects:  16% (390/2434)Receiving objects:  17% (414/2434)Receiving objects:  18% (439/2434)Receiving objects:  19% (463/2434)Receiving objects:  20% (487/2434)Receiving objects:  21% (512/2434)Receiving objects:  22% (536/2434)Receiving objects:  23% (560/2434)Receiving objects:  24% (585/2434)Receiving objects:  25% (609/2434)Receiving objects:  26% (633/2434)Receiving objects:  27% (658/2434)Receiving objects:  28% (682/2434)Receiving objects:  29% (706/2434)Receiving objects:  30% (731/2434)Receiving objects:  31% (755/2434)Receiving objects:  32% (779/2434)Receiving objects:  33% (804/2434)Receiving objects:  34% (828/2434)Receiving objects:  35% (852/2434)Receiving objects:  36% (877/2434)Receiving objects:  37% (901/2434)Receiving objects:  38% (925/2434)Receiving objects:  39% (950/2434)Receiving objects:  40% (974/2434)Receiving objects:  41% (998/2434)Receiving objects:  42% (1023/2434)Receiving objects:  43% (1047/2434)Receiving objects:  44% (1071/2434)Receiving objects:  45% (1096/2434)Receiving objects:  46% (1120/2434)Receiving objects:  47% (1144/2434)Receiving objects:  48% (1169/2434)Receiving objects:  49% (1193/2434)Receiving objects:  50% (1217/2434)Receiving objects:  51% (1242/2434)Receiving objects:  52% (1266/2434)Receiving objects:  53% (1291/2434)Receiving objects:  54% (1315/2434)Receiving objects:  55% (1339/2434)Receiving objects:  56% (1364/2434)Receiving objects:  57% (1388/2434)Receiving objects:  58% (1412/2434)Receiving objects:  59% (1437/2434)Receiving objects:  60% (1461/2434)Receiving objects:  61% (1485/2434)Receiving objects:  62% (1510/2434)Receiving objects:  63% (1534/2434)Receiving objects:  64% (1558/2434)Receiving objects:  65% (1583/2434)Receiving objects:  66% (1607/2434)Receiving objects:  67% (1631/2434)Receiving objects:  68% (1656/2434)Receiving objects:  69% (1680/2434)Receiving objects:  70% (1704/2434)Receiving objects:  71% (1729/2434)Receiving objects:  72% (1753/2434)Receiving objects:  73% (1777/2434)Receiving objects:  74% (1802/2434)Receiving objects:  75% (1826/2434)Receiving objects:  76% (1850/2434)Receiving objects:  77% (1875/2434)Receiving objects:  78% (1899/2434)Receiving objects:  79% (1923/2434)Receiving objects:  80% (1948/2434)Receiving objects:  81% (1972/2434)Receiving objects:  82% (1996/2434)Receiving objects:  83% (2021/2434)Receiving objects:  84% (2045/2434)Receiving objects:  85% (2069/2434)Receiving objects:  86% (2094/2434)Receiving objects:  87% (2118/2434)Receiving objects:  88% (2142/2434)Receiving objects:  89% (2167/2434)Receiving objects:  90% (2191/2434)Receiving objects:  91% (2215/2434)Receiving objects:  92% (2240/2434)Receiving objects:  93% (2264/2434)Receiving objects:  94% (2288/2434)remote: Total 2434 (delta 40), reused 1404 (delta 29), pack-reused 0 (from 0)        
+Receiving objects:  95% (2313/2434)Receiving objects:  96% (2337/2434)Receiving objects:  97% (2361/2434)Receiving objects:  98% (2386/2434)Receiving objects:  99% (2410/2434)Receiving objects: 100% (2434/2434)Receiving objects: 100% (2434/2434), 1.29 MiB | 10.68 MiB/s, done.
+Resolving deltas:   0% (0/40)Resolving deltas:   2% (1/40)Resolving deltas:   5% (2/40)Resolving deltas:   7% (3/40)Resolving deltas:  10% (4/40)Resolving deltas:  12% (5/40)Resolving deltas:  15% (6/40)Resolving deltas:  17% (7/40)Resolving deltas:  20% (8/40)Resolving deltas:  22% (9/40)Resolving deltas:  25% (10/40)Resolving deltas:  30% (12/40)Resolving deltas:  32% (13/40)Resolving deltas:  35% (14/40)Resolving deltas:  37% (15/40)Resolving deltas:  40% (16/40)Resolving deltas:  42% (17/40)Resolving deltas:  45% (18/40)Resolving deltas:  47% (19/40)Resolving deltas:  50% (20/40)Resolving deltas:  52% (21/40)Resolving deltas:  55% (22/40)Resolving deltas:  57% (23/40)Resolving deltas:  60% (24/40)Resolving deltas:  62% (25/40)Resolving deltas:  65% (26/40)Resolving deltas:  67% (27/40)Resolving deltas:  70% (28/40)Resolving deltas:  72% (29/40)Resolving deltas:  75% (30/40)Resolving deltas:  77% (31/40)Resolving deltas:  80% (32/40)Resolving deltas:  82% (33/40)Resolving deltas:  85% (34/40)Resolving deltas:  87% (35/40)Resolving deltas:  90% (36/40)Resolving deltas:  92% (37/40)Resolving deltas:  95% (38/40)Resolving deltas:  97% (39/40)Resolving deltas: 100% (40/40)Resolving deltas: 100% (40/40), done.
+warning: refs/tags/3.5.4 4ebb51be54ca1cf22a66e7d59884c76f10552730 is not a commit!
+-- Configuring done (2.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /opt/blutter/build/dartvm3.5.4_android_arm64
+[1/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/base64.cc.o
+[2/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bit_vector.cc.o
+[3/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/allocation.cc.o
+[4/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bootstrap_natives.cc.o
+[5/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bitmap.cc.o
+[6/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/bss_relocs.cc.o
+[7/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_comments.cc.o
+[8/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/canonical_tables.cc.o
+[9/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/class_finalizer.cc.o
+[10/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_observers.cc.o
+[11/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/class_table.cc.o
+[12/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_arm.cc.o
+[13/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_ia32.cc.o
+[14/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_riscv.cc.o
+[15/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/closure_functions_cache.cc.o
+[16/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_x64.cc.o
+[17/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_arm.cc.o
+[18/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_ia32.cc.o
+[19/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_arm64.cc.o
+[20/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_riscv.cc.o
+[21/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/constants_x64.cc.o
+[22/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_arm.cc.o
+[23/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher.cc.o
+[24/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_descriptors.cc.o
+[25/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_ia32.cc.o
+[26/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/code_patcher_arm64.cc.o
+[27/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_x64.cc.o
+[28/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_arm64.cc.o
+[29/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpu_riscv.cc.o
+[30/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_fuchsia.cc.o
+[31/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_macos.cc.o
+[32/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_android.cc.o
+[33/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_win.cc.o
+[34/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuid.cc.o
+[35/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/cpuinfo_linux.cc.o
+[36/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/app_snapshot.cc.o
+[37/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_arm.cc.o
+[38/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/datastream.cc.o
+[39/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart_api_state.cc.o
+[40/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_ia32.cc.o
+[41/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_riscv.cc.o
+[42/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/deferred_objects.cc.o
+[43/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/deopt_instructions.cc.o
+[44/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dispatch_table.cc.o
+[45/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_x64.cc.o
+[46/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart.cc.o
+[47/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger.cc.o
+[48/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/debugger_arm64.cc.o
+[49/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/experimental_features.cc.o
+[50/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/double_conversion.cc.o
+[51/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dwarf.cc.o
+[52/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart_entry.cc.o
+[53/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/elf.cc.o
+[54/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/exceptions.cc.o
+[55/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/field_table.cc.o
+[56/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/flags.cc.o
+[57/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/ffi_callback_metadata.cc.o
+[58/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_arm.cc.o
+[59/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_ia32.cc.o
+[60/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_riscv.cc.o
+[61/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/handles.cc.o
+[62/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_x64.cc.o
+[63/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/gdb_helpers.cc.o
+[64/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/image_snapshot.cc.o
+[65/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions.cc.o
+[66/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel.cc.o
+[67/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_binary.cc.o
+[68/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/isolate_reload.cc.o
+[69/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/json_stream.cc.o
+[70/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_loader.cc.o
+[71/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/instructions_arm64.cc.o
+[72/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/log.cc.o
+[73/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/json_writer.cc.o
+[74/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/kernel_isolate.cc.o
+[75/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/memory_region.cc.o
+[76/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/longjump.cc.o
+[77/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/lockers.cc.o
+[78/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/megamorphic_cache_table.cc.o
+[79/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/metrics.cc.o
+[80/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message.cc.o
+[81/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message_handler.cc.o
+[82/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_symbol_posix.cc.o
+[83/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_symbol_win.cc.o
+[84/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/isolate.cc.o
+[85/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_message_handler.cc.o
+[86/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_entry.cc.o
+[87/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_graph.cc.o
+[88/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_id_ring.cc.o
+[89/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_reload.cc.o
+[90/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_service.cc.o
+[91/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_android.cc.o
+[92/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_store.cc.o
+[93/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_fuchsia.cc.o
+[94/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/message_snapshot.cc.o
+[95/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_macos.cc.o
+[96/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_absl.cc.o
+[97/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_android.cc.o
+[98/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread.cc.o
+[99/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os.cc.o
+[100/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_fuchsia.cc.o
+[101/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_macos.cc.o
+[102/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_win.cc.o
+[103/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_win.cc.o
+[104/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object_graph_copy.cc.o
+[105/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_thread_linux.cc.o
+[106/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/os_linux.cc.o
+[107/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/proccpuinfo.cc.o
+[108/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/pending_deopts.cc.o
+[109/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/program_visitor.cc.o
+[110/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/profiler.cc.o
+[111/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/profiler_service.cc.o
+[112/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/parser.cc.o
+[113/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/port.cc.o
+[114/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/random.cc.o
+[115/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/raw_object_fields.cc.o
+[116/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler_ir.cc.o
+[117/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler.cc.o
+[118/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/raw_object.cc.o
+[119/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_ast.cc.o
+[120/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_assembler_bytecode.cc.o
+[121/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_interpreter.cc.o
+[122/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/report.cc.o
+[123/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/reverse_pc_lookup_cache.cc.o
+[124/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/resolver.cc.o
+[125/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp.cc.o
+[126/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_arm.cc.o
+[127/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_ia32.cc.o
+[128/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_riscv.cc.o
+[129/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/scopes.cc.o
+[130/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_x64.cc.o
+[131/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/regexp_parser.cc.o
+[132/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry_arm64.cc.o
+[133/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_android.cc.o
+[134/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service_event.cc.o
+[135/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_fuchsia.cc.o
+[136/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_macos.cc.o
+[137/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service_isolate.cc.o
+[138/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_linux.cc.o
+[139/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/service.cc.o
+[140/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/signal_handler_win.cc.o
+[141/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_arm.cc.o
+[142/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_riscv.cc.o
+[143/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_x64.cc.o
+[144/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/source_report.cc.o
+[145/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/snapshot.cc.o
+[146/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/runtime_entry.cc.o
+[147/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stub_code.cc.o
+[148/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stack_trace.cc.o
+[149/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/stack_frame.cc.o
+[150/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter.cc.o
+[151/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_android.cc.o
+[152/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/simulator_arm64.cc.o
+[153/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_fuchsia.cc.o
+[154/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_macos.cc.o
+[155/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/tags.cc.o
+[156/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/symbols.cc.o
+[157/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_win.cc.o
+[158/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_pool.cc.o
+[159/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_stack_resource.cc.o
+[160/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_state.cc.o
+[161/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread.cc.o
+[162/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_android.cc.o
+[163/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_interrupter_linux.cc.o
+[164/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_fuchsia.cc.o
+[165/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_macos.cc.o
+[166/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/thread_registry.cc.o
+[167/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timer.cc.o
+[168/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline.cc.o
+[169/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/timeline_linux.cc.o
+[170/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unibrow.cc.o
+[171/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unicode_data.cc.o
+[172/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/token_position.cc.o
+[173/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/token.cc.o
+[174/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unwinding_records_win.cc.o
+[175/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory.cc.o
+[176/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/object.cc.o
+[177/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unwinding_records.cc.o
+[178/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_fuchsia.cc.o
+[179/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/type_testing_stubs.cc.o
+[180/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_compressed.cc.o
+[181/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_win.cc.o
+[182/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/unicode.cc.o
+[183/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/visitor.cc.o
+[184/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/v8_snapshot_writer.cc.o
+[185/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/allocation.cc.o
+[186/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/assert.cc.o
+[187/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_android.cc.o
+[188/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/floating_point_win.cc.o
+[189/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/virtual_memory_posix.cc.o
+[190/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_fuchsia.cc.o
+[191/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_linux.cc.o
+[192/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/zone.cc.o
+[193/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/hashmap.cc.o
+[194/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_win.cc.o
+[195/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/syslog_macos.cc.o
+[196/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unwinding_records.cc.o
+[197/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unwinding_records_win.cc.o
+[198/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils.cc.o
+[199/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/unicode.cc.o
+[200/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_android.cc.o
+[201/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/zone_text_buffer.cc.o
+[202/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_fuchsia.cc.o
+[203/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/text_buffer.cc.o
+[204/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_macos.cc.o
+[205/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_win.cc.o
+[206/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/platform/utils_linux.cc.o
+[207/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/freelist.cc.o
+[208/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/become.cc.o
+[209/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/gc_shared.cc.o
+[210/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/incremental_compactor.cc.o
+[211/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/compactor.cc.o
+[212/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/heap.cc.o
+[213/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/sampler.cc.o
+[214/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/page.cc.o
+[215/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/pointer_block.cc.o
+[216/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/safepoint.cc.o
+[217/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/pages.cc.o
+[218/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/marker.cc.o
+[219/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/sweeper.cc.o
+[220/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/version.cc.o
+[221/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/weak_code.cc.o
+[222/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/verifier.cc.o
+[223/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/weak_table.cc.o
+[224/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/ffi/native_assets.cc.o
+[225/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/compiler/jit/compiler.cc.o
+[226/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/native_api_impl.cc.o
+[227/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/compiler/runtime_api.cc.o
+[228/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/heap/scavenger.cc.o
+[229/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/bool.cc.o
+[230/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/date.cc.o
+[231/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/array.cc.o
+[232/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/async.cc.o
+[233/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/double.cc.o
+[234/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/errors.cc.o
+[235/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/function.cc.o
+[236/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/growable_array.cc.o
+[237/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/identical.cc.o
+[238/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/object.cc.o
+[239/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/stacktrace.cc.o
+[240/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/integers.cc.o
+[241/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/regexp.cc.o
+[242/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/uri.cc.o
+[243/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/stopwatch.cc.o
+[244/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/string.cc.o
+[245/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/developer.cc.o
+[246/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/profiler.cc.o
+[247/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/timeline.cc.o
+[248/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/ffi_dynamic_library.cc.o
+[249/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/ffi.cc.o
+[250/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/vm/dart_api_impl.cc.o
+[251/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/fast-dtoa.cc.o
+[252/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/strtod.cc.o
+[253/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/math.cc.o
+[254/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/typed_data.cc.o
+[255/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/double-to-string.cc.o
+[256/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/bignum-dtoa.cc.o
+[257/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/cached-powers.cc.o
+[258/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/vmservice.cc.o
+[259/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/bignum.cc.o
+[260/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/fixed-dtoa.cc.o
+[261/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/third_party/double-conversion/src/string-to-double.cc.o
+[262/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/isolate.cc.o
+[263/264] Building CXX object CMakeFiles/dartvm3.5.4_android_arm64.dir/runtime/lib/simd128.cc.o
+[264/264] Linking CXX static library libdartvm3.5.4_android_arm64.a
+-- Install configuration: "Release"
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/lib/libdartvm3.5.4_android_arm64.a
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_api_dl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_embedder_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_tools_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_version.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/internal
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/internal/dart_api_dl_impl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/analyze_snapshot_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/include/dart_native_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_entry.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/simulator_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object_set.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/experimental_features.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/closure_functions_cache.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/code_descriptors.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/signal_handler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/port_set.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/proccpuinfo.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/lockers.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/isolate.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/virtual_memory.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/exceptions.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/reusable_handles.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/class_id.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/class_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_state.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/app_snapshot.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/finalizable_data.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/canonical_tables.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/tags.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/timer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/memory_region.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/longjump.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bss_relocs.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/megamorphic_cache_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/deopt_instructions.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/field_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bootstrap_natives.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/code_entry_kind.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_assembler_bytecode_inl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/message_handler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_interpreter.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/port.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/symbols.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/message.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/handles_impl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/elf.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/ring_buffer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_function.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/flag_list.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object_id_ring.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/timeline.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/kernel_isolate.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/pointer_tagging.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/ffi_callback_metadata.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/snapshot.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/simulator_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/static_type_exactness_state.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_stack_resource.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/handle_visitor.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/base_isolate.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/flags.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/allocation.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dart_api_impl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/resolver.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/code_observers.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/deferred_objects.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_fuchsia.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/kernel_loader.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bit_set.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/source_report.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/program_visitor.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_arguments.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_entry_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/hash_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame_ia32.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_bytecodes.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object_graph.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/log.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_symbol.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/debugger.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/runtime_entry_list.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_parser.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/hash.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bootstrap.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_interrupter.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/unit_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/simulator_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/metrics.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/pending_deopts.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/kernel.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/reverse_pc_lookup_cache.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bitmap.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/json_writer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/native_message_handler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/service
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/unwinding_records.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/code_patcher.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/report.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/ffi
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/ffi/native_assets.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/scope_timer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dart.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/simulator.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/profiler_service.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dart_api_message.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bitfield.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/profiler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_assembler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_win.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/v8_snapshot_writer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/json_stream.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/zone_text_buffer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_trace.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_pool.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/common
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/common/builtin_clock.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event/process_descriptor.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event/track_event.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event/track_descriptor.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event/thread_descriptor.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/track_event/debug_annotation.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/interned_data
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/interned_data/interned_data.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/trace_packet.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/clock_snapshot.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/profiling
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/profiling/profile_packet.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/profiling/profile_common.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/protos/perfetto/trace/trace.pbzero.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_assembler_bytecode.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/datastream.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/splay-tree.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_barrier.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dwarf.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_ast.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/service.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object_store.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_x86.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/tagged_pointer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/message_snapshot.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/double_internals.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/base64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/class_finalizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/unibrow.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/growable_array.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/frame_layout.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/random.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/runtime_entry.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/type_testing_stubs.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/version.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/globals.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/raw_object.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/simulator_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_absl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/perfetto_utils.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/object_graph_copy.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/raw_object_fields.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/bit_vector.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_ia32.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/service_event.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/code_comments.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_base.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/token.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/intrusive_dlist.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/instructions_ia32.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/cha.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/compiler_state.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/stub_code_compiler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/runtime_api.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/method_recognizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/asm_intrinsifier.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/intrinsifier.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_x64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/disassembler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/object_pool_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_riscv.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_ia32.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/assembler/assembler_base.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/compiler_timings.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/runtime_offsets_extracted.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/abi.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/frame_rebase.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_test_custom_zone.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct16bytesMixedx10_3
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/regress46127
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_with_struct
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/floatx20
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct3bytesx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_with_homogenous_struct
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct_VeryLargeStruct
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct8bytesPackedx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_stradle_last_register
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_less_than_word
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct_floatx4
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct8bytesx1
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct16bytesHomogenousx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/regress49460
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct16bytesMixedx10_2
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct128bytesx1
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/structPacked
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/regress_fuchsia105336
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/union5bytesPackedx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/union16bytesHomogenousx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct_floatarray
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct_int8array
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct12bytesFloatx6
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_double
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/mixedx20
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct_int8x10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/int8x10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/struct16bytesMixedx10
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/stradle_last_register
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/doublex20
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_register_alignment
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_tests/variadic_int
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/native_location.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/unit_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/marshaller.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/callback.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/native_type.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/recognized_method.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/native_calling_convention.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/ffi/range.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/call_specializer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/aot
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/aot/aot_call_specializer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/aot/dispatch_table_generator.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/aot/precompiler_tracer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/aot/precompiler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/constant_reader.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/kernel_fingerprints.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/scope_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/kernel_translation_helper.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/flow_graph_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/kernel_binary_flowgraph.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/base_flow_graph_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/kernel_to_il.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/frontend/prologue_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/jit
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/jit/jit_call_specializer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/jit/compiler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/api
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/api/type_check_mode.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/api/print_filter.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/api/deopt_id.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/graph_intrinsifier.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/dart_calling_conventions.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/code_statistics.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/compile_type.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/il_test_helper.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/constant_propagator.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/il_serializer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/inliner.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/il.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/range_analysis.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/flow_graph.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/flow_graph_checker.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/block_builder.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/linearscan.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/locations.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/type_propagator.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/flow_graph_compiler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/loops.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/locations_helpers.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/locations_helpers_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/il_printer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/block_scheduler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/redundancy_elimination.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/branch_optimizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/slot.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/evaluator.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/backend/parallel_move_resolver.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/write_barrier_elimination.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/compiler_pass.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/recognized_methods_list.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/relocation.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/compiler/runtime_offsets_list.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpuid.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stub_code.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/benchmark_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/scopes.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpuinfo.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_macos.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/thread_registry.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_android.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/cpu_ia32.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/fixed_cache.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/debugger_api_impl_test.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants_arm64.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dart_api_state.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/token_position.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/double_conversion.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stub_code_list.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/virtual_memory_compressed.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/isolate_reload.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dispatch_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/boolfield.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/constants.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/service_isolate.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread_linux.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/handles.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/os_thread.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/kernel_binary.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/stack_frame_arm.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/compactor.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/marker.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/weak_code.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/verifier.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/heap.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/scavenger.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/weak_table.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/freelist.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/pointer_block.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/spaces.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/sweeper.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/incremental_compactor.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/become.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/gc_shared.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/page.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/pages.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/safepoint.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/heap/sampler.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/unibrow-inl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/hash_map.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/dart_entry.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/parser.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/image_snapshot.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/zone.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/regexp_assembler_ir.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/vm/visitor.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils_fuchsia.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/elf.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils_macos.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/hashmap.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/allocation.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/leak_sanitizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/floating_point_win.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/syslog.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/thread_sanitizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/undefined_behavior_sanitizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/pe.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/signal_blocker.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/floating_point.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/priority_queue.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/memory_sanitizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/unwinding_records.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/assert.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/address_sanitizer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/splay-tree.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/text_buffer.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/atomic.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/splay-tree-inl.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils_linux.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/growable_array.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/globals.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils_android.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/mach_o.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/safe_stack.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/unicode.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils_win.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/unaligned.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/include/dartvm3.5.4/platform/utils.h
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/lib/cmake/dartvm3.5.4_android_arm64/dartvmTarget.cmake
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/lib/cmake/dartvm3.5.4_android_arm64/dartvmTarget-release.cmake
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/lib/cmake/dartvm3.5.4_android_arm64/dartvm3.5.4_android_arm64Config.cmake
+-- Installing: /opt/blutter/dartsdk/v3.5.4/../../packages/lib/cmake/dartvm3.5.4_android_arm64/dartvm3.5.4_android_arm64ConfigVersion.cmake
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /opt/blutter/build/blutter_dartvm3.5.4_android_arm64
+[1/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/cmake_pch.hxx.gch
+[2/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartField.cpp.o
+[3/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartClass.cpp.o
+[4/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/CodeAnalyzer.cpp.o
+[5/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartLoader.cpp.o
+[6/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartStub.cpp.o
+[7/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartThreadInfo.cpp.o
+[8/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartLibrary.cpp.o
+[9/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartDumper.cpp.o
+[10/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartFunction.cpp.o
+[11/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/Disassembler.cpp.o
+[12/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/Disassembler_arm64.cpp.o
+[13/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/ElfHelper.cpp.o
+[14/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartTypes.cpp.o
+[15/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/DartApp.cpp.o
+[16/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/Util.cpp.o
+[17/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/CodeAnalyzer_arm64.cpp.o
+[18/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/VarValue.cpp.o
+[19/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/il.cpp.o
+[20/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/FridaWriter.cpp.o
+[21/22] Building CXX object CMakeFiles/blutter_dartvm3.5.4_android_arm64.dir/src/main.cpp.o
+[22/22] Linking CXX executable blutter_dartvm3.5.4_android_arm64
+-- Install configuration: "Release"
+-- Installing: /opt/blutter/bin/blutter_dartvm3.5.4_android_arm64
+libapp is loaded at 0x739d72800000
+Dart heap at 0x739c00000000
+Analyzing the application
+Dumping Object Pool
+Generating application assemblies
+Generating Frida script
+Dart version: 3.5.4, Snapshot: 80a49c7111088100a233b2ae788e1f48, Target: android arm64
+flags: product no-code_comments dwarf_stack_traces_mode dedup_instructions no-tsan no-msan arm64 android compressed-pointers

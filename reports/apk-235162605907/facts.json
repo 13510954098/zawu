@@ -1,0 +1,1387 @@
+{
+  "apk": {
+    "bytes": 43291746,
+    "sha256": "235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2"
+  },
+  "manifest": {
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACCESS_WIFI_STATE",
+      "android.permission.READ_MEDIA_AUDIO",
+      "android.permission.READ_MEDIA_VIDEO",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.GET_TASKS",
+      "android.permission.READ_PHONE_STATE",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.REQUEST_INSTALL_PACKAGES",
+      "com.google.android.gms.permission.AD_ID",
+      "android.permission.VIBRATE",
+      "android.permission.CHANGE_NETWORK_STATE",
+      "android.permission.QUERY_ALL_PACKAGES",
+      "android.permission.REORDER_TASKS",
+      "com.hbsclj.uth.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "components": [
+      {
+        "type": "activity",
+        "name": "com.hbsclj.uth.MainActivity",
+        "exported": "true",
+        "filters": 1
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.china.activity.TransparentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.dlopt.activity.ApkConfirmDialogActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.ATLandscapeActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.ATPortraitActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.ATLandscapeTranslucentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.ATPortraitTranslucentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.web.WebLandPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.smartdigimkt.sdk.basead.ui.RewardExitConfirmDialogActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.ADActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.PortraitADActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.LandscapeADActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.RewardvideoPortraitADActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.RewardvideoLandscapeADActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.qq.e.ads.DialogActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.AdWebViewActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.KsFullScreenVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.KsFullScreenLandScapeVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.KsRewardVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.KSRewardLandScapeVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.FeedDownloadActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$KsTrendsActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$ProfileHomeActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$ProfileVideoDetailActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$TubeProfileActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$ChannelDetailActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$TubeDetailActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$EpisodeDetailActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$RequestInstallPermissionActivity",
+        "exported": "false",
+        "filters": 1
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$GoodsPlayBackActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity3",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity4",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity5",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity6",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity7",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity8",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity9",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity10",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity11",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity12",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity13",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity14",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity15",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity16",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity17",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivity18",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleTop1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleTop2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleTop3",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleInstance1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleInstance2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$FragmentActivitySingleInstance3",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.auth.login.KwadRouteHandlerActivity",
+        "exported": "true",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$DeveloperConfigActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleTop1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleTop2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleTask1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleTask2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleInstance1",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.BaseFragmentActivity$LandscapeFragmentActivitySingleInstance2",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.WebPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.kwad.sdk.api.proxy.app.PayResultActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.activity.AnyThinkGdprAuthActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.common.inner.ui.ATLandscapeActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.common.inner.ui.ATPortraitActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.common.inner.ui.ATLandscapeTranslucentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.common.inner.ui.ATPortraitTranslucentActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.common.inner.ui.activity.ATMixSplashActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.core.basead.ui.web.WebLandPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.TransparentAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.AdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.PortraitAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.LandscapeAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.PortraitTransparentAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.sigmob.sdk.base.common.LandscapeTransparentAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.v2.activity.BeiZiNewRewardVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.internal.activity.DownloadAppInfoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.internal.activity.BeiZiDownloadDialogActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.v2.activity.BeiZiLandingPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.v2.activity.BeiZiNewLandingPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.ad.v2.activity.BeiZiLandingActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.fusion.asnp.adn.ad.widget.activity.ASNPDownloadPromptActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.fusion.asnp.adn.ad.widget.activity.ASNPDlInfoDetailActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.fusion.asnp.adn.ad.widget.activity.ASNPAdActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.fusion.asnp.adn.ad.widget.activity.ASNPLandingPageActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.beizi.fusion.asnp.adn.ad.widget.activity.ASNPRewardVideoActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.anythink.flutter.view.SimpleWebViewActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.in_app_browser.InAppBrowserActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivitySingleInstance",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity",
+        "name": "io.flutter.plugins.urllauncher.WebViewActivity",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "activity-alias",
+        "name": "com.hbsclj.uth.kwad.KwadHandlerActivity",
+        "exported": "true",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.smartdigimkt.dlopt.common.service.ApkDownloadService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.qq.e.comm.DownloadService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.kwad.sdk.api.proxy.app.FileDownloadService$SharedMainProcessService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.kwad.sdk.api.proxy.app.FileDownloadService$SeparateProcessService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.kwad.sdk.api.proxy.app.DownloadService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.kwad.sdk.api.proxy.app.ServiceProxyRemote",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.beizi.ad.DownloadService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "service",
+        "name": "com.beizi.fusion.asnp.adn.ad.download.service.DownloadService",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "receiver",
+        "name": "com.smartdigimkt.dlopt.common.NotificationBroadcastReceiver",
+        "exported": "false",
+        "filters": 1
+      },
+      {
+        "type": "receiver",
+        "name": "com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ActionBroadcastReceiver",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "receiver",
+        "name": "dev.fluttercommunity.plus.share.SharePlusPendingIntent",
+        "exported": "false",
+        "filters": 1
+      },
+      {
+        "type": "receiver",
+        "name": "androidx.profileinstaller.ProfileInstallReceiver",
+        "exported": "true",
+        "filters": 4
+      },
+      {
+        "type": "provider",
+        "name": "com.smartdigimkt.dlopt.common.ApkFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.smartdigimkt.sdk.api.SDMInitializationProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.kwad.sdk.api.proxy.app.AdSdkFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.qq.e.comm.GDTFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.anythink.core.api.ATInitializationProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.sigmob.sdk.SigmobFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "com.beizi.fusion.provider.BZFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "dev.fluttercommunity.plus.share.ShareFileProvider",
+        "exported": "false",
+        "filters": 0
+      },
+      {
+        "type": "provider",
+        "name": "androidx.startup.InitializationProvider",
+        "exported": "false",
+        "filters": 0
+      }
+    ],
+    "links": [],
+    "package": "com.hbsclj.uth",
+    "compile_sdk": "36",
+    "version_name": "1.1.7",
+    "version_code": "19",
+    "min_sdk": "24",
+    "target_sdk": "34"
+  },
+  "dex": {
+    "bytes": 19472188,
+    "top_p2": [
+      [
+        "com/kwad",
+        4044
+      ],
+      [
+        "com/smartdigimkt",
+        2098
+      ],
+      [
+        "com/beizi",
+        2030
+      ],
+      [
+        "com/anythink",
+        1764
+      ],
+      [
+        "com/sigmob",
+        1245
+      ],
+      [
+        "androidx/core",
+        888
+      ],
+      [
+        "com/czhj",
+        523
+      ],
+      [
+        "io/flutter",
+        400
+      ],
+      [
+        "java/lang",
+        311
+      ],
+      [
+        "java/util",
+        304
+      ],
+      [
+        "androidx/datastore",
+        288
+      ],
+      [
+        "com/tendcloud",
+        277
+      ],
+      [
+        "android/view",
+        270
+      ],
+      [
+        "androidx/appcompat",
+        269
+      ],
+      [
+        "android/graphics",
+        191
+      ],
+      [
+        "com/kuaishou",
+        180
+      ],
+      [
+        "com/qq",
+        179
+      ],
+      [
+        "androidx/window",
+        166
+      ],
+      [
+        "androidx/webkit",
+        155
+      ],
+      [
+        "androidx/fragment",
+        146
+      ],
+      [
+        "android/content",
+        132
+      ],
+      [
+        "androidx/lifecycle",
+        131
+      ],
+      [
+        "android/os",
+        130
+      ],
+      [
+        "java/io",
+        124
+      ],
+      [
+        "androidx/annotation",
+        117
+      ],
+      [
+        "androidx/transition",
+        117
+      ],
+      [
+        "android/widget",
+        109
+      ],
+      [
+        "android/app",
+        108
+      ],
+      [
+        "androidx/recyclerview",
+        94
+      ],
+      [
+        "android/webkit",
+        91
+      ]
+    ],
+    "top_p3": [
+      [
+        "com/kwad/sdk",
+        2168
+      ],
+      [
+        "com/beizi/fusion",
+        1991
+      ],
+      [
+        "com/kwad/components",
+        1643
+      ],
+      [
+        "com/anythink/core",
+        1247
+      ],
+      [
+        "com/sigmob/sdk",
+        1209
+      ],
+      [
+        "com/tendcloud/tenddata",
+        277
+      ],
+      [
+        "androidx/core/view",
+        265
+      ],
+      [
+        "com/czhj/sdk",
+        230
+      ],
+      [
+        "com/smartdigimkt/v1",
+        200
+      ],
+      [
+        "androidx/datastore/preferences",
+        196
+      ],
+      [
+        "com/qq/e",
+        179
+      ],
+      [
+        "com/kuaishou/weapon",
+        179
+      ],
+      [
+        "com/kwad/framework",
+        157
+      ],
+      [
+        "io/flutter/embedding",
+        155
+      ],
+      [
+        "com/smartdigimkt/sdk",
+        148
+      ],
+      [
+        "androidx/appcompat/widget",
+        145
+      ],
+      [
+        "androidx/core/content",
+        142
+      ],
+      [
+        "androidx/fragment/app",
+        140
+      ],
+      [
+        "com/anythink/network",
+        137
+      ],
+      [
+        "com/czhj/wire",
+        135
+      ],
+      [
+        "androidx/core/app",
+        123
+      ],
+      [
+        "io/flutter/plugin",
+        108
+      ],
+      [
+        "java/util/concurrent",
+        98
+      ],
+      [
+        "com/czhj/volley",
+        87
+      ],
+      [
+        "androidx/recyclerview/widget",
+        83
+      ],
+      [
+        "androidx/webkit/internal",
+        82
+      ],
+      [
+        "androidx/datastore/core",
+        80
+      ],
+      [
+        "com/anythink/odopt",
+        79
+      ],
+      [
+        "androidx/core/graphics",
+        78
+      ],
+      [
+        "com/kwad/library",
+        75
+      ]
+    ]
+  },
+  "native_libs": {
+    "libsgcore.so": {
+      "abis": [
+        "armeabi",
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 321456
+    },
+    "libapp.so": {
+      "abis": [
+        "x86_64",
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 26839444
+    },
+    "libflutter.so": {
+      "abis": [
+        "x86_64",
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 30017248
+    },
+    "libfastdev_quickjs_runtime.so": {
+      "abis": [
+        "x86_64",
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86"
+      ],
+      "bytes": 4071096
+    },
+    "libsqlite3.so": {
+      "abis": [
+        "x86_64",
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 4574596
+    },
+    "libdatastore_shared_counter.so": {
+      "abis": [
+        "x86_64",
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86"
+      ],
+      "bytes": 22900
+    },
+    "libplt-base.so": {
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 622588
+    },
+    "libcommonV2DevInfo.so": {
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 522800
+    },
+    "libverbanr.so": {
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 591748
+    },
+    "libti-monitor.so": {
+      "abis": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "bytes": 182196
+    }
+  },
+  "sdks": [
+    [
+      "快手广告 kwad",
+      4044
+    ],
+    [
+      "smartdigimkt",
+      2098
+    ],
+    [
+      "倍孜 Beizi(聚合)",
+      2030
+    ],
+    [
+      "TopOn AnyThink(聚合)",
+      1764
+    ],
+    [
+      "Sigmob",
+      1245
+    ],
+    [
+      "Flutter",
+      400
+    ],
+    [
+      "TalkingData",
+      277
+    ],
+    [
+      "快手 weapon(反作弊)",
+      180
+    ],
+    [
+      "腾讯广点通 GDT",
+      179
+    ],
+    [
+      "Volley",
+      87
+    ],
+    [
+      "OPPO",
+      8
+    ],
+    [
+      "小米",
+      2
+    ],
+    [
+      "vivo",
+      2
+    ],
+    [
+      "Adjust",
+      2
+    ],
+    [
+      "字节穿山甲 Pangle",
+      1
+    ],
+    [
+      "AppsFlyer",
+      1
+    ]
+  ],
+  "hosts": [
+    [
+      "p1-lm.adkwai.com",
+      11
+    ],
+    [
+      "cn-api.anythinktech.com",
+      6
+    ],
+    [
+      "p2-lm.adkwai.com",
+      5
+    ],
+    [
+      "github.com",
+      4
+    ],
+    [
+      "adx.anythinktech.com",
+      3
+    ],
+    [
+      "cn-tk.anythinktech.com",
+      3
+    ],
+    [
+      "adservice.sigmob.cn",
+      3
+    ],
+    [
+      "issuetracker.google.com",
+      2
+    ],
+    [
+      "cn-api-sec.anythinktech.com",
+      2
+    ],
+    [
+      "play.google.com",
+      2
+    ],
+    [
+      "se.anythinktech.com",
+      2
+    ],
+    [
+      "www.example.com",
+      2
+    ],
+    [
+      "open.e.kuaishou.com",
+      2
+    ],
+    [
+      "static.yximgs.com",
+      2
+    ],
+    [
+      "adx-bj.statisticslinks.com",
+      2
+    ],
+    [
+      "adx-strategy-api-cn.statisticslinks.com",
+      2
+    ],
+    [
+      "api.talkingdata.com",
+      2
+    ],
+    [
+      "api.flutter.dev",
+      2
+    ],
+    [
+      "schemas.android.com",
+      1
+    ],
+    [
+      "adxcn-tk.anythinktech.com",
+      1
+    ],
+    [
+      "cn-da.anythinktech.com",
+      1
+    ],
+    [
+      "ssapi.anythinktech.com",
+      1
+    ],
+    [
+      "apps.samsung.com",
+      1
+    ],
+    [
+      "msg.cmpassport.com",
+      1
+    ],
+    [
+      "p3-lm.adkwai.com",
+      1
+    ],
+    [
+      "p4-lm.adkwai.com",
+      1
+    ],
+    [
+      "p5-lm.adkwai.com",
+      1
+    ],
+    [
+      "style-browse-openapi.test.gifshow.com",
+      1
+    ],
+    [
+      "developer.android.com",
+      1
+    ],
+    [
+      "docs.flutter.dev",
+      1
+    ],
+    [
+      "xmlpull.org",
+      1
+    ],
+    [
+      "adx-tk-sz.statisticslinks.com",
+      1
+    ],
+    [
+      "adxtool.sigmob.cn",
+      1
+    ],
+    [
+      "c.etoolads.cn",
+      1
+    ],
+    [
+      "da.statisticslinks.com",
+      1
+    ],
+    [
+      "dc.sigmob.cn",
+      1
+    ],
+    [
+      "dns.qq.com",
+      1
+    ],
+    [
+      "me.cpatrk.net",
+      1
+    ],
+    [
+      "tdsdk.cpatrk.net",
+      1
+    ],
+    [
+      "tk.statisticslinks.com",
+      1
+    ],
+    [
+      "stackoverflow.com",
+      1
+    ],
+    [
+      "promisesaplus.com",
+      1
+    ],
+    [
+      "developer.mozilla.org",
+      1
+    ],
+    [
+      "lz-1382057604.cos.ap-hongkong.myqcloud.com",
+      1
+    ],
+    [
+      "flutter.dev",
+      1
+    ]
+  ],
+  "key_names": [
+    [
+      "placementid",
+      157
+    ],
+    [
+      "appid",
+      99
+    ],
+    [
+      "placement_id",
+      46
+    ],
+    [
+      "app_id",
+      32
+    ],
+    [
+      "slot_id",
+      28
+    ],
+    [
+      "appkey",
+      25
+    ],
+    [
+      "app_key",
+      8
+    ],
+    [
+      "secretkey",
+      6
+    ],
+    [
+      "slotid",
+      2
+    ],
+    [
+      "accesskey",
+      1
+    ],
+    [
+      "access_key",
+      1
+    ]
+  ],
+  "signature": {
+    "schemes": {
+      "v2": true,
+      "v3": false,
+      "v1": false
+    },
+    "cert_dn": "C=US, ST=State, L=City, O=MyCompany, CN=Android",
+    "cert_sha256": "cdd266df8b2399c24da38e408b6d9825c7bd2af073229847f551ea653ea096e1",
+    "notes": []
+  },
+  "apkid": null,
+  "flutter": {
+    "assets": 8,
+    "libapp_bytes": 8651680
+  }
+}
