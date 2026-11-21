@@ -189,3 +189,4 @@ cmd: Failure calling service activity: Broken pipe (32)'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell am broadcast -a com.android.emulator.multidisplay.START -n com.android.emulator.multidisplay/.MultiDisplayServiceReceiver --user 0 ' failed: 'adb: device 'emulator-5554' not found'
 INFO         | Boot completed in 31041 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+WARNING      | Netsim Wifi ipv6:%5B::1%5D:43739 is gone due to Stream removed (sendmsg: Connection reset by peer (104))
