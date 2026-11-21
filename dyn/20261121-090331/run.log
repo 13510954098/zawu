@@ -25,3 +25,4 @@ list_avds=probe
 emu_pid=3306
 /home/runner/work/_temp/df4c0f61-f57c-49c4-9d52-df6844da1360.sh: line 22: adb: command not found
 [09:05:10] emulator-up
+[09:06:02] wait-boot-6
