@@ -1,0 +1,52 @@
+name: lzsign-blutter-crack
+on:
+  workflow_dispatch:
+
+jobs:
+  blutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - name: 0. 环境与依赖
+        run: |
+          g++ --version | head -1
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libicu-dev libcapstone-dev pkg-config python3-pyelftools python3-requests ninja-build unzip >/dev/null
+          pkg-config --modversion icu-uc capstone
+          df -h / | tail -1
+
+      - name: 1. 下载 APK 并抽取 arm64 libapp.so
+        run: |
+          curl -sL --max-time 300 -o lz.apk "https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX3NwX2FwcDo1NjUxMTIxNTQ3Ok1FUkNIQU5UOltCQDczMTcyNjJlOjI0MTk5NzMyMDIzNTQ3BqQ%3D.apk"
+          ls -la lz.apk
+          sha256sum lz.apk
+          unzip -o -q lz.apk "lib/arm64-v8a/*" -d apklib
+          ls -la apklib/lib/arm64-v8a/libapp.so
+          strings -n 4 apklib/lib/arm64-v8a/libapp.so | grep -iE "lzsign|sign_key|signKey|secret|app/api/" | sort -u > arm64-strings-lzsign.txt || true
+          cat arm64-strings-lzsign.txt | head -40
+
+      - name: 2. 安装并运行 blutter（自动构建对应 Dart 3.5.4 的 VM）
+        run: |
+          git clone -q --depth 1 https://github.com/worawit/blutter.git
+          cd blutter
+          python3 blutter.py ../apklib/lib/arm64-v8a ../blutter_out 2>&1 | tail -40
+
+      - name: 3. 快速搜捕 lzsign/签名相关符号
+        run: |
+          cd blutter_out
+          echo "=== out 结构 ==="; du -sh asm; ls | head
+          echo "=== asm 中 lzsign 引用 ==="
+          grep -rln "lzsign" asm/ | head -20
+          grep -rn "lzsign" asm/ | grep -v "^Binary" | head -60 || true
+          echo "=== objs/pp 中签名相关 ==="
+          grep -in "lzsign\|sign" objs.txt | head -40 || true
+          echo "=== md5 常量引用文件 ==="
+          grep -rln "67452301\|d76aa478\|e8b44c7d\|a8304613" asm/ 2>/dev/null | head -10 || true
+
+      - name: 4. 保存 blutter 输出为 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: blutter-out
+          path: blutter_out
+          retention-days: 5
+          if-no-files-found: warn
