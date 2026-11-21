@@ -1,0 +1,299 @@
+name: RE-Frida 密钥猎杀矩阵 v1
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+env:
+  PKG: com.hbsclj.uth
+  APK_URL: 'https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTY1MTEyMTU0NzpNRVJDSEFOVDpbQkA3MzE3MjYyZToyNDE5OTczMjAyMzU0Nw%3D%3D.apk'
+  APK_SHA: '235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2'
+  APK_SIZE: '43291746'
+  API: '33'
+  ABI: 'x86_64'
+  AVD_NAME: probe
+
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [glob32, candctx, sbox, writehook, sockethook, javabridge, procfs, offlinebrute]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 0. Bootstrap
+        run: |
+          TS=$(date -u +%Y%m%d-%H%M%S)
+          echo "TS=$TS" >> "$GITHUB_ENV"
+          echo "VARIANT=${{ matrix.variant }}" >> "$GITHUB_ENV"
+          echo "BR=re/frida-$TS-${{ matrix.variant }}" >> "$GITHUB_ENV"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mkdir -p "dyn/$TS"
+          echo "== start $(date -u) variant=${{ matrix.variant }} ==" >> "dyn/$TS/run.log"
+          cat > /tmp/hb.sh <<'HB'
+          #!/usr/bin/env bash
+          cd "$GITHUB_WORKSPACE" || exit 0
+          FULL=0
+          if [ "$1" = "-a" ]; then FULL=1; shift; fi
+          TS="$1"; shift
+          echo "[$(date -u +%H:%M:%S)] $*" >> "dyn/$TS/run.log"
+          git add -A "dyn/$TS" frida-hit 2>/dev/null
+          git commit -q -m "hb: ${{ matrix.variant }} $*" 2>/dev/null
+          git push -q origin "HEAD:refs/heads/re/frida-$TS-${{ matrix.variant }}" 2>/dev/null || true
+          HB
+          chmod +x /tmp/hb.sh
+          /tmp/hb.sh "$TS" init
+
+      - name: 1. APK 下载+校验
+        if: ${{ matrix.variant != 'offlinebrute' }}
+        run: |
+          RC=0
+          curl -fsSL --retry 3 --max-time 600 -o /tmp/app.apk "$APK_URL" || RC=$?
+          GOT=$(sha256sum /tmp/app.apk 2>/dev/null | cut -d' ' -f1 || echo none)
+          echo "curl_exit=$RC sha=$GOT" >> "dyn/$TS/run.log"
+          if [ "$GOT" != "$APK_SHA" ]; then
+            echo "APK_URL 速朽，走 configv2 回落" >> "dyn/$TS/run.log"
+            NEW=$(curl -fsSL --max-time 30 -A "Dart/3.5 (dart:io)" "http://cdn.mechat.fun/app/api/configv2" | python3 -c "import sys,re; m=re.findall(r'https?://[^\"]+\.apk', sys.stdin.read()); print(m[0] if m else '')")
+            echo "new_url=$NEW" >> "dyn/$TS/run.log"
+            if [ -n "$NEW" ]; then curl -fsSL --retry 3 --max-time 600 -o /tmp/app.apk "$NEW"; GOT=$(sha256sum /tmp/app.apk | cut -d' ' -f1); fi
+            [ "$GOT" = "$APK_SHA" ] || { /tmp/hb.sh "$TS" apk-failed; exit 1; }
+          fi
+          /tmp/hb.sh "$TS" downloaded
+
+      - name: 2. 工具链+frida客户端
+        if: ${{ matrix.variant != 'offlinebrute' }}
+        run: |
+          export PATH=/usr/local/lib/android/sdk/cmdline-tools/latest/bin:/usr/local/lib/android/sdk/platform-tools:$PATH
+          sudo chmod 666 /dev/kvm >> "dyn/$TS/run.log" 2>&1 || true
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          sdkmanager --install "emulator" "platform-tools" "system-images;android-$API;google_apis;$ABI" >> "dyn/$TS/sdk.log" 2>&1 || true
+          ls "/usr/local/lib/android/sdk/system-images/android-$API/google_apis/$ABI" >/dev/null 2>&1 || { /tmp/hb.sh "$TS" sdk-image-missing; exit 1; }
+          pip3 install -q frida==16.5.9 pycryptodome >> "dyn/$TS/sdk.log" 2>&1 || pip3 install -q frida pycryptodome >> "dyn/$TS/sdk.log" 2>&1 || true
+          python3 -c "import frida; print('frida', frida.__version__)" >> "dyn/$TS/run.log" 2>&1 || true
+          /tmp/hb.sh "$TS" toolchain-ready
+
+      - name: 3. AVD
+        if: ${{ matrix.variant != 'offlinebrute' }}
+        run: |
+          export PATH=/usr/local/lib/android/sdk/cmdline-tools/latest/bin:$PATH
+          unset ANDROID_AVD_HOME ANDROID_SDK_HOME ANDROID_USER_HOME ANDROID_PREFS_ROOT
+          echo no | avdmanager -v create avd -n "$AVD_NAME" -k "system-images;android-$API;google_apis;$ABI" -d pixel_5 --force >> "dyn/$TS/avd.log" 2>&1 || echo no | avdmanager -v create avd -n "$AVD_NAME" -k "system-images;android-$API;google_apis;$ABI" --force >> "dyn/$TS/avd.log" 2>&1
+          INI=$(find "$HOME" -maxdepth 4 -name "$AVD_NAME.ini" 2>/dev/null | head -1)
+          [ -n "$INI" ] || { /tmp/hb.sh "$TS" avd-missing; exit 1; }
+          AVD_HOME=$(dirname "$INI")
+          echo "AVD_HOME=$AVD_HOME" >> "$GITHUB_ENV"
+          /tmp/hb.sh "$TS" avd-ready
+
+      - name: 4. 模拟器+装机+启动App
+        if: ${{ matrix.variant != 'offlinebrute' }}
+        run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
+          export ANDROID_AVD_HOME="$AVD_HOME"
+          EMU=/usr/local/lib/android/sdk/emulator/emulator
+          OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -writable-system"
+          nohup $EMU $OPTS -accel on > "dyn/$TS/emulator.log" 2>&1 & EMU_PID=$!
+          sleep 20
+          if ! kill -0 "$EMU_PID" 2>/dev/null; then
+            echo "accel on 失败回退 off" >> "dyn/$TS/run.log"
+            nohup $EMU $OPTS -accel off > "dyn/$TS/emulator.log" 2>&1 & EMU_PID=$!
+            sleep 20
+          fi
+          echo "EMU_PID=$EMU_PID" >> "$GITHUB_ENV"
+          adb start-server >> "dyn/$TS/run.log" 2>&1 || true
+          BOOTED=0
+          for i in $(seq 1 60); do
+            B=$(timeout 15 adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            if [ "$B" = "1" ]; then BOOTED=1; echo "boot_ok_loop=$i" >> "dyn/$TS/run.log"; break; fi
+            sleep 10
+          done
+          [ "$BOOTED" = "1" ] || { /tmp/hb.sh "$TS" boot-timeout; exit 1; }
+          timeout 60 adb shell settings put global window_animation_scale 0 || true
+          timeout 60 adb shell settings put global transition_animation_scale 0 || true
+          timeout 60 adb shell settings put global animator_duration_scale 0 || true
+          adb root >> "dyn/$TS/run.log" 2>&1 || true; sleep 3
+          adb install -r -g /tmp/app.apk >> "dyn/$TS/install.log" 2>&1 || { /tmp/hb.sh "$TS" install-failed; exit 1; }
+          adb shell am start -n "$PKG/.MainActivity" >> "dyn/$TS/run.log" 2>&1 || true
+          sleep 30
+          /tmp/hb.sh "$TS" app-up
+
+      - name: 5. frida-server 部署
+        if: ${{ matrix.variant != 'procfs' && matrix.variant != 'offlinebrute' }}
+        run: |
+          curl -fsSL --max-time 300 -o /tmp/fs.xz "https://github.com/frida/frida/releases/download/16.5.9/frida-server-16.5.9-android-x86_64.xz" || { /tmp/hb.sh "$TS" frida-dl-failed; exit 1; }
+          xz -d -k -f /tmp/fs.xz
+          adb push /tmp/fs /data/local/tmp/fs >> "dyn/$TS/run.log" 2>&1
+          adb shell "chmod 755 /data/local/tmp/fs; (su 0 /data/local/tmp/fs >/dev/null 2>&1 &) || (/data/local/tmp/fs >/dev/null 2>&1 &)" || true
+          sleep 5
+          adb shell "ps -A | grep fs | head -2" >> "dyn/$TS/run.log" 2>&1 || true
+          /tmp/hb.sh "$TS" frida-server-up
+
+      - name: 6c. 采集器[glob32]
+        if: ${{ matrix.variant == 'glob32' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CnJwYy5leHBvcnRzID0geyBkdW1wOiBmdW5jdGlvbiAoKSB7CiAgdmFyIHRvdGFsID0gMDsKICB2YXIgcmFuZ2VzID0gUHJvY2Vzcy5lbnVtZXJhdGVSYW5nZXMoJ3J3LScpOwogIGZvciAodmFyIGkgPSAwOyBpIDwgcmFuZ2VzLmxlbmd0aDsgaSsrKSB7CiAgICB2YXIgciA9IHJhbmdlc1tpXTsKICAgIGlmIChyLnNpemUgPiA5NiAqIDEwMjQgKiAxMDI0KSBjb250aW51ZTsKICAgIGlmICh0b3RhbCArIHIuc2l6ZSA+IDMyMCAqIDEwMjQgKiAxMDI0KSBjb250aW51ZTsKICAgIHRvdGFsICs9IHIuc2l6ZTsKICAgIHRyeSB7CiAgICAgIHNlbmQoeyB0OiAncmFuZ2UnLCBiYXNlOiByLmJhc2UudG9TdHJpbmcoKSwgc2l6ZTogci5zaXplIH0pOwogICAgICB2YXIgQ0ggPSA0ICogMTAyNCAqIDEwMjQ7CiAgICAgIGZvciAodmFyIG9mZiA9IDA7IG9mZiA8IHIuc2l6ZTsgb2ZmICs9IENIKSB7CiAgICAgICAgdmFyIG4gPSBNYXRoLm1pbihDSCwgci5zaXplIC0gb2ZmKTsKICAgICAgICB2YXIgZGF0YSA9IHIuYmFzZS5hZGQob2ZmKS5yZWFkQnl0ZUFycmF5KG4pOwogICAgICAgIHNlbmQoeyB0OiAnbWVtJywgYmFzZTogci5iYXNlLmFkZChvZmYpLnRvU3RyaW5nKCkgfSwgZGF0YSk7CiAgICAgIH0KICAgIH0gY2F0Y2ggKGUpIHsgc2VuZCh7IHQ6ICdyYW5nZWVycicsIGF0OiByLmJhc2UudG9TdHJpbmcoKSwgZTogJycgKyBlIH0pOyB9CiAgfQogIHNlbmQoeyB0OiAnZHVtcGRvbmUnLCB0b3RhbDogdG90YWwgfSk7Cn0gfTsK" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6c. 采集器[candctx]
+        if: ${{ matrix.variant == 'candctx' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CmZ1bmN0aW9uIGhleFBhdChzKSB7IHZhciBvID0gW107IGZvciAodmFyIGkgPSAwOyBpIDwgcy5sZW5ndGg7IGkrKykgby5wdXNoKCgnMCcgKyBzLmNoYXJDb2RlQXQoaSkudG9TdHJpbmcoMTYpKS5zbGljZSgtMikpOyByZXR1cm4gby5qb2luKCcgJyk7IH0KZnVuY3Rpb24gc2NhblBhdChwYXQsIHRhZywgY3R4bGVuKSB7CiAgdmFyIG4gPSAwOwogIFByb2Nlc3MuZW51bWVyYXRlUmFuZ2VzKCdydy0nKS5mb3JFYWNoKGZ1bmN0aW9uIChyKSB7CiAgICBpZiAoci5zaXplID4gMTYwICogMTAyNCAqIDEwMjQpIHJldHVybjsKICAgIHRyeSB7CiAgICAgIE1lbW9yeS5zY2FuKHIuYmFzZSwgci5zaXplLCBwYXQsIHsgb25NYXRjaDogZnVuY3Rpb24gKGEsIHN6KSB7CiAgICAgICAgbisrOwogICAgICAgIHRyeSB7IHNlbmQoeyB0OiB0YWcsIGF0OiBhLnRvU3RyaW5nKCkgfSwgTWVtb3J5LnJlYWRCeXRlQXJyYXkoYS5zdWIoY3R4bGVuIC8gMiksIGN0eGxlbikpOyB9CiAgICAgICAgY2F0Y2ggKGUpIHsgdHJ5IHsgc2VuZCh7IHQ6IHRhZywgYXQ6IGEudG9TdHJpbmcoKSB9LCBNZW1vcnkucmVhZEJ5dGVBcnJheShhLCBjdHhsZW4pKTsgfSBjYXRjaCAoZTIpIHt9IH0KICAgICAgfSwgb25Db21wbGV0ZTogZnVuY3Rpb24gKCkge30gfSk7CiAgICB9IGNhdGNoIChlKSB7fQogIH0pOwogIHJldHVybiBuOwp9CnJwYy5leHBvcnRzID0geyBzY2FuOiBmdW5jdGlvbiAoKSB7CiAgdmFyIHIxID0gc2NhblBhdChoZXhQYXQoJ2Y4ZDk5MmM3NGIyOTQ5MWQ4YTNlM2ZkNWYwNzM4OWQ4JyksICdjdHhfZjhkOScsIDgxOTIpOwogIHZhciByMiA9IHNjYW5QYXQoaGV4UGF0KCdlNGRjODVhM2VhMzA5ZTg5ODA3ZTNlY2RlNTAyMmM1OCcpLCAnY3R4X21wYmVpdicsIDQwOTYpOwogIHZhciByMyA9IHNjYW5QYXQoaGV4UGF0KCdvY2prZXQnKSwgJ2N0eF9kb2gnLCA0MDk2KTsKICBzZW5kKHsgdDogJ3NjYW5kb25lJywgZjhkOTogcjEsIG1wYmVpdjogcjIsIGRvaDogcjMgfSk7Cn0gfTsKc2V0SW50ZXJ2YWwoZnVuY3Rpb24gKCkgeyB0cnkgeyBycGMuZXhwb3J0cy5zY2FuKCk7IH0gY2F0Y2ggKGUpIHt9IH0sIDIwMDAwKTsK" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6c. 采集器[sbox]
+        if: ${{ matrix.variant == 'sbox' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CnZhciBTQk9YID0gJzYzIDdjIDc3IDdiIGYyIDZiIDZmIGM1IDMwIDAxIDY3IDJiIGZlIGQ3IGFiIDc2JzsKdmFyIGhpdHMgPSAwOwpmdW5jdGlvbiBzY2FuKCkgewogIFByb2Nlc3MuZW51bWVyYXRlUmFuZ2VzKCdydy0nKS5mb3JFYWNoKGZ1bmN0aW9uIChyKSB7CiAgICBpZiAoci5zaXplID4gMTYwICogMTAyNCAqIDEwMjQpIHJldHVybjsKICAgIHRyeSB7CiAgICAgIE1lbW9yeS5zY2FuKHIuYmFzZSwgci5zaXplLCBTQk9YLCB7IG9uTWF0Y2g6IGZ1bmN0aW9uIChhLCBzeikgewogICAgICAgIGhpdHMrKzsKICAgICAgICB0cnkgeyBzZW5kKHsgdDogJ3Nib3gnLCBhdDogYS50b1N0cmluZygpIH0sIE1lbW9yeS5yZWFkQnl0ZUFycmF5KGEuc3ViKDY1NTM2KSwgMTMxMDcyKSk7IH0KICAgICAgICBjYXRjaCAoZSkgeyB0cnkgeyBzZW5kKHsgdDogJ3Nib3gnLCBhdDogYS50b1N0cmluZygpIH0sIE1lbW9yeS5yZWFkQnl0ZUFycmF5KGEsIDY1NTM2KSk7IH0gY2F0Y2ggKGUyKSB7fSB9CiAgICAgIH0sIG9uQ29tcGxldGU6IGZ1bmN0aW9uICgpIHt9IH0pOwogICAgfSBjYXRjaCAoZSkge30KICB9KTsKICBpZiAoaGl0cyA+IDApIHNlbmQoeyB0OiAnc2JveGRvbmUnLCBoaXRzOiBoaXRzIH0pOwp9CnJwYy5leHBvcnRzID0geyBzY2FuOiBzY2FuIH07CnNldEludGVydmFsKGZ1bmN0aW9uICgpIHsgdHJ5IHsgc2NhbigpOyB9IGNhdGNoIChlKSB7fSB9LCAyMDAwMCk7Cg==" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6c. 采集器[writehook]
+        if: ${{ matrix.variant == 'writehook' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CnZhciByZWFkbGluayA9IG5ldyBOYXRpdmVGdW5jdGlvbihNb2R1bGUuZ2V0RXhwb3J0QnlOYW1lKG51bGwsICdyZWFkbGluaycpLCAnaW50JywgWydwb2ludGVyJywgJ3BvaW50ZXInLCAnaW50J10pOwp2YXIgdGJ1ZiA9IE1lbW9yeS5hbGxvYygxMDI0KTsKZ2xvYmFsVGhpcy5faGl0ID0gZmFsc2U7CkludGVyY2VwdG9yLmF0dGFjaChNb2R1bGUuZ2V0RXhwb3J0QnlOYW1lKG51bGwsICd3cml0ZScpLCB7CiAgb25FbnRlcjogZnVuY3Rpb24gKGFyZ3MpIHsgdGhpcy5mZCA9IGFyZ3NbMF0udG9JbnQzMigpOyB0aGlzLnAgPSBhcmdzWzFdOyB0aGlzLm4gPSBhcmdzWzJdLnRvSW50MzIoKTsgfSwKICBvbkxlYXZlOiBmdW5jdGlvbiAocmV0KSB7CiAgICBpZiAodGhpcy5uID4gMjAwMDAgJiYgIWdsb2JhbFRoaXMuX2hpdCkgewogICAgICB0cnkgewogICAgICAgIHZhciBwMSA9IE1lbW9yeS5hbGxvY1V0ZjhTdHJpbmcoJy9wcm9jL3NlbGYvZmQvJyArIHRoaXMuZmQpOwogICAgICAgIHZhciBybCA9IHJlYWRsaW5rKHAxLCB0YnVmLCAxMDIzKTsKICAgICAgICBpZiAocmwgPiAwKSB7CiAgICAgICAgICB2YXIgdGFyZ2V0ID0gdGJ1Zi5yZWFkVXRmOFN0cmluZyhybCk7CiAgICAgICAgICBpZiAodGFyZ2V0LmluZGV4T2YoJ2xpYkNhY2hlZEltYWdlRGF0YScpID49IDApIHsKICAgICAgICAgICAgZ2xvYmFsVGhpcy5faGl0ID0gdHJ1ZTsKICAgICAgICAgICAgc2VuZCh7IHQ6ICdwbGFpbndyaXRlJywgYXQ6IHRoaXMucC50b1N0cmluZygpLCBuOiB0aGlzLm4sIHRhcmdldDogJycgKyB0YXJnZXQgfSwgdGhpcy5wLnJlYWRCeXRlQXJyYXkoOTYpKTsKICAgICAgICAgICAgc2VuZCh7IHQ6ICd0cmlnZ2VyJyB9KTsKICAgICAgICAgIH0KICAgICAgICB9CiAgICAgIH0gY2F0Y2ggKGUpIHt9CiAgICB9CiAgfQp9KTsKc2VuZCh7IHQ6ICd3cml0ZWhvb2tlZCcgfSk7Cg==" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6c. 采集器[sockethook]
+        if: ${{ matrix.variant == 'sockethook' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CmZ1bmN0aW9uIHByb2JlKG5hbWUpIHsKICB0cnkgewogICAgSW50ZXJjZXB0b3IuYXR0YWNoKE1vZHVsZS5nZXRFeHBvcnRCeU5hbWUobnVsbCwgbmFtZSksIHsKICAgICAgb25FbnRlcjogZnVuY3Rpb24gKGFyZ3MpIHsgdGhpcy5mZCA9IGFyZ3NbMF0udG9JbnQzMigpOyB0aGlzLnAgPSBhcmdzWzFdOyB9LAogICAgICBvbkxlYXZlOiBmdW5jdGlvbiAocmV0KSB7CiAgICAgICAgdmFyIG4gPSByZXQudG9JbnQzMigpOwogICAgICAgIGlmIChuID4gNDAwMDApIHsKICAgICAgICAgIHRyeSB7CiAgICAgICAgICAgIHZhciBoZWFkID0gdGhpcy5wLnJlYWRCeXRlQXJyYXkoOTYpOwogICAgICAgICAgICB2YXIgYmwgPSBuZXcgVWludDhBcnJheShoZWFkKTsKICAgICAgICAgICAgdmFyIG1hZ2ljID0gYmxbMF0udG9TdHJpbmcoMTYpICsgYmxbMV0udG9TdHJpbmcoMTYpOwogICAgICAgICAgICBzZW5kKHsgdDogJ2JpZ3JlYWQnLCBmbjogbmFtZSwgZmQ6IHRoaXMuZmQsIG46IG4sIGF0OiB0aGlzLnAudG9TdHJpbmcoKSwgbWFnaWM6IG1hZ2ljIH0sIGhlYWQpOwogICAgICAgICAgfSBjYXRjaCAoZSkge30KICAgICAgICB9CiAgICAgIH0KICAgIH0pOwogICAgc2VuZCh7IHQ6IG5hbWUgKyAnaG9va2VkJyB9KTsKICB9IGNhdGNoIChlKSB7IHNlbmQoeyB0OiBuYW1lICsgJ2VycicsIGU6ICcnICsgZSB9KTsgfQp9CnByb2JlKCdyZWN2Jyk7IHByb2JlKCdyZWFkJyk7Cg==" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6c. 采集器[javabridge]
+        if: ${{ matrix.variant == 'javabridge' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "PID=$PID" >> "$GITHUB_ENV"
+          echo "CmltcG9ydCBmcmlkYSwgc3lzLCB0aW1lLCBvcywganNvbgpwaWQ9aW50KHN5cy5hcmd2WzFdKTsganNfcGF0aD1zeXMuYXJndlsyXTsgb3V0PXN5cy5hcmd2WzNdOyBzZWNzPWZsb2F0KHN5cy5hcmd2WzRdKQpkZXY9ZnJpZGEuZ2V0X3VzYl9kZXZpY2UodGltZW91dD00MCkKc2Vzc2lvbj1kZXYuYXR0YWNoKHBpZCkKanM9b3Blbihqc19wYXRoKS5yZWFkKCkKc2NyaXB0PXNlc3Npb24uY3JlYXRlX3NjcmlwdChqcykKZj1vcGVuKG91dCwnYScsYnVmZmVyaW5nPTEpCmN0cj1bMF0KZGVmIG9uX21zZyhtLCBkYXRhKToKICAgIHRyeToKICAgICAgICBpZiBtWyd0eXBlJ109PSdzZW5kJzoKICAgICAgICAgICAgcD1tLmdldCgncGF5bG9hZCcse30pCiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UocCxkaWN0KSBhbmQgcC5nZXQoJ3QnKT09J21lbScgYW5kIGRhdGE6CiAgICAgICAgICAgICAgICBpZHg9b3MucGF0aC5nZXRzaXplKCcvdG1wL21lbWR1bXAuYmluJykgaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKSBlbHNlIDAKICAgICAgICAgICAgICAgIHdpdGggb3BlbignL3RtcC9tZW1kdW1wLmJpbicsJ2FiJykgYXMgbWY6IG1mLndyaXRlKGRhdGEpCiAgICAgICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonbWVtcmVmJywnYmFzZSc6cC5nZXQoJ2Jhc2UnKSwnc2l6ZSc6bGVuKGRhdGEpLCdpZHgnOmlkeH0pKydcbicpCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBjdHJbMF0rPTEKICAgICAgICAgICAgICAgIGlmIGRhdGE6CiAgICAgICAgICAgICAgICAgICAgd2l0aCBvcGVuKCcvdG1wL2N0eF8lMDNkLmJpbiclY3RyWzBdLCd3YicpIGFzIGNmOiBjZi53cml0ZShkYXRhKQogICAgICAgICAgICAgICAgZi53cml0ZShqc29uLmR1bXBzKHsnbXNnJzpwLCdkbGVuJzpsZW4oZGF0YSkgaWYgZGF0YSBlbHNlIDB9KSsnXG4nKQogICAgICAgIGVsaWYgbVsndHlwZSddPT0nZXJyb3InOgogICAgICAgICAgICBmLndyaXRlKGpzb24uZHVtcHMoeydlcnInOnN0cihtLmdldCgnZGVzY3JpcHRpb24nLCcnKSlbOjQwMF19KSsnXG4nKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J2hhcm5lc3NfZXJyJzpzdHIoZSl9KSsnXG4nKQpzY3JpcHQub24oJ21lc3NhZ2UnLCBvbl9tc2cpCnNjcmlwdC5sb2FkKCkKZi53cml0ZShqc29uLmR1bXBzKHsndCc6J2NvbGxlY3Rvcl9zdGFydCcsJ3ZhcmlhbnQnOmpzX3BhdGh9KSsnXG4nKQp0MD10aW1lLnRpbWUoKTsgZHVtcGVkPUZhbHNlCndoaWxlIHRpbWUudGltZSgpLXQwIDwgc2VjczoKICAgIGlmIG9zLnBhdGguZXhpc3RzKCcvdG1wL2dvX2R1bXAnKSBhbmQgbm90IGR1bXBlZDoKICAgICAgICBkdW1wZWQ9VHJ1ZQogICAgICAgIGRvbmU9RmFsc2UKICAgICAgICBmb3IgbWV0aCBpbiAoJ2R1bXAnLCdzY2FuJyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGV4ID0gZ2V0YXR0cihzY3JpcHQsJ2V4cG9ydHNfc3luYycsTm9uZSkgb3Igc2NyaXB0LmV4cG9ydHMKICAgICAgICAgICAgICAgIHI9Z2V0YXR0cihleCxtZXRoLE5vbmUpCiAgICAgICAgICAgICAgICBpZiByOgogICAgICAgICAgICAgICAgICAgIHIoKTsgZi53cml0ZShqc29uLmR1bXBzKHsncnBjJzptZXRoLCdvayc6VHJ1ZX0pKydcbicpOyBkb25lPVRydWU7IGJyZWFrCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGYud3JpdGUoanNvbi5kdW1wcyh7J3JwYyc6bWV0aCwnZXJyJzpzdHIoZSlbOjIwMF19KSsnXG4nKQogICAgdGltZS5zbGVlcCgxKQp0cnk6IHNlc3Npb24uZGV0YWNoKCkKZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwpmLndyaXRlKGpzb24uZHVtcHMoeyd0JzonY29sbGVjdG9yX2RvbmUnfSkrJ1xuJykK" | base64 -d > /tmp/collector.py
+          echo "CkphdmEucGVyZm9ybShmdW5jdGlvbiAoKSB7CiAgdmFyIGhvb2tlZCA9IDA7CiAgdHJ5IHsKICAgIHZhciBKTiA9IEphdmEudXNlKCdpby5mbHV0dGVyLmVtYmVkZGluZy5lbmdpbmUuRmx1dHRlckpOSScpOwogICAgdHJ5IHsKICAgICAgdmFyIG92ID0gSk4uaGFuZGxlUGxhdGZvcm1NZXNzYWdlLm92ZXJsb2FkKCdqYXZhLmxhbmcuU3RyaW5nJywgJ1tCJywgJ2ludCcsICdsb25nJyk7CiAgICAgIG92LmltcGxlbWVudGF0aW9uID0gZnVuY3Rpb24gKGNoLCBtc2csIHJpZCwgY2spIHsKICAgICAgICB0cnkgewogICAgICAgICAgdmFyIGI2NCA9ICcnOwogICAgICAgICAgaWYgKG1zZyAhPT0gbnVsbCkgeyB2YXIgQjY0ID0gSmF2YS51c2UoJ2FuZHJvaWQudXRpbC5CYXNlNjQnKTsgYjY0ID0gQjY0LmVuY29kZVRvU3RyaW5nKG1zZywgMik7IH0KICAgICAgICAgIHNlbmQoeyB0OiAnamF2YW1zZycsIGNoOiAnJyArIGNoLCBiNjQ6ICgnJyArIGI2NCkuc2xpY2UoMCwgODAwMCkgfSk7CiAgICAgICAgfSBjYXRjaCAoZSkge30KICAgICAgICByZXR1cm4gb3YuY2FsbCh0aGlzLCBjaCwgbXNnLCByaWQsIGNrKTsKICAgICAgfTsKICAgICAgaG9va2VkKys7CiAgICB9IGNhdGNoIChlKSB7fQogICAgdHJ5IHsKICAgICAgdmFyIG92MiA9IEpOLmhhbmRsZVBsYXRmb3JtTWVzc2FnZS5vdmVybG9hZCgnamF2YS5sYW5nLlN0cmluZycsICdqYXZhLm5pby5CeXRlQnVmZmVyJywgJ2ludCcsICdsb25nJyk7CiAgICAgIG92Mi5pbXBsZW1lbnRhdGlvbiA9IGZ1bmN0aW9uIChjaCwgbXNnLCByaWQsIGNrKSB7CiAgICAgICAgdHJ5IHsKICAgICAgICAgIHZhciBiNjQgPSAnJzsKICAgICAgICAgIGlmIChtc2cgIT09IG51bGwpIHsgdHJ5IHsgdmFyIEI2NCA9IEphdmEudXNlKCdhbmRyb2lkLnV0aWwuQmFzZTY0Jyk7IGI2NCA9IEI2NC5lbmNvZGVUb1N0cmluZyhtc2cuYXJyYXkoKSwgMik7IH0gY2F0Y2ggKGUpIHt9IH0KICAgICAgICAgIHNlbmQoeyB0OiAnamF2YW1zZycsIGNoOiAnJyArIGNoLCBiNjQ6ICgnJyArIGI2NCkuc2xpY2UoMCwgODAwMCkgfSk7CiAgICAgICAgfSBjYXRjaCAoZSkge30KICAgICAgICByZXR1cm4gb3YyLmNhbGwodGhpcywgY2gsIG1zZywgcmlkLCBjayk7CiAgICAgIH07CiAgICAgIGhvb2tlZCsrOwogICAgfSBjYXRjaCAoZSkge30KICB9IGNhdGNoIChlKSB7IHNlbmQoeyB0OiAnamF2YWVycicsIGU6ICcnICsgZSB9KTsgfQogIHNlbmQoeyB0OiAnamF2YWhvb2tlZCcsIG46IGhvb2tlZCB9KTsKfSk7Cg==" | base64 -d > /tmp/variant.js
+          nohup python3 /tmp/collector.py "$PID" /tmp/variant.js /tmp/cands.jsonl 900 > /tmp/collector.out 2>&1 &
+          echo $! > /tmp/col.pid
+          echo "collector=$VARIANT pid=$PID" >> "dyn/$TS/run.log"
+
+      - name: 6p. [procfs] 采集器跳过
+        if: ${{ matrix.variant == 'procfs' }}
+        run: |
+          echo "procfs: post-harvest instead" >> "dyn/$TS/run.log"
+      - name: 6o. [offlinebrute] 跳过模拟器
+        if: ${{ matrix.variant == 'offlinebrute' }}
+        run: |
+          echo "offlinebrute: no emulator" >> "dyn/$TS/run.log"
+
+      - name: 7. UI 驱动（登录+翻页+触发dump）
+        if: ${{ matrix.variant != 'offlinebrute' }}
+        run: |
+          A() { timeout 20 adb shell "$@" || true; }
+          sleep 10
+          A input tap 925 715; sleep 4; A input tap 925 715; sleep 6
+          A screencap -p /sdcard/m.png; adb pull /sdcard/m.png "dyn/$TS/inter-modal.png" >/dev/null 2>&1 || true
+          A input tap 450 730; sleep 4
+          A input text "928081274@qq.com"; sleep 3
+          A input keyevent 111; sleep 2
+          A input tap 78 1015; sleep 2
+          A input tap 450 890; sleep 4
+          A input text "Zmh20100227"; sleep 3
+          A input keyevent 111; sleep 2
+          A input tap 540 1212; sleep 15
+          A screencap -p /sdcard/l.png; adb pull /sdcard/l.png "dyn/$TS/inter-loggedin.png" >/dev/null 2>&1 || true
+          python3 -c "from PIL import Image; im=Image.open('dyn/$TS/inter-loggedin.png').convert('RGB'); w,h=im.size; px=im.getpixel((w//2,int(1212*h//2340))); print('login_check px=%s'%(px,)); open('/tmp/ABORT','w').write('1') if (px[0]>200 and px[1]>150 and px[2]<130 and px[0]-px[2]>80) else print('login_passed')" >> "dyn/$TS/run.log" 2>&1 || true
+          if [ -f /tmp/ABORT ]; then
+            echo "fast-fail: 登录未成，触发dump后提前收尾" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" fastfail-login; touch /tmp/go_dump
+          else
+            A input keyevent 4; sleep 3; A input keyevent 4; sleep 3
+            A input tap 270 700; sleep 20
+            A screencap -p /sdcard/d.png; adb pull /sdcard/d.png "dyn/$TS/inter-detail.png" >/dev/null 2>&1 || true
+            A input tap 700 2150; sleep 15
+            A screencap -p /sdcard/p0.png; adb pull /sdcard/p0.png "dyn/$TS/inter-page0.png" >/dev/null 2>&1 || true
+            touch /tmp/go_dump
+            for s in 1 2 3 4 5 6 7 8; do
+              A input swipe 540 1800 540 600 400; sleep 10
+              A screencap -p /sdcard/pg$s.png; adb pull /sdcard/pg$s.png "dyn/$TS/inter-page$s.png" >/dev/null 2>&1 || true
+            done
+            sleep 15
+            echo "uiflow=done" >> "dyn/$TS/run.log"
+          fi
+          /tmp/hb.sh "$TS" uidrive-done
+
+      - name: 7b. procfs 内存收割
+        if: ${{ matrix.variant == 'procfs' }}
+        run: |
+          PID=$(adb shell pidof $PKG | tr -d '\r[:space:]')
+          echo "CmltcG9ydCByZSwgc3VicHJvY2Vzcywgb3MsIHN5cywganNvbgpQSUQgPSBzeXMuYXJndlsxXQptYXBzID0gc3VicHJvY2Vzcy5ydW4oWydhZGInLCAnc2hlbGwnLCAnc3UnLCAnMCcsICdjYXQnLCAnL3Byb2MvJXMvbWFwcycgJSBQSURdLCBjYXB0dXJlX291dHB1dD1UcnVlLCB0ZXh0PVRydWUpLnN0ZG91dApyZWdpb25zID0gW107IHRvdGFsID0gMApmb3IgbG4gaW4gbWFwcy5zcGxpdGxpbmVzKCk6CiAgICBtID0gcmUubWF0Y2gocicoWzAtOWEtZl0rKS0oWzAtOWEtZl0rKSAocnctcCkgJywgbG4pCiAgICBpZiBub3QgbTogY29udGludWUKICAgIGEsIGIgPSBpbnQobS5ncm91cCgxKSwgMTYpLCBpbnQobS5ncm91cCgyKSwgMTYpCiAgICBzeiA9IGIgLSBhCiAgICBpZiBzeiA+IDEyOCAqIDEwMjQgKiAxMDI0OiBjb250aW51ZQogICAgaWYgdG90YWwgKyBzeiA+IDM1MCAqIDEwMjQgKiAxMDI0OiBjb250aW51ZQogICAgcmVnaW9ucy5hcHBlbmQoKGEsIHN6KSk7IHRvdGFsICs9IHN6CnByaW50KCdyZWdpb25zOicsIGxlbihyZWdpb25zKSwgJ3RvdGFsJywgdG90YWwpCm91dCA9IG9wZW4oJy90bXAvbWVtZHVtcC5iaW4nLCAnd2InKQpmb3IgYSwgc3ogaW4gcmVnaW9uczoKICAgIHRyeToKICAgICAgICByID0gc3VicHJvY2Vzcy5ydW4oWydhZGInLCAnZXhlYy1vdXQnLCAnc3UnLCAnMCcsICdkZCcsICdpZj0vcHJvYy8lcy9tZW0nICUgUElELCAnYnM9NDA5NicsICdza2lwPSVkJyAlIChhIC8vIDQwOTYpLCAnY291bnQ9JWQnICUgKChzeiArIDQwOTUpIC8vIDQwOTYpXSwgY2FwdHVyZV9vdXRwdXQ9VHJ1ZSwgdGltZW91dD0xODApCiAgICAgICAgb3V0LndyaXRlKHIuc3Rkb3V0Wzpzel0pCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgcHJpbnQoJ3JlZ2lvbiBmYWlsJywgaGV4KGEpLCBlKQpvdXQuY2xvc2UoKQpkYXRhID0gb3BlbignL3RtcC9tZW1kdW1wLmJpbicsICdyYicpLnJlYWQoKQpjYW5kcyA9IHNldChzLmRlY29kZSgpIGZvciBzIGluIHJlLmZpbmRhbGwocmInWzAtOWEtZkEtRl17MzJ9JywgZGF0YSkpCnByaW50KCdtZW0gYnl0ZXMnLCBsZW4oZGF0YSksICdjYW5kcycsIGxlbihjYW5kcykpCndpdGggb3BlbignL3RtcC9jYW5kcy5qc29ubCcsICdhJykgYXMgZjoKICAgIGZvciBjIGluIGNhbmRzOiBmLndyaXRlKGpzb24uZHVtcHMoeydtc2cnOiB7J3QnOiAnYycsICdzJzogY319KSArICdcbicpCg==" | base64 -d > /tmp/procfs.py
+          python3 /tmp/procfs.py "$PID" >> "dyn/$TS/run.log" 2>&1 || true
+          /tmp/hb.sh "$TS" procfs-done
+
+      - name: 8. 停止采集器
+        if: ${{ matrix.variant != 'procfs' && matrix.variant != 'offlinebrute' }}
+        run: |
+          kill $(cat /tmp/col.pid) 2>/dev/null || true
+          sleep 2
+          wc -l /tmp/cands.jsonl >> "dyn/$TS/run.log" 2>&1 || true
+          ls -la /tmp/memdump.bin >> "dyn/$TS/run.log" 2>&1 || true
+          ls /tmp/ctx_*.bin >> "dyn/$TS/run.log" 2>&1 | head -20 || true
+
+      - name: 9. 候选验证
+        run: |
+          echo "CmltcG9ydCBqc29uLCBvcywgcmUsIGhhc2hsaWIsIGJhc2U2NCwgdXJsbGliLnJlcXVlc3QsIHN5cwpmcm9tIENyeXB0by5DaXBoZXIgaW1wb3J0IEFFUywgQ2hhQ2hhMjAsIEFSQzQKZnJvbSBDcnlwdG8uVXRpbCBpbXBvcnQgQ291bnRlcgpNQUdTID0gW2InXHhmZlx4ZDgnLCBiJ1x4ODlQTkcnLCBiJ1JJRkYnLCBiJ1dFQlAnLCBiJ0dJRjgnXQpJVkMgPSBieXRlcy5mcm9taGV4KCdlNGRjODVhM2VhMzA5ZTg5ODA3ZTNlY2RlNTAyMmM1OCcpCksgPSB7J2x6c2lnbic6IGIncTJzSU9iWVhDcDJ1QlpnQ05CbFk5M0ozejY3aEswd1MnLAogICAgICdmOGQ5aGV4JzogYidmOGQ5OTJjNzRiMjk0OTFkOGEzZTNmZDVmMDczODlkOCcsCiAgICAgJ2Y4ZDlyYXcnOiBieXRlcy5mcm9taGV4KCdmOGQ5OTJjNzRiMjk0OTFkOGEzZTNmZDVmMDczODlkOCcpLAogICAgICdzYWx0JzogYnl0ZXMuZnJvbWhleCgnYmQ0NDVlZjc3MDg2N2YzNTU0ODliNTUyNzczMzRlNTRkYWUwZTVkOWE5ZGNlYjA1Y2E3NDA5YjQzN2RkNzQwYycpLAogICAgICdzYWx0aGV4JzogYidiZDQ0NWVmNzcwODY3ZjM1NTQ4OWI1NTI3NzMzNGU1NGRhZTBlNWQ5YTlkY2ViMDVjYTc0MDliNDM3ZGQ3NDBjJywKICAgICAnaXYnOiBJVkMsICdpdmhleCc6IGInZTRkYzg1YTNlYTMwOWU4OTgwN2UzZWNkZTUwMjJjNTgnLAogICAgICdkb2gxcmF3JzogYmFzZTY0LmI2NGRlY29kZSgnb2Nqa2V0b3RmTnFTUERVekgrUGFFRW5yZmk3VDloNmZERVpuVXA0aVBCQT0nKSwKICAgICAnZG9oMWI2NCc6IGInb2Nqa2V0b3RmTnFTUERVekgrUGFFRW5yZmk3VDloNmZERVpuVXA0aVBCQT0nLAogICAgICdkb2gycmF3JzogYmFzZTY0LmI2NGRlY29kZSgnUVYwNjc4WUhkYmxiSUNGaGpDeVNxbWV0WndvMmhnclR3SHltUDJtRlJxST0nKSwKICAgICAnZG9oMmI2NCc6IGInUVYwNjc4WUhkYmxiSUNGaGpDeVNxbWV0WndvMmhnclR3SHltUDJtRlJxST0nLAogICAgICdwa2cnOiBiJ2NvbS5oYnNjbGoudXRoJywgJ2xpemltaCc6IGInbGl6aW1oJywgJ21lY2hhdCc6IGInbWVjaGF0LmZ1bid9CmRlZiBlbmMoayk6CiAgICBvID0geydyYXcnOiBrLCAnbWQ1JzogaGFzaGxpYi5tZDUoaykuZGlnZXN0KCksICdzaGEyNTYnOiBoYXNobGliLnNoYTI1NihrKS5kaWdlc3QoKSwgJ3NoYTF4MTYnOiBoYXNobGliLnNoYTEoaykuZGlnZXN0KClbOjE2XX0KICAgIHJldHVybiB7bjogdiBmb3IgbiwgdiBpbiBvLml0ZW1zKCkgaWYgbGVuKHYpIGluICgxNiwgMjQsIDMyKX0KZGVmIG9rKGQsIG9mZik6CiAgICBmb3IgbSBpbiBNQUdTOgogICAgICAgIGlmIGRbb2ZmOm9mZiArIGxlbihtKV0gPT0gbTogcmV0dXJuIFRydWUKICAgIHJldHVybiBGYWxzZQpoaXRzID0gW10KZGVmIHRyeV9hbGwoa2V5LCBuYW1lLCBjdHMpOgogICAgZm9yIGtuLCBrayBpbiBlbmMoa2V5KS5pdGVtcygpOgogICAgICAgIGZvciBjZiBpbiBjdHM6CiAgICAgICAgICAgIGN0ID0gY2ZbJ2RhdGEnXQogICAgICAgICAgICBmb3IgaXZuLCBpdiBpbiBbKCdpdjAnLCBiJ1wwJyAqIDE2KSwgKCdpdmZpbGUnLCBJVkMpLCAoJ2l2Y3QnLCBjdFs6MTZdKV06CiAgICAgICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICAgICAgYm9keSA9IGN0WzE2Ol0gaWYgaXZuID09ICdpdmN0JyBlbHNlIGN0CiAgICAgICAgICAgICAgICAgICAgbiA9IGxlbihib2R5KSAvLyAxNiAqIDE2CiAgICAgICAgICAgICAgICAgICAgZCA9IEFFUy5uZXcoa2ssIEFFUy5NT0RFX0NCQywgaXYpLmRlY3J5cHQoYm9keVs6bWF4KG4sIDE2KV0pWzo1MTJdCiAgICAgICAgICAgICAgICAgICAgZm9yIG9mZiBpbiAoMCwgMSwgOCwgMTUsIDE2KToKICAgICAgICAgICAgICAgICAgICAgICAgaWYgb2soZCwgb2ZmKToKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByaW50KCdLRVlGT1VORCcsIG5hbWUsIGtuLCAnY2JjJywgaXZuLCBjZlsndXJsJ10sIGRbb2ZmOm9mZiArIDE2XS5oZXgoKSk7IGhpdHMuYXBwZW5kKChuYW1lLCBrbiwgJ2NiYycsIGl2bikpOyByZXR1cm4KICAgICAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb246IHBhc3MKICAgICAgICAgICAgdHJ5OgogICAgICAgICAgICAgICAgZCA9IEFFUy5uZXcoa2ssIEFFUy5NT0RFX0VDQikuZGVjcnlwdChjdFs6bWF4KGxlbihjdCkgLy8gMTYgKiAxNiwgMTYpXSlbOjUxMl0KICAgICAgICAgICAgICAgIGZvciBvZmYgaW4gKDAsIDEsIDgsIDE1LCAxNik6CiAgICAgICAgICAgICAgICAgICAgaWYgb2soZCwgb2ZmKToKICAgICAgICAgICAgICAgICAgICAgICAgcHJpbnQoJ0tFWUZPVU5EJywgbmFtZSwga24sICdlY2InLCBjZlsndXJsJ10sIGRbb2ZmOm9mZiArIDE2XS5oZXgoKSk7IGhpdHMuYXBwZW5kKChuYW1lLCBrbiwgJ2VjYicpKTsgcmV0dXJuCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb246IHBhc3MKICAgICAgICAgICAgZm9yIG5uLCBudiBpbiBbKCduMCcsIGInXDAnICogOCksICgnbmN0JywgY3RbOjhdKSwgKCduaXYnLCBJVkNbOjhdKV06CiAgICAgICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICAgICAgYyA9IENvdW50ZXIubmV3KDY0LCBwcmVmaXg9bnYsIGluaXRpYWxfdmFsdWU9MCkKICAgICAgICAgICAgICAgICAgICBkID0gQUVTLm5ldyhraywgQUVTLk1PREVfQ1RSLCBjb3VudGVyPWMpLmRlY3J5cHQoY3RbOjUxMl0pWzo1MTJdCiAgICAgICAgICAgICAgICAgICAgZm9yIG9mZiBpbiAoMCwgMSwgOCwgMTUsIDE2KToKICAgICAgICAgICAgICAgICAgICAgICAgaWYgb2soZCwgb2ZmKToKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByaW50KCdLRVlGT1VORCcsIG5hbWUsIGtuLCAnY3RyJywgbm4sIGNmWyd1cmwnXSwgZFtvZmY6b2ZmICsgMTZdLmhleCgpKTsgaGl0cy5hcHBlbmQoKG5hbWUsIGtuLCAnY3RyJywgbm4pKTsgcmV0dXJuCiAgICAgICAgICAgICAgICBleGNlcHQgRXhjZXB0aW9uOiBwYXNzCiAgICAgICAgICAgIGZvciBubiwgbnYgaW4gWygnbjEyY3QnLCBjdFs6MTJdKSwgKCduMTJpdicsIElWQ1s6MTJdKSwgKCduMTJ6JywgYidcMCcgKiAxMiksICgnbjhjdCcsIGN0Wzo4XSArIGInXDAnICogNCksICgnbjhpdicsIElWQ1s6OF0gKyBiJ1wwJyAqIDQpXToKICAgICAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgICAgICBkID0gQ2hhQ2hhMjAubmV3KGtleT1raywgbm9uY2U9bnYpLmRlY3J5cHQoY3RbOjUxMl0pWzo1MTJdCiAgICAgICAgICAgICAgICAgICAgZm9yIG9mZiBpbiAoMCwgMSwgOCwgMTUsIDE2KToKICAgICAgICAgICAgICAgICAgICAgICAgaWYgb2soZCwgb2ZmKToKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByaW50KCdLRVlGT1VORCcsIG5hbWUsIGtuLCAnY2hhJywgbm4sIGNmWyd1cmwnXSwgZFtvZmY6b2ZmICsgMTZdLmhleCgpKTsgaGl0cy5hcHBlbmQoKG5hbWUsIGtuLCAnY2hhJywgbm4pKTsgcmV0dXJuCiAgICAgICAgICAgICAgICBleGNlcHQgRXhjZXB0aW9uOiBwYXNzCiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIGQgPSBBUkM0Lm5ldyhraykuZGVjcnlwdChjdFs6MjU2XSlbOjI1Nl0KICAgICAgICAgICAgICAgIGZvciBvZmYgaW4gKDAsIDEsIDgsIDE1LCAxNik6CiAgICAgICAgICAgICAgICAgICAgaWYgb2soZCwgb2ZmKToKICAgICAgICAgICAgICAgICAgICAgICAgcHJpbnQoJ0tFWUZPVU5EJywgbmFtZSwga24sICdyYzQnLCBjZlsndXJsJ10sIGRbb2ZmOm9mZiArIDE2XS5oZXgoKSk7IGhpdHMuYXBwZW5kKChuYW1lLCBrbiwgJ3JjNCcpKTsgcmV0dXJuCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb246IHBhc3MKY3RzID0gW10KZm9yIHAgaW4gKDEsIDIsIDMpOgogICAgdXJsID0gJ2h0dHA6Ly9pbWcyLm1lY2hhdC5mdW4vMy8yNjgyNC80OTIxNzcvJWQuanBnJyAlIHAKICAgIHRyeToKICAgICAgICByZXEgPSB1cmxsaWIucmVxdWVzdC5SZXF1ZXN0KHVybCwgaGVhZGVycz17J1VzZXItQWdlbnQnOiAnRGFydC8zLjUgKGRhcnQ6aW8pJ30pCiAgICAgICAgY3RzLmFwcGVuZCh7J3VybCc6IHVybCwgJ2RhdGEnOiB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSwgdGltZW91dD0yMCkucmVhZCgpfSkKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICBwcmludCgnZmV0Y2ggZmFpbCcsIHVybCwgZSkKcHJpbnQoJ2NvcnB1czonLCBbKGNbJ3VybCddLCBsZW4oY1snZGF0YSddKSkgZm9yIGMgaW4gY3RzXSkKaWYgbm90IGN0czogc3lzLmV4aXQoMCkKY2FuZCA9IHt9CmRlZiBhZGRjKHMsIHNyYyk6CiAgICBpZiBzIGFuZCBsZW4ocykgPj0gMTY6IGNhbmRbc10gPSBzcmMKZm9yIGxuIGluIG9wZW4oJy90bXAvY2FuZHMuanNvbmwnLCBlcnJvcnM9J3JlcGxhY2UnKToKICAgIHRyeToKICAgICAgICBqID0ganNvbi5sb2FkcyhsbikKICAgICAgICBtID0gai5nZXQoJ21zZycsIGopCiAgICAgICAgaWYgaXNpbnN0YW5jZShtLCBkaWN0KToKICAgICAgICAgICAgaWYgbS5nZXQoJ3QnKSA9PSAnYycgYW5kIG0uZ2V0KCdzJyk6IGFkZGMobVsncyddLCAnYycpCiAgICAgICAgICAgIGlmIG0uZ2V0KCd0JykgPT0gJ2phdmFtc2cnIGFuZCBtLmdldCgnYjY0Jyk6CiAgICAgICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICAgICAgcmF3ID0gYmFzZTY0LmI2NGRlY29kZShtWydiNjQnXSkKICAgICAgICAgICAgICAgICAgICBmb3IgcyBpbiByZS5maW5kYWxsKHJiJ1swLTlhLWZBLUZdezMyfScsIHJhd1s6MjA0OF0pOiBhZGRjKHMuZGVjb2RlKCksICdqYXYnKQogICAgICAgICAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwogICAgICAgICAgICBpZiBtLmdldCgndCcpIGluICgnY3R4X2Y4ZDknLCAnY3R4X21wYmVpdicsICdjdHhfZG9oJywgJ3Nib3gnLCAnYmlncmVhZCcpOgogICAgICAgICAgICAgICAgcGFzcwogICAgZXhjZXB0IEV4Y2VwdGlvbjogcGFzcwppbXBvcnQgZ2xvYiBhcyBnCmZvciBmcCBpbiBnLmdsb2IoJy90bXAvY3R4XyouYmluJyk6CiAgICB0cnk6CiAgICAgICAgZCA9IG9wZW4oZnAsICdyYicpLnJlYWQoKQogICAgICAgIGZvciBzIGluIHNldChyZS5maW5kYWxsKHJiJ1swLTlhLWZBLUZdezMyfScsIGQpKTogYWRkYyhzLmRlY29kZSgpLCAnY3R4JykKICAgIGV4Y2VwdCBFeGNlcHRpb246IHBhc3MKaWYgb3MucGF0aC5leGlzdHMoJy90bXAvbWVtZHVtcC5iaW4nKToKICAgIGRhdGEgPSBvcGVuKCcvdG1wL21lbWR1bXAuYmluJywgJ3JiJykucmVhZCg0MDAgKiAxMDI0ICogMTAyNCkKICAgIGZvciBzIGluIHNldChyZS5maW5kYWxsKHJiJ1swLTlhLWZBLUZdezMyfScsIGRhdGEpKTogYWRkYyhzLmRlY29kZSgpLCAnbWVtJykKICAgIHByaW50KCdtZW1kdW1wIHNjYW5uZWQnLCBsZW4oZGF0YSkpCmlmIG9zLnBhdGguZXhpc3RzKCdwcC50eHQnKToKICAgIHBwID0gb3BlbigncHAudHh0JywgZXJyb3JzPSdyZXBsYWNlJykucmVhZCgpCiAgICBmb3IgcyBpbiBzZXQocmUuZmluZGFsbChyJ1swLTlhLWZBLUZdezMyfScsIHBwKSk6IGFkZGMocywgJ3BwJykKcHJpbnQoJ3RvdGFsIGNhbmRpZGF0ZXM6JywgbGVuKGNhbmQpKQpmb3IgbmFtZSBpbiBsaXN0KGNhbmQpOgogICAgdHJ5X2FsbChuYW1lLmVuY29kZSgpLCBuYW1lLCBjdHMpCiAgICBpZiByZS5mdWxsbWF0Y2gocidbMC05YS1mQS1GXXszMn0nLCBuYW1lKToKICAgICAgICB0cnlfYWxsKGJ5dGVzLmZyb21oZXgobmFtZSksIG5hbWUgKyAnIWhleCcsIGN0cykKcHJpbnQoJ0hJVFM6JywgbGVuKGhpdHMpKQpvcGVuKCcvdG1wL3ZlcmlmeV9yZXBvcnQudHh0JywgJ3cnKS53cml0ZShqc29uLmR1bXBzKHsnaGl0cyc6IGhpdHMsICduX2NhbmQnOiBsZW4oY2FuZCl9LCBkZWZhdWx0PXN0cikpCmlmIGhpdHM6CiAgICBvcy5tYWtlZGlycygnZnJpZGEtaGl0JywgZXhpc3Rfb2s9VHJ1ZSkKICAgIG9wZW4oJ2ZyaWRhLWhpdC9LRVlfJXMudHh0JyAlIG9zLmVudmlyb24uZ2V0KCdWQVJJQU5UJywgJ3gnKSwgJ3cnKS53cml0ZShqc29uLmR1bXBzKGhpdHMsIGRlZmF1bHQ9c3RyLCBpbmRlbnQ9MSkpCg==" | base64 -d > /tmp/verify.py
+          python3 /tmp/verify.py >> "dyn/$TS/run.log" 2>&1 || true
+          if grep -qa KEYFOUND "dyn/$TS/run.log"; then
+            mkdir -p frida-hit
+            cp /tmp/verify_report.txt frida-hit/ 2>/dev/null || true
+            /tmp/hb.sh "$TS" -a KEYFOUND
+          fi
+          cp /tmp/cands.jsonl "dyn/$TS/" 2>/dev/null || true
+          cp /tmp/verify_report.txt "dyn/$TS/" 2>/dev/null || true
+          cp /tmp/collector.out "dyn/$TS/" 2>/dev/null || true
+          if [ -f /tmp/memdump.bin ]; then gzip -1 -c /tmp/memdump.bin > "dyn/$TS/memdump.gz" 2>/dev/null || true; fi
+          /tmp/hb.sh "$TS" -a done
+
+      - name: 10. 收尾清单
+        run: |
+          ls -la dyn/$TS >> "dyn/$TS/run.log" 2>&1 || true
+
+      - name: 11. Upload artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frida-hunt-${{ matrix.variant }}
+          path: dyn/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: 11b. Upload hit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frida-hit-${{ matrix.variant }}
+          path: frida-hit/
+          if-no-files-found: ignore
+          retention-days: 30
