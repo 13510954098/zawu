@@ -25,3 +25,5 @@ state[detail] inter-postlogin.png mid=0.011 bot=0.258 white=0.499
 postlogin=detail
 heapbrute: dump window open
 [16:01:36] heap-window
+heapbrute pid=3360
+[16:05:08] heapbrute-done
