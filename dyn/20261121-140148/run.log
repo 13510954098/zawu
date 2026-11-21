@@ -20,3 +20,10 @@ login_check px=(255, 255, 255)
 login_passed
 uiflow=done
 [14:08:36] uidrive-done
+4 /tmp/cands.jsonl
+ls: cannot access '/tmp/memdump.bin': No such file or directory
+ls: cannot access '/tmp/ctx_*.bin': No such file or directory
+corpus: [('http://img2.mechat.fun/3/26824/492177/1.jpg', 263793), ('http://img2.mechat.fun/3/26824/492177/2.jpg', 213662), ('http://img2.mechat.fun/3/26824/492177/3.jpg', 251877)]
+total candidates: 356
+HITS: 0
+[14:08:55] -a done

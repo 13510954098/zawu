@@ -1,0 +1,4 @@
+{"msg": {"t": "writehooked"}, "dlen": 0}
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"rpc": "dump", "err": "unable to find method 'dump'"}
+{"rpc": "scan", "err": "unable to find method 'scan'"}
