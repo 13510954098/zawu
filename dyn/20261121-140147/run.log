@@ -19,3 +19,4 @@ collector=sockethook pid=3518
 login_check px=(254, 203, 24)
 fast-fail: 登录未成，触发dump后提前收尾
 [14:05:42] fastfail-login
+[14:05:44] uidrive-done
