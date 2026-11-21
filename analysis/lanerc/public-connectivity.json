@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-08T02:44:49.327635+00:00",
+  "checked_at_utc": "2026-11-21T09:19:10.620007+00:00",
   "scope": "Public DNS TXT and unsigned HTTPS HEAD / only",
   "recovered_keys_used": false,
   "credentials_requested": false,
@@ -15,16 +15,16 @@
           "known_user_hosts_in_txt": [],
           "known_user_hosts_in_base64_text": [],
           "record_type": 16,
-          "ttl": 120,
+          "ttl": 300,
           "text_length": 44,
-          "text_sha256": "97e9be60bf3ceb6ca44af0bfef226f8b49e12702550bb3a6e887e1c027ff3995",
+          "text_sha256": "d7838b7bc2e0e84c60c45dd07903f4bee95c43e3bbfc20938fc627e691f44686",
           "url_hostnames_only": []
         }
       ],
       "other_record_count": 0
     },
     {
-      "name": "diag-20261108024448.dohx.lanerc.moe",
+      "name": "diag-20261121091910.dohx.lanerc.moe",
       "dns_status": 3,
       "authenticated_data": false,
       "txt_records": [],
@@ -47,8 +47,8 @@
       "resolved_public_addresses": [
         "157.185.171.239"
       ],
-      "http_status": 404,
-      "content_type": "text/plain"
+      "http_status": 504,
+      "content_type": "text/html"
     }
   ],
   "limitations": "Public records/root reachability do not prove ownership, API identity, credentials, current media availability or end-to-end compatibility. TXT raw values are redacted and never fetched."
