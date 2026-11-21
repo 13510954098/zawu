@@ -1,15 +1,16 @@
-name: RE-APK 动态探针 v2.1
+name: RE-APK 动态探针 v3
 
-# v2 全量重写（v1 三轮失败根因，不在修补）：
-# 1) 手写 AVD 与 ANDROID_AVD_HOME 不一致 -> emulator "Unknown AVD name"。
-#    改为 avdmanager 默认路径创建后自动定位 probe.ini，导出真实 AVD_HOME，并用 emulator -list-avds 自检。
-# 2) emulator 秒退无感知 -> 启动后 20s/30s 双重进程存活检查；-accel on 失败自动回退 -accel off；日志落盘。
-# 3) adb wait-for-device 无超时挂死 90 分钟 -> 显式 deadline 循环，boot 最长 10 分钟，每轮记录。
-# 4) 触发：workflow_dispatch + 仅限 re/first-pass 分支的 push。心跳只推 re/dyn-* 分支，
-#    不命中 branches 过滤，不会自我触发循环（v1 的教训是 paths: re/** 太宽）。
-# 5) 第三方 emulator-runner 黑盒失败无日志 -> 不用第三方 action，全部内联 bash，逐步落盘 + 心跳提交。
-# 6) 抓包改用 emulator 自带 -tcpdump（guest 侧流量），tshark 仅做解析；DNS/SNI/HTTP host 全量落盘。
-# 7) v2.1：所有用 adb 的步骤显式把 platform-tools 加入 PATH（v2 首轮暴露：runner PATH 无 adb）。
+# v3 全量改造（v2.1 实测发现，非修补）：
+# 1) v2.1 实锤：emulator -tcpdump 只在前 ~5 秒有效（109 帧全在前 5s，App 实际下载 2.9MB 未入包）。
+#    -> 新增宿主机侧 sudo tcpdump 全量抓包：guest 流量经 slirp 以 qemu 进程套接字出现在宿主机，
+#       全程不漏；原 -tcpdump 保留作 tertiary 佐证。
+# 2) 新增 mitmproxy 明文链路：emulator -http-proxy 工作在 QEMU slirp/NAT 层，
+#    对无代理感知的 Dart/Flutter 流量同样强制走代理 -> HTTPS 可被 mitm 拦截还原为明文。
+#    CA 安装：-writable-system + adb root + disable-verity + remount + 推入 /system/etc/security/cacerts。
+#    任一环节失败只记日志不阻断（仍有 host.pcap 的 SNI/IP 全量兜底）。
+# 3) 观测循环加入交互：关公告弹窗（多坐标尝试）、点开漫画详情、翻页，触发更多业务 API 与广告链路。
+# 4) 心跳（文本先行，收尾 -a 全量）、datadir.tar、并发防环、push 触发限定 re/first-pass —— 全部保持 v2.1。
+# 5) QUIC/UDP443 与 DoT 不经 HTTP 代理，但 host.pcap 全量可见。
 
 on:
   workflow_dispatch:
@@ -41,7 +42,7 @@ env:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,7 +64,7 @@ jobs:
           } >> "dyn/$TS/run.log"
           cat > /tmp/hb.sh <<'HB'
           #!/usr/bin/env bash
-          # 用法: hb.sh [-a] TS 说明   （-a = 连 png/pcap/tar 一起提交，仅收尾用）
+          # 用法: hb.sh [-a] TS 说明   （-a = 连 png/pcap/tar/flows 一起提交，仅收尾用）
           cd "$GITHUB_WORKSPACE" || exit 0
           FULL=0
           if [ "$1" = "-a" ]; then FULL=1; shift; fi
@@ -81,7 +82,7 @@ jobs:
           git push -q origin "HEAD:refs/heads/re/dyn-$TS" 2>/dev/null || true
           HB
           chmod +x /tmp/hb.sh
-          /tmp/hb.sh "$TS" init
+          /tmp/hb.sh "$TS" init-v3
 
       - name: 1. 下载 APK 并校验
         run: |
@@ -99,15 +100,27 @@ jobs:
           /tmp/hb.sh "$TS" downloaded
           [ "$GOT" = "$APK_SHA" ] || { /tmp/hb.sh "$TS" sha-mismatch; exit 1; }
 
-      - name: 2. 工具链（KVM / tshark / SDK / 系统镜像）
+      - name: 2. 工具链（KVM / tcpdump / mitmproxy / SDK / 系统镜像）
         run: |
           export PATH=/usr/local/lib/android/sdk/cmdline-tools/latest/bin:/usr/local/lib/android/sdk/platform-tools:$PATH
           ls -l /dev/kvm >> "dyn/$TS/run.log" 2>&1 || true
           sudo chmod 666 /dev/kvm >> "dyn/$TS/run.log" 2>&1 || true
           /usr/local/lib/android/sdk/emulator/bin/kvm-ok >> "dyn/$TS/run.log" 2>&1 || echo "kvm-ok: 不可用" >> "dyn/$TS/run.log"
           sudo apt-get update -qq >/dev/null 2>&1 || true
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq tshark >/dev/null 2>&1 || true
-          echo "tshark=$(command -v tshark || echo none)" >> "dyn/$TS/run.log"
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq tshark tcpdump openssl >/dev/null 2>&1 || true
+          echo "tshark=$(command -v tshark || echo none) tcpdump=$(command -v tcpdump || echo none)" >> "dyn/$TS/run.log"
+          MITM_BIN=$(command -v mitmdump || echo none)
+          if [ "$MITM_BIN" = "none" ]; then
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq mitmproxy >/dev/null 2>&1 || true
+            MITM_BIN=$(command -v mitmdump || echo none)
+          fi
+          if [ "$MITM_BIN" = "none" ]; then
+            pip3 install --quiet --user mitmproxy >> "dyn/$TS/sdk.log" 2>&1 || true
+            MITM_BIN="$HOME/.local/bin/mitmdump"
+          fi
+          echo "mitmdump=$MITM_BIN" >> "dyn/$TS/run.log"
+          [ -x "$MITM_BIN" ] || { /tmp/hb.sh "$TS" mitmdump-missing; exit 1; }
+          echo "MITM_BIN=$MITM_BIN" >> "$GITHUB_ENV"
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
           RC=0
           sdkmanager --install "emulator" "platform-tools" "system-images;android-$API;google_apis;$ABI" >> "dyn/$TS/sdk.log" 2>&1 || RC=$?
@@ -142,12 +155,36 @@ jobs:
           echo "$LIST" | grep -qx "$AVD_NAME" || { /tmp/hb.sh "$TS" avd-not-listed; exit 1; }
           /tmp/hb.sh "$TS" avd-ready
 
-      - name: 4. 启动模拟器（存活自检 + 软渲染回退）
+      - name: 4. 启动 mitmproxy + 宿主机 tcpdump + 模拟器（存活自检 + 软渲染回退）
         run: |
           export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
+          # 4a. mitmdump 先行，等 CA 生成
+          nohup "$MITM_BIN" --listen-host 0.0.0.0 --listen-port 8080 \
+            -w "dyn/$TS/mitm.flows" --set block_global=false --set flow_detail=1 \
+            > "dyn/$TS/mitm.log" 2>&1 &
+          echo $! > /tmp/mitm.pid
+          CA_OK=0
+          for i in $(seq 1 30); do
+            [ -f "$HOME/.mitmproxy/mitmproxy-ca-cert.pem" ] && CA_OK=1 && break
+            sleep 1
+          done
+          echo "mitm_ca_ready=$CA_OK" >> "dyn/$TS/run.log"
+          [ "$CA_OK" = "1" ] || { tail -20 "dyn/$TS/mitm.log" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" mitm-ca-missing; exit 1; }
+          kill -0 "$(cat /tmp/mitm.pid)" 2>/dev/null || { tail -20 "dyn/$TS/mitm.log" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" mitmdump-died; exit 1; }
+          echo "mitm_pid=$(cat /tmp/mitm.pid)" >> "dyn/$TS/run.log"
+          # 4b. 宿主机 tcpdump 全量抓包（排除 ssh 与 mdns 噪音）
+          if command -v tcpdump >/dev/null && sudo -n true 2>/dev/null; then
+            sudo nohup tcpdump -i any -U -s0 -w "$PWD/dyn/$TS/host.pcap" 'not port 22 and not udp port 5353' \
+              > /tmp/tcpdump.log 2>&1 &
+            sleep 3
+            pgrep -f 'tcpdump.*host.pcap' >/dev/null && echo "host_tcpdump=running" >> "dyn/$TS/run.log" || echo "host_tcpdump=failed" >> "dyn/$TS/run.log"
+          else
+            echo "host_tcpdump=skipped" >> "dyn/$TS/run.log"
+          fi
+          # 4c. 模拟器（含 -writable-system 与 -http-proxy）
           EMU=/usr/local/lib/android/sdk/emulator/emulator
-          OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -tcpdump dyn/$TS/net.pcap"
+          OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -writable-system -http-proxy http://10.0.2.2:8080 -tcpdump dyn/$TS/net.pcap"
           start_emu() { nohup $EMU $OPTS "$@" > "dyn/$TS/emulator.log" 2>&1 & echo $!; }
           EMU_PID=$(start_emu -accel on)
           sleep 20
@@ -188,6 +225,38 @@ jobs:
           timeout 60 adb shell settings put global animator_duration_scale 0 || true
           /tmp/hb.sh "$TS" boot-ok
 
+      - name: 5b. 注入 mitmproxy 系统 CA（失败不阻断）
+        run: |
+          export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
+          export ANDROID_AVD_HOME="$AVD_HOME"
+          CA="$HOME/.mitmproxy/mitmproxy-ca-cert.pem"
+          HASH=$(openssl x509 -in "$CA" -noout -subject_hash_old 2>/dev/null || echo none)
+          echo "ca_hash=$HASH" >> "dyn/$TS/run.log"
+          [ "$HASH" != "none" ] || { /tmp/hb.sh "$TS" ca-hash-failed; exit 0; }
+          cp "$CA" "/tmp/$HASH.0"
+          openssl x509 -in "$CA" -text -noout >> "/tmp/$HASH.0" 2>/dev/null || true
+          timeout 60 adb root >> "dyn/$TS/run.log" 2>&1 || true
+          sleep 5
+          timeout 60 adb shell avbctl disable-verity >> "dyn/$TS/run.log" 2>&1 || echo "avbctl 不可用" >> "dyn/$TS/run.log"
+          timeout 60 adb disable-verity >> "dyn/$TS/run.log" 2>&1 || true
+          sleep 3
+          timeout 60 adb reboot >> "dyn/$TS/run.log" 2>&1 || true
+          BOOTED=0
+          for i in $(seq 1 40); do
+            sleep 10
+            B=$(timeout 15 adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            if [ "$B" = "1" ]; then BOOTED=1; echo "reboot_ok_loop=$i" >> "dyn/$TS/run.log"; break; fi
+          done
+          [ "$BOOTED" = "1" ] || { echo "verity 重启后未回正" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" ca-reboot-timeout; exit 0; }
+          timeout 60 adb root >> "dyn/$TS/run.log" 2>&1 || true
+          sleep 5
+          timeout 60 adb remount >> "dyn/$TS/run.log" 2>&1 || { echo "remount 失败，放弃 CA 注入" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" ca-remount-failed; exit 0; }
+          timeout 60 adb push "/tmp/$HASH.0" "/system/etc/security/cacerts/$HASH.0" >> "dyn/$TS/run.log" 2>&1 \
+            || { echo "CA push 失败" >> "dyn/$TS/run.log"; /tmp/hb.sh "$TS" ca-push-failed; exit 0; }
+          timeout 30 adb shell "chmod 644 /system/etc/security/cacerts/$HASH.0" >> "dyn/$TS/run.log" 2>&1 || true
+          timeout 30 adb shell "ls -la /system/etc/security/cacerts/$HASH.0" >> "dyn/$TS/run.log" 2>&1 || true
+          /tmp/hb.sh "$TS" ca-push-ok
+
       - name: 6. 安装 APK 并启动 App
         run: |
           export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
@@ -211,7 +280,7 @@ jobs:
           timeout 60 adb shell dumpsys activity activities 2>/dev/null | head -80 > "dyn/$TS/activity-top.txt" || true
           /tmp/hb.sh "$TS" installed-launched
 
-      - name: 7. 运行观测（每分钟截屏 + 每 3 分钟心跳）
+      - name: 7. 运行观测（截屏 + 交互 + 心跳）
         run: |
           export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
@@ -220,9 +289,34 @@ jobs:
           [ "$DUR" -le 20 ] || DUR=20
           echo "observe_minutes=$DUR" >> "dyn/$TS/run.log"
           for i in $(seq 1 "$DUR"); do
-            sleep 55
+            if [ "$i" = "2" ]; then
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-before.png" 2>/dev/null || true
+              timeout 20 adb shell input tap 540 1450 || true; sleep 3
+              timeout 20 adb shell input tap 540 1600 || true; sleep 3
+              timeout 20 adb shell input tap 540 1250 || true; sleep 5
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-modal.png" 2>/dev/null || true
+              echo "interact=modal-dismiss done" >> "dyn/$TS/run.log"
+            fi
+            if [ "$i" = "4" ]; then
+              timeout 20 adb shell input tap 270 700 || true
+              sleep 30
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail1.png" 2>/dev/null || true
+              timeout 20 adb shell input keyevent 4 || true
+              sleep 5
+              echo "interact=detail1 done" >> "dyn/$TS/run.log"
+            fi
+            if [ "$i" = "8" ]; then
+              timeout 20 adb shell input tap 810 700 || true
+              sleep 30
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail2.png" 2>/dev/null || true
+              timeout 20 adb shell input keyevent 4 || true
+              sleep 5
+              echo "interact=detail2 done" >> "dyn/$TS/run.log"
+            fi
+            sleep 40
             timeout 30 adb exec-out screencap -p > "dyn/$TS/screen-${i}m.png" 2>/dev/null || true
             timeout 30 adb shell input swipe 540 1500 540 500 300 >> "dyn/$TS/run.log" 2>&1 || true
+            kill -0 "$(cat /tmp/mitm.pid)" 2>/dev/null || echo "warn: mitmdump 进程消失 minute=$i" >> "dyn/$TS/run.log"
             if [ $((i % 3)) -eq 0 ]; then /tmp/hb.sh "$TS" tick-${i}m; fi
           done
           timeout 60 adb logcat -d -v threadtime > "dyn/$TS/logcat.txt" 2>&1 || true
@@ -241,7 +335,7 @@ jobs:
           echo "tar_bytes=$(stat -c%s dyn/$TS/datadir.tar 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
           /tmp/hb.sh "$TS" datadir-done
 
-      - name: 9. 停止模拟器并解析流量
+      - name: 9. 停止抓包与模拟器，解析全部流量
         run: |
           export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
@@ -250,25 +344,53 @@ jobs:
           kill "$EMU_PID" 2>/dev/null || true
           sleep 5
           kill -9 "$EMU_PID" 2>/dev/null || true
+          sudo pkill -f 'tcpdump.*host.pcap' 2>/dev/null || true
+          sleep 3
+          sudo chown -R "$USER:$USER" "dyn/$TS" 2>/dev/null || true
           echo "pcap_bytes=$(stat -c%s dyn/$TS/net.pcap 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
-          if [ -s "dyn/$TS/net.pcap" ]; then
-            tshark -r "dyn/$TS/net.pcap" -Y dns.qry.name -T fields -e dns.qry.name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/dns.txt"
-            awk '{print $2}' "dyn/$TS/dns.txt" > "dyn/$TS/dns-uniq.txt"
-            tshark -r "dyn/$TS/net.pcap" -Y 'tls.handshake.type==1' -T fields -e tls.handshake.extensions_server_name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/sni.txt"
-            awk '{print $2}' "dyn/$TS/sni.txt" > "dyn/$TS/sni-uniq.txt"
-            tshark -r "dyn/$TS/net.pcap" -Y http.request -T fields -e http.host 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/http-host.txt"
-            echo "dns_hosts=$(wc -l < dyn/$TS/dns-uniq.txt) sni_hosts=$(wc -l < dyn/$TS/sni-uniq.txt)" >> "dyn/$TS/run.log"
+          echo "host_pcap_bytes=$(stat -c%s dyn/$TS/host.pcap 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
+          echo "flows_bytes=$(stat -c%s dyn/$TS/mitm.flows 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
+          kill "$(cat /tmp/mitm.pid)" 2>/dev/null || true
+          sleep 3
+          if [ -s "dyn/$TS/host.pcap" ]; then
+            tshark -r "dyn/$TS/host.pcap" -Y 'dns.flags.response==0' -T fields -e dns.qry.name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/dns.txt"
+            tshark -r "dyn/$TS/host.pcap" -Y 'tls.handshake.type==1' -T fields -e tls.handshake.extensions_server_name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/sni.txt"
+            tshark -r "dyn/$TS/host.pcap" -Y 'quic' -T fields -e quic.server_name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/quic-sni.txt"
+            echo "dns_hosts=$(wc -l < dyn/$TS/dns.txt) sni_hosts=$(wc -l < dyn/$TS/sni.txt) quic=$(wc -l < dyn/$TS/quic-sni.txt)" >> "dyn/$TS/run.log"
           else
-            echo "pcap 为空" >> "dyn/$TS/run.log"
+            echo "host.pcap 缺失" >> "dyn/$TS/run.log"
           fi
-          DNSN=$( [ -f "dyn/$TS/dns-uniq.txt" ] && wc -l < "dyn/$TS/dns-uniq.txt" || echo 0)
-          SNIN=$( [ -f "dyn/$TS/sni-uniq.txt" ] && wc -l < "dyn/$TS/sni-uniq.txt" || echo 0)
-          PCAPS=$( [ -f "dyn/$TS/net.pcap" ] && stat -c%s "dyn/$TS/net.pcap" || echo 0)
+          cat > /tmp/dump_flows.py <<'PY'
+          import json
+          from mitmproxy import http
+          def response(flow: http.HTTPFlow):
+              try:
+                  rec = {
+                      "method": flow.request.method,
+                      "url": flow.request.pretty_url,
+                      "status": flow.response.status_code,
+                      "resp_ct": flow.response.headers.get("content-type", ""),
+                      "resp_len": len(flow.response.raw_content or b""),
+                      "resp_text": (flow.response.get_text(strict=False) or "")[:6000],
+                  }
+                  print(json.dumps(rec, ensure_ascii=False), flush=True)
+              except Exception as e:
+                  print(json.dumps({"err": str(e), "url": flow.request.pretty_url}), flush=True)
+          PY
+          timeout 180 "$MITM_BIN" -n -r "dyn/$TS/mitm.flows" -s /tmp/dump_flows.py > "dyn/$TS/api-flows.jsonl" 2> "dyn/$TS/mitm-parse.log" || true
+          echo "api_flows=$(wc -l < dyn/$TS/api-flows.jsonl 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
+          grep -aE '^(GET|POST|CONNECT|PUT|HEAD)|client connect|server connect|error|TLS' "dyn/$TS/mitm.log" 2>/dev/null | head -400 > "dyn/$TS/mitm-conn.txt" || true
+          if [ -s "dyn/$TS/net.pcap" ]; then
+            tshark -r "dyn/$TS/net.pcap" -Y 'tls.handshake.type==1' -T fields -e tls.handshake.extensions_server_name 2>/dev/null | sort | uniq -c | sort -rn > "dyn/$TS/guest-sni.txt" || true
+          fi
+          API_N=$( [ -f "dyn/$TS/api-flows.jsonl" ] && wc -l < "dyn/$TS/api-flows.jsonl" || echo 0)
+          DNSN=$( [ -f "dyn/$TS/dns.txt" ] && wc -l < "dyn/$TS/dns.txt" || echo 0)
+          SNIN=$( [ -f "dyn/$TS/sni.txt" ] && wc -l < "dyn/$TS/sni.txt" || echo 0)
           {
-            echo "## 动态探针 $TS"
-            echo "- 分支: $BR"
-            echo "- 渲染: $ACCEL；观测: $DUR 分钟"
-            echo "- DNS host: $DNSN；SNI host: $SNIN；pcap: $PCAPS B"
+            echo "## 动态探针 v3 $TS"
+            echo "- 分支: $BR；渲染: $ACCEL；观测: $DUR 分钟（含交互）"
+            echo "- API 明文流: $API_N；DNS host: $DNSN；SNI host: $SNIN"
+            echo "- host.pcap: $(stat -c%s dyn/$TS/host.pcap 2>/dev/null || echo 0) B；flows: $(stat -c%s dyn/$TS/mitm.flows 2>/dev/null || echo 0) B"
           } > "dyn/$TS/summary.md"
           /tmp/hb.sh "$TS" parsed
 
@@ -285,15 +407,15 @@ jobs:
         if: always()
         run: |
           {
-            echo "### 动态探针 $TS"
+            echo "### 动态探针 v3 $TS"
             echo ""
             echo "结果分支: **$BR**"
             echo ""
             cat "dyn/$TS/summary.md" 2>/dev/null || true
             echo ""
-            echo "**DNS Top 30**"
+            echo "**API 域名 Top 30**"
             echo '```'
-            head -30 "dyn/$TS/dns.txt" 2>/dev/null
+            grep -o '"url":"[^"]*"' "dyn/$TS/api-flows.jsonl" 2>/dev/null | sed 's/"url":"https\?:\/\///;s/\/.*//' | sort | uniq -c | sort -rn | head -30
             echo '```'
             echo ""
             echo "**SNI Top 30**"
