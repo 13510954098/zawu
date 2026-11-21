@@ -19,8 +19,7 @@ def walk(root):
                 continue
             if os.path.getsize(p) > MAXKB * 1024:
                 continue
-            if os.path.splitext(f)[1].lower() in ('.asm', '.txt', '.c', '.h', '.s', '.m'):
-                yield p
+            yield p
 
 
 def main():
@@ -39,31 +38,37 @@ def main():
     for p in files:
         rel = os.path.relpath(p, a.blutter)
         try:
-            lines = open(p, encoding='utf-8', errors='replace').read().split(chr(10))
+            raw = open(p, 'rb').read()
         except Exception:
             continue
+        if not raw:
+            continue
+        probe = raw[:4000]
+        if sum(1 for b in probe if b in (9, 10, 13) or 32 <= b < 127) < len(probe) * 0.85:
+            continue
+        lines = raw.decode('utf-8', errors='replace').split(chr(10))
         for i, l in enumerate(lines):
             low = l.lower()
             k = next((x for x in KW if x in low), None)
             if not k:
                 continue
             hits[k] += 1
-            if len(ctx) < 120:
+            if len(ctx) < 150:
                 head = ''
-                for j in range(i, max(-1, i - 12), -1):
+                for j in range(i, max(-1, i - 14), -1):
                     if re.search(r'(Function|Proc|func|0x[0-9a-f]{6,})', lines[j]):
                         head = lines[j].strip()
                         break
                 ctx.append((rel, k, head[:120], l.strip()[:200]))
 
     out = ['# Dart 侧敏感逻辑定位（blutter asm 扫描）', '']
-    out.append('- 扫描文件 %d 个（pp.txt / objs.txt 已跳过）' % len(files))
+    out.append('- 扫描文件 %d 个（跳过 pp.txt / objs.txt 与二进制）' % len(files))
     out.append('- 命中统计：' + '、'.join('`%s`×%d' % (k, n) for k, n in hits.most_common()))
     out += ['', '## 命中位置（函数头 / 命中行）', '| 文件 | 关键词 | 函数 | 命中行 |', '|---|---|---|---|']
     for rel, k, head, l in ctx:
-        out.append('| `%s` | `%s` | `%s` | `%s` |' % (rel, k, head.replace('|', '/'), l.replace('|', '/')))
+        out.append('| `%s` | `%s` | `%s` | `%s` |' % (rel, k, head.replace('|', '/').replace(chr(96), chr(39)), l.replace('|', '/').replace(chr(96), chr(39))))
     if not ctx:
-        out.append('| - | - | 无 | 无（asm 目录可能未生成） |')
+        out.append('| - | - | 无 | 无 |')
     open(os.path.join(a.outdir, 'dart-hot.md'), 'w', encoding='utf-8').write(chr(10).join(out) + chr(10))
     print('dart hot: %d files, %d hits, %d samples' % (len(files), sum(hits.values()), len(ctx)))
 
