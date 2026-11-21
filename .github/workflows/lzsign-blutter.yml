@@ -1,6 +1,9 @@
 name: lzsign-blutter-crack
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "re/lzsign-*"
 
 jobs:
   blutter:
