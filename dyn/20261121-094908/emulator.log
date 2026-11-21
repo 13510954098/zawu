@@ -196,3 +196,4 @@ WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emu
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay enable-exclusive --user current --category com.android.systemui.emulation.pixel_5 ' failed: 'adb: device 'emulator-5554' not found'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay enable-exclusive --user 0 --category com.android.systemui.emulation.pixel_5 ' failed: 'adb: device 'emulator-5554' not found'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell am broadcast -a com.android.emulator.multidisplay.START -n com.android.emulator.multidisplay/.MultiDisplayServiceReceiver --user 0 ' failed: 'adb: device 'emulator-5554' not found'
+WARNING      | Netsim Wifi ipv6:%5B::1%5D:39359 is gone due to Stream removed (Socket closed)

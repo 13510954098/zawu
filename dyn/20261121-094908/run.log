@@ -51,3 +51,6 @@ main_act=com.hbsclj.uth/.MainActivity
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 launch_exit=0
 [09:52:38] installed-launched
+observe_minutes=12
+interact=modal-dismiss done
+[09:54:53] tick-3m
