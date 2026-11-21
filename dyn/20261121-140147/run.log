@@ -15,3 +15,8 @@ Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 root            44     2       0      0 worker_thread       0 I [kworker/u5:0-fscrypt_read_queue]
 root            45     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
 [14:04:47] frida-server-up
+collector=javabridge pid=3850
+login_check px=(16, 15, 25)
+login_passed
+uiflow=done
+[14:08:19] uidrive-done
