@@ -1,0 +1,400 @@
+127.0.0.1:48758: client connect
+127.0.0.1:44002: client connect
+127.0.0.1:48914: client connect
+127.0.0.1:48930: client connect
+127.0.0.1:48914: server connect 142.251.150.119:443
+127.0.0.1:48930: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48944: client connect
+127.0.0.1:48944: server connect 192.178.142.157:443
+127.0.0.1:48914: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48954: client connect
+127.0.0.1:48954: server connect www.google.com:80 (142.251.151.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48962: client connect
+127.0.0.1:48962: server connect 172.217.115.4:443
+127.0.0.1:48972: client connect
+127.0.0.1:48972: server connect 172.217.115.4:443
+127.0.0.1:48980: client connect
+127.0.0.1:48944: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48980: server connect 142.251.121.93:443
+127.0.0.1:48988: client connect
+127.0.0.1:48988: server connect 192.178.142.157:443
+127.0.0.1:48980: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49004: client connect
+127.0.0.1:49004: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:48988: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49016: client connect
+127.0.0.1:48962: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49016: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49022: client connect
+127.0.0.1:49022: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49034: client connect
+127.0.0.1:49034: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49042: client connect
+127.0.0.1:49042: server connect 172.217.115.4:443
+127.0.0.1:49044: client connect
+127.0.0.1:49044: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49056: client connect
+127.0.0.1:49056: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49072: client connect
+127.0.0.1:49072: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49084: client connect
+127.0.0.1:49084: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49100: client connect
+127.0.0.1:49042: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49100: server connect 142.251.152.119:443
+127.0.0.1:49102: client connect
+127.0.0.1:49102: server connect 172.217.114.4:443
+127.0.0.1:49102: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49104: client connect
+127.0.0.1:49104: server connect 172.217.116.4:443
+127.0.0.1:49120: client connect
+127.0.0.1:49104: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49128: client connect
+127.0.0.1:49128: server connect 142.251.151.120:443
+127.0.0.1:49120: server connect ad.doubleclick.net:80 (142.251.121.148:80)
+127.0.0.1:49100: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+Addon error: Traceback (most recent call last):
+127.0.0.1:49128: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48972: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49134: client connect
+Addon error: Traceback (most recent call last):
+127.0.0.1:49134: server connect 172.217.115.4:443
+127.0.0.1:49134: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49136: client connect
+127.0.0.1:49136: server connect 172.217.114.4:443
+127.0.0.1:49142: client connect
+127.0.0.1:49142: server connect 142.251.121.136:443
+127.0.0.1:49154: client connect
+127.0.0.1:49160: client connect
+127.0.0.1:49154: server connect 142.251.154.119:443
+127.0.0.1:49160: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49136: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49154: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49142: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49162: client connect
+127.0.0.1:49166: client connect
+127.0.0.1:49162: server connect 172.217.116.4:443
+127.0.0.1:49166: server connect www.google.com:80 (142.251.156.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49168: client connect
+127.0.0.1:49168: server connect 142.251.157.120:443
+127.0.0.1:49168: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49162: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49174: client connect
+127.0.0.1:49174: server connect 142.251.154.120:443
+127.0.0.1:49174: Client TLS handshake failed. The client does not trust the proxy's certificate for www.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49176: client connect
+127.0.0.1:49176: error establishing server connection: [Errno 111] Connect call failed ('127.0.0.53', 853)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49184: client connect
+127.0.0.1:49184: server connect 142.251.155.119:443
+127.0.0.1:49192: client connect
+127.0.0.1:49204: client connect
+127.0.0.1:49192: server connect 142.251.121.94:443
+127.0.0.1:49184: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49204: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49208: client connect
+127.0.0.1:49208: server connect www.google.com:80 (142.251.157.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49220: client connect
+127.0.0.1:49234: client connect
+127.0.0.1:49234: server connect 142.251.151.119:443
+127.0.0.1:49220: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49234: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49236: client connect
+127.0.0.1:49236: server connect www.google.com:80 (142.251.155.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49240: client connect
+127.0.0.1:49240: server connect 142.251.156.119:443
+127.0.0.1:49240: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49246: client connect
+127.0.0.1:49246: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49260: client connect
+127.0.0.1:49260: server connect play.googleapis.com:80 (172.217.114.4:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:49192: Client TLS handshake failed. The client does not trust the proxy's certificate for fonts.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:49268: client connect
+127.0.0.1:49268: server connect 172.217.115.4:443
+127.0.0.1:49272: client connect
+127.0.0.1:49272: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49284: client connect
+127.0.0.1:49284: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49288: client connect
+127.0.0.1:49288: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:49300: client connect
+127.0.0.1:49300: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54754: client connect
+127.0.0.1:54754: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54764: client connect
+127.0.0.1:54764: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54772: client connect
+127.0.0.1:54772: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54778: client connect
+127.0.0.1:54790: client connect
+127.0.0.1:54794: client connect
+127.0.0.1:54778: server connect 142.251.157.119:443
+127.0.0.1:54794: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54790: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:54778: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:54800: client connect
+127.0.0.1:54802: client connect
+127.0.0.1:54800: server connect www.google.com:80 (142.251.152.119:80)
+127.0.0.1:54802: server connect 142.251.121.94:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:54816: client connect
+127.0.0.1:54816: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54802: Client TLS handshake failed. The client does not trust the proxy's certificate for fonts.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:54828: client connect
+127.0.0.1:54828: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54830: client connect
+127.0.0.1:54830: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54836: client connect
+127.0.0.1:54836: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:54846: client connect
+127.0.0.1:54860: client connect
+127.0.0.1:54870: client connect
+127.0.0.1:54874: client connect
+127.0.0.1:54876: client connect
+127.0.0.1:54846: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:54860: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+Addon error: Traceback (most recent call last):
+127.0.0.1:54882: client connect
+127.0.0.1:54894: client connect
+127.0.0.1:54882: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:54894: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+Addon error: Traceback (most recent call last):
+127.0.0.1:54870: server connect 172.217.118.4:443
+127.0.0.1:54910: client connect
+127.0.0.1:54922: client connect
+127.0.0.1:54876: server connect 172.217.118.4:443
+127.0.0.1:54874: server connect 172.217.118.4:443
+127.0.0.1:54910: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:54922: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+Addon error: Traceback (most recent call last):
+127.0.0.1:54928: client connect
+127.0.0.1:54928: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:48610: client connect
+127.0.0.1:48610: error establishing server connection: [Errno 111] Connect call failed ('127.0.0.53', 853)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48622: client connect
+127.0.0.1:48628: client connect
+127.0.0.1:48622: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:48628: server connect 142.251.150.119:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:48628: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48638: client connect
+127.0.0.1:48638: server connect www.google.com:80 (142.251.155.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48646: client connect
+127.0.0.1:48650: client connect
+127.0.0.1:48650: server connect 142.251.154.119:443
+127.0.0.1:48646: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48650: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48666: client connect
+127.0.0.1:48666: server connect www.google.com:80 (142.251.156.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:48674: client connect
+127.0.0.1:48676: client connect
+127.0.0.1:48674: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:48676: server connect 142.251.156.119:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:48676: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:48680: client connect
+127.0.0.1:48680: server connect www.google.com:80 (142.251.150.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:42180: client connect
+127.0.0.1:42180: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:42194: client connect
+127.0.0.1:42198: client connect
+127.0.0.1:42194: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:42198: server connect 142.251.150.119:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:42198: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42202: client connect
+127.0.0.1:42202: server connect www.google.com:80 (142.251.150.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:42218: client connect
+127.0.0.1:42218: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:42232: client connect
+127.0.0.1:42232: server connect 142.251.156.119:443
+127.0.0.1:42232: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42242: client connect
+127.0.0.1:42242: server connect play.googleapis.com:80 (172.217.118.4:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:42258: client connect
+127.0.0.1:42258: server connect 172.217.119.4:443
+127.0.0.1:42274: client connect
+127.0.0.1:42274: server connect 142.251.121.93:443
+127.0.0.1:42274: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42276: client connect
+127.0.0.1:42276: server connect 142.251.121.136:443
+127.0.0.1:42276: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42258: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42290: client connect
+127.0.0.1:42290: server connect 142.251.121.190:443
+127.0.0.1:42290: Client TLS handshake failed. The client does not trust the proxy's certificate for dl.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42306: client connect
+127.0.0.1:42306: server connect 172.217.119.4:443
+127.0.0.1:42306: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42322: client connect
+127.0.0.1:42322: server connect 172.217.116.4:443
+127.0.0.1:42322: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:42336: client connect
+127.0.0.1:42336: server connect 172.217.118.4:443
+127.0.0.1:42336: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47336: client connect
+127.0.0.1:47336: server connect 142.251.121.94:443
+127.0.0.1:47336: Client TLS handshake failed. The client does not trust the proxy's certificate for fonts.gstatic.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47342: client connect
+127.0.0.1:47346: client connect
+127.0.0.1:47348: client connect
+127.0.0.1:47346: server connect 142.251.154.119:443
+127.0.0.1:47348: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:47346: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47356: client connect
+127.0.0.1:47360: client connect
+127.0.0.1:47356: server connect www.google.com:80 (142.251.151.119:80)
+127.0.0.1:47360: server connect 142.251.108.97:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:47360: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googletagmanager.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47366: client connect
+127.0.0.1:47366: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47376: client connect
+127.0.0.1:47376: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47382: client connect
+127.0.0.1:47382: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47392: client connect
+127.0.0.1:47392: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47400: client connect
+127.0.0.1:47400: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47412: client connect
+127.0.0.1:47412: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47428: client connect
+127.0.0.1:47428: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47430: client connect
+127.0.0.1:47430: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47440: client connect
+127.0.0.1:47440: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47456: client connect
+127.0.0.1:47456: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47470: client connect
+127.0.0.1:47470: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47476: client connect
+127.0.0.1:47476: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47482: client connect
+127.0.0.1:47490: client connect
+127.0.0.1:47490: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47498: client connect
+127.0.0.1:47498: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47482: server connect 172.217.115.4:443
+127.0.0.1:47506: client connect
+127.0.0.1:47506: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47512: client connect
+127.0.0.1:47512: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47528: client connect
+127.0.0.1:47528: server connect 142.251.152.4:443
+127.0.0.1:47482: Client TLS handshake failed. The client does not trust the proxy's certificate for youtubei.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47528: Client TLS handshake failed. The client does not trust the proxy's certificate for www.youtube.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47540: client connect
+127.0.0.1:47540: server connect 192.178.142.155:443
+127.0.0.1:47548: client connect
+127.0.0.1:47556: client connect
+127.0.0.1:47556: server connect 142.251.153.119:443
+127.0.0.1:47548: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:47540: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47566: client connect
+127.0.0.1:47556: Client TLS handshake failed. The client does not trust the proxy's certificate for www.google.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47566: server connect 192.178.142.157:443
+127.0.0.1:47574: client connect
+127.0.0.1:47574: server connect www.google.com:80 (142.251.155.119:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:47566: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47582: client connect
+127.0.0.1:47582: server connect ad.doubleclick.net:80 (142.251.121.148:80)
+Addon error: Traceback (most recent call last):
+127.0.0.1:47586: client connect
+127.0.0.1:47586: server connect 172.217.112.4:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:47598: client connect
+127.0.0.1:47598: server connect 192.178.142.154:443
+127.0.0.1:47586: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47606: client connect
+127.0.0.1:47606: server connect 172.217.119.4:443
+127.0.0.1:47598: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47606: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47620: client connect
+127.0.0.1:47620: server connect 172.217.118.4:443
+Addon error: Traceback (most recent call last):
+127.0.0.1:47620: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47634: client connect
+127.0.0.1:47634: server connect 172.217.115.4:443
+127.0.0.1:47640: client connect
+127.0.0.1:47640: server connect 192.178.142.156:443
+127.0.0.1:47656: client connect
+127.0.0.1:47656: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47640: Client TLS handshake failed. The client does not trust the proxy's certificate for www.googleadservices.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47634: Client TLS handshake failed. The client does not trust the proxy's certificate for firebaseinstallations.googleapis.com (OpenSSL Error([('SSL routines', '', 'ssl/tls alert certificate unknown')]))
+127.0.0.1:47666: client connect
+127.0.0.1:47666: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+Addon error: Traceback (most recent call last):
+127.0.0.1:47672: client connect
+127.0.0.1:47672: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47674: client connect
+127.0.0.1:47674: error establishing server connection: [Errno 101] Network is unreachable
+Addon error: Traceback (most recent call last):
+127.0.0.1:47690: client connect

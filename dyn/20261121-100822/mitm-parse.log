@@ -1,0 +1,2 @@
+/usr/lib/python3/dist-packages/mitmproxy/certs.py:103: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  return datetime.datetime.utcnow() > self._cert.not_valid_after
