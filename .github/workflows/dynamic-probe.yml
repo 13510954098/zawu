@@ -5,7 +5,7 @@ name: RE-APK 动态探针 v3
 #    -> 新增宿主机侧 sudo tcpdump 全量抓包：guest 流量经 slirp 以 qemu 进程套接字出现在宿主机，
 #       全程不漏；原 -tcpdump 保留作 tertiary 佐证。
 # 2) 新增 mitmproxy 明文链路：emulator -http-proxy 工作在 QEMU slirp/NAT 层，
-#    对无代理感知的 Dart/Flutter 流量同样强制走代理 -> HTTPS 可被 mitm 拦截还原为明文。
+#    代理地址必须写 127.0.0.1（10.0.2.2 从宿主机侧解析不存在，v3 实测超时被忽略） -> HTTPS 可被 mitm 拦截还原为明文。
 #    CA 安装：-writable-system + adb root + disable-verity + remount + 推入 /system/etc/security/cacerts。
 #    任一环节失败只记日志不阻断（仍有 host.pcap 的 SNI/IP 全量兜底）。
 # 3) 观测循环加入交互：关公告弹窗（多坐标尝试）、点开漫画详情、翻页，触发更多业务 API 与广告链路。
@@ -184,7 +184,7 @@ jobs:
           fi
           # 4c. 模拟器（含 -writable-system 与 -http-proxy）
           EMU=/usr/local/lib/android/sdk/emulator/emulator
-          OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -writable-system -http-proxy http://10.0.2.2:8080 -tcpdump dyn/$TS/net.pcap"
+          OPTS="-avd $AVD_NAME -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -camera-back none -camera-front none -writable-system -http-proxy http://127.0.0.1:8080 -tcpdump dyn/$TS/net.pcap"
           start_emu() { nohup $EMU $OPTS "$@" > "dyn/$TS/emulator.log" 2>&1 & echo $!; }
           EMU_PID=$(start_emu -accel on)
           sleep 20
