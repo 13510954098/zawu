@@ -7,3 +7,10 @@ size=43291746 expect=43291746
 sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 expect_sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 [09:03:37] downloaded
+crw-rw---- 1 root kvm 10, 232 Nov 21 09:02 /dev/kvm
+/home/runner/work/_temp/d435f54d-74e4-4adc-9803-910ad0349d6c.sh: line 4: /usr/local/lib/android/sdk/emulator/bin/kvm-ok: No such file or directory
+kvm-ok: 不可用
+tshark=/usr/bin/tshark
+sdk_exit=0
+emulator=
+[09:04:37] toolchain-ready
