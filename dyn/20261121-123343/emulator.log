@@ -190,3 +190,9 @@ WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emu
 INFO         | Boot completed in 31041 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
 WARNING      | Netsim Wifi ipv6:%5B::1%5D:43739 is gone due to Stream removed (sendmsg: Connection reset by peer (104))
+INFO         | Wait for emulator (pid 3617) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+
+USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+INFO         | Saving snapshot 'default_boot' took 1 ms
+INFO         | ipv6:%5B::1%5D:41291: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {http2_error:2}
+INFO         | removeAll
