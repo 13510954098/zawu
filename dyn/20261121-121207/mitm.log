@@ -7742,3 +7742,3178 @@ Addon error: Traceback (most recent call last):
     raise ValueError(f"unserializable object: {value} ({type(value)})")
 ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
 
+127.0.0.1:47396: client connect
+127.0.0.1:47402: client connect
+127.0.0.1:47406: client connect
+127.0.0.1:47402: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:47406: server connect 142.251.157.119:443
+127.0.0.1:47402: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47402: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:47402: client disconnect
+127.0.0.1:47406: GET https://142.251.157.119/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47406: server disconnect 142.251.157.119:443
+127.0.0.1:47406: client disconnect
+127.0.0.1:47662: GET https://74.125.69.120/webref-ondevice/aiai/19071200_pir…
+              << 301 Moved Permanently 286b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/webref-ondevice/aiai/19071200_p…
+              << 404 Not Found 1.6k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/kg_collections_table…
+              << 200 OK 406b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/kg_actions_ranking_tab…
+              << 301 Moved Permanently 287b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/kg_actions_ranking_t…
+              << 200 OK 396b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/annotator…
+              << 301 Moved Permanently 289b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/annotat…
+              << 200 OK 407b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/actions/v…
+              << 301 Moved Permanently 287b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/actions…
+              << 200 OK 408b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/langid/v1…
+              << 301 Moved Permanently 278b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/langid/…
+              << 200 OK 399b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/actions/v…
+              << 301 Moved Permanently 309b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/actions…
+              << 200 OK 2.3m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/annotator…
+              << 301 Moved Permanently 311b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/annotat…
+              << 200 OK 343k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/kg_collections_table/2…
+              << 301 Moved Permanently 321b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47388: POST https://142.251.156.119/m/voice-search/down?pair=780d85… HTTP/2.0
+     << HTTP/2.0 400 Bad Request 1.6k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/kg_collections_table…
+              << 200 OK 613b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/kg_actions_ranking_tab…
+              << 301 Moved Permanently 306b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/kg_actions_ranking_t…
+              << 200 OK 309b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47662: GET https://74.125.69.120/matchmaker/tclib_models/langid/v1…
+              << 301 Moved Permanently 300b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:40634: client disconnect
+127.0.0.1:40634: server disconnect 117.86.166.36:443
+127.0.0.1:40642: client disconnect
+127.0.0.1:40642: server disconnect 117.86.166.36:443
+127.0.0.1:47678: GET https://142.251.156.120/matchmaker/tclib_models/langid/…
+              << 200 OK 328k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:40662: client disconnect
+127.0.0.1:40662: server disconnect 117.86.166.36:443
+127.0.0.1:40646: client disconnect
+127.0.0.1:40646: server disconnect 117.86.166.36:443
+127.0.0.1:40712: client disconnect
+127.0.0.1:40712: server disconnect 38.123.96.200:443
+127.0.0.1:40618: client disconnect
+127.0.0.1:40618: server disconnect 117.86.166.36:443
+127.0.0.1:47420: client connect
+127.0.0.1:47420: server connect 142.251.156.120:443
+127.0.0.1:47420: GET https://142.251.156.120/cryptauthvault/v0/cert.xml
+              << 200 OK 3.4k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47420: GET https://142.251.156.120/cryptauthvault/v0/cert.sig.xml
+              << 200 OK 3.1k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:47424: client connect
+127.0.0.1:47424: server connect 172.217.114.4:443
+127.0.0.1:47424: POST https://172.217.114.4/google.internal.gmscore.gmscompli… HTTP/2.0
+     << HTTP/2.0 200 OK 805b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:40676: client disconnect
+127.0.0.1:40676: server disconnect 117.86.166.36:443
+127.0.0.1:44146: client connect
+127.0.0.1:44146: server connect 74.125.132.188:5228
+127.0.0.1:40714: POST https://172.217.116.4/androidcheck/v1/attestations/adAt…
+              << 200 OK 225b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44162: client connect
+127.0.0.1:44162: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44162: CONNECT 2401:4c20:34:ff00:a9c:8e60:c35:9cc5:443
+              << 502 Bad Gateway 95b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44162: client disconnect
+127.0.0.1:40688: client disconnect
+127.0.0.1:40688: server disconnect 117.86.166.36:443
+127.0.0.1:44168: client connect
+127.0.0.1:44146 -> tcp -> 74.125.132.188:5228
+127.0.0.1:40714: POST https://172.217.116.4/androidantiabuse/v1/x/create_lite…
+              << 200 OK 176k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 146, in tcp_end
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.tcp.TCPFlow'>> (<class 'method'>)
+
+127.0.0.1:44146 <- tcp <- 74.125.132.188:5228
+127.0.0.1:44146 <- tcp <- 74.125.132.188:5228
+127.0.0.1:44182: client connect
+127.0.0.1:44182: server connect 101.47.15.217:443
+127.0.0.1:40924: client disconnect
+127.0.0.1:40924: server disconnect 74.125.126.101:443
+127.0.0.1:40932: client disconnect
+127.0.0.1:47628: client disconnect
+127.0.0.1:47424: client disconnect
+127.0.0.1:44146: server disconnect 74.125.132.188:5228
+127.0.0.1:47062: client disconnect
+127.0.0.1:47688: client disconnect
+127.0.0.1:47606: client disconnect
+127.0.0.1:45764: client disconnect
+127.0.0.1:44146: client disconnect
+127.0.0.1:40932: server disconnect 74.125.126.101:443
+127.0.0.1:47628: server disconnect 172.217.119.4:443
+127.0.0.1:47424: server disconnect 172.217.114.4:443
+127.0.0.1:47062: server disconnect 173.194.42.94:443
+127.0.0.1:47688: server disconnect 172.217.114.4:443
+127.0.0.1:47606: server disconnect 172.217.116.4:443
+127.0.0.1:45764: server disconnect 173.194.42.94:443
+127.0.0.1:53398: client disconnect
+127.0.0.1:53398: server disconnect 172.217.118.4:443
+127.0.0.1:44168: server connect 172.217.118.4:443
+127.0.0.1:44168: client disconnect
+127.0.0.1:44168: server disconnect 172.217.118.4:443
+127.0.0.1:47420: client disconnect
+127.0.0.1:40554: client disconnect
+127.0.0.1:47718: client disconnect
+127.0.0.1:47706: client disconnect
+127.0.0.1:47710: client disconnect
+127.0.0.1:40344: client disconnect
+127.0.0.1:40714: client disconnect
+127.0.0.1:47420: server disconnect 142.251.156.120:443
+127.0.0.1:40554: server disconnect 172.217.119.4:443
+127.0.0.1:47718: server disconnect 172.217.119.4:443
+127.0.0.1:47706: server disconnect 172.217.116.4:443
+127.0.0.1:47710: server disconnect 172.217.119.4:443
+127.0.0.1:40344: server disconnect 172.217.118.4:443
+127.0.0.1:40714: server disconnect 172.217.116.4:443
+127.0.0.1:44196: client connect
+127.0.0.1:44196: server connect 74.125.132.188:5228
+127.0.0.1:44196 -> tcp -> 74.125.132.188:5228
+127.0.0.1:44196 <- tcp <- 74.125.132.188:5228
+127.0.0.1:44196 <- tcp <- 74.125.132.188:5228
+127.0.0.1:44198: client connect
+127.0.0.1:44198: server connect 172.217.118.4:443
+127.0.0.1:44200: client connect
+127.0.0.1:44200: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44200: CONNECT 2001:4860:4845:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44200: client disconnect
+127.0.0.1:44202: client connect
+127.0.0.1:44202: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44202: CONNECT 2001:4860:4842:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44202: client disconnect
+127.0.0.1:44216: client connect
+127.0.0.1:44216: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44216: CONNECT 2001:4860:4840:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44216: client disconnect
+127.0.0.1:44226: client connect
+127.0.0.1:44226: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44226: CONNECT 2001:4860:4846:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44226: client disconnect
+127.0.0.1:44240: client connect
+127.0.0.1:44240: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44240: CONNECT 2001:4860:4843:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44240: client disconnect
+127.0.0.1:44254: client connect
+127.0.0.1:44254: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44254: CONNECT 2001:4860:4841:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44254: client disconnect
+127.0.0.1:44268: client connect
+127.0.0.1:44268: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44268: CONNECT 2001:4860:4847:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44268: client disconnect
+127.0.0.1:44282: client connect
+127.0.0.1:44282: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44282: CONNECT 2001:4860:4844:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44282: client disconnect
+127.0.0.1:44294: client connect
+127.0.0.1:44294: server connect 172.217.118.4:443
+127.0.0.1:44198: POST https://172.217.118.4/checkin
+              << 200 OK 39.7k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44294: POST https://172.217.118.4/auth/devicekey HTTP/2.0
+     << HTTP/2.0 400 Bad Request 801b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44304: client connect
+127.0.0.1:44304: server connect 172.217.119.4:443
+127.0.0.1:44304: POST https://172.217.119.4/google.internal.android.location.… HTTP/2.0
+     << HTTP/2.0 200 OK 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44308: client connect
+127.0.0.1:44308: server connect 172.217.118.4:443
+127.0.0.1:44308: POST https://172.217.118.4/checkin
+              << 200 OK 465b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44320: client connect
+127.0.0.1:44326: client connect
+127.0.0.1:44326: server connect 142.251.157.119:443
+127.0.0.1:44320: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:44320: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44320: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:44320: client disconnect
+127.0.0.1:44342: client connect
+127.0.0.1:44326: GET https://142.251.157.119/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44326: server disconnect 142.251.157.119:443
+127.0.0.1:44326: client disconnect
+127.0.0.1:44342: server connect 172.217.116.4:443
+127.0.0.1:44342: POST https://172.217.116.4/androidcheck/v1/attestations/adAt…
+              << 200 OK 226b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44352: client connect
+127.0.0.1:44352: server connect 142.250.125.154:443
+127.0.0.1:44352: GET https://142.250.125.154/pagead/gen_204?id=gmob-apps&act…
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44360: client connect
+127.0.0.1:44360: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44360: CONNECT 2001:4860:4844:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44360: client disconnect
+127.0.0.1:44370: client connect
+127.0.0.1:44370: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44370: CONNECT 2001:4860:4846:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44370: client disconnect
+127.0.0.1:44376: client connect
+127.0.0.1:44376: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44376: CONNECT 2001:4860:4841:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44376: client disconnect
+127.0.0.1:44390: client connect
+127.0.0.1:44390: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44390: CONNECT 2001:4860:4840:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44390: client disconnect
+127.0.0.1:44392: client connect
+127.0.0.1:44392: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44392: CONNECT 2001:4860:4843:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44392: client disconnect
+127.0.0.1:44408: client connect
+127.0.0.1:44408: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44408: CONNECT 2001:4860:4847:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44408: client disconnect
+127.0.0.1:44418: client connect
+127.0.0.1:44418: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44418: CONNECT 2001:4860:4845:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44418: client disconnect
+127.0.0.1:44428: client connect
+127.0.0.1:44428: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:44428: CONNECT 2001:4860:4842:400:::443
+              << 502 Bad Gateway 80b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44428: client disconnect
+127.0.0.1:44442: client connect
+127.0.0.1:44442: server connect 172.217.116.4:443
+127.0.0.1:44442: POST https://172.217.116.4/experimentsandconfigs/v1/getExper… HTTP/2.0
+     << HTTP/2.0 200 OK 643k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34460: client connect
+127.0.0.1:34460: server connect 142.251.156.120:443
+127.0.0.1:34460: GET https://142.251.156.120/android/keyboard/modelpack/emoj…
+              << 200 OK 4.9k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34460: GET https://142.251.156.120/android/keyboard/dynamic_art/20…
+              << 200 OK 345b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34474: client connect
+127.0.0.1:34474: server connect 172.217.214.91:443
+127.0.0.1:44442: POST https://172.217.116.4/experimentsandconfigs/v1/getExper… HTTP/2.0
+     << HTTP/2.0 200 OK 252k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34474: GET https://172.217.214.91/android/voice/gboard/terse/super…
+              << 200 OK 1.2k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34460: GET https://142.251.156.120/android/keyboard/modelpack/tran…
+              << 200 OK 513b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34460: GET https://142.251.156.120/android/keyboard/dictionarypack…
+              << 200 OK 64.6k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34484: client connect
+127.0.0.1:34484: server connect 142.251.156.120:443
+127.0.0.1:34484: Client TLS handshake failed. The client disconnected during the handshake. If this happens consistently for www.gstatic.com, this may indicate that the client does not trust the proxy's certificate.
+127.0.0.1:34484: client disconnect
+127.0.0.1:34484: server disconnect 142.251.156.120:443
+127.0.0.1:34492: client connect
+127.0.0.1:34492: server connect 172.217.214.91:443
+127.0.0.1:34492: GET https://172.217.214.91/gboard/klp/dict/en-840/en-840_d3…
+              << 200 OK 19.4m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34500: client connect
+127.0.0.1:34500: server connect 142.251.156.120:443
+127.0.0.1:34502: client connect
+127.0.0.1:34502: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:34502: CONNECT 2401:4c20:34:ff00:a9c:8e60:c35:9cc5:443
+              << 502 Bad Gateway 95b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34502: client disconnect
+127.0.0.1:34500: GET https://142.251.156.120/android/keyboard/emoji/20230201…
+              << 200 OK 87.6k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34500: GET https://142.251.156.120/android/keyboard/dynamic_art/20…
+              << 200 OK 545k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34500: GET https://142.251.156.120/android/keyboard/dynamic_art/20…
+              << 200 OK 29.8k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34500: GET https://142.251.156.120/android/keyboard/modelpack/tran…
+              << 200 OK 1.4m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34508: client connect
+127.0.0.1:34500: GET https://142.251.156.120/android/keyboard/modelpack/cont…
+              << 200 OK 322b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34508: server connect 101.126.47.111:443
+127.0.0.1:34516: client connect
+127.0.0.1:34516: server connect 142.251.156.120:443
+127.0.0.1:34516: GET https://142.251.156.120/android/keyboard/modelpack/cont…
+              << 200 OK 3.6k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34516: GET https://142.251.156.120/android/keyboard/modelpack/cont…
+              << 200 OK 1.9k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34516: GET https://142.251.156.120/android/keyboard/modelpack/cont…
+              << 200 OK 460b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34508: POST https://101.126.47.111/n/a/v1/268f0933
+              << 200 OK 3b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:34508: POST https://101.126.47.111/n/a/v1/268f0933/17ae208
+              << 200 OK 3b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38044: client connect
+127.0.0.1:38050: client connect
+127.0.0.1:38044: server connect 142.251.156.120:443
+127.0.0.1:38050: server connect 142.251.156.120:443
+127.0.0.1:38044: GET https://142.251.156.120/android/config_update/09252026-…
+              << 200 OK 384b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38044: server disconnect 142.251.156.120:443
+127.0.0.1:38044: client disconnect
+127.0.0.1:38050: GET https://142.251.156.120/android/config_update/08202014-…
+              << 200 OK 384b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38050: server disconnect 142.251.156.120:443
+127.0.0.1:38050: client disconnect
+127.0.0.1:38056: client connect
+127.0.0.1:38060: client connect
+127.0.0.1:38056: server connect 142.251.156.120:443
+127.0.0.1:38060: server connect 142.251.156.120:443
+127.0.0.1:38056: GET https://142.251.156.120/android/text_classifier/langid/…
+              << 200 OK 383b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38056: server disconnect 142.251.156.120:443
+127.0.0.1:38056: client disconnect
+127.0.0.1:38060: GET https://142.251.156.120/android/text_classifier/s/v902/…
+              << 200 OK 385b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38060: server disconnect 142.251.156.120:443
+127.0.0.1:38060: client disconnect
+127.0.0.1:38072: client connect
+127.0.0.1:38072: server connect 142.251.156.120:443
+127.0.0.1:38074: client connect
+127.0.0.1:38074: server connect 142.251.156.120:443
+127.0.0.1:38074: GET https://142.251.156.120/android/config_update/09252026-…
+              << 200 OK 22.8k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38074: server disconnect 142.251.156.120:443
+127.0.0.1:38074: client disconnect
+127.0.0.1:38072: GET https://142.251.156.120/android/text_classifier/actions…
+              << 200 OK 385b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38072: server disconnect 142.251.156.120:443
+127.0.0.1:38072: client disconnect
+127.0.0.1:38078: client connect
+127.0.0.1:38088: client connect
+127.0.0.1:38088: server connect 142.251.156.120:443
+127.0.0.1:38078: server connect 142.251.156.120:443
+127.0.0.1:38088: GET https://142.251.156.120/android/config_update/08202014-…
+              << 200 OK 39.0k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38088: server disconnect 142.251.156.120:443
+127.0.0.1:38088: client disconnect
+127.0.0.1:38104: client connect
+127.0.0.1:38078: GET https://142.251.156.120/android/text_classifier/langid/…
+              << 200 OK 364k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38078: server disconnect 142.251.156.120:443
+127.0.0.1:38078: client disconnect
+127.0.0.1:38104: server connect 142.251.156.120:443
+127.0.0.1:38110: client connect
+127.0.0.1:38110: server connect 142.251.156.120:443
+127.0.0.1:38104: GET https://142.251.156.120/android/text_classifier/s/v902/…
+              << 200 OK 4.1m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38104: server disconnect 142.251.156.120:443
+127.0.0.1:38104: client disconnect
+127.0.0.1:38110: GET https://142.251.156.120/android/text_classifier/actions…
+              << 200 OK 3.7m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:38110: server disconnect 142.251.156.120:443
+127.0.0.1:38110: client disconnect
+127.0.0.1:40420: client connect
+127.0.0.1:40420: server connect 216.239.36.155:443
+127.0.0.1:40420: GET https://216.239.36.155/?vers=0&rcs_state=0&IMSI=3102600…
+              << 503 Service Unavailable 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:40430: client connect
+127.0.0.1:50146: client connect
+127.0.0.1:50150: client connect
+127.0.0.1:50146: server connect 104.21.2.7:443
+127.0.0.1:50150: server connect 172.67.128.118:443
+127.0.0.1:50150: client disconnect
+127.0.0.1:50150: server disconnect 172.67.128.118:443
+127.0.0.1:50156: client connect
+127.0.0.1:50160: client connect
+127.0.0.1:59780: error establishing server connection: [Errno 110] Connect call failed ('10.0.2.3', 853)
+127.0.0.1:59780: CONNECT 10.0.2.3:853
+              << 502 Bad Gateway 81b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:59780: client disconnect
+127.0.0.1:53376: client disconnect
+127.0.0.1:53376: server disconnect 172.217.117.4:443
+127.0.0.1:50156: server connect 106.225.194.36:443
+127.0.0.1:50160: server connect 58.222.20.36:443
+127.0.0.1:50160: client disconnect
+127.0.0.1:50160: server disconnect 58.222.20.36:443
+127.0.0.1:50146: GET https://104.21.2.7/app/api/v2/detail/26824?lzsign=6dea6…
+              << 200 OK 6.3k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50166: client connect
+127.0.0.1:50178: client connect
+127.0.0.1:50190: client connect
+127.0.0.1:50200: client connect
+127.0.0.1:50214: client connect
+127.0.0.1:50220: client connect
+127.0.0.1:50226: client connect
+127.0.0.1:50234: client connect
+127.0.0.1:50242: client connect
+127.0.0.1:50252: client connect
+127.0.0.1:50266: client connect
+127.0.0.1:50268: client connect
+127.0.0.1:50272: client connect
+127.0.0.1:50278: client connect
+127.0.0.1:50290: client connect
+127.0.0.1:50298: client connect
+127.0.0.1:50306: client connect
+127.0.0.1:50316: client connect
+127.0.0.1:50328: client connect
+127.0.0.1:50334: client connect
+127.0.0.1:50156: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 52b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50166: server connect 106.225.194.36:443
+127.0.0.1:50178: server connect 106.225.194.36:443
+127.0.0.1:50200: server connect 106.225.194.36:443
+127.0.0.1:50190: server connect 106.225.194.36:443
+127.0.0.1:50220: server connect 106.225.194.36:443
+127.0.0.1:50268: server connect 58.222.20.36:443
+127.0.0.1:50278: server connect 106.225.194.36:443
+127.0.0.1:50268: client disconnect
+127.0.0.1:50268: server disconnect 58.222.20.36:443
+127.0.0.1:50226: server connect 106.225.194.36:443
+127.0.0.1:50214: server connect 106.225.194.36:443
+127.0.0.1:50316: server connect 58.222.20.36:443
+127.0.0.1:50266: server connect 58.222.20.36:443
+127.0.0.1:50334: server connect 58.222.20.36:443
+127.0.0.1:50316: client disconnect
+127.0.0.1:50316: server disconnect 58.222.20.36:443
+127.0.0.1:50266: client disconnect
+127.0.0.1:50266: server disconnect 58.222.20.36:443
+127.0.0.1:50272: server connect 58.222.20.36:443
+127.0.0.1:50272: client disconnect
+127.0.0.1:50272: server disconnect 58.222.20.36:443
+127.0.0.1:50346: client connect
+127.0.0.1:50328: server connect 58.222.20.36:443
+127.0.0.1:50328: client disconnect
+127.0.0.1:50328: server disconnect 58.222.20.36:443
+127.0.0.1:50306: server connect 58.222.20.36:443
+127.0.0.1:50156: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 274k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50178: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 21.5k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50242: server connect 106.225.194.36:443
+127.0.0.1:50290: server connect 58.222.20.36:443
+127.0.0.1:50252: server connect 58.222.20.36:443
+127.0.0.1:50234: server connect 106.225.194.36:443
+127.0.0.1:50298: server connect 58.222.20.36:443
+127.0.0.1:50166: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 20.3k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50242: client disconnect
+127.0.0.1:50242: server disconnect 106.225.194.36:443
+127.0.0.1:50290: client disconnect
+127.0.0.1:50290: server disconnect 58.222.20.36:443
+127.0.0.1:50252: client disconnect
+127.0.0.1:50234: client disconnect
+127.0.0.1:50298: client disconnect
+127.0.0.1:50252: server disconnect 58.222.20.36:443
+127.0.0.1:50234: server disconnect 106.225.194.36:443
+127.0.0.1:50298: server disconnect 58.222.20.36:443
+127.0.0.1:50334: GET https://58.222.20.36/searchbox_feed/app=2001&fmt=auto&g…
+              << 200 OK 310k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50346: server connect 111.170.165.36:443
+127.0.0.1:50220: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 238k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50346: client disconnect
+127.0.0.1:50346: server disconnect 111.170.165.36:443
+127.0.0.1:50156: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 294k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50278: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 268k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50226: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 266k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50214: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 255k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50146: client disconnect
+127.0.0.1:50146: server disconnect 104.21.2.7:443
+127.0.0.1:50306: GET https://58.222.20.36/searchbox_feed/app=2001&fmt=auto&g…
+              << 200 OK 256k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50200: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 30.4k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50166: client disconnect
+127.0.0.1:50166: server disconnect 106.225.194.36:443
+127.0.0.1:50190: GET https://106.225.194.36/searchbox_feed/app=2001&fmt=auto…
+              << 200 OK 402k
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50362: client connect
+127.0.0.1:50372: client connect
+127.0.0.1:50362: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:50372: server connect 142.251.150.119:443
+127.0.0.1:50362: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50362: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:50362: client disconnect
+127.0.0.1:50372: GET https://142.251.150.119/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50372: server disconnect 142.251.150.119:443
+127.0.0.1:50372: client disconnect
+127.0.0.1:40920: Server TLS handshake failed. connection closed
+127.0.0.1:40920: Unable to establish TLS connection with server (connection closed). Trying to establish TLS with client anyway.
+127.0.0.1:40920: server disconnect 101.47.15.217:443
+127.0.0.1:40920: client disconnect
+127.0.0.1:50380: client connect
+127.0.0.1:33370: client connect
+127.0.0.1:33370: server connect 172.217.214.91:443
+127.0.0.1:50380: server connect 101.47.15.217:443
+127.0.0.1:33370: GET https://172.217.214.91/android/voice/soda/en-US/v1001/s…
+              << 200 OK 47.7m
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:33370: server disconnect 172.217.214.91:443
+127.0.0.1:33370: client disconnect
+127.0.0.1:50178: client disconnect
+127.0.0.1:50178: server disconnect 106.225.194.36:443
+127.0.0.1:50334: client disconnect
+127.0.0.1:50334: server disconnect 58.222.20.36:443
+127.0.0.1:50220: client disconnect
+127.0.0.1:50220: server disconnect 106.225.194.36:443
+127.0.0.1:50214: client disconnect
+127.0.0.1:50214: server disconnect 106.225.194.36:443
+127.0.0.1:50278: client disconnect
+127.0.0.1:50278: server disconnect 106.225.194.36:443
+127.0.0.1:50226: client disconnect
+127.0.0.1:50226: server disconnect 106.225.194.36:443
+127.0.0.1:50156: client disconnect
+127.0.0.1:50156: server disconnect 106.225.194.36:443
+127.0.0.1:50306: client disconnect
+127.0.0.1:50306: server disconnect 58.222.20.36:443
+127.0.0.1:50200: client disconnect
+127.0.0.1:50200: server disconnect 106.225.194.36:443
+127.0.0.1:50380: POST https://101.47.15.217/7f725a9e
+              << 502 Bad Gateway 138b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:50380: server disconnect 101.47.15.217:443
+127.0.0.1:50190: client disconnect
+127.0.0.1:50190: server disconnect 106.225.194.36:443
+127.0.0.1:44182: Server TLS handshake failed. connection closed
+127.0.0.1:44182: Unable to establish TLS connection with server (connection closed). Trying to establish TLS with client anyway.
+127.0.0.1:44182: server disconnect 101.47.15.217:443
+127.0.0.1:44182: client disconnect
+127.0.0.1:45496: error establishing server connection: [Errno 110] Connect call failed ('10.0.2.3', 853)
+127.0.0.1:45496: CONNECT 10.0.2.3:853
+              << 502 Bad Gateway 81b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 146, in tcp_end
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.tcp.TCPFlow'>> (<class 'method'>)
+
+127.0.0.1:45496: client disconnect
+127.0.0.1:53314: client disconnect
+127.0.0.1:40702: client disconnect
+127.0.0.1:40420: client disconnect
+127.0.0.1:47678: client disconnect
+127.0.0.1:47662: client disconnect
+127.0.0.1:47568: client disconnect
+127.0.0.1:47552: client disconnect
+127.0.0.1:47536: client disconnect
+127.0.0.1:47534: client disconnect
+127.0.0.1:47532: client disconnect
+127.0.0.1:47528: client disconnect
+127.0.0.1:34508: client disconnect
+127.0.0.1:34474: client disconnect
+127.0.0.1:47064: client disconnect
+127.0.0.1:50380: client disconnect
+127.0.0.1:44442: client disconnect
+127.0.0.1:47054: client disconnect
+127.0.0.1:47042: client disconnect
+127.0.0.1:44352: client disconnect
+127.0.0.1:47034: client disconnect
+127.0.0.1:34516: client disconnect
+127.0.0.1:47022: client disconnect
+127.0.0.1:47018: client disconnect
+127.0.0.1:40606: client disconnect
+127.0.0.1:47010: client disconnect
+127.0.0.1:44342: client disconnect
+127.0.0.1:45884: client disconnect
+127.0.0.1:44308: client disconnect
+127.0.0.1:53314: server disconnect 34.104.35.123:443
+127.0.0.1:40702: server disconnect 192.179.17.100:443
+127.0.0.1:44110: client disconnect
+127.0.0.1:34500: client disconnect
+127.0.0.1:45768: client disconnect
+127.0.0.1:45874: client disconnect
+127.0.0.1:44304: client disconnect
+127.0.0.1:44294: client disconnect
+127.0.0.1:44198: client disconnect
+127.0.0.1:40430: client disconnect
+127.0.0.1:47388: client disconnect
+127.0.0.1:47396: client disconnect
+127.0.0.1:45520: client disconnect
+127.0.0.1:53426: client disconnect
+127.0.0.1:34460: client disconnect
+127.0.0.1:47724: client disconnect
+127.0.0.1:40570: client disconnect
+127.0.0.1:34492: client disconnect
+127.0.0.1:40420: server disconnect 216.239.36.155:443
+127.0.0.1:47678: server disconnect 142.251.156.120:443
+127.0.0.1:47662: server disconnect 74.125.69.120:443
+127.0.0.1:47568: server disconnect 172.217.116.4:443
+127.0.0.1:47552: server disconnect 172.217.116.4:443
+127.0.0.1:47536: server disconnect 172.217.116.4:443
+127.0.0.1:47534: server disconnect 172.217.116.4:443
+127.0.0.1:47532: server disconnect 172.217.116.4:443
+127.0.0.1:47528: server disconnect 172.217.116.4:443
+127.0.0.1:40430: error establishing server connection: client disconnected
+127.0.0.1:40430: CONNECT 172.217.116.4:7
+              << 502 Bad Gateway 54b
+127.0.0.1:47396: error establishing server connection: client disconnected
+127.0.0.1:47396: CONNECT 172.217.116.4:7
+              << 502 Bad Gateway 54b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44196: server disconnect 74.125.132.188:5228
+127.0.0.1:34508: server disconnect 101.126.47.111:443
+127.0.0.1:34474: server disconnect 172.217.214.91:443
+127.0.0.1:47064: server disconnect 172.217.117.4:443
+127.0.0.1:44442: server disconnect 172.217.116.4:443
+127.0.0.1:47054: server disconnect 142.251.156.120:443
+127.0.0.1:47042: server disconnect 34.153.2.27:443
+127.0.0.1:44352: server disconnect 142.250.125.154:443
+127.0.0.1:47034: server disconnect 142.251.156.120:443
+127.0.0.1:34516: server disconnect 142.251.156.120:443
+127.0.0.1:47022: server disconnect 142.251.155.4:443
+127.0.0.1:47018: server disconnect 142.251.155.4:443
+127.0.0.1:40606: server disconnect 173.194.192.139:443
+127.0.0.1:47010: server disconnect 172.217.116.4:443
+127.0.0.1:44342: server disconnect 172.217.116.4:443
+127.0.0.1:45884: server disconnect 172.217.114.4:443
+127.0.0.1:44308: server disconnect 172.217.118.4:443
+127.0.0.1:44196: client disconnect
+127.0.0.1:44110: server disconnect ad.doubleclick.net:80 (173.194.193.148:80)
+127.0.0.1:34500: server disconnect 142.251.156.120:443
+127.0.0.1:45768: server disconnect 172.217.116.4:443
+127.0.0.1:45874: server disconnect 172.217.116.4:443
+127.0.0.1:44304: server disconnect 172.217.119.4:443
+127.0.0.1:44294: server disconnect 172.217.118.4:443
+127.0.0.1:44198: server disconnect 172.217.118.4:443
+127.0.0.1:47388: server disconnect 142.251.156.119:443
+127.0.0.1:45520: server disconnect ad.doubleclick.net:80 (173.194.193.149:80)
+127.0.0.1:53426: server disconnect 172.217.114.4:443
+127.0.0.1:34460: server disconnect 142.251.156.120:443
+127.0.0.1:47724: server disconnect 172.217.114.4:443
+127.0.0.1:40570: server disconnect 172.217.114.4:443
+127.0.0.1:34492: server disconnect 172.217.214.91:443
+127.0.0.1:44376: client connect
+127.0.0.1:44392: client connect
+127.0.0.1:44406: client connect
+127.0.0.1:44406: server connect 142.251.150.119:443
+127.0.0.1:44376: server connect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:44392: server connect 142.251.184.188:5228
+127.0.0.1:44376: GET http://connectivitycheck.gstatic.com/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44376: server disconnect connectivitycheck.gstatic.com:80 (142.251.150.120:80)
+127.0.0.1:44376: client disconnect
+127.0.0.1:44392 -> tcp -> 142.251.184.188:5228
+127.0.0.1:44406: GET https://142.251.150.119/generate_204
+              << 204 No Content 0b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+
+127.0.0.1:44406: server disconnect 142.251.150.119:443
+127.0.0.1:44406: client disconnect
+127.0.0.1:44392 <- tcp <- 142.251.184.188:5228
+127.0.0.1:44392 <- tcp <- 142.251.184.188:5228
+127.0.0.1:44416: client connect
+127.0.0.1:44424: client connect
+127.0.0.1:44424: server connect 172.217.113.4:443
+127.0.0.1:47456: client connect
+127.0.0.1:47456: server connect 142.251.157.119:443
+127.0.0.1:55068: client connect
+127.0.0.1:55072: client connect
+127.0.0.1:55076: client connect
+127.0.0.1:55072: server connect 172.217.114.4:443
+127.0.0.1:55076: server connect 172.217.114.4:443
+127.0.0.1:55068: server connect 172.217.114.4:443
+127.0.0.1:55068: 127.0.0.1:55068: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55068: client disconnect
+127.0.0.1:55068: server disconnect 172.217.114.4:443
+127.0.0.1:55084: client connect
+127.0.0.1:55084: server connect 172.217.114.4:443
+127.0.0.1:55076: 127.0.0.1:55076: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55076: client disconnect
+127.0.0.1:55076: server disconnect 172.217.114.4:443
+127.0.0.1:55096: client connect
+127.0.0.1:55072: 127.0.0.1:55072: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55072: client disconnect
+127.0.0.1:55072: server disconnect 172.217.114.4:443
+127.0.0.1:55106: client connect
+127.0.0.1:55096: server connect 172.217.114.4:443
+127.0.0.1:55106: server connect 172.217.114.4:443
+127.0.0.1:55084: 127.0.0.1:55084: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55084: client disconnect
+127.0.0.1:55084: server disconnect 172.217.114.4:443
+127.0.0.1:55096: 127.0.0.1:55096: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55096: client disconnect
+127.0.0.1:55096: server disconnect 172.217.114.4:443
+127.0.0.1:55106: 127.0.0.1:55106: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55106: client disconnect
+127.0.0.1:55106: server disconnect 172.217.114.4:443
+127.0.0.1:55116: client connect
+127.0.0.1:55122: client connect
+127.0.0.1:55126: client connect
+127.0.0.1:55116: server connect 172.217.114.4:443
+127.0.0.1:55122: server connect 172.217.114.4:443
+127.0.0.1:55126: server connect 172.217.114.4:443
+127.0.0.1:55116: 127.0.0.1:55116: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55116: client disconnect
+127.0.0.1:55116: server disconnect 172.217.114.4:443
+127.0.0.1:55130: client connect
+127.0.0.1:55126: 127.0.0.1:55126: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55126: client disconnect
+127.0.0.1:55126: server disconnect 172.217.114.4:443
+127.0.0.1:55122: 127.0.0.1:55122: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55122: client disconnect
+127.0.0.1:55122: server disconnect 172.217.114.4:443
+127.0.0.1:55140: client connect
+127.0.0.1:55130: server connect 172.217.114.4:443
+127.0.0.1:55152: client connect
+127.0.0.1:55140: server connect 172.217.114.4:443
+127.0.0.1:55152: server connect 172.217.114.4:443
+127.0.0.1:55152: 127.0.0.1:55152: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55152: client disconnect
+127.0.0.1:55152: server disconnect 172.217.114.4:443
+127.0.0.1:55140: 127.0.0.1:55140: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55140: client disconnect
+127.0.0.1:55140: server disconnect 172.217.114.4:443
+127.0.0.1:55130: 127.0.0.1:55130: HTTP/2 protocol error: Received header value surrounded by whitespace b'Bearer '
+127.0.0.1:55130: client disconnect
+127.0.0.1:55130: server disconnect 172.217.114.4:443
+127.0.0.1:55162: client connect
+127.0.0.1:55162: server connect 101.47.15.217:443
+127.0.0.1:35006: client connect
+127.0.0.1:35006: error establishing server connection: [Errno 101] Network is unreachable
+127.0.0.1:35006: CONNECT 2401:4c20:34:ff00:a9c:8e60:c35:9cc5:443
+              << 502 Bad Gateway 95b
+Addon error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 162, in response
+    self.save_flow(flow)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/addons/save.py", line 106, in save_flow
+    self.stream.add(flow)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/io.py", line 54, in add
+    tnetstring.dump(d, self.fo)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 66, in dump
+    file_handle.write(dumps(value))
+                      ~~~~~^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 57, in dumps
+    _rdumpq(q, 0, value)
+    ~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 142, in _rdumpq
+    size = _rdumpq(q, size, v)
+  File "/usr/lib/python3/dist-packages/mitmproxy/io/tnetstring.py", line 149, in _rdumpq
+    raise ValueError(f"unserializable object: {value} ({type(value)})")
+ValueError: unserializable object: <bound method type of <class 'mitmproxy.http.HTTPFlow'>> (<class 'method'>)
+

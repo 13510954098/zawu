@@ -191,3 +191,4 @@ ERROR        | Failed to find ColorBuffer: 149
 ERROR        | Failed to bind to texture: invalid color buffer.
 INFO         | Boot completed in 30402 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+WARNING      | Netsim Wifi ipv6:%5B::1%5D:46707 is gone due to Stream removed (Socket closed)
