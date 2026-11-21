@@ -24,3 +24,10 @@ drwxr-xr-x 3 runner runner    4096 Nov 21 09:50 ..
 -rw-r--r-- 1 runner runner 1048576 Nov 21 09:50 userdata.img
 list_avds=probe
 [09:50:45] avd-ready
+mitm_ca_ready=1
+mitm_pid=3589
+host_tcpdump=running
+emu_pid=3605
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+[09:51:21] emulator-up
