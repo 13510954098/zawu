@@ -1,0 +1,4 @@
+{"msg": {"t": "javahooked", "n": 1}, "dlen": 0}
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"rpc": "dump", "err": "script has been destroyed"}
+{"rpc": "scan", "err": "script has been destroyed"}
