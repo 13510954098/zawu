@@ -1,0 +1,64 @@
+{"t": "collector_start", "variant": "/tmp/variant.js"}
+{"rpc_avail": ["scan"]}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 1}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 2}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 3}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 4}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 5}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 6}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"t": "go_dump_seen", "at": 148.0}
+{"rpc": "dump", "err": "unable to find method 'dump'"}
+{"msg": {"t": "sboxdone", "hits": 7}, "dlen": 0}
+{"rpc": "scan", "ok": true}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 8}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 9}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 10}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 11}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 12}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 13}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 14}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 15}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 16}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 17}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 18}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 19}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 20}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 21}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 22}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 23}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 24}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 25}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 26}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 27}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 28}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
+{"msg": {"t": "sboxdone", "hits": 29}, "dlen": 0}
+{"msg": {"t": "sbox", "at": "0x6ff6074c"}, "dlen": 131072}
