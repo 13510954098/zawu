@@ -54,3 +54,5 @@ launch_exit=0
 observe_minutes=12
 interact=modal-dismiss done
 [10:14:28] tick-3m
+interact=detail1 done
+[10:17:08] tick-6m
