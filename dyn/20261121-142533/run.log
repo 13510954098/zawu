@@ -15,3 +15,12 @@ Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 root            45     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
 root            46     2       0      0 kthread_worker_fn   0 S [erofs_worker/1]
 [14:29:01] frida-server-up
+collector=writehook pid=3833
+login_attempt=1
+chk[login] inter-loginpage.png y=0.326  inter-loggedin.png y=0.326  same=False
+login_verdict=0
+login_attempt=2
+chk[login] inter-loginpage.png y=0.326  inter-loggedin.png y=0.326  same=False
+login_verdict=0
+LOGINFAIL: 两次尝试后仍在登录墙，放弃本轮，不倾倒无效堆
+[14:31:47] -a login-fail
