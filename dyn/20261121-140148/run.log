@@ -19,3 +19,4 @@ collector=candctx pid=3857
 login_check px=(254, 203, 24)
 fast-fail: 登录未成，触发dump后提前收尾
 [14:06:09] fastfail-login
+[14:06:11] uidrive-done
