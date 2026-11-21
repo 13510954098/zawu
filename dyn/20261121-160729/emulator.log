@@ -187,3 +187,4 @@ WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emu
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay enable-exclusive --user 0 --category com.android.internal.emulation.pixel_5 ' failed: ''
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell cmd overlay enable-exclusive --user 0 --category com.android.systemui.emulation.pixel_5 ' failed: 'error: closed'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell am broadcast -a com.android.emulator.multidisplay.START -n com.android.emulator.multidisplay/.MultiDisplayServiceReceiver --user 0 ' failed: 'adb: device offline'
+ERROR        | bad color buffer handle 266

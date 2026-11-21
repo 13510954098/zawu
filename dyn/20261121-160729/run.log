@@ -15,3 +15,14 @@ Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 root            44     2       0      0 worker_thread       0 I [kworker/u5:0-fscrypt_read_queue]
 root            45     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
 [16:10:44] frida-server-up
+collector=javabridge pid=6954
+state[detail] nav-detail.png mid=0.000 bot=0.007 white=0.085
+detail_miss=1
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=2
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=3
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=4
+NAVFAIL: 三次尝试未进详情页
+[16:13:53] -a nav-fail
