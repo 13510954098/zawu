@@ -64,3 +64,11 @@ logcat_lines=63771
 adbd is already running as root
 tar_bytes=10624512
 [11:06:25] datadir-done
+OK: killing emulator, bye bye
+OK
+pcap_bytes=1002200
+host_pcap_bytes=526377241
+flows_bytes=0
+dns_hosts=0 sni_hosts=0 quic=0
+api_flows=412
+[11:06:46] parsed
