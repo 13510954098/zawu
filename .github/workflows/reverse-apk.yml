@@ -1,0 +1,106 @@
+name: RE-APK 静态首轮
+
+on:
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: 'APK 下载地址（留空用默认 ad-app）'
+        required: false
+      tag:
+        description: '报告目录名（留空用 sha12）'
+        required: false
+  push:
+    paths:
+      - '.github/workflows/reverse-apk.yml'
+
+permissions:
+  contents: write
+
+env:
+  DEFAULT_APK_URL: 'https://alicm.a.etoote.com/bs2/ad-app/YWQtYXBwOmFkX2RzcF9hcHA6NTY1MTEyMTU0NzpNRVJDSEFOVDpbQkA3MzE3MjYyZToyNDE5OTczMjAyMzU0Nw%3D%3D.apk'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 装工具链（apktool / jadx / apkid）
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq unzip curl openssl
+          APKTOOL_JAR=$(curl -fsSL https://api.github.com/repos/iBotPeaches/Apktool/releases/latest | jq -r '.assets[]|select(.name|endswith(".jar"))|.browser_download_url' | head -1)
+          sudo curl -fsSL -o /opt/apktool.jar "$APKTOOL_JAR"
+          sudo tee /usr/local/bin/apktool > /dev/null <<'EOF'
+          #!/bin/sh
+          exec java -jar /opt/apktool.jar "$@"
+          EOF
+          sudo chmod +x /usr/local/bin/apktool
+          JADX_ZIP=$(curl -fsSL https://api.github.com/repos/skylot/jadx/releases/latest | jq -r '.assets[]|select(.name|endswith(".zip"))|.browser_download_url' | head -1)
+          sudo curl -fsSL -o /tmp/jadx.zip "$JADX_ZIP"
+          sudo unzip -q /tmp/jadx.zip -d /opt/jadx
+          sudo ln -sf /opt/jadx/bin/jadx /usr/local/bin/jadx
+          pip3 install --break-system-packages -q apkid || echo 'apkid 跳过'
+          apktool --version
+          jadx --version | head -1
+
+      - name: 下载 APK 并记录哈希
+        env:
+          INPUT_URL: ${{ github.event.inputs.apk_url }}
+        run: |
+          set -euo pipefail
+          URL="${INPUT_URL:-$DEFAULT_APK_URL}"
+          mkdir -p work
+          curl -fsSL --retry 3 --max-time 900 -o work/app.apk "$URL"
+          ls -lh work/app.apk
+          sha256sum work/app.apk | tee work/sha256.txt
+
+      - name: 解包（保留原始 dex）
+        run: apktool d -f -s -o work/decoded work/app.apk > work/apktool.log 2>&1
+
+      - name: 加固指纹
+        run: apkid -j work/app.apk > work/apkid.json 2>/dev/null || echo 'apkid 无输出'
+
+      - name: jadx 反编译（失败不阻塞）
+        run: timeout 2400 jadx -d work/jadx --no-res --threads-count 4 work/app.apk > work/jadx.log 2>&1 || echo 'jadx 未完整结束'
+
+      - name: 生成静态报告
+        run: python3 re/analyze_apk.py --apk work/app.apk --decoded work/decoded --apkid work/apkid.json --outdir work
+
+      - name: 写入 Job Summary
+        run: |
+          echo '## APK 静态首轮报告' >> "$GITHUB_STEP_SUMMARY"
+          cat work/report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 报告提交到分支
+        run: |
+          set -euo pipefail
+          SHA12=$(cut -c1-12 work/sha256.txt)
+          DEST="reports/apk-${SHA12}"
+          mkdir -p "$DEST" work/app-src
+          cp work/report.md work/facts.json work/domains.txt "$DEST/"
+          cp work/decoded/AndroidManifest.xml "$DEST/AndroidManifest.xml"
+          cp -r work/jadx/sources/com/hbsclj "work/app-src/" 2>/dev/null || true
+          git config user.name 're-bot'
+          git config user.email 're-bot@users.noreply.github.com'
+          git checkout -B "re/apk-${SHA12}"
+          git add "$DEST"
+          git commit -m "re: APK 静态首轮报告 ${SHA12}" || echo '无变更'
+          git push --force origin "re/apk-${SHA12}"
+
+      - name: 上传产物
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-re-${{ github.run_number }}
+          path: |
+            work/report.md
+            work/facts.json
+            work/domains.txt
+            work/apkid.json
+            work/apktool.log
+            work/jadx.log
+            work/app-src
+          retention-days: 14
