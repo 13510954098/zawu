@@ -16,3 +16,11 @@ sdk_exit=0
 adb=Android Debug Bridge version 1.0.41
 emulator=
 [12:13:46] toolchain-ready
+ini=/home/runner/.config/.android/avd/probe.ini
+total 1036
+drwxr-xr-x 2 runner runner    4096 Nov 21 12:13 .
+drwxr-xr-x 3 runner runner    4096 Nov 21 12:13 ..
+-rw-r--r-- 1 runner runner    3587 Nov 21 12:13 config.ini
+-rw-r--r-- 1 runner runner 1048576 Nov 21 12:13 userdata.img
+list_avds=probe
+[12:13:48] avd-ready
