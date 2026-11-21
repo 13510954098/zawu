@@ -190,3 +190,5 @@ cmd: Failure calling service activity: Broken pipe (32)'
 WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell am broadcast -a com.android.emulator.multidisplay.START -n com.android.emulator.multidisplay/.MultiDisplayServiceReceiver --user 0 ' failed: 'adb: device 'emulator-5554' not found'
 INFO         | Boot completed in 31134 ms
 INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+ERROR        | bad color buffer handle 277
+ERROR        | bad color buffer handle 284
