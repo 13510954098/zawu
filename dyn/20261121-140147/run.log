@@ -16,3 +16,6 @@ login_check px=(254, 203, 24)
 fast-fail: 登录未成，触发dump后提前收尾
 [14:06:32] fastfail-login
 [14:06:34] uidrive-done
+regions: 864 total 352948224
+mem bytes 352948224 cands 680
+[14:07:03] procfs-done
