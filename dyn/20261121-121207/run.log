@@ -62,3 +62,5 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: 'dyn/20261121-121207/api-flows.jsonl'
 interact=read done
 [12:22:36] tick-6m
+interact=detail2 done
+[12:25:26] tick-9m
