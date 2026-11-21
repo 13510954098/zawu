@@ -1,4 +1,4 @@
-name: RE-APK 动态探针 v3
+name: RE-APK 动态探针 v3.2
 
 # v3 全量改造（v2.1 实测发现，非修补）：
 # 1) v2.1 实锤：emulator -tcpdump 只在前 ~5 秒有效（109 帧全在前 5s，App 实际下载 2.9MB 未入包）。
@@ -82,7 +82,7 @@ jobs:
           git push -q origin "HEAD:refs/heads/re/dyn-$TS" 2>/dev/null || true
           HB
           chmod +x /tmp/hb.sh
-          /tmp/hb.sh "$TS" init-v3
+          /tmp/hb.sh "$TS" init-v32
 
       - name: 1. 下载 APK 并校验
         run: |
@@ -159,9 +159,30 @@ jobs:
         run: |
           export PATH=/usr/local/lib/android/sdk/platform-tools:$PATH
           export ANDROID_AVD_HOME="$AVD_HOME"
-          # 4a. mitmdump 先行，等 CA 生成
+          # 4a. mitmdump 先行（实时落盘 addon），等 CA 生成
+          cat > /tmp/dump_flows.py <<'PY'
+          import json
+          from mitmproxy import http
+          OUT = "/tmp/api-bodies-live.jsonl"
+          def response(flow: http.HTTPFlow):
+              try:
+                  rec = {
+                      "method": flow.request.method,
+                      "url": flow.request.pretty_url,
+                      "status": flow.response.status_code,
+                      "resp_ct": flow.response.headers.get("content-type", ""),
+                      "req_body": (flow.request.get_text(strict=False) or "")[:20000],
+                      "resp_body": (flow.response.get_text(strict=False) or "")[:64000],
+                  }
+                  with open(OUT, "a") as f:
+                      f.write(json.dumps(rec, ensure_ascii=False, default=str) + "\n")
+              except Exception as e:
+                  with open(OUT, "a") as f:
+                      f.write(json.dumps({"err": str(e)}, default=str) + "\n")
+          PY
           nohup "$MITM_BIN" --listen-host 0.0.0.0 --listen-port 8080 \
             -w "dyn/$TS/mitm.flows" --set block_global=false --set flow_detail=1 \
+            -s /tmp/dump_flows.py \
             > "dyn/$TS/mitm.log" 2>&1 &
           echo $! > /tmp/mitm.pid
           CA_OK=0
@@ -291,24 +312,29 @@ jobs:
           for i in $(seq 1 "$DUR"); do
             if [ "$i" = "2" ]; then
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-before.png" 2>/dev/null || true
-              timeout 20 adb shell input tap 540 1450 || true; sleep 3
-              timeout 20 adb shell input tap 540 1600 || true; sleep 3
-              timeout 20 adb shell input tap 540 1250 || true; sleep 5
+              timeout 20 adb shell input tap 925 715 || true; sleep 6
+              timeout 20 adb shell input tap 925 715 || true; sleep 6
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-modal.png" 2>/dev/null || true
               echo "interact=modal-dismiss done" >> "dyn/$TS/run.log"
             fi
             if [ "$i" = "4" ]; then
               timeout 20 adb shell input tap 270 700 || true
-              sleep 30
+              sleep 25
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail1.png" 2>/dev/null || true
+              timeout 20 adb shell input swipe 540 1800 540 600 300 || true
+              sleep 15
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-read1.png" 2>/dev/null || true
               timeout 20 adb shell input keyevent 4 || true
               sleep 5
               echo "interact=detail1 done" >> "dyn/$TS/run.log"
             fi
             if [ "$i" = "8" ]; then
               timeout 20 adb shell input tap 810 700 || true
-              sleep 30
+              sleep 25
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-detail2.png" 2>/dev/null || true
+              timeout 20 adb shell input swipe 540 1800 540 600 300 || true
+              sleep 15
+              timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-read2.png" 2>/dev/null || true
               timeout 20 adb shell input keyevent 4 || true
               sleep 5
               echo "interact=detail2 done" >> "dyn/$TS/run.log"
@@ -360,24 +386,7 @@ jobs:
           else
             echo "host.pcap 缺失" >> "dyn/$TS/run.log"
           fi
-          cat > /tmp/dump_flows.py <<'PY'
-          import json
-          from mitmproxy import http
-          def response(flow: http.HTTPFlow):
-              try:
-                  rec = {
-                      "method": flow.request.method,
-                      "url": flow.request.pretty_url,
-                      "status": flow.response.status_code,
-                      "resp_ct": flow.response.headers.get("content-type", ""),
-                      "resp_len": len(flow.response.raw_content or b""),
-                      "resp_text": (flow.response.get_text(strict=False) or "")[:6000],
-                  }
-                  print(json.dumps(rec, ensure_ascii=False), flush=True)
-              except Exception as e:
-                  print(json.dumps({"err": str(e), "url": flow.request.pretty_url}), flush=True)
-          PY
-          timeout 180 "$MITM_BIN" -n -r "dyn/$TS/mitm.flows" -s /tmp/dump_flows.py > "dyn/$TS/api-flows.jsonl" 2> "dyn/$TS/mitm-parse.log" || true
+          cp /tmp/api-bodies-live.jsonl "dyn/$TS/api-flows.jsonl" 2>/dev/null || true
           echo "api_flows=$(wc -l < dyn/$TS/api-flows.jsonl 2>/dev/null || echo 0)" >> "dyn/$TS/run.log"
           grep -aE '^(GET|POST|CONNECT|PUT|HEAD)|client connect|server connect|error|TLS' "dyn/$TS/mitm.log" 2>/dev/null | head -400 > "dyn/$TS/mitm-conn.txt" || true
           if [ -s "dyn/$TS/net.pcap" ]; then
