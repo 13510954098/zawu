@@ -15,3 +15,20 @@ Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 root            44     2       0      0 worker_thread       0 I [kworker/u5:0-fscrypt_read_queue]
 root            45     2       0      0 kthread_worker_fn   0 S [erofs_worker/0]
 [15:59:26] frida-server-up
+collector=evphook pid=3484
+state[detail] nav-detail.png mid=0.011 bot=0.259 white=0.498
+detail_ok=1
+state[login] inter-afterclick.png mid=0.328 bot=0.000 white=0.666
+login_attempt=1
+cb yellow_px=105
+state[login] inter-loggedin.png mid=0.011 bot=0.258 white=0.498
+login_ok=1
+state[login] inter-loggedin.png mid=0.011 bot=0.258 white=0.498
+state[shelf] inter-postlogin.png mid=0.011 bot=0.258 white=0.498
+state[detail] inter-postlogin.png mid=0.011 bot=0.258 white=0.498
+postlogin=detail
+go_dump armed during decrypt
+state[login] inter-page0.png mid=0.000 bot=0.000 white=0.013
+go_dump armed at reader
+uiflow=done
+[16:04:10] uidrive-done
