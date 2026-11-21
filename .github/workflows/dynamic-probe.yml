@@ -326,9 +326,11 @@ jobs:
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-loginpage.png" 2>/dev/null || true
               timeout 20 adb shell input tap 450 730 || true; sleep 4
               timeout 20 adb shell input text "928081274@qq.com" || true; sleep 3
+              timeout 20 adb shell input keyevent 111 || true; sleep 2
               timeout 20 adb shell input tap 78 1015 || true; sleep 2
-              timeout 20 adb shell input tap 450 920 || true; sleep 3
+              timeout 20 adb shell input tap 450 890 || true; sleep 4
               timeout 20 adb shell input text "Zmh20100227" || true; sleep 3
+              timeout 20 adb shell input keyevent 111 || true; sleep 2
               timeout 30 adb exec-out screencap -p > "dyn/$TS/inter-loginfilled.png" 2>/dev/null || true
               timeout 20 adb shell input tap 540 1212 || true
               sleep 18
@@ -336,9 +338,11 @@ jobs:
               echo "interact=login done" >> "dyn/$TS/run.log"
             fi
             if [ "$i" = "5" ]; then
-              echo "aW1wb3J0IGpzb24sIHJlLCB0aW1lLCBoYXNobGliLCB1cmxsaWIucmVxdWVzdCwgb3MsIHN5cwp0b2s9Tm9uZQpwPSdkeW4vJytvcy5lbnZpcm9uWydUUyddKycvYXBpLWZsb3dzLmpzb25sJwpmb3IgbGluZSBpbiBvcGVuKHAsIGVycm9ycz0ncmVwbGFjZScpOgogICAgaWYgJy9hcHAvYXBpL3VzZXIvbG9naW4nIGluIGxpbmUgYW5kICcidG9rZW4iJyBpbiBsaW5lOgogICAgICAgIG09cmUuc2VhcmNoKHInInRva2VuIjoiKFteIl0rKSInLCBsaW5lKQogICAgICAgIGlmIG06IHRvaz1tLmdyb3VwKDEpOyBicmVhawpwcmludCgndG9rZW5fZm91bmQ9JywgYm9vbCh0b2spKQpvcGVuKCcvdG1wL3Rvay50eHQnLCd3Jykud3JpdGUodG9rIG9yICcnKQppZiB0b2s6CiAgICBLPSdxMnNJT2JZWENwMnVCWmdDTkJsWTkzSjN6NjdoSzB3UycKICAgIGRlZiBjYWxsKHBhdGgsIG1ldGhvZD0nR0VUJywgYm9keT1Ob25lKToKICAgICAgICB0PXN0cihpbnQodGltZS50aW1lKCkpKTsgcz1oYXNobGliLm1kNSgoSytwYXRoK3QpLmVuY29kZSgpKS5oZXhkaWdlc3QoKQogICAgICAgIHVybD0naHR0cDovL2Nkbi5tZWNoYXQuZnVuJytwYXRoKyc/bHpzaWduPScrcysnJnQ9Jyt0CiAgICAgICAgcmVxPXVybGxpYi5yZXF1ZXN0LlJlcXVlc3QodXJsLCBkYXRhPShib2R5LmVuY29kZSgpIGlmIGJvZHkgZWxzZSBOb25lKSwgbWV0aG9kPW1ldGhvZCwKICAgICAgICAgICAgaGVhZGVycz17J1VzZXItQWdlbnQnOidEYXJ0LzMuNSAoZGFydDppbyknLCdBdXRob3JpemF0aW9uJzp0b2ssJ0NvbnRlbnQtVHlwZSc6J2FwcGxpY2F0aW9uL2pzb24nfSkKICAgICAgICB0cnk6CiAgICAgICAgICAgIHJldHVybiB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSwgdGltZW91dD0yNSkucmVhZCgpLmRlY29kZShlcnJvcnM9J3JlcGxhY2UnKVs6MzAwXQogICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTogcmV0dXJuICdFUlIgJytzdHIoZSlbOjEwMF0KICAgIHRpZD0nZW11LScrc3RyKGludCh0aW1lLnRpbWUoKSkpCiAgICBwcmludCgnUE9TVCBwcm9ncmVzczonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcHJvZ3Jlc3MnLCdQT1NUJywneyJ0cmFuc0lkIjoiJXMiLCJ0eXBlIjoicmVhZGluZyJ9JyV0aWQpKQogICAgcHJpbnQoJ1FVRVJZOicsIGNhbGwoJy9hcHAvYXBpL2FkL3Jld2FyZC9xdWVyeT90cmFuc0lkPScrdGlkKSkKICAgIHByaW50KCdTVEFURTonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcHJvZ3Jlc3MnKSkKZWxzZToKICAgIHN5cy5leGl0KDEpCg==" | base64 -d > /tmp/forge.py && TS="$TS" python3 /tmp/forge.py >> "dyn/$TS/run.log" 2>&1 || true
+              echo "aW1wb3J0IGpzb24sIHJlLCB0aW1lLCBoYXNobGliLCB1cmxsaWIucmVxdWVzdCwgc3lzCks9J3Eyc0lPYllYQ3AydUJaZ0NOQmxZOTNKM3o2N2hLMHdTJwpkZWYgY2FsbChwYXRoLCBtZXRob2Q9J0dFVCcsIGJvZHk9Tm9uZSwgdG9rPU5vbmUpOgogICAgdD1zdHIoaW50KHRpbWUudGltZSgpKSk7IHM9aGFzaGxpYi5tZDUoKEsrcGF0aCt0KS5lbmNvZGUoKSkuaGV4ZGlnZXN0KCkKICAgIHVybD0naHR0cDovL2Nkbi5tZWNoYXQuZnVuJytwYXRoKyc/bHpzaWduPScrcysnJnQ9Jyt0CiAgICBoPXsnVXNlci1BZ2VudCc6J0RhcnQvMy41IChkYXJ0OmlvKScsJ0NvbnRlbnQtVHlwZSc6J2FwcGxpY2F0aW9uL2pzb24nfQogICAgaWYgdG9rOiBoWydBdXRob3JpemF0aW9uJ109dG9rCiAgICByZXE9dXJsbGliLnJlcXVlc3QuUmVxdWVzdCh1cmwsIGRhdGE9KGJvZHkuZW5jb2RlKCkgaWYgYm9keSBlbHNlIE5vbmUpLCBtZXRob2Q9bWV0aG9kLCBoZWFkZXJzPWgpCiAgICB0cnk6IHJldHVybiB1cmxsaWIucmVxdWVzdC51cmxvcGVuKHJlcSwgdGltZW91dD0yNSkucmVhZCgpLmRlY29kZShlcnJvcnM9J3JlcGxhY2UnKQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOiByZXR1cm4gJ0VSUiAnK3N0cihlKVs6MTUwXQpyPWNhbGwoJy9hcHAvYXBpL3VzZXIvbG9naW4nLCdQT1NUJywneyJlbWFpbCI6IjkyODA4MTI3NEBxcS5jb20iLCJwd2QiOiJabWgyMDEwMDIyNyJ9JykKbT1yZS5zZWFyY2gocicidG9rZW4iOiIoW14iXSspIicsIHIpCnByaW50KCdsb2dpbjonLCAnT0snIGlmIG0gZWxzZSByWzoxNTBdKQp0b2s9bS5ncm91cCgxKSBpZiBtIGVsc2UgTm9uZQppZiBub3QgdG9rOiBzeXMuZXhpdCgxKQp0aWQ9J2VtdS0nK3N0cihpbnQodGltZS50aW1lKCkpKQpwcmludCgnUE9TVCBwcm9ncmVzczonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcHJvZ3Jlc3MnLCdQT1NUJywneyJ0cmFuc0lkIjoiJXMiLCJ0eXBlIjoicmVhZGluZyJ9JyV0aWQsIHRvaylbOjIwMF0pCnByaW50KCdRVUVSWTonLCBjYWxsKCcvYXBwL2FwaS9hZC9yZXdhcmQvcXVlcnk/dHJhbnNJZD0nK3RpZCwgdG9rPXRvaylbOjE1MF0pCnN0PWNhbGwoJy9hcHAvYXBpL2FkL3Jld2FyZC9wcm9ncmVzcycsIHRvaz10b2spCnRyeToKICAgIGQ9anNvbi5sb2FkcyhzdCk7IGRkPWQuZ2V0KCdkYXRhJyx7fSkKICAgIHByaW50KCdTVEFURTogY29tcGxldGVkPSVzIHJlbWFpbmluZz0lcyBjb29sZG93bj0lcyclKGRkLmdldCgnY29tcGxldGVkX2NvdW50JyksZGQuZ2V0KCdyZW1haW5pbmdfc2Vjb25kcycpLGRkLmdldCgnY29vbGRvd25fdW50aWwnKSkpCmV4Y2VwdCBFeGNlcHRpb246IHByaW50KCdTVEFURSByYXc6Jywgc3RbOjIwMF0pCm9wZW4oJy90bXAvdG9rLnR4dCcsJ3cnKS53cml0ZSh0b2spCg==" | base64 -d > /tmp/forge.py && python3 /tmp/forge.py >> "dyn/$TS/run.log" 2>&1 || true
             fi
             if [ "$i" = "6" ]; then
+              timeout 20 adb shell input keyevent 4 || true; sleep 3
+              timeout 20 adb shell input keyevent 4 || true; sleep 3
               timeout 20 adb shell input tap 270 700 || true
               sleep 20
               timeout 20 adb shell input tap 700 2150 || true
