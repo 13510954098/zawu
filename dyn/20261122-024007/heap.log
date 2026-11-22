@@ -46,3 +46,31 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p4
+regions_total=247 selected=247 bytes=907538432 tag=p8
+dump_bytes=904355840 in 21.6s file=/tmp/heap_p8.bin
+JPEG_IN_MEM p8 off=677229184 bytes=195254 JPEG (836, 1200) ba7d3c4aea
+JPEG_IN_MEM p8 off=677728128 bytes=184028 JPEG (836, 1200) 9057c2c105
+JPEG_IN_MEM p8 off=678252656 bytes=184269 JPEG (836, 1200) 7c545d8778
+JPEG_IN_MEM p8 off=736227480 bytes=202781 JPEG (836, 1200) 18f313a22c
+JPEG_IN_MEM p8 off=737276056 bytes=161826 JPEG (836, 1200) e798a651d9
+JPEG_IN_MEM p8 off=738848920 bytes=183926 JPEG (836, 1200) 6a72b8d905
+harvest_new=6 seen_total=22
+PAIR page=17 size=161826 keystream_head=11b196adb791205d0b7eba810a72ca9834983ac25485d3d86826fa226f4fd3da src=hv_p8_e798a651d9.jpg
+PAIR page=19 size=183926 keystream_head=f017583e469a74dad27350ad3516e917275f0c3870353718e39f2ab58f3bb279 src=hv_p8_6a72b8d905.jpg
+PAIR page=21 size=184028 keystream_head=c377c942be4df02d9d28d205e4138294bfc0dc73d0217a05f5d929cf1a3f5700 src=hv_p8_9057c2c105.jpg
+PAIR page=18 size=202781 keystream_head=19e74dbf05ee0451ab409721150cbd173f9c297687ceff10e2710a31a2e71a0e src=hv_p8_18f313a22c.jpg
+PAIR page=20 size=195254 keystream_head=03d9193da8d9bc752a35e8006ba8ce570068d66b6e53e3c973caf0a36b2d989c src=hv_p8_ba7d3c4aea.jpg
+PAIR page=22 size=184269 keystream_head=2d7f2cd38d6ffa4c4476aed073484cb8a66f0dd0e0e2932caa1bb078327d4bb7 src=hv_p8_7c545d8778.jpg
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p8
