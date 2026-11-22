@@ -11,3 +11,14 @@ boot_ok_loop=3
 restarting adbd as root
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 [02:12:52] app-up
+procfs: post-harvest instead
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=1
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=2
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=3
+state[detail] nav-detail.png mid=0.000 bot=0.000 white=0.986
+detail_miss=4
+NAVFAIL: 三次尝试未进详情页
+[02:15:46] -a nav-fail
