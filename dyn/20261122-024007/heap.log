@@ -232,3 +232,22 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p36
+regions_total=233 selected=233 bytes=947634176 tag=final
+dump_bytes=945512448 in 20.3s file=/tmp/heap_final.bin
+JPEG_IN_MEM final off=411821936 bytes=254231 JPEG (836, 1200) 0df8976e75
+JPEG_IN_MEM final off=469471040 bytes=203206 JPEG (836, 1200) d1dd39a0a4
+JPEG_IN_MEM final off=472383640 bytes=339261 JPEG (836, 1200) eb45233fbd
+harvest_new=3 seen_total=54
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE final
