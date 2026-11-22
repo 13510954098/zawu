@@ -11,3 +11,30 @@ boot_ok_loop=4
 restarting adbd as root
 Starting: Intent { cmp=com.hbsclj.uth/.MainActivity }
 [02:19:55] app-up
+procfs: post-harvest instead
+fg[1]=
+fg[2]=
+fg[3]=
+fg[4]=
+fg[5]=
+fg[6]=
+fg[1]=
+fg[2]=
+fg[3]=
+fg[4]=
+fg[5]=
+fg[6]=
+state[detail] nav-detail.png mid=0.011 bot=0.247 white=0.494
+detail_ok=6
+state[login] inter-afterclick.png mid=0.338 bot=0.000 white=0.673
+login_attempt=1
+cb yellow_px=0
+state[login] inter-loggedin.png mid=0.011 bot=0.247 white=0.495
+login_ok=1
+state[login] inter-loggedin.png mid=0.011 bot=0.247 white=0.495
+state[shelf] inter-postlogin.png mid=0.011 bot=0.247 white=0.495
+state[detail] inter-postlogin.png mid=0.011 bot=0.247 white=0.495
+postlogin=detail
+state[reader] fast-reader.png mid=0.000 bot=0.000 white=0.070
+heapbrute: dump window open
+[02:23:14] heap-window
