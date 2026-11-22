@@ -4,3 +4,4 @@ curl_exit=0 sha=235162605907f6c26c39d3f877af387a915ea8b6f3ca000d358111a0aefa2ab2
 [02:08:49] downloaded
 frida 16.5.9
 [02:11:24] toolchain-ready
+[02:11:27] avd-ready
