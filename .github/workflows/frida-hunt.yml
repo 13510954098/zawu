@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [glob32, evphook, sbox, writehook, sockethook, javabridge, procfs, offlinebrute]
+        variant: [procfs]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -308,8 +308,19 @@ jobs:
           ST() { python3 /tmp/state.py "dyn/$TS/$1" "/tmp/ST_$2" "$2" >> "dyn/$TS/run.log" 2>&1 || true; cat "/tmp/ST_$2" 2>/dev/null || echo 0; }
           echo "aW1wb3J0IHN5cwpmcm9tIFBJTCBpbXBvcnQgSW1hZ2UKCgpkZWYgYmFuZHMocCk6CiAgICBpbSA9IEltYWdlLm9wZW4ocCkuY29udmVydCgnUkdCJykKICAgIFcsIEggPSBpbS5zaXplCgogICAgZGVmIHllbGxvdyh5MCwgeTEpOgogICAgICAgIG4gPSB0ID0gMAogICAgICAgIGZvciB5IGluIHJhbmdlKGludChIICogeTApLCBpbnQoSCAqIHkxKSwgNCk6CiAgICAgICAgICAgIGZvciB4IGluIHJhbmdlKGludChXICogMC4wOCksIGludChXICogMC45MiksIDYpOgogICAgICAgICAgICAgICAgciwgZywgYiA9IGltLmdldHBpeGVsKCh4LCB5KSkKICAgICAgICAgICAgICAgIHQgKz0gMQogICAgICAgICAgICAgICAgaWYgciA+IDIwMCBhbmQgZyA+IDE1MCBhbmQgYiA8IDE0MCBhbmQgciAtIGIgPiA3MDoKICAgICAgICAgICAgICAgICAgICBuICs9IDEKICAgICAgICByZXR1cm4gbiAvIGZsb2F0KHQpIGlmIHQgZWxzZSAwLjAKCiAgICBtaWQgPSB5ZWxsb3coMC40MCwgMC41NikKICAgIGJvdCA9IHllbGxvdygwLjgzLCAwLjk2KQogICAgdyA9IHQyID0gMAogICAgZm9yIHkgaW4gcmFuZ2UoMCwgSCwgMjApOgogICAgICAgIGZvciB4IGluIHJhbmdlKDAsIFcsIDIwKToKICAgICAgICAgICAgciwgZywgYiA9IGltLmdldHBpeGVsKCh4LCB5KSkKICAgICAgICAgICAgdDIgKz0gMQogICAgICAgICAgICBpZiByID4gMjM1IGFuZCBnID4gMjM1IGFuZCBiID4gMjM1OgogICAgICAgICAgICAgICAgdyArPSAxCiAgICB3aGl0ZSA9IHcgLyBmbG9hdCh0MikgaWYgdDIgZWxzZSAwLjAKICAgIHJldHVybiBtaWQsIGJvdCwgd2hpdGUKCgppbWcsIG91dCwgbW9kZSA9IHN5cy5hcmd2WzFdLCBzeXMuYXJndlsyXSwgc3lzLmFyZ3ZbM10KdHJ5OgogICAgbWlkLCBib3QsIHdoaXRlID0gYmFuZHMoaW1nKQogICAgcHJpbnQoJ3N0YXRlWyVzXSAlcyBtaWQ9JS4zZiBib3Q9JS4zZiB3aGl0ZT0lLjNmJyAlIChtb2RlLCBpbWcuc3BsaXQoJy8nKVstMV0sIG1pZCwgYm90LCB3aGl0ZSkpCiAgICBpZiBtb2RlID09ICdkZXRhaWwnOgogICAgICAgIG9rID0gYm90ID4gMC4xMAogICAgZWxpZiBtb2RlID09ICdsb2dpbic6CiAgICAgICAgb2sgPSBtaWQgPiAwLjEyCiAgICBlbGlmIG1vZGUgPT0gJ3JlYWRlcic6CiAgICAgICAgb2sgPSBtaWQgPD0gMC4xMgogICAgZWxpZiBtb2RlID09ICdzaGVsZic6CiAgICAgICAgb2sgPSB3aGl0ZSA+IDAuOTMKICAgIGVsc2U6CiAgICAgICAgb2sgPSBGYWxzZQogICAgb3BlbihvdXQsICd3Jykud3JpdGUoJzEnIGlmIG9rIGVsc2UgJzAnKQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICBwcmludCgnc3RhdGUgZXJyJywgZSkKICAgIG9wZW4ob3V0LCAndycpLndyaXRlKCcwJykK" | base64 -d > /tmp/state.py
           echo "aW1wb3J0IHN5cwpmcm9tIFBJTCBpbXBvcnQgSW1hZ2UKcCwgb3V0ID0gc3lzLmFyZ3ZbMV0sIHN5cy5hcmd2WzJdCnRyeToKICAgIGltID0gSW1hZ2Uub3BlbihwKS5jb252ZXJ0KCdSR0InKQogICAgVywgSCA9IGltLnNpemUKICAgIG4gPSAwCiAgICBmb3IgeSBpbiByYW5nZShpbnQoSCowLjM3KSwgaW50KEgqMC40NiksIDMpOgogICAgICAgIGZvciB4IGluIHJhbmdlKGludChXKjAuMDIpLCBpbnQoVyowLjE0KSwgMyk6CiAgICAgICAgICAgIHIsIGcsIGIgPSBpbS5nZXRwaXhlbCgoeCwgeSkpCiAgICAgICAgICAgIGlmIHIgPiAxOTAgYW5kIGcgPiAxNDAgYW5kIGIgPCAxNTAgYW5kIHIgLSBiID4gNTA6CiAgICAgICAgICAgICAgICBuICs9IDEKICAgIHByaW50KCdjYiB5ZWxsb3dfcHg9JWQnICUgbikKICAgIG9wZW4ob3V0LCAndycpLndyaXRlKCcxJyBpZiBuID4gMTIgZWxzZSAnMCcpCmV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgIHByaW50KCdjYiBlcnInLCBlKQogICAgb3BlbihvdXQsICd3Jykud3JpdGUoJzAnKQo=" | base64 -d > /tmp/cb.py
+          FG() {
+            for i in 1 2 3 4 5 6; do
+              R=$(adb shell dumpsys activity activities 2>/dev/null | grep -m1 mResumedActivity || true)
+              echo "fg[$i]=$R" >> "dyn/$TS/run.log"
+              echo "$R" | grep -q "$PKG" && return 0
+              adb shell am start -n "$PKG/.MainActivity" >/dev/null 2>&1 || true
+              sleep 4
+            done
+            return 1
+          }
           goto_detail() {
             for i in 1 2 3 4; do
+            FG || true
               A input tap 105 2100; sleep 7
               SH nav-home.png
               A input tap 270 700; sleep 22
@@ -338,6 +349,7 @@ jobs:
             SH inter-loggedin.png
           }
           rm -f /tmp/go_dump /tmp/ST_* /tmp/CB
+          FG || true
           sleep 30
           A input tap 925 715; sleep 6; A input tap 925 715; sleep 6
           SH inter-modal.png
