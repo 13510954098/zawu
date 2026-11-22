@@ -1,0 +1,98 @@
+name: JC Purity Probe
+
+on:
+  push:
+    branches: [re/purity-jc-20261122]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jc-purity
+  cancel-in-progress: false
+
+env:
+  SHARDS: 20
+  WORKERS: 10
+
+jobs:
+  probe:
+    name: probe-shard-${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decrypt node config
+        env:
+          JC_PASS: ${{ secrets.JC_PASS }}
+        run: |
+          set -e
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 20000 -a -pass env:JC_PASS \
+            -in purity/jc_nodes.yaml.gz.enc | gzip -dc > /tmp/jc.yaml
+          python3 -c "import yaml; d=yaml.safe_load(open('/tmp/jc.yaml')); print('proxies', len(d['proxies']))"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Get mihomo
+        run: |
+          set -e
+          curl -fsSL -o mihomo.gz \
+            https://github.com/MetaCubeX/mihomo/releases/download/v1.19.34/mihomo-linux-amd64-compatible-v1.19.34.gz
+          gzip -d mihomo.gz
+          chmod +x mihomo
+          ./mihomo -v
+
+      - name: Probe shard ${{ matrix.shard }}
+        run: |
+          python3 purity/probe.py --config /tmp/jc.yaml \
+            --shard ${{ matrix.shard }} --shards "$SHARDS" --workers "$WORKERS" \
+            --out "shard-${{ matrix.shard }}.jsonl" --budget 1200
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shard-${{ matrix.shard }}
+          path: shard-${{ matrix.shard }}.jsonl
+          retention-days: 7
+          if-no-files-found: warn
+
+  enrich:
+    name: enrich-and-report
+    needs: probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deps
+        run: pip install pyyaml openpyxl
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: shard-*
+          path: shards
+          merge-multiple: true
+
+      - name: Enrich
+        run: |
+          mkdir -p out
+          python3 purity/enrich.py --shards-dir shards --outdir out --workers 8 --ping0
+
+      - name: Show summary
+        run: |
+          head -40 out/JC节点纯净度报告.md || true
+          ls -l out
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jc-purity-results
+          path: out/
+          retention-days: 14
