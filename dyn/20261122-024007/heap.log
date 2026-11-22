@@ -188,3 +188,19 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p28
+regions_total=253 selected=253 bytes=933195776 tag=p32
+dump_bytes=932134912 in 20.5s file=/tmp/heap_p32.bin
+harvest_new=0 seen_total=39
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p32
