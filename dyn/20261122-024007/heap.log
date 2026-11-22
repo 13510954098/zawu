@@ -204,3 +204,31 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p32
+regions_total=241 selected=241 bytes=938983424 tag=p36
+dump_bytes=929435648 in 19.8s file=/tmp/heap_p36.bin
+JPEG_IN_MEM p36 off=479723672 bytes=290133 JPEG (836, 1200) adfebe5b38
+JPEG_IN_MEM p36 off=485490840 bytes=207883 JPEG (836, 1200) 03909b19c4
+JPEG_IN_MEM p36 off=492306584 bytes=241505 JPEG (836, 1200) 2ece2f3457
+JPEG_IN_MEM p36 off=560254832 bytes=239882 JPEG (836, 1200) efd8ac0267
+JPEG_IN_MEM p36 off=644538520 bytes=245867 JPEG (836, 1200) 0573506c9f
+JPEG_IN_MEM p36 off=645587096 bytes=222430 JPEG (836, 1200) 1eb80c396c
+JPEG_IN_MEM p36 off=646635672 bytes=214407 JPEG (836, 1200) df98bffb4f
+JPEG_IN_MEM p36 off=647684248 bytes=208950 JPEG (836, 1200) 1f3c41a5a8
+JPEG_IN_MEM p36 off=648732824 bytes=227687 JPEG (836, 1200) 348cc93912
+JPEG_IN_MEM p36 off=649781400 bytes=204225 JPEG (836, 1200) 1168a67f4f
+JPEG_IN_MEM p36 off=650829976 bytes=220589 JPEG (836, 1200) ea3d253d4a
+JPEG_IN_MEM p36 off=651878552 bytes=163518 JPEG (836, 1200) 5fc6df0f2a
+harvest_new=12 seen_total=51
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p36
