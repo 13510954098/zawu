@@ -1,0 +1,12 @@
+regions_total=255 selected=255 bytes=891199488
+dump_bytes=882712576 in 20.9s
+JPEG_IN_MEM heap off=640354992 bytes=100485 JPEG (630, 840)
+JPEG_IN_MEM heap off=724226200 bytes=263793 JPEG (1115, 1600)
+JPEG_IN_MEM heap off=725740576 bytes=56535 JPEG (540, 780)
+JPEG_IN_MEM heap off=789131536 bytes=56535 JPEG (540, 780)
+JPEG_IN_MEM heap off=853827712 bytes=213662 JPEG (836, 1200)
+harvest_count=5
+blob page=1 bytes=263793
+kbf klen=16 file=/tmp/heap.bin 113s hits=0
+kbf klen=32 file=/tmp/heap.bin 157s hits=0
+FINAL NOHIT
