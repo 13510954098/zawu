@@ -102,3 +102,31 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p12
+regions_total=247 selected=247 bytes=924762112 tag=p16
+dump_bytes=920518656 in 19.9s file=/tmp/heap_p16.bin
+JPEG_IN_MEM p16 off=531701888 bytes=176812 JPEG (836, 1200) 4db37ed6d2
+JPEG_IN_MEM p16 off=547618992 bytes=186955 JPEG (836, 1200) a203d10baa
+JPEG_IN_MEM p16 off=608792728 bytes=161307 JPEG (836, 1200) 35f9f55285
+JPEG_IN_MEM p16 off=610889880 bytes=190551 JPEG (836, 1200) 19a2ebe56a
+JPEG_IN_MEM p16 off=614559896 bytes=172822 JPEG (836, 1200) 2ed3aee4de
+JPEG_IN_MEM p16 off=615264848 bytes=170358 JPEG (836, 1200) 753f3c2f76
+harvest_new=6 seen_total=34
+PAIR page=33 size=186955 keystream_head=d6a7445a3b05060ca032e642a7057020e82d275ce20122f02b9c35ac01f71d5a src=hv_p16_a203d10baa.jpg
+PAIR page=32 size=170358 keystream_head=8d35713ec0c6a0318518f4cf869e0001e634ecaba8962adfeef2315812c10665 src=hv_p16_753f3c2f76.jpg
+PAIR page=30 size=190551 keystream_head=e9e83ce6f1e46fbae5e4849af74f0b2885bd636c189014d1597023d3d4aaa8d5 src=hv_p16_19a2ebe56a.jpg
+PAIR page=29 size=161307 keystream_head=b2c3972df3846a2bf3293347fc16db5fec1ecf8350822e1573f480a71481ec4d src=hv_p16_35f9f55285.jpg
+PAIR page=34 size=176812 keystream_head=d51fc8ded46e177d5ac3d40f2562ae448fe1ce7c859f20478b4a72b917ac4c8a src=hv_p16_4db37ed6d2.jpg
+PAIR page=31 size=172822 keystream_head=5fdaf9f2b48daa1be7eb07593a090ac5754202118753de55f4b9f37139aa4a5a src=hv_p16_2ed3aee4de.jpg
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p16
