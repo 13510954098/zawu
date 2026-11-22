@@ -38,3 +38,8 @@ postlogin=detail
 state[reader] fast-reader.png mid=0.000 bot=0.000 white=0.013
 v11 reader ok, page loop goes in 7b
 [02:46:29] reader-entry-ok
+ct_download_ok=39
+7.6M	/tmp/ct
+v11 pid=3294
+== dump at page 4 ==
+[02:47:20] dump-p4
