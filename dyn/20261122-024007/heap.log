@@ -154,3 +154,21 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p20
+regions_total=249 selected=249 bytes=937926656 tag=p24
+dump_bytes=935804928 in 20.3s file=/tmp/heap_p24.bin
+JPEG_IN_MEM p24 off=855535768 bytes=169889 JPEG (1960, 1022) 97f372044d
+harvest_new=1 seen_total=39
+PAIR page=39 size=169889 keystream_head=7bd6c50b082108f59d0e6f31d7d04cc8b2f063cd02fc49480776957259a8e306 src=hv_p24_97f372044d.jpg
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p24
