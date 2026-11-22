@@ -130,3 +130,27 @@ KSTR_NOT_IN_MEM len=24
 needle kstr_page14.bin
 KSTR_NOT_IN_MEM len=24
 TAG_DONE p16
+regions_total=252 selected=252 bytes=945750016 tag=p20
+dump_bytes=942567424 in 20.1s file=/tmp/heap_p20.bin
+JPEG_IN_MEM p20 off=531255264 bytes=61961 JPEG (945, 1200) fcd20db054
+JPEG_IN_MEM p20 off=531809616 bytes=106231 JPEG (1200, 777) af106cc261
+JPEG_IN_MEM p20 off=714055832 bytes=177159 JPEG (836, 1200) 0879cc46ee
+JPEG_IN_MEM p20 off=812609688 bytes=208354 JPEG (836, 1200) 5a3016d009
+harvest_new=4 seen_total=38
+PAIR page=36 size=208354 keystream_head=b99dbd9d119a1ed5d6a31beadbdc1d5f41cd7f704c201e3f707b922788e62413 src=hv_p20_5a3016d009.jpg
+PAIR page=35 size=177159 keystream_head=8304709d2f1870a6b1ff91670c75dc5f4c786fee825b4d3ea151c7974455db4b src=hv_p20_0879cc46ee.jpg
+PAIR page=37 size=61961 keystream_head=3672c36c064023d4fb7fc52a231197429ee68678d3a79109173edc981cdf2aaa src=hv_p20_fcd20db054.jpg
+PAIR page=38 size=106231 keystream_head=7181a014a65e31489ad6bc424057465c0b82e0ef3a77fd65a5200e2d1e76fc7e src=hv_p20_af106cc261.jpg
+needle kstr_page1.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page10.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page11.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page12.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page13.bin
+KSTR_NOT_IN_MEM len=24
+needle kstr_page14.bin
+KSTR_NOT_IN_MEM len=24
+TAG_DONE p20
